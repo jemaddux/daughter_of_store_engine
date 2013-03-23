@@ -24,7 +24,11 @@ describe ProductsController do
   # Product. As you add validations to Product, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {  }
+    { name:        "Some Product", 
+      description: "This is my product description.",
+      price:       123.99,
+      quantity:    3,
+      featured:    true }
   end
 
   # This should return the minimal set of values that should be in the session
@@ -157,7 +161,7 @@ describe ProductsController do
     it "redirects to the products list" do
       product = Product.create! valid_attributes
       delete :destroy, {:id => product.to_param}, valid_session
-      response.should redirect_to(products_url)
+      expect(response).to redirect_to(products_path)
     end
   end
 

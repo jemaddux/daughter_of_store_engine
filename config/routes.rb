@@ -1,4 +1,7 @@
 StoreEngine::Application.routes.draw do
+  resources :categories
+
+
   resources :products
 
 
