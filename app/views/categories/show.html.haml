@@ -1,0 +1,10 @@
+%p#notice= notice
+= @category.name
+= @category.description
+- @category.products.each do |product|
+  = product.name
+  = product.description
+  = product.price
+= link_to 'Edit', edit_category_path(@category)
+|
+\#{link_to 'Back', categories_path}
