@@ -4,7 +4,6 @@ gem 'rails', '3.2.13'
 gem 'sqlite3'
 gem 'jquery-rails'
 gem 'rake'
-gem 'haml-rails', '>= 0.3.4', :group => :development
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -22,4 +21,5 @@ group :development, :test do
   # gem 'guard'
   gem 'cane'
   gem 'reek'
+  gem 'haml-rails', '>= 0.3.4'
 end
