@@ -1,16 +1,57 @@
-%h1 Listing categories
-%table
-  %tr
-    %th
-    %th
-    %th
-  - @categories.each do |category|
-    %tr
-      %td= category.name
-      %td= category.description
-    %tr
-      %td= link_to 'Show', category
-      %td= link_to 'Edit', edit_category_path(category)
-      %td= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
-%br/
-= link_to 'New Category', new_category_path
+/ %h1 Listing categories
+/ %table
+/   %tr
+/     %th
+/     %th
+/     %th
+/   - @categories.each do |category|
+/     %tr
+/       %td= category.name
+/       %td= category.description
+/     %tr
+/       %td= link_to 'Show', category
+/       %td= link_to 'Edit', edit_category_path(category)
+/       %td= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
+/ %br/
+/ = link_to 'New Category', new_category_path
+
+=image_tag "obie_head.jpg"
+
+.row
+  %h2.section-heading
+    Category
+
+.row
+  / Thumbnails
+  .large-12.columns
+    .row
+      .large-2.small-6.columns
+        %img{:src => "http://placehold.it/1000x1000&text=Thumbnail"}/
+        .panel
+          %h5 Pants
+          %h6.subheader $100.00
+      .large-2.small-6.columns
+        %img{:src => "http://placehold.it/500x500&text=Thumbnail"}/
+        .panel
+          %h5 shorts
+          %h6.subheader $50.00
+      .large-2.small-6.columns
+        %img{:src => "http://placehold.it/500x500&text=Thumbnail"}/
+        .panel
+          %h5 obie's undies
+          %h6.subheader $400.00
+      .large-2.small-6.columns
+        %img{:src => "http://placehold.it/500x500&text=Thumbnail"}/
+        .panel
+          %h5 hats
+          %h6.subheader $40.00
+      .large-2.small-6.columns
+        %img{:src => "http://placehold.it/500x500&text=Thumbnail"}/
+        .panel
+          %h5 shoes
+          %h6.subheader $300.00
+      .large-2.small-6.columns
+        %img{:src => "http://placehold.it/500x500&text=Thumbnail"}/
+        .panel
+          %h5 more shoes
+          %h6.subheader $200.00

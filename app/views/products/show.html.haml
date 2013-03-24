@@ -1,4 +1,61 @@
-%p#notice= notice
-= link_to 'Edit', edit_product_path(@product)
-|
-\#{link_to 'Back', products_path}
+/ %p#notice= notice
+/ = link_to 'Edit', edit_product_path(@product)
+/ |
+/ \#{link_to 'Back', products_path}
+
+/
+  <p id="notice"><haml:loud> notice </haml:loud></p>
+  
+  
+  <haml:loud> link_to 'Edit', edit_product_path(@product) </haml:loud> |
+  <haml:loud> link_to 'Back', products_path </haml:loud>
+.row
+  .large-12.columns
+    / Navigation
+    %ul.button-group
+      %li
+        %a.button{:href => "#"} Nav Item 1
+      %li
+        %a.button{:href => "#"} Nav Item 2
+      %li
+        %a.button{:href => "#"} Nav Item 3
+    / End Navigation
+    / Header Content
+    .row
+      .large-6.columns
+        =image_tag "red_jacket.jpg"
+      .large-6.columns
+        %h3.show-for-small Header    
+        %hr/
+        .panel
+          %h4.hide-for-small.left Header
+          %h4.hide-for-small.right Price - $100.00
+          %hr/
+          %h5.subheader This is where the product description will go at some point in the near future.This is where the product description will go at some point in the near future.This is where the product description will go at some point in the near future.This is where the product description will go at some point in the near future.This is where the product description will go at some point in the near future.This is where the product description will go at some point in the near future.
+        .row
+          .large-12.small-6.columns
+            .panel
+              %h5 Add to Cart
+              %select.options
+                %option{:value => "small"} small
+                %option{:value => "medium"} medium
+                %option{:value => "large"} large
+              %h6.subheader 
+              %a.button{:href => "#"} Add to Cart
+              %a.button{:href => "#"} Checkout
+
+        .panel
+          %h2 Details
+          %ul
+            %li Super awesome jacket
+            %li You NEED THIS
+            %li Super awesome jacket
+            %li You NEED THIS
+            %li Super awesome jacket
+            %li You NEED THIS
+            %li Super awesome jacket
+            %li You NEED THIS
+
+   
+    / End Footer
+
