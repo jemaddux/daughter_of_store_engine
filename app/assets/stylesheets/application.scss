@@ -12,6 +12,30 @@
  *= require_tree .
 */
 @import "foundation";
+@import "font-awesome";
 
  // *= require foundation_and_overrides
  //= require foundation_and_overrides
+
+.top-bar {
+  box-shadow: 1px 1px 5px #333;
+}
+
+.top-bar-section ul li{
+ text-transform: uppercase;
+
+}
+
+.top-bar-section ul li a:hover,
+.name h1 a:hover {
+  color: white !important;
+}
+.top-bar-section ul li a:active {
+  color: silver;
+}
+.top-bar-section .has-dropdown > a:after {
+  display:none !important;
+}
+.row {
+  max-width: 98em !important;
+}

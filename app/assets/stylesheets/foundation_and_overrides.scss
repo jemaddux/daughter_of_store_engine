@@ -85,10 +85,10 @@
 //
 
 // We use these to control header font styles
-// $header-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+ $header-font-family: "Questrial", "Helvetica", Helvetica, Arial, sans-serif;
 // $header-font-weight: bold;
 // $header-font-style: normal;
-// $header-font-color: #222;
+// $header-font-color: #000;
 // $header-line-height: 1.4;
 // $header-top-margin: .2em;
 // $header-bottom-margin: .5em;
@@ -968,7 +968,7 @@
 //
 
 // Background color for the top bar
-// $topbar-bg: #111;
+ $topbar-bg: white;
 
 // Height and margin
 // $topbar-height: 45px;
@@ -982,13 +982,13 @@
 // $topbar-title-font-size: emCalc(17px);
 
 // Set the link colors and styles for top-level nav
-// $topbar-link-color: #fff;
+ $topbar-link-color: #000;
 // $topbar-link-weight: bold;
 // $topbar-link-font-size: emCalc(13px);
 
 // Style the top bar dropdown elements
 // $topbar-dropdown-bg: #333;
-// $topbar-dropdown-link-color: #fff;
+ $topbar-dropdown-link-color: #000;
 // $topbar-dropdown-toggle-size: 5px;
 // $topbar-dropdown-toggle-color: #fff;
 // $topbar-dropdown-toggle-alpha: 0.5;

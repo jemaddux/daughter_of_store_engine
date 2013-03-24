@@ -1,18 +1,128 @@
-%h1 Listing products
-%table
-  %tr
-    %th
-    %th
-    %th
-  - @products.each do |product|
-    %tr
-      %td
-        %p= product.name
-      %td
-        %p= product.description
-    %tr
-      %td= link_to 'Show', product
-      %td= link_to 'Edit', edit_product_path(product)
-      %td= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }
-%br/
-= link_to 'New Product', new_product_path
+/ %h1 Listing products
+/ %table
+/   %tr
+/     %th
+/     %th
+/     %th
+/   - @products.each do |product|
+/     %tr
+/       %td
+/         %p= product.name
+/       %td
+/         %p= product.description
+/     %tr
+/       %td= link_to 'Show', product
+/       %td= link_to 'Edit', edit_product_path(product)
+/       %td= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }
+/ %br/
+/ = link_to 'New Product', new_product_path
+
+.row
+  .large-12.columns
+    / Navigation
+    .row
+      .large-12.columns
+        .fixed
+          %nav.top-bar
+            %ul.title-area
+              / Title Area
+              %li.name
+                %h1
+                  %a{:href => "#"}
+                    OBIESTORE
+              %li.toggle-topbar.menu-icon
+                %a{:href => "#"}
+                  %span menu
+            %section.top-bar-section
+              / Right Nav Section
+              %ul.right
+                %li.divider
+                %li.has-dropdown
+                  %a{:href => "#"} Categories <i class="icon-angle-down"></i>
+                  %ul.dropdown
+                    %li
+                      %a{:href => "#"} Shirts
+                    %li
+                      %a{:href => "#"} Pants
+                    %li
+                      %a{:href => "#"} Undies
+                    %li
+                      %a{:href => "#"} Shoes
+                    %li
+                      %a{:href => "#"} Accessories
+                    
+                    %li.divider
+                    %li
+                      %a{:href => "#"} See all →
+                %li.divider
+                %li.has-dropdown
+                  %a{:href => "#"} Cart <i class="icon-angle-down"></i>
+                %li.divider
+                %li
+                  %a{:href => "#"} login / Signup <i class="icon-angle-down"></i>
+                  %ul.dropdown
+                    %li
+                      %a{:href => "#"} Dropdown Option
+                    %li
+                      %a{:href => "#"} Dropdown Option
+                    %li
+                      %a{:href => "#"} Dropdown Option
+                    %li.divider
+                    %li
+                      %a{:href => "#"} See all →
+          / End Top Bar
+      / End Navigation
+      .row
+    
+        / Thumbnails
+        .large-12.columns
+          .row
+            .large-2.small-6.columns
+              %img{:src => "http://placehold.it/1000x1000&text=Thumbnail"}/
+              .panel
+                %h5 Item Name
+                %h6.subheader $000.00
+            .large-2.small-6.columns
+              %img{:src => "http://placehold.it/500x500&text=Thumbnail"}/
+              .panel
+                %h5 Item Name
+                %h6.subheader $000.00
+            .large-2.small-6.columns
+              %img{:src => "http://placehold.it/500x500&text=Thumbnail"}/
+              .panel
+                %h5 Item Name
+                %h6.subheader $000.00
+            .large-2.small-6.columns
+              %img{:src => "http://placehold.it/500x500&text=Thumbnail"}/
+              .panel
+                %h5 Item Name
+                %h6.subheader $000.00
+            .large-2.small-6.columns
+              %img{:src => "http://placehold.it/500x500&text=Thumbnail"}/
+              .panel
+                %h5 Item Name
+                %h6.subheader $000.00
+            .large-2.small-6.columns
+              %img{:src => "http://placehold.it/500x500&text=Thumbnail"}/
+              .panel
+                %h5 Item Name
+                %h6.subheader $000.00
+          
+       
+      %footer.row
+        .large-12.columns
+          %hr/
+          .row
+            .large-6.columns
+              %p © Copyright no one at all. Go to town.
+            .large-6.columns
+              %ul.inline-list.right
+                %li
+                  %a{:href => "#"} Link 1
+                %li
+                  %a{:href => "#"} Link 2
+                %li
+                  %a{:href => "#"} Link 3
+                %li
+                  %a{:href => "#"} Link 4
+      / End Footer
