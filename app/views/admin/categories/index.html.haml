@@ -1,0 +1,7 @@
+- @categories.each do |category|
+  %h1= category.name
+  %p= category.description
+  %p= category.products.count
+  - category.products.each do |product|
+    %h1= product.name
+    %p= product.description

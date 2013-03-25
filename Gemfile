@@ -12,6 +12,7 @@ group :assets do
   # Add Foundation Here
   gem 'zurb-foundation', '~> 4.0.0'
   gem 'font-awesome-rails'
+  gem "paperclip", "~> 3.0"
 end
 
 group :development, :test do

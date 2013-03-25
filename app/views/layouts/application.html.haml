@@ -35,8 +35,8 @@
               / Title Area
               %li.name
                 %h1
-                  %a{:href => "#"}
-                    OBIESTORE
+                  %a{:href => "/"}
+                    OBIWEAR
               %li.toggle-topbar.menu-icon
                 %a{:href => "#"}
                   %span menu
@@ -47,20 +47,9 @@
                 %li.has-dropdown
                   %a{:href => "#"} Categories <i class="icon-angle-down"></i>
                   %ul.dropdown
-                    %li
-                      %a{:href => "#"} Shirts
-                    %li
-                      %a{:href => "#"} Pants
-                    %li
-                      %a{:href => "#"} Undies
-                    %li
-                      %a{:href => "#"} Shoes
-                    %li
-                      %a{:href => "#"} Accessories
-                    
-                    %li.divider
-                    %li
-                      %a{:href => "#"} See all →
+                    - category_list.each do |category|
+                      %li= link_to category.name, category_path(category)
+                    %li= link_to "See all →", categories_path
                 %li.divider
                 %li.has-dropdown
                   %a{:href => "#"} Cart <i class="icon-angle-down"></i>

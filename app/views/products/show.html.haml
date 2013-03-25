@@ -28,10 +28,10 @@
         %h3.show-for-small Header    
         %hr/
         .panel
-          %h4.hide-for-small.left Header
-          %h4.hide-for-small.right Price - $100.00
+          %h4.hide-for-small.left= @product.name
+          %h4.hide-for-small.right= "Price - $#{@product.price}"
           %hr/
-          %h5.subheader This is where the product description will go at some point in the near future.This is where the product description will go at some point in the near future.This is where the product description will go at some point in the near future.This is where the product description will go at some point in the near future.This is where the product description will go at some point in the near future.This is where the product description will go at some point in the near future.
+          %h5.subheader= @product.description
         .row
           .large-12.small-6.columns
             .panel
@@ -45,7 +45,7 @@
               %a.button{:href => "#"} Checkout
 
         .panel
-          %h2 Details
+          %h2 Description
           %ul
             %li Super awesome jacket
             %li You NEED THIS
