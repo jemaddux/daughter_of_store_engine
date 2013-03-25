@@ -184,7 +184,7 @@ DEPENDENCIES
   launchy
   paperclip (~> 3.0)
   rails (= 3.2.13)
-  rake
+  rake (= 10.0.3)
   reek
   rspec-rails
   sass-rails (~> 3.2.3)
