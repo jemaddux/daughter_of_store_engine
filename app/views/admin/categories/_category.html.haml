@@ -1,0 +1,12 @@
+.row
+  .large-2.columns.small-3
+    %img{:src => "http://placehold.it/80x80&text=[img]"}/
+  .large-10.columns
+    .left
+      %h2= category.name
+      %p= category.description
+      /%a= link_to Category.find(category.category_id), categories_path
+    .right
+      %h2= "#{category.products.count} items"
+      %a.button.right{:href => "#"} Retire
+      %a.button.right{:href => "/admin/categories/#{category.id}/edit" } Edit
