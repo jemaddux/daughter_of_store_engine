@@ -31,12 +31,11 @@
       %p
         = f.label :category
         %br/
-        - category_names = category_list.collect do |category| 
-          - category.name
-        - category_values = category_list.collect do |category|
-          - category.id
- /************ Still need to pass the id to the products info
-        = select_tag 'category', options_for_select(category_names, category_values), multiple: true, size: 4
+        / - category_names = category_list.collect do |category| 
+        /   - category.name
+        / - category_values = category_list.collect do |category|
+        /   - category.id
+        = f.select 'category', options_for_select(category_list), multiple: true, size: 4
       %p
         = f.label :featured
         = f.label :featured, "True"
