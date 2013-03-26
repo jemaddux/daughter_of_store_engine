@@ -29,6 +29,14 @@
         %br/
         = f.number_field :quantity, min: 0
       %p
+        = f.label :category
+        %br/
+        / - category_names = category_list.collect do |category| 
+        /   - category.name
+        / - category_values = category_list.collect do |category|
+        /   - category.id
+        = f.select 'category', options_for_select(category_list), multiple: true, size: 4
+      %p
         = f.label :featured
         = f.label :featured, "True"
         = f.radio_button :featured, true
