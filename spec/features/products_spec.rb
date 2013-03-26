@@ -21,17 +21,15 @@ describe "products" do
     expect( page ).to have_content "Some description"
   end
 
-  xit "should create a product" do 
+  it "should create a product" do 
     visit new_admin_product_path
-    fill_in "product_name",        :with => "Some product"
+    fill_in "product_name",        :with => "New product"
     fill_in "product_description", :with => "Some description"
     fill_in "product_quantity",    :with => 7
-    fill_in "product_price",       :with => 123
+    fill_in "product_price",       :with => 1234
     choose "product_featured_false"
     click_button "Create Product"
     expect( page ).to have_content "Some description"
-    within(".hide-from-small") do 
-      expect( page ).to have_content "123"
-    end
+    expect( page ).to have_content "1234"
   end
 end

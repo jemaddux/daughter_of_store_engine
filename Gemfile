@@ -24,4 +24,5 @@ group :development, :test do
   gem 'cane'
   gem 'reek'
   gem 'haml-rails', '>= 0.3.4'
+  gem 'simplecov', :require => false
 end

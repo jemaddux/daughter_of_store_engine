@@ -106,7 +106,7 @@ describe Admin::ProductsController do
       it "redirects to the product" do
         product = Product.create! valid_attributes
         put :update, {:id => product.to_param, :product => valid_attributes}, valid_session
-        response.should redirect_to(product)
+        response.should redirect_to(admin_products_path)
       end
     end
 
