@@ -18,7 +18,7 @@ class CategoriesController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @category }
     end
-  end
+  end 
 
   # GET /categories/new
   # GET /categories/new.json
