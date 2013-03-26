@@ -26,4 +26,20 @@ class Admin::ProductsController < ApplicationController
       end
     end
   end
+
+  def edit
+    @product = Product.find(params[:id])
+  end
+
+  def update
+    @product = Product.find(params[:id])
+
+    respond_to do |format|
+      if @product.update_attributes(params[:product])
+        format.html { redirect_to admin_products_path, notice: 'Product was successfully updated.' }
+      else
+        format.html { render :edit }
+      end
+    end
+  end
 end
