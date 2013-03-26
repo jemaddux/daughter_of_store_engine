@@ -32,4 +32,16 @@ describe "products" do
     expect( page ).to have_content "Some description"
     expect( page ).to have_content "1234"
   end
+
+  it "edits the individual product" do 
+    visit edit_admin_product_path(@product)
+    fill_in "product_name",        :with => "Some other product"
+    fill_in "product_description", :with => "Some other description"
+    fill_in "product_price",       :with => 4321
+    fill_in "product_quantity",    :with => 77
+    choose "product_featured_false"
+    click_button "Update Product"
+    expect( page ).to have_content "Some other description"
+    expect( page ).to have_content "4321"
+  end
 end
