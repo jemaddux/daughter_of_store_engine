@@ -8,5 +8,4 @@
       /%a= link_to Category.find(product.category_id), categories_path
     .right
       %h2= "$ #{product.price}"
-      %a.button.right{:href => "#"} Retire
-      %a.button.right{:href => "/admin/products/#{product.id}/edit" } Edit
+      =link_to 'Edit', edit_admin_product_path(product), class: "button right"

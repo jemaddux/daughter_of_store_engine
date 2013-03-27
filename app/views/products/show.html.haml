@@ -31,7 +31,7 @@
           %h4.hide-for-small.left= @product.name
           %h4.hide-for-small.right= "Price - $#{@product.price}"
           %hr/
-          %h5.subheader= @product.description
+          %h5.subheader= @products
         .row
           .large-12.small-6.columns
             .panel
@@ -47,14 +47,7 @@
         .panel
           %h2 Description
           %ul
-            %li Super awesome jacket
-            %li You NEED THIS
-            %li Super awesome jacket
-            %li You NEED THIS
-            %li Super awesome jacket
-            %li You NEED THIS
-            %li Super awesome jacket
-            %li You NEED THIS
+            %li= @product.description
 
    
     / End Footer
