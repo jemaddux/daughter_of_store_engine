@@ -12,7 +12,7 @@ class Product < ActiveRecord::Base
   validates :description, presence: true
   validates :price,       presence: true
   validates :quantity,    presence: true
-  validates :active,      presence: true
+  validates :active,      inclusion: { in: [false, true] }
   # validates :category_id, presence: true
   belongs_to :category
 
