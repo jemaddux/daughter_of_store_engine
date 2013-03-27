@@ -16,3 +16,6 @@
 
 # Ignore SimpleCov
 coverage/
+
+# Ignore ProductImages
+public/system/products/images/
