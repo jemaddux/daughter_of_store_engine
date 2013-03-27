@@ -4,7 +4,7 @@ class Product < ActiveRecord::Base
                   :price, 
                   :quantity,
                   :featured,
-                  :category_id
+                  :category_id,
                   :image
 
   validates :name,        presence: true, uniqueness: true

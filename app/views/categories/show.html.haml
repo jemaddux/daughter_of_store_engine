@@ -13,14 +13,17 @@
 
 .row
   %h2.section-heading
-    Featured
+    =@category.name
 
 .row
   .large-12.columns
     .row
-      - @products.first(6).each do |product|
+      - @products.each do |product|
         .large-2.small-6.columns
-          %img{:src => "http://placehold.it/1000x1000&text=Thumbnail"}/
+          = image_tag product.image.url(:medium)
           .panel
             %h5= link_to product.name, product_path(product)
             %h6.subheader= product.price
+
+
+            
