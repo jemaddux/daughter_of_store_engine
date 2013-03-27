@@ -44,13 +44,13 @@ class Admin::CategoriesController < ApplicationController
     end
   end
 
-  def destroy
-    @category = Category.find(params[:id])
-    @category.destroy
+  # def destroy
+  #   @category = Category.find(params[:id])
+  #   @category.destroy
 
-    respond_to do |format|
-      format.html { redirect_to categories_url }
-      format.json { head :no_content }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html { redirect_to categories_url }
+  #     format.json { head :no_content }
+  #   end
+  # end
 end
