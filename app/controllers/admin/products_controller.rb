@@ -2,7 +2,7 @@ class Admin::ProductsController < ApplicationController
   layout 'admin/application.html.haml'
 
   def index
-    @products = Product.all
+    @products = Product.active
   end
 
   def new
@@ -32,7 +32,6 @@ class Admin::ProductsController < ApplicationController
   end
 
   def update
-    raise params.inspect
     @product = Product.find(params[:id])
 
     respond_to do |format|
