@@ -1,0 +1,9 @@
+%h1 Edit product
+= form_for [ :admin, @product ] do |f|
+  %p
+    = f.label :active
+    = f.label :active, "on sale"
+    = f.radio_button :active, true
+    = f.label :active, "retired"
+    = f.radio_button :active, false
+= link_to 'Back', admin_products_path

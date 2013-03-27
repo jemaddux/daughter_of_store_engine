@@ -32,6 +32,7 @@ class Admin::ProductsController < ApplicationController
   end
 
   def update
+    raise params.inspect
     @product = Product.find(params[:id])
 
     respond_to do |format|

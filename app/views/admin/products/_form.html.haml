@@ -34,6 +34,13 @@
     = f.label :featured, "False"
     = f.radio_button :featured, false
   %p
+    = f.label :active, "active"
+    = f.radio_button :active, true
+    = f.label :active, "retired"
+    = f.radio_button :active, false
+   
+
+  %p
     = f.submit
   / %p
   /   - if @product.image.exists?
