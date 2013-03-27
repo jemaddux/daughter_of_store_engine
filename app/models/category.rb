@@ -4,5 +4,6 @@ class Category < ActiveRecord::Base
   validates :name,        presence: true, uniqueness: true
   validates :description, presence: true
 
-  has_many  :products
+  has_many  :categorizings, dependent: :destroy
+  has_many  :products,      through: :categorizings
 end
