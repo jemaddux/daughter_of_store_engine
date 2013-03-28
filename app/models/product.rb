@@ -5,7 +5,8 @@ class Product < ActiveRecord::Base
                   :quantity,
                   :featured,
                   :image,
-                  :active
+                  :active,
+                  :categories
 
   validates :name,        presence: true, uniqueness: true
   validates :description, presence: true
@@ -15,7 +16,7 @@ class Product < ActiveRecord::Base
   validates :active,      inclusion: { in: [false, true] }
   # validates :category_id, presence: true
   has_many  :product_categories, dependent: :destroy
-  has_many  :categories,         through: :categorizings
+  has_many  :categories,         through: :product_categories
 
   has_attached_file :image, :styles => { :medium => "454x627>", :thumb => "182x304>" }, :default_url => "http://placehold.it/1000x1000&text=Thumbnail"
 

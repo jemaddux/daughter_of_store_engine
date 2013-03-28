@@ -34,8 +34,15 @@ class Admin::ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
 
+    category_ids = params[:product].delete(:categories)
+
     respond_to do |format|
       if @product.update_attributes(params[:product])
+
+        categories = category_ids.map { |category_id| Category.find_by_id(category_id) }.compact
+        @product.categories = categories
+    
+
         format.html { redirect_to admin_products_path, notice: 'Product was successfully updated.' }
         format.json { head :no_content }
       else
