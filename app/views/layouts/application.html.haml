@@ -22,8 +22,6 @@
   = javascript_include_tag "vendor/custom.modernizr"
   = csrf_meta_tag
 
-%body
-
 .row
   .large-12.columns
     / Navigation
@@ -50,18 +48,25 @@
                     %li= link_to "See all →", categories_path
                 %li.has-dropdown
                   %a{:href => "#"} Cart <i class="icon-angle-down"></i>
-                %li
-                  %a{:href => "#"} login / Signup <i class="icon-angle-down"></i>
-                  %ul.dropdown
-                    %li
-                      %a{:href => "#"} Dropdown Option
-                    %li
-                      %a{:href => "#"} Dropdown Option
-                    %li
-                      %a{:href => "#"} Dropdown Option
-                    %li.divider
-                    %li
-                      %a{:href => "#"} See all →
+                - if logged_in?
+                  %li.has-dropdown
+                    %a{:href => "#"} <i class="icon-user"></i> #{current_user.username} <i class="icon-angle-down"></i>
+                    %ul.dropdown
+                      %li
+                        %a{:href => customer_path(current_user) } Account
+                      %li
+                        %a{:href => "#"} Orders
+                      %li.divider
+                      %li
+                        %a{:href => logout_path } Logout
+                - else
+                  %li.has-dropdown
+                    %a{:href => "#" } Login / Signup <i class="icon-angle-down"></i>
+                    %ul.dropdown
+                      %li
+                        %a{:href => login_path } Login
+                      %li
+                        %a{:href => new_customer_path } Signup
           / End Top Bar
       / End Navigation
 
