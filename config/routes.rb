@@ -1,4 +1,7 @@
 StoreEngine::Application.routes.draw do
+  resources :carts
+
+
   resources :categories,        :only => [:show, :index]
   resources :products,          :only => [:show, :index]
   resources :customers

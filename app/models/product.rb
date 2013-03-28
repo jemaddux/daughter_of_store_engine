@@ -18,6 +18,9 @@ class Product < ActiveRecord::Base
   has_many  :product_categories, dependent: :destroy
   has_many  :categories,         through: :product_categories
 
+  has_many  :cart_products,      dependent: :destroy
+  has_many  :carts,              through: :cart_products
+
   has_attached_file :image, :styles => { :medium => "454x627>", :thumb => "182x304>" }, :default_url => "http://placehold.it/1000x1000&text=Thumbnail"
 
   scope :active, where(active: true)
