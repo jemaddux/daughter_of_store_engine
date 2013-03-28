@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   def index
     @products = Product.active
+    @cart = current_user.carts.last
 
     respond_to do |format|
       format.html # index.html.erb

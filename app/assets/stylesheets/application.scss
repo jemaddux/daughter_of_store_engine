@@ -16,16 +16,19 @@
 
  // *= require foundation_and_overrides
  //= require foundation_and_overrides
-
+body {
+  margin-top: 3em !important;
+}
 .top-bar {
   box-shadow: 1px 1px 5px #333;
 }
 
 .top-bar-section ul li{
  text-transform: uppercase;
-
 }
-
+.top-bar-section li a:not(.button) {
+  font-weight:normal;
+}
 .top-bar-section ul li a:hover,
 .name h1 a:hover {
   color: white !important;

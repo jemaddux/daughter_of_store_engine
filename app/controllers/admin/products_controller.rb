@@ -14,10 +14,16 @@ class Admin::ProductsController < ApplicationController
   end
 
   def create
+    category_ids = params[:product].delete(:categories)
+
     @product = Product.new(params[:product])
 
     respond_to do |format|
       if @product.save
+
+        categories = category_ids.collect{ |category_id| Category.find_by_id(category_id) }.compact
+        @product.categories = categories
+        
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
         format.json { render json: @product, status: :created, location: @product }
       else
@@ -42,7 +48,6 @@ class Admin::ProductsController < ApplicationController
         categories = category_ids.collect{ |category_id| Category.find_by_id(category_id) }.compact
         @product.categories = categories
     
-
         format.html { redirect_to admin_products_path, notice: 'Product was successfully updated.' }
         format.json { head :no_content }
       else
