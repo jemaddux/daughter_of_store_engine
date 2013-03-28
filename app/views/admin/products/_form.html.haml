@@ -21,7 +21,8 @@
   %p
     = f.label :category
     %br/
-    = f.select :category_id, options_for_select(category_options(category_list)), multiple: true, size: 4
+    = f.fields_for :categorizings do |c|
+      = c.select :category_id, options_for_select(category_options(category_list)), multiple: true, size: 4
   %p
     = f.label :image
     %br/

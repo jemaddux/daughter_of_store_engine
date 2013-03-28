@@ -4,7 +4,6 @@ class Product < ActiveRecord::Base
                   :price, 
                   :quantity,
                   :featured,
-                  :category_id,
                   :image,
                   :active
 
@@ -12,6 +11,7 @@ class Product < ActiveRecord::Base
   validates :description, presence: true
   validates :price,       presence: true
   validates :quantity,    presence: true
+  validates :featured,    inclusion: { in: [false, true] }
   validates :active,      inclusion: { in: [false, true] }
   # validates :category_id, presence: true
   has_many  :categorizings, dependent: :destroy
