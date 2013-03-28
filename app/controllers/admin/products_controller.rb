@@ -2,7 +2,7 @@ class Admin::ProductsController < ApplicationController
   layout 'admin/application.html.haml'
 
   def index
-    @products = Product.active
+    @products = Product.all
   end
 
   def new

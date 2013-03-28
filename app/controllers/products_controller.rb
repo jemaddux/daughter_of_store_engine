@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.all
+    @products = Product.active
 
     respond_to do |format|
       format.html # index.html.erb
