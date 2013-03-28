@@ -22,9 +22,6 @@
     = f.label :category
     %br/
     = collection_select(:product, :categories, Category.all, :id, :name, { selected: @product.category_ids }, { multiple: true, size: 4 })
-
-    / = f.fields_for :product_categories do |c|
-    /   = c.select :category_id, options_for_select(category_options(category_list)), multiple: true, size: 4
   %p
     = f.label :image
     %br/
