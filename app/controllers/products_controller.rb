@@ -16,5 +16,4 @@ class ProductsController < ApplicationController
       format.json { render json: @product }
     end
   end
-
 end

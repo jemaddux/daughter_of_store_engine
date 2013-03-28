@@ -39,7 +39,7 @@ class Admin::ProductsController < ApplicationController
     respond_to do |format|
       if @product.update_attributes(params[:product])
 
-        categories = category_ids.map { |category_id| Category.find_by_id(category_id) }.compact
+        categories = category_ids.collect{ |category_id| Category.find_by_id(category_id) }.compact
         @product.categories = categories
     
 

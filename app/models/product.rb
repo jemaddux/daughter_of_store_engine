@@ -14,7 +14,7 @@ class Product < ActiveRecord::Base
   validates :quantity,    presence: true
   validates :featured,    inclusion: { in: [false, true] }
   validates :active,      inclusion: { in: [false, true] }
-  # validates :category_id, presence: true
+
   has_many  :product_categories, dependent: :destroy
   has_many  :categories,         through: :product_categories
 
