@@ -1,22 +1,3 @@
-/ %h1 Listing products
-/ %table
-/   %tr
-/     %th
-/     %th
-/     %th
-/   - @products.each do |product|
-/     %tr
-/       %td
-/         %p= product.name
-/       %td
-/         %p= product.description
-/     %tr
-/       %td= link_to 'Show', product
-/       %td= link_to 'Edit', edit_product_path(product)
-/       %td= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }
-/ %br/
-/ = link_to 'New Product', new_product_path
-
 =image_tag "obie_head.jpg"
 
 .row
@@ -30,6 +11,5 @@
       - @products.first(6).each do |product|
         .large-2.small-6.columns
           = image_tag product.image.url(:thumb)
-          .panel
-            %h5= link_to product.name, product_path(product)
-            %h6.subheader= product.price
+          %h5= link_to product.name, product_path(product)
+          %h5.subheader= number_to_currency(product.price)
