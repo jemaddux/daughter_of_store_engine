@@ -1,0 +1,10 @@
+= form_for @cart_product do |f|
+  %ul
+    - @cart_product.errors.full_messages.each do |error|
+      %li= error
+  .large-12.small-6.columns
+    %h4 Shop
+    = f.label :quantity
+    = f.number_field :quantity
+    = link_to 'Add to Cart', cart_path(@cart, product: @product.id), method: :put, class: 'button'
+    %a.button{:href => "#"} Checkout

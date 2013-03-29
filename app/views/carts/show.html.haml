@@ -14,7 +14,7 @@
         .large-2.columns.right
           = product.price
         .large-2.columns
-          = @cart.cart_products.find{ |cart_product| cart_product.product_id == product.id }
+          = @cart.cart_products.find{ |cart_product| cart_product.product_id == product.id }.quantity
   %hr
 
 
