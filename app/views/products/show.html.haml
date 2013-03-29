@@ -30,8 +30,8 @@
               %option{:value => "small"} small
               %option{:value => "medium"} medium
               %option{:value => "large"} large
-            %h6.subheader 
-            %a.button{:href => "#"} Add to Cart
+            %h6.subheader
+            = link_to 'Add to Cart', cart_path(@cart, product: @product.id), method: :put, class: 'button'
             %a.button{:href => "#"} Checkout
     / End Footer
 
