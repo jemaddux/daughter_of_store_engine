@@ -11,13 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130328213150) do
+ActiveRecord::Schema.define(:version => 20130329013602) do
 
   create_table "cart_products", :force => true do |t|
     t.integer  "cart_id"
     t.integer  "product_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.decimal  "price"
+    t.integer  "quantity"
   end
 
   add_index "cart_products", ["cart_id"], :name => "index_cart_products_on_cart_id"
