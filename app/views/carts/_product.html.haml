@@ -8,6 +8,7 @@
         %p= product.description
         - product_quantity = CartProduct.find_by_product_id(product.id).quantity
         %p= product_quantity
+        %p= @cart.cart_products.find{ |cart_product| cart_product.product_id == product.id }.quantity
         %p= product.active
         /%a= link_to Category.find(product.category_id), categories_path
       .right
