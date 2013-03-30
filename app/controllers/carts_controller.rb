@@ -13,8 +13,7 @@ class CartsController < ApplicationController
   # GET /carts/1
   # GET /carts/1.json
   def show
-    @cart = current_user.cart
-    # @cart = Cart.find(params[:id])
+    @cart = Cart.find(session[:cart_id])
     @products = @cart.products
 
     respond_to do |format|
@@ -58,17 +57,22 @@ class CartsController < ApplicationController
   # PUT /carts/1
   # PUT /carts/1.json
   def update
+    @cart = Cart.find_or_create_by_id(session[:cart_id])
+    # @cart = Cart.create if @cart.nil?
+
+    session[:cart_id] = @cart.id
+
     
-    if logged_in?
-      if current_user.cart != nil
-        @cart = current_user.cart
-      else
-        @cart = Cart.create(customer_id: current_user.id)
-      end
-    else
-      @cart = Cart.create
-      cookies[:cart] = @cart.id
-    end
+    # if logged_in?
+    #   if current_user.cart != nil
+    #     @cart = current_user.cart
+    #   else
+    #     @cart = Cart.create(customer_id: current_user.id)
+    #   end
+    # else
+    #   @cart = Cart.create
+    #   cookies[:cart] = @cart.id
+    # end
     
     product  = Product.find(params[:product])
     quantity = params[:quantity].to_i
