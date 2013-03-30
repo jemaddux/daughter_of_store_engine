@@ -74,6 +74,9 @@ class CartsController < ApplicationController
       cart_product.update_attributes(quantity: quantity, price: product_price)
     end
 
+    cart_total = @cart.cart_products.collect{ |cart_product| cart_product.price }.reduce(:+)
+    @cart.total = cart_total
+
     respond_to do |format|
       if @cart.update_attributes(params[:cart])
         format.html { redirect_to @cart, notice: 'Cart was successfully updated.' }

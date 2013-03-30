@@ -10,6 +10,7 @@
         
         /%a= link_to Category.find(product.category_id), categories_path
       .right
+        %h4.right Unit Price
         %h2= "#{number_to_currency(product.price)}"
 
     
