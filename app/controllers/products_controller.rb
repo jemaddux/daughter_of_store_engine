@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   def index
     @products = Product.active
-    @cart = current_user.carts.last
+    @cart = current_user.carts.last if logged_in?
 
     respond_to do |format|
       format.html # index.html.erb
