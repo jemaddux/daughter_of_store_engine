@@ -58,7 +58,7 @@ class CartsController < ApplicationController
   # PUT /carts/1
   # PUT /carts/1.json
   def update
-    @cart = current_user.cart
+      @cart = current_user.cart
     
     product  = Product.find(params[:product])
     quantity = params[:quantity].to_i

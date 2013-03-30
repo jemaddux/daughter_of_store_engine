@@ -6,11 +6,6 @@
       .left
         %h2= link_to product.name, product_path(product)
         %p= product.description
-        %p= @cart.cart_products.find{ |cart_product| cart_product.product_id == product.id }.quantity
-        
-        /%a= link_to Category.find(product.category_id), categories_path
       .right
         %h4.right Unit Price
         %h2= "#{number_to_currency(product.price)}"
-
-    
