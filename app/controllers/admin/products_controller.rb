@@ -24,7 +24,7 @@ class Admin::ProductsController < ApplicationController
         categories = category_ids.collect{ |category_id| Category.find_by_id(category_id) }.compact
         @product.categories = categories
         
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.html { redirect_to admin_products_path, notice: 'Product was successfully created.' }
         format.json { render json: @product, status: :created, location: @product }
       else
         format.html { render action: "new" }

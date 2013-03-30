@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    @cart = current_user.carts.last
+    @cart = current_user.carts.last if logged_in?
 
     respond_to do |format|
       format.html # show.html.erb

@@ -59,11 +59,18 @@ class CartsController < ApplicationController
   # PUT /carts/1.json
   def update
     @cart = current_user.carts.last
+    
     product = Product.find(params[:product])
-    @cart.products << product
 
-    cart_product = @cart.cart_products.find_by_product_id(params[:product])
-    cart_product.update_attributes(quantity: params[:quantity])
+    if @cart.products.include?(product)
+      cart_product = @cart.cart_products.find_by_product_id(params[:product])
+      cart_product.update_attributes(quantity: params[:quantity])
+    else
+      @cart.products << product
+
+      cart_product = @cart.cart_products.find_by_product_id(params[:product])
+      cart_product.update_attributes(quantity: params[:quantity])
+    end
 
     respond_to do |format|
       if @cart.update_attributes(params[:cart])
