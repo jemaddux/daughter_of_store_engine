@@ -15,6 +15,6 @@
         = number_field_tag 'quantity', quantity
       .large-4.columns.left
         = submit_tag 'Update quantity', class: "tiny button secondary"
-    %hr
+%hr
 = link_to 'Checkout', "#", class: "button"
 %h3.right= number_to_currency(@cart.total)

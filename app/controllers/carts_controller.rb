@@ -58,10 +58,16 @@ class CartsController < ApplicationController
   # PUT /carts/1
   # PUT /carts/1.json
   def update
-    if current_user.cart != nil
-      @cart = current_user.cart
+    
+    if logged_in?
+      if current_user.cart != nil
+        @cart = current_user.cart
+      else
+        @cart = Cart.create(customer_id: current_user.id)
+      end
     else
-      @cart = Cart.create(customer_id: current_user.id)
+      @cart = Cart.create
+      cookies[:cart] = @cart.id
     end
     
     product  = Product.find(params[:product])
