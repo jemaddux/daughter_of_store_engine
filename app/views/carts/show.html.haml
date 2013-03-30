@@ -5,20 +5,4 @@
   %h2 Your Cart
   =render 'product'
 .large-4.columns.right
-  %h2 Your Order
-  %hr
-    - @cart.products.each do |product|
-      .row
-        .large-8.columns.left
-          = product.name
-        .large-2.columns.right
-          = product.price
-        .large-2.columns
-          = @cart.cart_products.find{ |cart_product| cart_product.product_id == product.id }.quantity
-  %hr
-
-
-
-/ = link_to 'Edit', edit_cart_path(@cart)
-/ \|
-/ = link_to 'Back', carts_path
+  =render 'summary'

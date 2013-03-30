@@ -13,7 +13,7 @@ class CartsController < ApplicationController
   # GET /carts/1
   # GET /carts/1.json
   def show
-    @cart = current_user.carts.last
+    @cart = current_user.cart
     # @cart = Cart.find(params[:id])
     @products = @cart.products
 
@@ -58,18 +58,20 @@ class CartsController < ApplicationController
   # PUT /carts/1
   # PUT /carts/1.json
   def update
-    @cart = current_user.carts.last
+    @cart = current_user.cart
     
-    product = Product.find(params[:product])
+    product  = Product.find(params[:product])
+    quantity = params[:quantity].to_i
+    product_price    = quantity * product.price
 
     if @cart.products.include?(product)
       cart_product = @cart.cart_products.find_by_product_id(params[:product])
-      cart_product.update_attributes(quantity: params[:quantity])
+      cart_product.update_attributes(quantity: quantity, price: product_price)
     else
       @cart.products << product
 
       cart_product = @cart.cart_products.find_by_product_id(params[:product])
-      cart_product.update_attributes(quantity: params[:quantity])
+      cart_product.update_attributes(quantity: quantity, price: product_price)
     end
 
     respond_to do |format|
