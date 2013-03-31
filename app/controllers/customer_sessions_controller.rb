@@ -4,7 +4,11 @@ class CustomerSessionsController < ApplicationController
 
   def create
     if login(params[:username], params[:password])
-      redirect_back_or_to( root_path, message: 'Logged in successfully.')
+      if current_user.admin
+        redirect_back_or_to( admin_products_path, message: 'Logged in successfully.')
+      else
+        redirect_back_or_to( root_path, message: 'Logged in successfully.')
+      end
     else
       flash.now.alert = "Login failed."
       render action: :new

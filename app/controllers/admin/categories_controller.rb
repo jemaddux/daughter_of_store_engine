@@ -1,4 +1,7 @@
 class Admin::CategoriesController < ApplicationController
+
+  before_filter :require_admin
+
   def index
     @categories = Category.all
   end
@@ -53,4 +56,14 @@ class Admin::CategoriesController < ApplicationController
   #     format.json { head :no_content }
   #   end
   # end
+
+  private
+ 
+  def require_admin
+    if logged_in?
+      redirect_to login_url unless current_user.admin
+    else 
+      redirect_to login_url
+    end
+  end
 end

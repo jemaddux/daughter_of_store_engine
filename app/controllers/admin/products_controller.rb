@@ -1,6 +1,8 @@
 class Admin::ProductsController < ApplicationController
   layout 'admin/application.html.haml'
 
+  before_filter :require_admin
+
   def index
     @products = Product.all
   end
@@ -66,4 +68,14 @@ class Admin::ProductsController < ApplicationController
   #     format.json { head :no_content }
   #   end
   # end
+
+  private
+ 
+  def require_admin
+    if logged_in?
+      redirect_to login_url unless current_user.admin
+    else 
+      redirect_to login_url
+    end
+  end
 end
