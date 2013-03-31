@@ -13,7 +13,8 @@ class CartsController < ApplicationController
   # GET /carts/1
   # GET /carts/1.json
   def show
-    @cart = Cart.find(session[:cart_id])
+    @cart = Cart.find_or_create_by_id(session[:cart_id])
+
     @products = @cart.products
 
     respond_to do |format|
@@ -42,6 +43,7 @@ class CartsController < ApplicationController
   # POST /carts.json
   def create
     @cart = Cart.new(params[:cart])
+    @customer = Customer.find_or_create(session[:id])
 
     respond_to do |format|
       if @cart.save
