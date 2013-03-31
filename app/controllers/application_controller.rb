@@ -6,4 +6,8 @@ class ApplicationController < ActionController::Base
   def category_list
     Category.all
   end
+
+  def not_authenticated
+    redirect_to login_url
+  end
 end
