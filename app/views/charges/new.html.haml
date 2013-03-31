@@ -1,0 +1,6 @@
+.large-8.columns.left
+  = form_tag charges_path do    
+    %h1 Hello, #{@customer.username}
+    %h4 Here is your order
+    %h6 Amount: #{number_to_currency(@amount.to_i/100)}
+    %script.stripe-button{"data-amount" => @amount, "data-description" => "A month's subscription", "data-key" => Rails.configuration.stripe[:publishable_key], :src => "https://checkout.stripe.com/v2/checkout.js"}

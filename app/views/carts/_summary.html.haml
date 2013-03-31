@@ -16,5 +16,5 @@
       .large-4.columns.left
         = submit_tag 'Update quantity', class: "tiny button secondary"
 %hr
-= link_to 'Checkout', "#", class: "button"
+= link_to 'Checkout', new_charge_path(amount: @cart.total * 100, customer: current_user.id), class: "button"
 %h3.right= number_to_currency(@cart.total)

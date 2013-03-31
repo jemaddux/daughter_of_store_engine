@@ -6,6 +6,7 @@ gem 'jquery-rails'
 gem 'rake', '10.0.3'
 gem 'sorcery'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem 'figaro'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
