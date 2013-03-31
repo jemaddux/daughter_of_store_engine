@@ -51,13 +51,12 @@ class CartsController < ApplicationController
   # PUT /carts/1.json
   def update
     @cart = Cart.find_or_create_by_id(session[:cart_id])
-    # @cart = Cart.create if @cart.nil?
 
     session[:cart_id] = @cart.id
     
-    product  = Product.find(params[:product])
-    quantity = params[:quantity].to_i
-    product_price    = quantity * product.price
+    product       = Product.find(params[:product])
+    quantity      = params[:quantity].to_i
+    product_price = quantity * product.price
 
     if @cart.products.include?(product)
       cart_product = @cart.cart_products.find_by_product_id(params[:product])

@@ -6,6 +6,8 @@
       .left
         %h2= link_to product.name, product_path(product)
         %p= product.description
+        - cart_product = @cart.cart_products.find_by_product_id(product.id)
+        %h5.left= link_to "Remove Product", cart_product_path(cart_product.id), method: :delete, class: "button small"
       .right
         %h4.right Unit Price
         %h2= "#{number_to_currency(product.price)}"
