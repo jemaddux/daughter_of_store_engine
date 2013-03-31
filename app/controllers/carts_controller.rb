@@ -1,47 +1,40 @@
 class CartsController < ApplicationController
-  # GET /carts
-  # GET /carts.json
   def index
     @carts = Cart.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @carts }
     end
   end
 
-  # GET /carts/1
-  # GET /carts/1.json
   def show
-    @cart = Cart.find(session[:cart_id])
+    @cart = Cart.find_or_create_by_id(session[:cart_id])
+
     @products = @cart.products
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @cart }
     end
   end
 
-  # GET /carts/new
-  # GET /carts/new.json
   def new
     @cart = Cart.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @cart }
     end
   end
 
-  # GET /carts/1/edit
   def edit
     @cart = Cart.find(params[:id])
   end
 
-  # POST /carts
-  # POST /carts.json
   def create
     @cart = Cart.new(params[:cart])
+    @customer = Customer.find_or_create(session[:id])
 
     respond_to do |format|
       if @cart.save
@@ -61,18 +54,6 @@ class CartsController < ApplicationController
     # @cart = Cart.create if @cart.nil?
 
     session[:cart_id] = @cart.id
-
-    
-    # if logged_in?
-    #   if current_user.cart != nil
-    #     @cart = current_user.cart
-    #   else
-    #     @cart = Cart.create(customer_id: current_user.id)
-    #   end
-    # else
-    #   @cart = Cart.create
-    #   cookies[:cart] = @cart.id
-    # end
     
     product  = Product.find(params[:product])
     quantity = params[:quantity].to_i
@@ -93,7 +74,7 @@ class CartsController < ApplicationController
 
     respond_to do |format|
       if @cart.update_attributes(params[:cart])
-        format.html { redirect_to @cart, notice: 'Cart was successfully updated.' }
+        format.html { redirect_to @cart, notice: "Your cart was successfully updated." }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -102,14 +83,12 @@ class CartsController < ApplicationController
     end
   end
 
-  # DELETE /carts/1
-  # DELETE /carts/1.json
   def destroy
     @cart = Cart.find(params[:id])
     @cart.destroy
 
     respond_to do |format|
-      format.html { redirect_to carts_url }
+      format.html { redirect_to products_path, notice: "Your cart was successfully cleared." }
       format.json { head :no_content }
     end
   end
