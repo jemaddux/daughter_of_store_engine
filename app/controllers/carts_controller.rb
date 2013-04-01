@@ -54,22 +54,9 @@ class CartsController < ApplicationController
 
     session[:cart_id] = @cart.id
     
-    product       = Product.find(params[:product])
-    quantity      = params[:quantity].to_i
-    product_price = quantity * product.price
+    product = Product.find(params[:product])
 
-    if @cart.products.include?(product)
-      cart_product = @cart.cart_products.find_by_product_id(params[:product])
-      cart_product.update_attributes(quantity: quantity, price: product_price)
-    else
-      @cart.products << product
-
-      cart_product = @cart.cart_products.find_by_product_id(params[:product])
-      cart_product.update_attributes(quantity: quantity, price: product_price)
-    end
-
-    cart_total = @cart.cart_products.collect{ |cart_product| cart_product.price }.reduce(:+)
-    @cart.total = cart_total
+    @cart.add(product, params[:quantity].to_i)
 
     respond_to do |format|
       if @cart.update_attributes(params[:cart])
