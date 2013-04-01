@@ -4,7 +4,6 @@
       %li
     .row
       .large-6.columns
-        %a.button.tiny.round.left{:href => products_path} Back to Products
         =image_tag @product.image.url 
       .large-6.columns
         %h3.show-for-small Header    
@@ -21,3 +20,4 @@
               = hidden_field_tag 'product', @product.id
               = number_field_tag 'quantity', 1
               = submit_tag 'Add to Cart', class: 'button'
+              %a.tiny.round{:href => products_path} OR Back to Products
