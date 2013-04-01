@@ -29,7 +29,7 @@ describe ProductsController do
       price:       123.99,
       quantity:    3,
       featured:    true,
-      category_id: 1 }
+      active:      true }
   end
 
   # This should return the minimal set of values that should be in the session
