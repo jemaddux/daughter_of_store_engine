@@ -8,7 +8,7 @@ describe "products" do
       quantity: 7,
       price: 123,
       featured: false,
-      category_id: 1 )
+      active: true )
   end
 
   it "shows the products" do
@@ -28,9 +28,10 @@ describe "products" do
     fill_in "product_quantity",    :with => 7
     fill_in "product_price",       :with => 1234
     choose "product_featured_false"
+    choose "product_active_true"
     click_button "Create Product"
     expect( page ).to have_content "Some description"
-    expect( page ).to have_content "1234"
+    expect( page ).to have_content "1,234"
   end
 
   it "edits the individual product" do 
@@ -42,6 +43,6 @@ describe "products" do
     choose "product_featured_false"
     click_button "Update Product"
     expect( page ).to have_content "Some other description"
-    expect( page ).to have_content "4321"
+    expect( page ).to have_content "4,321"
   end
 end

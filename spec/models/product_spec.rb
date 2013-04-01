@@ -6,7 +6,8 @@ describe Product do
       description: "This is my product description.",
       price:       123.99,
       quantity:    3,
-      featured:    true
+      featured:    true,
+      active:      true
       )
     }
 

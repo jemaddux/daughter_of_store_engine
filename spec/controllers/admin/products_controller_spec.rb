@@ -2,12 +2,17 @@ require 'spec_helper'
 
 describe Admin::ProductsController do
   def valid_attributes
-    { name:        "Some Product", 
+    { name:        "Awesome Product", 
       description: "This is my product description.",
-      price:       123.99,
+      price:       124.99,
       quantity:    3,
       featured:    true,
-      category_id: 1 }
+      active:      true }
+  end
+
+  before(:each) do
+   Category.new(name: "Some category", description: "Cat desc").save
+   @category = Category.find_by_name("Some category")
   end
 
   # This should return the minimal set of values that should be in the session
@@ -19,6 +24,7 @@ describe Admin::ProductsController do
 
   describe "GET index" do
     it "assigns all products as @products" do
+
       product = Product.create! valid_attributes
       get :index, {}, valid_session
       assigns(:products).should eq([product])

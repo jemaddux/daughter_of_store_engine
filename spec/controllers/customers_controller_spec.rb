@@ -157,7 +157,7 @@ describe CustomersController do
     it "redirects to the customers list" do
       customer = Customer.create! valid_attributes
       delete :destroy, {:id => customer.to_param}, valid_session
-      response.should redirect_to(customers_url)
+      response.should redirect_to(customers_path)
     end
   end
 
