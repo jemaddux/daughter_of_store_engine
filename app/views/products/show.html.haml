@@ -1,14 +1,11 @@
-.row
+.row.content
   .large-12.columns
     %ul.button-group
       %li
-        %a.button{:href => "#"} Nav Item 1
-      %li
-        %a.button{:href => "#"} Nav Item 2
-      %li
-        %a.button{:href => "#"} Nav Item 3
     .row
       .large-6.columns
+        %a.button.tiny.round.left{:href => products_path} Back to Products
+
         =image_tag @product.image.url
       .large-6.columns
         %h3.show-for-small Header    
