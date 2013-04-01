@@ -12,7 +12,7 @@
       .large-2.columns.left
         = hidden_field_tag 'product', product.id
         - quantity = @cart.cart_products.find{ |cart_product| cart_product.product_id == product.id }.quantity
-        = number_field_tag 'quantity', quantity
+        = number_field_tag 'quantity', quantity, min: 1
       .large-4.columns.left
         = submit_tag 'Update quantity', class: "tiny button secondary"
 %hr
