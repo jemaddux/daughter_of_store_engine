@@ -5,8 +5,7 @@
     .row
       .large-6.columns
         %a.button.tiny.round.left{:href => products_path} Back to Products
-
-        =image_tag @product.image.url
+        =image_tag @product.image.url 
       .large-6.columns
         %h3.show-for-small Header    
         %h2.hide-for-small.left= @product.name
