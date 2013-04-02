@@ -11,12 +11,15 @@ class ChargesController < ApplicationController
     session[:order_id] = @order.id
    
     @cart = Cart.find(session[:cart_id])
+
     @cart.cart_products.each do |cart_product|
       order_product            = @order.order_products.create
       order_product.product_id = cart_product.product_id
       order_product.price      = cart_product.price
       order_product.quantity   = cart_product.quantity
     end
+
+    @order.save
   end
 
   def create
@@ -42,6 +45,8 @@ class ChargesController < ApplicationController
     order.update_attributes(status: "processed")
 
     Mailer.order_confirmation(customer, order).deliver
+
+    @cart.destroy
 
   rescue Stripe::CardError => e
     flash[:error] = e.message

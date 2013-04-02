@@ -18,8 +18,7 @@
 %p
   %b Order Items:
   = @order.order_products.price
-
-
+  
 = link_to 'Edit', edit_admin_order_path(@order)
 \|
 = link_to 'Back', admin_orders_path

@@ -1,30 +1,16 @@
 class CartsController < ApplicationController
+
   def index
     @carts = Cart.all
-
-    respond_to do |format|
-      format.html
-      format.json { render json: @carts }
-    end
   end
 
   def show
     @cart     = Cart.find_or_create_by_id(session[:cart_id])
     @products = @cart.products
-
-    respond_to do |format|
-      format.html
-      format.json { render json: @cart }
-    end
   end
 
   def new
     @cart = Cart.new
-
-    respond_to do |format|
-      format.html
-      format.json { render json: @cart }
-    end
   end
 
   def edit
@@ -46,8 +32,6 @@ class CartsController < ApplicationController
     end
   end
 
-  # PUT /carts/1
-  # PUT /carts/1.json
   def update
     @cart = Cart.find_or_create_by_id(session[:cart_id])
     
@@ -68,6 +52,7 @@ class CartsController < ApplicationController
   end
 
   def destroy
+    #if param[:id] == session[:cart_id]
     @cart = Cart.find(params[:id])
     @cart.destroy
 
