@@ -23,8 +23,10 @@ class Admin::ProductsController < ApplicationController
     respond_to do |format|
       if @product.save
 
-        categories = category_ids.collect{ |category_id| Category.find_by_id(category_id) }.compact
-        @product.categories = categories
+        unless category_ids.nil?
+          categories = category_ids.collect{ |category_id| Category.find_by_id(category_id) }.compact
+          @product.categories = categories
+        end
         
         format.html { redirect_to admin_products_path, notice: 'Product was successfully created.' }
         format.json { render json: @product, status: :created, location: @product }
@@ -47,8 +49,10 @@ class Admin::ProductsController < ApplicationController
     respond_to do |format|
       if @product.update_attributes(params[:product])
 
-        categories = category_ids.collect{ |category_id| Category.find_by_id(category_id) }.compact
-        @product.categories = categories
+        unless category_ids.nil?
+          categories = category_ids.collect{ |category_id| Category.find_by_id(category_id) }.compact
+          @product.categories = categories
+        end
     
         format.html { redirect_to admin_products_path, notice: 'Product was successfully updated.' }
         format.json { head :no_content }
