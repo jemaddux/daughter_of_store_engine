@@ -17,7 +17,7 @@
   = @order.created_at
 %p
   %b Order Items:
-  = @order.order_products.price
+  = @order.order_products
   
 = link_to 'Edit', edit_admin_order_path(@order)
 \|
