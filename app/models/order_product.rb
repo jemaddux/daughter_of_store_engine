@@ -2,8 +2,6 @@ class OrderProduct < ActiveRecord::Base
   attr_accessible :quantity,
                   :price
 
-  attr_reader     :product
-
   validates :quantity,
             presence: true,
             numericality: { greater_than_or_equal_to: 0 }
@@ -17,6 +15,4 @@ class OrderProduct < ActiveRecord::Base
 
   belongs_to :order
   belongs_to :product
-
-  delegate :name, to: product
 end

@@ -1,6 +1,6 @@
 StoreEngine::Application.routes.draw do
   resources :orders,            only: [:show, :index]
-  resources :carts
+  resources :carts,             only: [:show, :update, :destroy]
   resources :categories,        only: [:show, :index]
   resources :products,          only: [:show, :index]
   resources :customers
@@ -18,5 +18,5 @@ StoreEngine::Application.routes.draw do
     resources :customers
   end
 
-  root :to => 'products#index'
+  root to: 'products#index'
 end
