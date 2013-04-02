@@ -15,22 +15,8 @@ class Admin::OrdersController < ApplicationController  # GET /orders
     @order = Order.find(params[:id])
   end
 
-  def new
-    @order = Order.new
-  end
-
   def edit
     @order = Order.find(params[:id])
-  end
-
-  def create
-    @order = Order.new(params[:order])
-
-    if @order.save
-      redirect_to @order, notice: 'Order was successfully created.'
-    else
-      render action: "new"
-    end
   end
 
   def update
@@ -42,14 +28,6 @@ class Admin::OrdersController < ApplicationController  # GET /orders
       render action: "edit"
     end
   end
-
-  def destroy
-    @order = Order.find(params[:id])
-    @order.destroy
-
-    redirect_to admin_orders_path
-  end
-
 
   private
  

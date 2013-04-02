@@ -6,7 +6,7 @@ StoreEngine::Application.routes.draw do
   resources :customers
   resources :customer_sessions, only: [:new, :create, :destroy]
   resources :charges,           only: [:new, :create]
-  resources :cart_products
+  resources :cart_products,     only: [:destroy]
 
   match 'login'  => 'customer_sessions#new'
   match 'logout' => 'customer_sessions#destroy'
