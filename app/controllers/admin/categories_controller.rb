@@ -1,6 +1,9 @@
 class Admin::CategoriesController < ApplicationController
 
-  # before_filter :require_admin
+
+layout 'admin/application.html.haml'
+
+  before_filter :require_admin
 
   def index
     @categories = Category.all
