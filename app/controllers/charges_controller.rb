@@ -2,12 +2,15 @@ class ChargesController < ApplicationController
   def new
     @amount   = params[:amount]
     @customer = Customer.find(params[:customer])
-    @order    = Order.create(customer_id: params[:customer], 
-     status:      "pending",
-     total:       params[:amount].to_i / 100, 
-     )
-    @cart     = Cart.find(session[:cart_id])
+    @order    = Order.create(
+      customer_id: params[:customer], 
+      status:      "pending",
+      total:       params[:amount].to_i / 100 
+      )
 
+    session[:order_id] = @order.id
+   
+    @cart = Cart.find(session[:cart_id])
     @cart.cart_products.each do |cart_product|
       order_product            = @order.order_products.create
       order_product.product_id = cart_product.product_id
@@ -22,7 +25,7 @@ class ChargesController < ApplicationController
 
     customer = Customer.find(session[:user_id])
     email    = customer.email
-    order    = customer.orders.last
+    order    = Order.find(session[:order_id])
 
     customer = Stripe::Customer.create(
       email: email, 
@@ -37,6 +40,8 @@ class ChargesController < ApplicationController
       )
 
     order.update_attributes(status: "processed")
+
+    Mailer.order_confirmation(customer, order).deliver
 
   rescue Stripe::CardError => e
     flash[:error] = e.message

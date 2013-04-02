@@ -1,0 +1,28 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    %h1
+      Thank you for your purchase,
+    %p
+      The amount paid is: #{number_to_currency(@order.total)}.
+    %p
+      Your order is the following,
+    %table
+      %tr
+        %th Product
+        %th Description
+        %th Quantity
+        %th Subtotal
+      - @order.products.each do |product|
+        %tr
+          %td= product.name
+          %td= product.description
+          - order_product = @order.order_products.find_by_product_id(product.id)
+          %td= order_product.quantity
+          %td= order_product.price
+    %p 
+      Thank you and may the force be with you,
+    %p
+      The Obi Team. 

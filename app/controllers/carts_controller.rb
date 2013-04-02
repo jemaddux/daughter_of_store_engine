@@ -9,8 +9,7 @@ class CartsController < ApplicationController
   end
 
   def show
-    @cart = Cart.find_or_create_by_id(session[:cart_id])
-
+    @cart     = Cart.find_or_create_by_id(session[:cart_id])
     @products = @cart.products
 
     respond_to do |format|
@@ -33,7 +32,7 @@ class CartsController < ApplicationController
   end
 
   def create
-    @cart = Cart.new(params[:cart])
+    @cart     = Cart.new(params[:cart])
     @customer = Customer.find_or_create(session[:id])
 
     respond_to do |format|
@@ -51,11 +50,10 @@ class CartsController < ApplicationController
   # PUT /carts/1.json
   def update
     @cart = Cart.find_or_create_by_id(session[:cart_id])
-
-    session[:cart_id] = @cart.id
     
-    product = Product.find(params[:product])
+    session[:cart_id] = @cart.id
 
+    product = Product.find(params[:product])
     @cart.add(product, params[:quantity].to_i)
 
     respond_to do |format|
