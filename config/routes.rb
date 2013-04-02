@@ -10,6 +10,7 @@ StoreEngine::Application.routes.draw do
 
   match 'login'  => 'customer_sessions#new'
   match 'logout' => 'customer_sessions#destroy'
+  match 'admin'  => 'admin/products#index'
 
   namespace :admin do
     resources :categories
