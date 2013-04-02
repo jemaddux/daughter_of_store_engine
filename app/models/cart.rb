@@ -1,7 +1,7 @@
 class Cart < ActiveRecord::Base
   attr_accessible :total, :customer_id
 
-  validates  :customer_id, presence: true
+  # validates  :customer_id, presence: true
 
   belongs_to :customer
   
