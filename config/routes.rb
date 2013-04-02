@@ -15,6 +15,7 @@ StoreEngine::Application.routes.draw do
     resources :categories
     resources :products
     resources :orders
+    resources :customers
   end
 
   root :to => 'products#index'
