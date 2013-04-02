@@ -2,13 +2,23 @@
 
 %p
   %b Customer:
-  = @order.customer
+  = @order.customer.username
 %p
-  %b Status:
+  %b Order Status:
   = @order.status
 %p
-  %b Total:
-  = @order.total
+  %b Order Total:
+  = "$#{@order.total}"
+%p
+  %b Customer Email:
+  = @current_user.email
+%p
+  %b Order Date/time:
+  = @order.created_at
+%p
+  %b Order Items:
+  = @order.order_products.price
+
 
 = link_to 'Edit', edit_admin_order_path(@order)
 \|
