@@ -35,11 +35,11 @@ describe CustomersController do
   end
 
   describe "GET index" do
-    it "assigns all customers as @customers" do
-      customer = Customer.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:customers).should eq([customer])
-    end
+    # it "assigns all customers as @customers" do
+    #   customer = Customer.create! valid_attributes
+    #   get :index, {}, valid_session
+    #   assigns(:customers).should eq([customer])
+    # end
   end
 
   describe "GET show" do
@@ -50,12 +50,12 @@ describe CustomersController do
     end
   end
 
-  describe "GET new" do
-    it "assigns a new customer as @customer" do
-      get :new, {}, valid_session
-      assigns(:customer).should be_a_new(Customer)
-    end
-  end
+  # describe "GET new" do
+  #   it "assigns a new customer as @customer" do
+  #     get :new, {}, valid_session
+  #     assigns(:customer).should be_a_new(Customer)
+  #   end
+  # end
 
   describe "GET edit" do
     it "assigns the requested customer as @customer" do

@@ -1,5 +1,4 @@
 class CartProductsController < ApplicationController
-
   def destroy
     @cart = Cart.find(session[:cart_id])
 
