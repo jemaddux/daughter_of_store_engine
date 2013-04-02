@@ -2,7 +2,7 @@
 
 %p
   %b Customer:
-  = @order.customer
+  = @order.customer.username
 %p
   %b Status:
   = @order.status
@@ -10,4 +10,6 @@
   %b Total:
   = @order.total
 
+  = @order.order_products
+  
 = link_to 'Back', orders_path

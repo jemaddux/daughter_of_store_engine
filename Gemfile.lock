@@ -175,6 +175,9 @@ GEM
       multi_json (~> 1.0)
       rubyzip
       websocket (~> 1.0.4)
+    sendgrid (1.1.0)
+      json
+      json
     sexp_processor (4.2.0)
     simplecov (0.7.1)
       multi_json (~> 1.0)
@@ -224,6 +227,7 @@ DEPENDENCIES
   reek
   rspec-rails
   sass-rails (~> 3.2.3)
+  sendgrid
   simplecov
   sorcery
   sqlite3

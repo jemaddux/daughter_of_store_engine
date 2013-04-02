@@ -1,12 +1,12 @@
 class Cart < ActiveRecord::Base
+  attr_accessible :total, :customer_id
+
   belongs_to :customer
+  
   has_many   :cart_products, dependent: :destroy
   has_many   :products,      through: :cart_products
 
-  attr_accessible :total, :customer_id
-
   def add(product, quantity)
-    quantity      = quantity
     product_price = quantity * product.price 
 
     unless products.include?(product)
@@ -20,7 +20,6 @@ class Cart < ActiveRecord::Base
   end
 
   def recalculate
-    cart_total = cart_products.collect{ |cart_product| cart_product.price }.reduce(0){ |sum, i| sum + i}
-    self.total = cart_total
+    self.total = cart_products.collect{ |product| product.price }.reduce(0, :+)
   end
 end
