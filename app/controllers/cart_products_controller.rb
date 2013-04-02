@@ -1,7 +1,7 @@
 class CartProductsController < ApplicationController
 
   def destroy
-    @cart = Cart.find_or_create_by_id(session[:cart_id])
+    @cart = Cart.find(session[:cart_id])
 
     @cart_product = CartProduct.find(params[:id])
     @cart_product.destroy
