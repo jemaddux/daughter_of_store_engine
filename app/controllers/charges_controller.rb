@@ -46,7 +46,7 @@ class ChargesController < ApplicationController
 
     Mailer.order_confirmation(customer, order).deliver
 
-    @cart.destroy
+    cart.destroy
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
