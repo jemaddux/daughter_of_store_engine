@@ -1,10 +1,12 @@
 class Cart < ActiveRecord::Base
+  attr_accessible :total, :customer_id
+
+  validates  :customer_id, presence: true
+
   belongs_to :customer
   
   has_many   :cart_products, dependent: :destroy
   has_many   :products,      through: :cart_products
-
-  attr_accessible :total, :customer_id
 
   def add(product, quantity)
     product_price = quantity * product.price 
