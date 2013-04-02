@@ -11,14 +11,7 @@ class ChargesController < ApplicationController
     session[:order_id] = @order.id
    
     @cart = Cart.find(session[:cart_id])
-
-    @cart.cart_products.each do |cart_product|
-      order_product            = @order.order_products.create
-      order_product.product_id = cart_product.product_id
-      order_product.price      = cart_product.price
-      order_product.quantity   = cart_product.quantity
-    end
-
+    @cart.cart_products_to_order_products(@order)
     @order.save
   end
 

@@ -22,4 +22,13 @@ class Cart < ActiveRecord::Base
   def recalculate
     self.total = cart_products.collect{ |product| product.price }.reduce(0, :+)
   end
+
+  def cart_products_to_order_products(order)
+    self.cart_products.each do |cart_product|
+      order_product            = order.order_products.create
+      order_product.product_id = cart_product.product_id
+      order_product.price      = cart_product.price
+      order_product.quantity   = cart_product.quantity
+    end
+  end
 end
