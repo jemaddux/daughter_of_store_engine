@@ -45,20 +45,20 @@
               %ul.right
                 %li.divider
                 %li.has-dropdown
-                  %a{:href => "#"} Categories <i class="icon-angle-down"></i>
+                  %a{:href => "/admin/categories"} Categories <i class="icon-angle-down"></i>
                   %ul.dropdown
                     - category_list.each do |category|
                       %li= link_to category.name, category_path(category)
                     %li= link_to "See all →", categories_path
                 %li.divider
                 %li 
-                  %a{:href => "#"} Products <i class="icon-angle-down"></i>
+                  %a{:href => "/admin/products"} Products <i class="icon-angle-down"></i>
                 %li.divider
                 %li.has-dropdown
-                  %a{:href => "#"} Orders <i class="icon-angle-down"></i>
+                  %a{:href => "/admin/orders"} Orders <i class="icon-angle-down"></i>
                 %li.divider
                 %li
-                  %a{:href => "#"} Logout <i class="icon-angle-down"></i>
+                  %a{:href => "/logout"} Logout <i class="icon-angle-down"></i>
                   %ul.dropdown
                     %li
                       %a{:href => "#"} Dropdown Option

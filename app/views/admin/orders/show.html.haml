@@ -10,4 +10,6 @@
   %b Total:
   = @order.total
 
-= link_to 'Back', orders_path
+= link_to 'Edit', edit_admin_order_path(@order)
+\|
+= link_to 'Back', admin_orders_path
