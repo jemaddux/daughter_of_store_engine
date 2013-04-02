@@ -5,7 +5,6 @@
     .left
       %h2= link_to product.name, product_path(product)
       %p= product.description
-      %p= product.active
       /%a= link_to Category.find(product.category_id), categories_path
     .right
       %h2= "#{number_to_currency(product.price)}"
