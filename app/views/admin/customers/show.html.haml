@@ -1,0 +1,12 @@
+%p#notice= users
+
+%p=@customers.each do |c| 
+  %b Customer:
+  = @order.customer.username
+  
+
+
+
+= link_to 'Edit', edit_admin_customer_path(@customer)
+\|
+= link_to 'Back', admin_customer_path
