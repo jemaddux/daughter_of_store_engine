@@ -5,7 +5,11 @@ class Admin::OrdersController < ApplicationController  # GET /orders
   before_filter :require_admin
 
   def index
-    @orders = Order.all
+    if params[:status]
+      @orders = Order.find_all_by_status(params[:status])
+    else
+      @orders = Order.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
