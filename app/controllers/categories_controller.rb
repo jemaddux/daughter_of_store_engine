@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
     @categories = Category.all
     
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @categories }
     end
   end
@@ -13,7 +13,7 @@ class CategoriesController < ApplicationController
     @products = @category.products
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @category }
     end
   end

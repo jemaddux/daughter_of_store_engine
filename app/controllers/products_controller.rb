@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
     @cart = current_user.cart if logged_in?
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @products }
     end
   end
@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
     @cart = current_user.cart if logged_in?
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @product }
     end
   end
