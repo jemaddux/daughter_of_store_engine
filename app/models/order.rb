@@ -1,7 +1,8 @@
 class Order < ActiveRecord::Base
   attr_accessible :customer_id,
                   :status, 
-                  :total
+                  :total,
+                  :customer
 
   belongs_to  :customer
 

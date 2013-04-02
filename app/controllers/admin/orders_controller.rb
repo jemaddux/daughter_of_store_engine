@@ -1,8 +1,12 @@
-class OrdersController < ApplicationController
-  # GET /orders
+class Admin::OrdersController < ApplicationController  # GET /orders
   # GET /orders.json
+  layout 'admin/application.html.haml'
+
+  before_filter :require_admin
+
   def index
-    @orders = Order.find_all_by_customer_id(current_user.id)
+    @orders = Order.all
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @orders }
@@ -52,6 +56,19 @@ class OrdersController < ApplicationController
     end
   end
 
+
+#  I think we need to change the edit/create to reflect the admin_orders_path
+    # respond_to do |format|
+    #   if @category.save
+    #     format.html { redirect_to admin_categories_path, notice: 'Category was successfully created.' }
+    #     format.json { render json: admin_categories_path, status: :created, location: @category }
+    #   else
+    #     format.html { render action: "new" }
+    #     format.json { render json: admin_categories_path.errors, status: :unprocessable_entity }
+    #   end
+    # end
+
+
   # PUT /orders/1
   # PUT /orders/1.json
   def update
@@ -75,8 +92,19 @@ class OrdersController < ApplicationController
     @order.destroy
 
     respond_to do |format|
-      format.html { redirect_to orders_url }
+      format.html { redirect_to admin_orders_path }
       format.json { head :no_content }
+    end
+  end
+
+
+  private
+ 
+  def require_admin
+    if logged_in?
+      redirect_to login_url unless current_user.admin
+    else 
+      redirect_to login_url
     end
   end
 end

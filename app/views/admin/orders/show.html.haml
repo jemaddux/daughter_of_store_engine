@@ -1,0 +1,25 @@
+%p#notice= notice
+
+%p
+  %b Customer:
+  = @order.customer.username
+%p
+  %b Order Status:
+  = @order.status
+%p
+  %b Order Total:
+  = "$#{@order.total}"
+%p
+  %b Customer Email:
+  = @current_user.email
+%p
+  %b Order Date/time:
+  = @order.created_at
+%p
+  %b Order Items:
+  = @order.order_products.price
+
+
+= link_to 'Edit', edit_admin_order_path(@order)
+\|
+= link_to 'Back', admin_orders_path

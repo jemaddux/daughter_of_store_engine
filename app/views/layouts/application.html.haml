@@ -40,8 +40,10 @@
             %section.top-bar-section
               / Right Nav Section
               %ul.right
+                %li
+                  %a{:href => products_path } Products</i>
                 %li.has-dropdown
-                  %a{:href => "#"} Categories <i class="icon-angle-down"></i>
+                  %a{:href => categories_path} Categories <i class="icon-angle-down"></i>
                   %ul.dropdown
                     - category_list.each do |category|
                       %li= link_to category.name, category_path(category)
@@ -51,18 +53,18 @@
                     %a{:href => cart_path(@cart)} Cart <i class="icon-angle-down"></i>
                 - if logged_in?
                   %li.has-dropdown
-                    %a{:href => "#"} <i class="icon-user"></i> #{current_user.username} <i class="icon-angle-down"></i>
+                    %a{:href => customer_path(current_user) } <i class="icon-user"></i> #{current_user.username} <i class="icon-angle-down"></i>
                     %ul.dropdown
                       %li
                         %a{:href => customer_path(current_user) } Account
                       %li
-                        %a{:href => "#"} Orders
+                        %a{:href => "/orders"} Orders
                       %li.divider
                       %li
                         %a{:href => logout_path } Logout
                 - else
                   %li.has-dropdown
-                    %a{:href => "#" } Login / Signup <i class="icon-angle-down"></i>
+                    %a{:href => "/login" } Login / Signup <i class="icon-angle-down"></i>
                     %ul.dropdown
                       %li
                         %a{:href => login_path } Login
@@ -78,16 +80,10 @@
       %hr/
       .row
         .large-6.columns
-          %p © Copyright no one at all. Go to town.
+          %p © Copyright |Kyle|Jorge|Chris|
         .large-6.columns
           %ul.inline-list.right
             %li
-              %a{:href => "#"} Link 1
-            %li
-              %a{:href => "#"} Link 2
-            %li
-              %a{:href => "#"} Link 3
-            %li
-              %a{:href => "#"} Link 4
+              %a{:href => "/"} Home Page
 
   = javascript_include_tag "application"
