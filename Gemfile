@@ -8,6 +8,7 @@ gem 'sorcery'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'figaro'
 gem 'sendgrid'
+gem 'heroku'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
