@@ -49,7 +49,7 @@
                     %li= link_to "See all →", categories_path
                 - if @cart != nil
                   %li.has-dropdown
-                    %a{:href => cart_path(@cart)} Cart <i class="icon-angle-down"></i>
+                    %a{:href => cart_path(@cart)} Cart <i class="icon-shopping-cart"></i>
                 - if logged_in?
                   %li.has-dropdown
                     %a{:href => customer_path(current_user) } <i class="icon-user"></i> #{current_user.username} <i class="icon-angle-down"></i>
