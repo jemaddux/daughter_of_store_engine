@@ -1,7 +1,7 @@
 class Admin::ProductsController < ApplicationController
   layout 'admin/application.html.haml'
 
-  before_filter :require_admin
+  # before_filter :require_admin
 
   def index
     @products = Product.all
@@ -17,8 +17,11 @@ class Admin::ProductsController < ApplicationController
     @product = Product.new(params[:product])
 
     if @product.save
-      categories = category_ids.collect{ |category_id| Category.find_by_id(category_id) }.compact
-      @product.categories = categories
+
+      unless category_ids.nil?
+        categories = category_ids.collect{ |category_id| Category.find_by_id(category_id) }.compact
+        @product.categories = categories
+      end
       
       redirect_to admin_products_path, notice: 'Product was successfully created.'
     else
@@ -37,8 +40,10 @@ class Admin::ProductsController < ApplicationController
 
     if @product.update_attributes(params[:product])
 
-      categories = category_ids.collect{ |category_id| Category.find_by_id(category_id) }.compact
-      @product.categories = categories
+      unless category_ids.nil?
+        categories = category_ids.collect{ |category_id| Category.find_by_id(category_id) }.compact
+        @product.categories = categories
+      end
   
       redirect_to admin_products_path, notice: 'Product was successfully updated.'
     else
@@ -46,10 +51,10 @@ class Admin::ProductsController < ApplicationController
     end
   end
 
-  def destroy
-    @product = Product.find(params[:id])
-    @product.destroy
-
-    redirect_to products_url
-  end
+  # def destroy
+  #   @product = Product.find(params[:id])
+  #   @product.destroy
+  # 
+  #   redirect_to products_url
+  # end
 end

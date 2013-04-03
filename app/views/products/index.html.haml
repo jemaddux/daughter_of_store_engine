@@ -1,18 +1,21 @@
-=image_tag "obie_head.jpg"
+%ul.home-list
+  - category_list.each do |category|
+    %li= link_to category.name, category_path(category), class: "home-link"
+/ =image_tag "obie_head.jpg"
 
-%p#notice= notice
+/ %p#notice= notice
 
-.row
-  %h2.section-heading
-    Featured
+/ / .row
+/ /   %h2.section-heading
+/ /     Featured
 
-.row
-  / Thumbnails
-  .large-12.columns
-    .row
-      - @products.first(6).each do |product|
-        .large-2.small-6.columns
-          = link_to image_tag(product.image.url(:thumb)), product_path(product.id)
-          %h5= link_to product.name, product_path(product)
-          %h5.subheader= number_to_currency(product.price)
+/ / .row
+/ /   / Thumbnails
+/ /   .large-12.columns
+/ /     .row
+/ /       - @products.first(6).each do |product|
+/ /         .large-2.small-6.columns
+/ /           = link_to image_tag(product.image.url(:thumb)), product_path(product.id)
+/ /           %h5= link_to product.name, product_path(product)
+/ /           %h5.subheader= number_to_currency(product.price)
 

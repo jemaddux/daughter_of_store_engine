@@ -1,6 +1,8 @@
 class CartProduct < ActiveRecord::Base
   attr_accessible :quantity,
-                  :price
+                  :price,
+                  :cart_id,
+                  :product_id
 
   validates :cart_id,    presence: true
   validates :product_id, presence: true

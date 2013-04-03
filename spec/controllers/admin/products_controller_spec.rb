@@ -70,7 +70,7 @@ describe Admin::ProductsController do
 
       it "redirects to the created product" do
         post :create, {:product => valid_attributes}, valid_session
-        response.should redirect_to(Product.last)
+        response.should redirect_to(admin_products_path)
       end
     end
 

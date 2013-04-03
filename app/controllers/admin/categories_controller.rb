@@ -1,7 +1,7 @@
 class Admin::CategoriesController < ApplicationController
   layout 'admin/application.html.haml'
 
-  before_filter :require_admin
+  # before_filter :require_admin
 
   def index
     @categories = Category.all
@@ -38,10 +38,7 @@ class Admin::CategoriesController < ApplicationController
   # def destroy
   #   @category = Category.find(params[:id])
   #   @category.destroy
-
-  #   respond_to do |format|
-  #     format.html { redirect_to categories_url }
-  #     format.json { head :no_content }
-  #   end
+  # 
+  #   redirect_to categories_url
   # end
 end
