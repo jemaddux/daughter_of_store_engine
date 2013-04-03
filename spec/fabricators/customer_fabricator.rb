@@ -1,5 +1,5 @@
 Fabricator(:customer, :class_name => "Customer") do
-  id { sequence }
+  id { 1 }
   username { "admin" }
   password { "admin" }
   admin { true }

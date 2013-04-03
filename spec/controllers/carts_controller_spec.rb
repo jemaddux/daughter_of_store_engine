@@ -20,73 +20,12 @@ describe CartsController do
                                 featured: true )
   end
 
-  describe "GET index" do
-    it "assigns all carts as @carts" do
-      cart = Cart.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:carts).should eq([cart])
-    end
-  end
-
   describe "GET show" do
     it "assigns the requested cart as @cart" do
       cart = Cart.create!
       cart.add(@product, 1)
       get :show, { id: 1 }, { cart_id: 1 }
       assigns(:cart).should eq(cart)
-    end
-  end
-
-  describe "GET new" do
-    it "assigns a new cart as @cart" do
-      get :new, {}, valid_session
-      assigns(:cart).should be_a_new(Cart)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested cart as @cart" do
-      cart = Cart.create! valid_attributes
-      get :edit, {:id => cart.to_param}, valid_session
-      assigns(:cart).should eq(cart)
-    end
-  end
-
-  describe "POST create" do
-    describe "with valid params" do
-      # it "creates a new Cart" do
-      #   # customer = Customer.create!
-      #   expect {
-      #     post :create, {:cart => valid_attributes}, valid_session
-      #   }.to change(Cart, :count).by(1)
-      # end
-
-      # it "assigns a newly created cart as @cart" do
-      #   post :create, {:cart => valid_attributes}, valid_session
-      #   assigns(:cart).should be_a(Cart)
-      #   assigns(:cart).should be_persisted
-      # end
-
-      # it "redirects to the created cart" do
-      #   post :create, {:cart => valid_attributes}, valid_session
-      #   response.should redirect_to(Cart.last)
-      # end
-    end
-
-    describe "with invalid params" do
-      # it "assigns a newly created but unsaved cart as @cart" do
-      #   # Trigger the behavior that occurs when invalid params are submitted
-      #   Cart.any_instance.stub(:save).and_return(false)
-      #   post :create, {:cart => { customer_id: 0 }}, valid_session
-      #   assigns(:cart).should be_a_new(Cart)
-      # end
-
-      # it "re-renders the 'new' template" do
-      #   # Trigger the behavior that occurs when invalid params are submitted
-      #   Cart.any_instance.stub(:save).and_return(false)
-      #   post :create, {:cart => { customer_id: 0 }}, valid_session
-      #   response.should render_template("new")
-      # end
     end
   end
 
