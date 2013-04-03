@@ -1,4 +1,7 @@
 StoreEngine::Application.routes.draw do
+  resources :shipping_addresses
+
+
   resources :orders,            only:   [:show, :index]
   resources :carts,             only:   [:show, :update, :destroy]
   resources :categories,        only:   [:show, :index]
