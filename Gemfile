@@ -8,7 +8,7 @@ gem 'sorcery'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'figaro'
 gem 'sendgrid'
-gem 'heroku'
+gem "paperclip", "~> 3.0"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -16,7 +16,6 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'zurb-foundation', '~> 4.0.0'
   gem 'font-awesome-rails'
-  gem "paperclip", "~> 3.0"
 end
 
 group :development, :test do
