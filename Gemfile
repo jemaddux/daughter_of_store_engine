@@ -9,6 +9,7 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'figaro'
 gem 'sendgrid'
 gem "paperclip", "~> 3.0"
+gem 'haml-rails', '>= 0.3.4'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -27,6 +28,5 @@ group :development, :test do
   # gem 'guard'
   gem 'cane'
   gem 'reek'
-  gem 'haml-rails', '>= 0.3.4'
   gem 'simplecov', :require => false
 end
