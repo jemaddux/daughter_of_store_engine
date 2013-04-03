@@ -74,15 +74,24 @@
 
   = yield
 
-  %footer.row
-    .large-12.columns
-      %hr/
-      .row
-        .large-6.columns
-          %p © Copyright |Kyle|Jorge|Chris|
-        .large-6.columns
-          %ul.inline-list.right
-            %li
-              %a{:href => "/"} Home Page
+  = javascript_include_tag "application", "vendor/custom.modernizr", "http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js", "supersized.3.2.7.min", "supersized.shutter.min"
 
-  = javascript_include_tag "application", "vendor/custom.modernizr", "http://code.jquery.com/jquery-1.9.1.min.js", "http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js", "supersized.3.2.7.min", "supersized.shutter.min"
+  :javascript
+    jQuery(function($){
+      
+      $.supersized({
+      
+        // Functionality
+        slide_interval          :   3500,   // Length between transitions
+        transition              :   1,      // 0-None, 1-Fade, 2-Slide Top, 3-Slide Right, 4-Slide Bottom, 5-Slide Left, 6-Carousel Right, 7-Carousel Left
+        transition_speed    : 2000,    // Speed of transition
+                               
+        // Components             
+        slide_links       : 'blank',  // Individual links for each slide (Options: false, 'num', 'name', 'blank')
+        slides          :   [     // Slideshow Images
+                          {image : 'http://farm9.staticflickr.com/8348/8154926648_4cb361d8ce_k.jpg', title : 'Image Credit: Maria Kazvan'},
+                          {image : 'http://www.gopropellergroup.com/wp-content/uploads/2013/02/Mountain_Climber_small.jpg'}
+                      ]
+        
+      });
+      });

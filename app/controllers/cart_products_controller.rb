@@ -1,5 +1,4 @@
 class CartProductsController < ApplicationController
-
   def destroy
     @cart = Cart.find(session[:cart_id])
 
@@ -9,9 +8,6 @@ class CartProductsController < ApplicationController
     @cart.recalculate
     @cart.save
 
-    respond_to do |format|
-      format.html { redirect_to cart_path, method: :put }
-      format.json { head :no_content }
-    end
+    redirect_to cart_path, method: :put
   end
 end
