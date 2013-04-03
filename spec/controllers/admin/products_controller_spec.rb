@@ -14,10 +14,7 @@ describe Admin::ProductsController do
    Category.new(name: "Some category", description: "Cat desc").save
    @category = Category.find_by_name("Some category")
   end
-
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # ProductsController. Be sure to keep this updated too.
+  
   def valid_session
     {}
   end
