@@ -11,5 +11,6 @@ class Customer < ActiveRecord::Base
   validates :last_name,  presence: true
 
   has_one  :cart
+  has_one  :shipping_address
   has_many :orders
 end

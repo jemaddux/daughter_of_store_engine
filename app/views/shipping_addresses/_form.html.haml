@@ -7,8 +7,7 @@
           %li= msg
 
   .field
-    = f.label :customer
-    = f.text_field :customer
+    = f.hidden_field :customer_id, value: session[:user_id]
   .field
     = f.label :street
     = f.text_field :street

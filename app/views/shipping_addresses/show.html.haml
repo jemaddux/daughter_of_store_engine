@@ -2,7 +2,8 @@
 
 %p
   %b Customer:
-  = @shipping_address.customer
+  = @shipping_address.customer.first_name 
+  = @shipping_address.customer.last_name
 %p
   %b Street:
   = @shipping_address.street
@@ -21,4 +22,4 @@
 
 = link_to 'Edit', edit_shipping_address_path(@shipping_address)
 \|
-= link_to 'Back', shipping_addresses_path
+= link_to 'Back', customer_path

@@ -1,5 +1,6 @@
 class Cart < ActiveRecord::Base
-  attr_accessible :total, :customer_id
+  attr_accessible :total, 
+                  :customer_id
 
   belongs_to :customer
   
