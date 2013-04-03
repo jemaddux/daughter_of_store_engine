@@ -46,7 +46,7 @@
                       %li= link_to category.name, category_path(category)
                 - if session[:cart_id] != nil
                   %li.has-dropdown
-                    %a{:href => cart_path(session[:cart_id])} Cart <i class="icon-shopping-cart"></i>
+                    %a{:href => cart_path(session[:cart_id])} <i class="icon-shopping-cart"></i> Cart
                 - if logged_in?
                   %li.has-dropdown
                     %a{:href => customer_path(current_user) } <i class="icon-user"></i> #{current_user.username} <i class="icon-angle-down"></i>
