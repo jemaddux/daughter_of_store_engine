@@ -10,4 +10,12 @@ class ApplicationController < ActionController::Base
   def not_authenticated
     redirect_to login_url
   end
+
+  def require_admin
+    if logged_in?
+      redirect_to login_url unless current_user.admin
+    else 
+      redirect_to login_url
+    end
+  end
 end

@@ -3,7 +3,7 @@
 %table
   %tr
     %th Customer
-    %th Click a Status to filter
+    %th ~Click Status to filter~
     %th Total
     %th Order Date & Time
     %th
@@ -18,7 +18,3 @@
       %td= link_to 'Show', admin_order_path(order), class: "button tiny round"
       %td= link_to 'Edit', edit_admin_order_path(order), class: "button tiny round"
   
-
-%br
-
-= link_to 'New Order', new_admin_order_path, class: "button"
