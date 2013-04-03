@@ -74,17 +74,6 @@
 
   = yield
 
-  / %footer.row
-  /   .large-12.columns
-  /     %hr/
-  /     .row
-  /       .large-6.columns
-  /         %p © Copyright |Kyle|Jorge|Chris|
-  /       .large-6.columns
-  /         %ul.inline-list.right
-  /           %li
-  /             %a{:href => "/"} Home Page
-
   = javascript_include_tag "application", "vendor/custom.modernizr", "http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js", "supersized.3.2.7.min", "supersized.shutter.min"
 
   :javascript
@@ -100,8 +89,8 @@
         // Components             
         slide_links       : 'blank',  // Individual links for each slide (Options: false, 'num', 'name', 'blank')
         slides          :   [     // Slideshow Images
-                          {image : 'http://farm9.staticflickr.com/8348/8154926648_4cb361d8ce_k.jpg', title : 'Image Credit: Maria Kazvan', thumb : 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/kazvan-1.jpg', url : 'http://www.nonsensesociety.com/2011/04/maria-kazvan/'},
-                          {image : 'http://www.gopropellergroup.com/wp-content/uploads/2013/02/Mountain_Climber_small.jpg', title : 'Image Credit: Maria Kazvan', thumb : 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/kazvan-1.jpg', url : 'http://www.nonsensesociety.com/2011/04/maria-kazvan/'}
+                          {image : 'http://farm9.staticflickr.com/8348/8154926648_4cb361d8ce_k.jpg', title : 'Image Credit: Maria Kazvan'},
+                          {image : 'http://www.gopropellergroup.com/wp-content/uploads/2013/02/Mountain_Climber_small.jpg'}
                       ]
         
       });
