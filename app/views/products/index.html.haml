@@ -1,3 +1,6 @@
+%ul.home-list
+  - category_list.each do |category|
+    %li= link_to category.name, category_path(category), class: "home-link"
 / =image_tag "obie_head.jpg"
 
 / %p#notice= notice
