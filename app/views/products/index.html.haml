@@ -1,5 +1,8 @@
+.hero
+  %h1.tagline= "the great outdoors"
+  %hr#tagline
+  %h2.sub-tagline= "spring at obiwear"
+
 %ul.home-list
   - category_list.each do |category|
     %li= link_to category.name, category_path(category), class: "home-link"
-
-
