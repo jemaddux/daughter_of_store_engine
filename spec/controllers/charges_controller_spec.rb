@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe ChargesController do
 
+  let!(:customer) { Fabricate(:customer) }
+
   before(:each) do
     customer = Customer.create(         username: "something" )
 
@@ -18,6 +20,7 @@ describe ChargesController do
                                         quantity: 1,
                                         product_id: 1,
                                         cart_id: 1 )
+    login_customer_post("admin", "admin")
   end
 
   def valid_attributes
@@ -28,7 +31,8 @@ describe ChargesController do
 
   def valid_session
     { cart_id: 1,
-      user_id: 1 }
+      user_id: 1,
+      order_id: 1 }
   end
 
   describe "new charge" do
@@ -40,6 +44,7 @@ describe ChargesController do
 
   describe "create charge" do
     it "creates a charge" do
+      Order.create!
       post :create, valid_attributes, valid_session
       expect( response.status ).to eq 302
     end

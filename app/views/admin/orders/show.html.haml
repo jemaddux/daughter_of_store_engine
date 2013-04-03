@@ -4,18 +4,20 @@
   %tr
     %th Customer
     %th Order Total
-    %th Order Status
     %th Order Date & Time
     %th Customer Email
     %th Order Products
-    %th
+    %th Status
     %tr
       %td= @order.customer.username
       %td= "$#{@order.total}"
-      %td= @order.status
       %td= @order.created_at
-      %td= @current_user.email
+      %td= @order.customer.email
       - @order.order_products.each do |order_product|
         - product = Product.find(order_product.product_id)
         %td= product.name
-           
+        = form_for admin_order_path(current_user), method: :put do |f|
+          %td= select(:order, :status, [['shipped'], ['returned'], ['canceled'], ['pending'], ['paid']])
+          %td=f.submit "save status", class: "button"
+
+        

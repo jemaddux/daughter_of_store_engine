@@ -1,7 +1,7 @@
 class Admin::OrdersController < ApplicationController  # GET /orders
   layout 'admin/application.html.haml'
 
-  # before_filter :require_admin
+  before_filter :require_admin
 
   def index
     if params[:status]
@@ -23,7 +23,7 @@ class Admin::OrdersController < ApplicationController  # GET /orders
     @order = Order.find(params[:id])
 
     if @order.update_attributes(params[:order])
-      redirect_to @order, notice: 'Order was successfully updated.'
+      redirect_to admin_orders_path, notice: 'Order was successfully updated.'
     else
       render action: "edit"
     end
