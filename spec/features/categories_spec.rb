@@ -14,7 +14,7 @@ describe "categories" do
 
   it "shows the individual category" do
     visit category_path(@category)
-    expect( page ).to have_content "New category"
+    expect( page ).to have_content "Some category"
   end
 
   # context "when given all the correct parameters" do

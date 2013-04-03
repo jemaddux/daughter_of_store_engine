@@ -1,6 +1,5 @@
 class CartProductsController < ApplicationController
   def destroy
-    fail
     @cart = Cart.find(session[:cart_id])
 
     @cart_product = CartProduct.find(params[:id])
