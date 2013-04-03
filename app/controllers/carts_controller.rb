@@ -23,6 +23,7 @@ class CartsController < ApplicationController
     @cart = Cart.find(params[:id])
     @cart.destroy
 
+    session[:cart_id] = nil
     redirect_to products_path, notice: "Your cart was successfully cleared."
   end
 end

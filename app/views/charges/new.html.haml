@@ -28,6 +28,8 @@
         %td= "$#{product.price}0"
         %a= image_tag product.image(:thumb)
     %h3 Shipping Information
+    - shipping = @customer.shipping_address
+    = link_to 'edit shipping information', edit_shipping_address_path(shipping.id)
     %table 
       %th Street:
       %th City:
@@ -35,13 +37,10 @@
       %th Zip:
       %th Phone:
       %tr
-        %td test
-        %td test
-        %td test
-        %td test
-        %td test
-
+        %td= shipping.street
+        %td= shipping.city
+        %td= shipping.state
+        %td= shipping.zipcode
+        %td= shipping.phone
 
     %script.stripe-button{"data-amount" => @amount, "data-description" => "Obiwear", "data-key" => Rails.configuration.stripe[:publishable_key], :src => "https://checkout.stripe.com/v2/checkout.js"}
-
-
