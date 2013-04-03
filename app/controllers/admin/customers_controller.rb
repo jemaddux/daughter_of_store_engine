@@ -27,14 +27,4 @@ class Admin::CustomersController < ApplicationController
 
     redirect_to admin_orders_path
   end
-
-  private
- 
-  def require_admin
-    if logged_in?
-      redirect_to login_url unless current_user.admin
-    else 
-      redirect_to login_url
-    end
-  end
 end

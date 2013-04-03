@@ -52,14 +52,4 @@ class Admin::ProductsController < ApplicationController
 
     redirect_to products_url
   end
-
-  private
- 
-  def require_admin
-    if logged_in?
-      redirect_to login_url unless current_user.admin
-    else 
-      redirect_to login_url
-    end
-  end
 end

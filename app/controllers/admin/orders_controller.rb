@@ -28,14 +28,4 @@ class Admin::OrdersController < ApplicationController  # GET /orders
       render action: "edit"
     end
   end
-
-  private
- 
-  def require_admin
-    if logged_in?
-      redirect_to login_url unless current_user.admin
-    else 
-      redirect_to login_url
-    end
-  end
 end
