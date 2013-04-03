@@ -3,8 +3,8 @@ require 'spec_helper'
 describe "products" do
 
   before(:each) do
-    Category.create(name: "Some category", description: "Some description")
-    @product = Product.create(
+    @category = Category.create(name: "Some category", description: "Some description")
+    @product  = @category.products.create(
       name: "Some product",
       description: "Some description",
       quantity: 7,
@@ -13,8 +13,8 @@ describe "products" do
       active: true )
   end
 
-  it "shows the products" do
-    visit products_path
+  it "shows the product on the category page" do
+    visit categories_path
     expect( page ).to have_content "Some product"
   end
 

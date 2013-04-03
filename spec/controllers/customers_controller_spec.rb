@@ -4,9 +4,11 @@ describe CustomersController do
 
   def valid_attributes
     { 
-      username: "MyString",
-      email: "123@bigwalkway.com",
-      password: "jorgesporno",
+      first_name:            "John",
+      last_name:             "Doe",
+      username:              "MyString",
+      email:                 "123@bigwalkway.com",
+      password:              "jorgesporno",
       password_confirmation: "jorgesporno"
     }
   end
