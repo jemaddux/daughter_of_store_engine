@@ -19,6 +19,9 @@
 body {
   margin-top: 3em !important;
 }
+a:hover {
+  background-color: none !important;
+}
 .top-bar {
   box-shadow: 1px 1px 5px #333;
 }
@@ -29,8 +32,7 @@ body {
 .top-bar-section li a:not(.button) {
   font-weight:normal;
 }
-.top-bar-section ul li a:hover,
-.name h1 a:hover {
+.top-bar-section ul li a:hover {
   color: white !important;
 }
 .top-bar-section ul li a:active {
@@ -140,6 +142,17 @@ hr#tagline {
   bottom: 7.5em;
   width: 94.2%;
   display:none;
+  padding: 1em;
+}
+[class^="cart-hidden"] .button {
+  margin:0;
+}
+.product-stock {
+  margin: 0;
+  color: #fff;
+  text-transform: uppercase;
+  font-size:1.2em;
+  margin-top:.6em;
 }
 .cart-visible {
   display:block !important;

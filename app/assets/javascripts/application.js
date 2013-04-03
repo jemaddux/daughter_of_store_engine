@@ -17,14 +17,3 @@
 $(document).foundation();
 
 $(document).foundation();
-
-$('[id^="product-wrapper"]').hover(function(){
-  var className = $(this).children('[class^="cart-hidden"]').attr('class');
-  var classIndex = className.match(/\d+/);
-  $('.cart-hidden-'+classIndex).addClass("cart-visible");
-  },
-  function() {
-  var className = $(this).children('[class^="cart-hidden"]').attr('class');
-  var classIndex = className.match(/\d+/);
-  $('.cart-hidden-'+classIndex).removeClass("cart-visible");
-});

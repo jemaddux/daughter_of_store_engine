@@ -1,5 +1,7 @@
-%h2 "Thanks for shopping with us. You should receive the goods #{Time.now + 259200}"
+%h2 Thanks for shopping with us.</br> You should receive your order in about 2 days.
+%h4 Please check your email for the confirmation receipt. 
 
-%h3 you paid
-= succeed "!" do
-  %strong= number_to_currency(@amount / 100)
+%h3 
+  You successfully purchased:
+  = succeed "!" do
+    %strong= "#{number_to_currency(@amount / 100)} worth of goods"
