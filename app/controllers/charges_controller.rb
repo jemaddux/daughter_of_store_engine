@@ -19,6 +19,8 @@ class ChargesController < ApplicationController
 
   def create
     cart     = Cart.find(session[:cart_id])
+    session[:cart_id] = nil
+
     @amount  = (cart.total * 100).to_i
 
     customer = Customer.find(session[:user_id])

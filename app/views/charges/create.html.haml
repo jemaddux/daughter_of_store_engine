@@ -1,5 +1,5 @@
-%h2= "Thanks for shopping with us. You should receive the goods #{Time.now + 259200}"
+%h2 "Thanks for shopping with us. You should receive the goods #{Time.now + 259200}"
 
 %h3 you paid
-  = succeed "!" do
-    %strong= number_to_currency(@amount / 100)
+= succeed "!" do
+  %strong= number_to_currency(@amount / 100)

@@ -20,4 +20,4 @@
     = link_to 'Checkout', new_charge_path(amount: @cart.total * 100, customer: current_user.id), class: "button"
     %h3.right= number_to_currency(@cart.total)
   - else
-    = link_to 'Checkout', new_customer_path, class: "button"
+    = link_to 'Checkout', login_path, class: "button"

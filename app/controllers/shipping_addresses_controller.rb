@@ -37,6 +37,6 @@ class ShippingAddressesController < ApplicationController
     @shipping_address = ShippingAddress.find(params[:id])
     @shipping_address.destroy
 
-    redirect_to shipping_addresses_url
+    redirect_to customer_path(current_user.id)
   end
 end
