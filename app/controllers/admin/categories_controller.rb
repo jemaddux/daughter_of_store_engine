@@ -1,7 +1,5 @@
 class Admin::CategoriesController < ApplicationController
-
-
-layout 'admin/application.html.haml'
+  layout 'admin/application.html.haml'
 
   # before_filter :require_admin
 
@@ -11,11 +9,6 @@ layout 'admin/application.html.haml'
 
   def new
     @category = Category.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @category }
-    end
   end
 
   def edit
@@ -25,28 +18,20 @@ layout 'admin/application.html.haml'
   def create
     @category = Category.new(params[:category])
 
-    respond_to do |format|
-      if @category.save
-        format.html { redirect_to admin_categories_path, notice: 'Category was successfully created.' }
-        format.json { render json: admin_categories_path, status: :created, location: @category }
-      else
-        format.html { render action: "new" }
-        format.json { render json: admin_categories_path.errors, status: :unprocessable_entity }
-      end
+    if @category.save
+      redirect_to admin_categories_path, notice: 'Category was successfully created.'
+    else
+      render action: "new"
     end
   end
 
   def update
     @category = Category.find(params[:id])
 
-    respond_to do |format|
-      if @category.update_attributes(params[:category])
-        format.html { redirect_to admin_categories_path, notice: 'Category was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: admin_categories_path.errors, status: :unprocessable_entity }
-      end
+    if @category.update_attributes(params[:category])
+      redirect_to admin_categories_path, notice: 'Category was successfully updated.'
+    else
+      render action: "edit"
     end
   end
 
