@@ -1,4 +1,6 @@
 class ChargesController < ApplicationController
+  before_filter :require_login
+
   def new
     @amount   = params[:amount]
     @customer = Customer.find(params[:customer])

@@ -1,12 +1,15 @@
 require 'spec_helper'
 
 describe CustomersController do
+  let (:customer ) { Customer.create( valid_attributes )}
 
   def valid_attributes
     { 
-      username: "MyString",
-      email: "123@bigwalkway.com",
-      password: "jorgesporno",
+      first_name:            "John",
+      last_name:             "Doe",
+      username:              "MyString",
+      email:                 "123@bigwalkway.com",
+      password:              "jorgesporno",
       password_confirmation: "jorgesporno"
     }
   end
@@ -15,32 +18,22 @@ describe CustomersController do
     {}
   end
 
-  describe "GET index" do
-    # it "assigns all customers as @customers" do
-    #   customer = Customer.create! valid_attributes
-    #   get :index, {}, valid_session
-    #   assigns(:customers).should eq([customer])
-    # end
-  end
-
   describe "GET show" do
     it "assigns the requested customer as @customer" do
-      customer = Customer.create! valid_attributes
       get :show, {:id => customer.to_param}, valid_session
       assigns(:customer).should eq(customer)
     end
   end
 
-  # describe "GET new" do
-  #   it "assigns a new customer as @customer" do
-  #     get :new, {}, valid_session
-  #     assigns(:customer).should be_a_new(Customer)
-  #   end
-  # end
+  describe "GET new" do
+    it "assigns a new customer as @customer" do
+      get :new, {}, valid_session
+      assigns(:customer).should be_a_new(Customer)
+    end
+  end
 
   describe "GET edit" do
     it "assigns the requested customer as @customer" do
-      customer = Customer.create! valid_attributes
       get :edit, {:id => customer.to_param}, valid_session
       assigns(:customer).should eq(customer)
     end
@@ -68,14 +61,12 @@ describe CustomersController do
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved customer as @customer" do
-        # Trigger the behavior that occurs when invalid params are submitted
         Customer.any_instance.stub(:save).and_return(false)
         post :create, {:customer => { "username" => "invalid value" }}, valid_session
         assigns(:customer).should be_a_new(Customer)
       end
 
       it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
         Customer.any_instance.stub(:save).and_return(false)
         post :create, {:customer => { "username" => "invalid value" }}, valid_session
         response.should render_template("new")
@@ -86,19 +77,16 @@ describe CustomersController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested customer" do
-        customer = Customer.create! valid_attributes
         Customer.any_instance.should_receive(:update_attributes).with({ "username" => "MyString" })
         put :update, {:id => customer.to_param, :customer => { "username" => "MyString" }}, valid_session
       end
 
       it "assigns the requested customer as @customer" do
-        customer = Customer.create! valid_attributes
         put :update, {:id => customer.to_param, :customer => valid_attributes}, valid_session
         assigns(:customer).should eq(customer)
       end
 
       it "redirects to the customer" do
-        customer = Customer.create! valid_attributes
         put :update, {:id => customer.to_param, :customer => valid_attributes}, valid_session
         response.should redirect_to(customer)
       end
@@ -107,19 +95,17 @@ describe CustomersController do
     describe "with invalid params" do
       it "assigns the customer as @customer" do
         customer = Customer.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
         Customer.any_instance.stub(:save).and_return(false)
         put :update, {:id => customer.to_param, :customer => { "username" => "invalid value" }}, valid_session
         assigns(:customer).should eq(customer)
       end
 
-      # it "re-renders the 'edit' template" do
-      #   customer = Customer.create! valid_attributes
-      #   # Trigger the behavior that occurs when invalid params are submitted
-      #   Customer.any_instance.stub(:save).and_return(false)
-      #   put :update, {:id => customer.to_param, :customer => { "username" => "invalid value" }}, valid_session
-      #   response.should render_template("edit")
-      # end
+      it "re-renders the 'edit' template" do
+        customer = Customer.create! valid_attributes
+        Customer.any_instance.stub(:save).and_return(false)
+        put :update, {:id => customer.to_param, :customer => { "username" => "invalid value" }}, valid_session
+        response.should render_template("edit")
+      end
     end
   end
 
@@ -132,10 +118,8 @@ describe CustomersController do
     end
 
     it "redirects to the customers list" do
-      customer = Customer.create! valid_attributes
       delete :destroy, {:id => customer.to_param}, valid_session
       response.should redirect_to(customers_path)
     end
   end
-
 end

@@ -1,6 +1,47 @@
+
 .large-8.columns.left
   = form_tag charges_path do    
-    %h1 Hello, #{@customer.username}
-    %h4 Here is your order
-    %h6 Amount: #{number_to_currency(@amount.to_i/100)}
+    %h1= "Hello, #{@customer.first_name} #{@customer.last_name}"
+    %h3 Customer Order Information
+    %table
+      %th Full Name
+      %th Username
+      %th Email 
+      %th Total Amount: 
+      %th Order Date & Time: 
+      %tr
+        %td= "#{@customer.first_name} #{@customer.last_name}"
+        %td= @customer.username
+        %td= @customer.email
+        %td= "#{number_to_currency(@amount.to_i/100)}"
+        %td= "#{@order.created_at}"
+    %h3 Items
+    %table
+      %th Items
+      %th Description
+      %th Unit Price
+      - @order.order_products.each do |order_product|
+        - product = Product.find(order_product.product_id)
+        %tr
+        %td= product.name.capitalize
+        %td= product.description
+        %td= "$#{product.price}0"
+        %a= image_tag product.image(:thumb)
+    %h3 Shipping Information
+    %table 
+      %th Street:
+      %th City:
+      %th State:
+      %th Zip:
+      %th Phone:
+      %tr
+        %td test
+        %td test
+        %td test
+        %td test
+        %td test
+
+
     %script.stripe-button{"data-amount" => @amount, "data-description" => "Obiwear", "data-key" => Rails.configuration.stripe[:publishable_key], :src => "https://checkout.stripe.com/v2/checkout.js"}
+
+

@@ -15,9 +15,13 @@
         %p= @product.description
         %hr/  
         .row
-          = form_tag(cart_path, method: :put) do
-            = hidden_field_tag 'product', @product.id
-            = number_field_tag 'quantity', 1
-            = submit_tag 'Add to Cart', class: 'button'
-            %a.tiny.round{:href => products_path} OR Back to Products
+          .large-12.small-6.columns
+            = form_tag(cart_path, method: :put) do
+              = hidden_field_tag 'product', @product.id
+              = number_field_tag 'quantity', 1
+              - if @product.active == false
+                %h4 Product Retired
+              - else
+                = submit_tag 'Add to Cart', class: 'button'
+              %a.tiny.round{:href => products_path} Back to Products
 

@@ -1,0 +1,25 @@
+%p#notice= notice
+
+%p
+  %b Customer:
+  = @shipping_address.customer.first_name 
+  = @shipping_address.customer.last_name
+%p
+  %b Street:
+  = @shipping_address.street
+%p
+  %b City:
+  = @shipping_address.city
+%p
+  %b State:
+  = @shipping_address.state
+%p
+  %b Zipcode:
+  = @shipping_address.zipcode
+%p
+  %b Phone:
+  = @shipping_address.phone
+
+= link_to 'Edit', edit_shipping_address_path(@shipping_address)
+\|
+= link_to 'Back', customer_path

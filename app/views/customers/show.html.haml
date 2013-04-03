@@ -1,6 +1,12 @@
 %p#notice= notice
 
 %p
+  %b Frist Name:
+  = @customer.first_name
+%p
+  %b Last Name:
+  = @customer.last_name
+%p
   %b Username:
   = @customer.username
 %p
@@ -11,4 +17,9 @@
 \|
 = link_to 'Home', root_path
 \|
-= link_to 'login', login_path
+= link_to 'Login', login_path
+\|
+- if @customer.shipping_address != nil
+  = link_to 'Shipping Address', shipping_address_path(@customer)
+- else
+  = link_to 'Shipping Address', new_shipping_address_path

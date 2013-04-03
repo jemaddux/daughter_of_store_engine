@@ -1,0 +1,29 @@
+%h1 Listing shipping_addresses
+
+%table
+  %tr
+    %th Customer
+    %th Street
+    %th City
+    %th State
+    %th Zipcode
+    %th Phone
+    %th
+    %th
+    %th
+
+  - @shipping_addresses.each do |shipping_address|
+    %tr
+      %td= shipping_address.customer
+      %td= shipping_address.street
+      %td= shipping_address.city
+      %td= shipping_address.state
+      %td= shipping_address.zipcode
+      %td= shipping_address.phone
+      %td= link_to 'Show', shipping_address
+      %td= link_to 'Edit', edit_shipping_address_path(shipping_address)
+      %td= link_to 'Destroy', shipping_address, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Shipping address', new_shipping_address_path
