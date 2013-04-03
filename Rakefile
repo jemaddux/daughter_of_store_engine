@@ -14,6 +14,9 @@ begin
   RSpec::Core::RakeTask.new("spec:acceptance") do |t|
     t.rspec_opts = "--tag acceptance"
   end
+
+rescue LoadError
+  puts "Hit me with your best shot"
 end
 
 namespace :sanitation do
