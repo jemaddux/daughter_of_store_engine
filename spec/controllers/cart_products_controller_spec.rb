@@ -10,13 +10,17 @@ describe CartProductsController do
                                 featured: true )
   end
 
+  def valid_session
+    { cart_id: 1 }
+  end
+
   describe "destroy" do
     it "destroys a cart product" do
       cart = Cart.create!
       cart.add(@product, 1)
       cart_product = cart.cart_products.first
       expect {
-        delete :destroy, {:id => cart_product.id}
+        delete :destroy, { id: cart_product.id }, valid_session
       }.to change(CartProduct, :count).by(-1)
     end
   end

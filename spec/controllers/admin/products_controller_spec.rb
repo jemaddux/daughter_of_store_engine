@@ -10,18 +10,20 @@ describe Admin::ProductsController do
       active:      true }
   end
 
+  let!(:customer) { Fabricate(:customer) }
+
   before(:each) do
    Category.new(name: "Some category", description: "Cat desc").save
    @category = Category.find_by_name("Some category")
+   login_customer_post("admin", "admin")
   end
   
   def valid_session
-    {}
+    { user_id: 1 }
   end
 
   describe "GET index" do
     it "assigns all products as @products" do
-
       product = Product.create! valid_attributes
       get :index, {}, valid_session
       assigns(:products).should eq([product])

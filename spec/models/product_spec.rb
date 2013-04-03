@@ -4,7 +4,7 @@ describe Product do
   let(:product) { Product.new(
       name:        "Some Product", 
       description: "This is my product description.",
-      price:       123.99,
+      price:       123,
       quantity:    3,
       featured:    true,
       active:      true
@@ -49,7 +49,7 @@ describe Product do
 
     it "should have an error on price" do 
       product.price = nil
-      expect(product).to have(1).error_on(:price)
+      expect(product).to have(2).error_on(:price)
     end
   end
 
@@ -61,7 +61,7 @@ describe Product do
 
     it "should have an error on quantity" do 
       product.quantity = nil
-      expect(product).to have(1).error_on(:quantity)
+      expect(product).to have(2).error_on(:quantity)
     end
   end
 

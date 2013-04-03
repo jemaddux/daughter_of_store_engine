@@ -1,6 +1,5 @@
 %p#notice= notice
 
-
 %table
   %tr
     %th Customer
@@ -18,8 +17,6 @@
       - @order.order_products.each do |order_product|
         - product = Product.find(order_product.product_id)
         %td= product.name
-  
-/ YOU DONT WORK
 
 = link_to 'Back', orders_path
 

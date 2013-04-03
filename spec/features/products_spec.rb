@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 describe "products" do
 
   before(:each) do
