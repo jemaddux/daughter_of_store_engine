@@ -2,6 +2,10 @@ class Cart < ActiveRecord::Base
   attr_accessible :total,
                   :customer_id
 
+  validates :total,
+            presence: true,
+            numericality: { greater_than_or_equal_to: 0 }
+
   belongs_to :customer
 
   has_many   :cart_products, dependent: :destroy
