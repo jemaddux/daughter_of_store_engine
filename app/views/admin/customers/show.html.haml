@@ -1,7 +1,17 @@
-%h2 Customer Information
-
-
-
-= link_to 'Edit', edit_admin_customer_path(@customer)
-\|
-= link_to 'Back', admin_customer_path
+%h1
+  = @customer.first_name 
+  = @customer.last_name
+%h3
+  Username: 
+  = @customer.username
+%h3
+  Email:
+  = @customer.email
+%h6
+  Shipping Address:
+  - address = @customer.shipping_address
+  = address.street
+  = address.city
+  = address.state
+  = address.zipcode
+  = address.phone

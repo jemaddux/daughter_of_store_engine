@@ -20,7 +20,7 @@ StoreEngine::Application.routes.draw do
     resources :categories
     resources :products
     resources :orders
-    resources :customers
+    resources :customers, only: [:index, :show, :destroy]
   end
 
   root to: 'products#index'

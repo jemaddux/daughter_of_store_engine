@@ -30,14 +30,6 @@ describe Admin::ProductsController do
     end
   end
 
-  # describe "GET show" do
-  #   it "assigns the requested product as @product" do
-  #     product = Product.create! valid_attributes
-  #     get :show, {:id => product.to_param}, valid_session
-  #     assigns(:product).should eq(product)
-  #   end
-  # end
-
   describe "GET new" do
     it "assigns a new product as @product" do
       get :new, {}, valid_session
@@ -45,13 +37,13 @@ describe Admin::ProductsController do
     end
   end
 
-  # describe "GET edit" do
-  #   it "assigns the requested product as @product" do
-  #     product = Product.create! valid_attributes
-  #     get :edit, {:id => product.to_param}, valid_session
-  #     assigns(:product).should eq(product)
-  #   end
-  # end
+  describe "GET edit" do
+    it "assigns the requested product as @product" do
+      product = Product.create! valid_attributes
+      get :edit, {:id => product.to_param}, valid_session
+      assigns(:product).should eq(product)
+    end
+  end
 
   describe "POST create" do
     describe "with valid params" do
@@ -75,14 +67,12 @@ describe Admin::ProductsController do
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved product as @product" do
-        # Trigger the behavior that occurs when invalid params are submitted
         Product.any_instance.stub(:save).and_return(false)
         post :create, {:product => {  }}, valid_session
         assigns(:product).should be_a_new(Product)
       end
 
       it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
         Product.any_instance.stub(:save).and_return(false)
         post :create, {:product => {  }}, valid_session
         response.should render_template("new")
@@ -94,10 +84,6 @@ describe Admin::ProductsController do
     describe "with valid params" do
       it "updates the requested product" do
         product = Product.create! valid_attributes
-        # Assuming there are no other products in the database, this
-        # specifies that the Product created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
         Product.any_instance.should_receive(:update_attributes).with({ "these" => "params" })
         put :update, {:id => product.to_param, :product => { "these" => "params" }}, valid_session
       end
@@ -118,7 +104,6 @@ describe Admin::ProductsController do
     describe "with invalid params" do
       it "assigns the product as @product" do
         product = Product.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
         Product.any_instance.stub(:save).and_return(false)
         put :update, {:id => product.to_param, :product => {  }}, valid_session
         assigns(:product).should eq(product)
@@ -126,7 +111,6 @@ describe Admin::ProductsController do
 
       it "re-renders the 'edit' template" do
         product = Product.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
         Product.any_instance.stub(:save).and_return(false)
         put :update, {:id => product.to_param, :product => {  }}, valid_session
         response.should render_template("edit")

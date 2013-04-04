@@ -11,16 +11,6 @@ class Admin::CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
   end
 
-  def update
-    @order = Order.find(params[:id])
-
-    if @order.update_attributes(params[:order])
-      redirect_to @order, notice: 'Order was successfully updated.'
-    else
-      render action: "edit"
-    end
-  end
-
   def destroy
     @order = Order.find(params[:id])
     @order.destroy
