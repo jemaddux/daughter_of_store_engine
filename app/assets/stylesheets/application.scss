@@ -75,7 +75,6 @@ select.options{
 ul.home-list {
   margin-top:10em;
   list-style-type: none;
-  width: 10em;
   margin-left:1em;
 }
 ul.home-list li {
@@ -168,12 +167,18 @@ hr#tagline {
   font-size:1.2em;
   margin-top:.6em;
 }
+.product-feature {
+  border-radius: 3px;
+}
 .cart-visible {
   display:block !important;
 }
 .breadcrumbs {
-  background: #eaeaea !important;
-  box-shadow: 1px 1px 1px #fff;
+  background: none !important;
+  border: none !important;
+}
+.breadcrumbs li a {
+  font-size: 1em !important;
 }
 #habla_topbar_div {
   border-top-left-radius: 3px;
