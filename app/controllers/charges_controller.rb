@@ -5,13 +5,13 @@ class ChargesController < ApplicationController
     @amount   = params[:amount]
     @customer = Customer.find(params[:customer])
     @order    = Order.create(
-      customer_id: params[:customer], 
+      customer_id: params[:customer],
       status:      "pending",
-      total:       params[:amount].to_i / 100 
+      total:       params[:amount].to_i / 100
       )
 
     session[:order_id] = @order.id
-   
+
     @cart = Cart.find(session[:cart_id])
     @cart.cart_products_to_order_products(@order)
     @order.save
@@ -28,7 +28,7 @@ class ChargesController < ApplicationController
     order    = Order.find(session[:order_id])
 
     customer = Stripe::Customer.create(
-      email: email, 
+      email: email,
       card:  params[:stripeToken]
       )
 

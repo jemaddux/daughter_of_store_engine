@@ -1,7 +1,7 @@
 class Product < ActiveRecord::Base
-  attr_accessible :name, 
-                  :description, 
-                  :price, 
+  attr_accessible :name,
+                  :description,
+                  :price,
                   :quantity,
                   :featured,
                   :image,
@@ -10,13 +10,13 @@ class Product < ActiveRecord::Base
 
   validates :name,        presence: true, uniqueness: true
   validates :description, presence: true
-  
+
   validates :price,
-            presence: true, 
+            presence: true,
             numericality: { greater_than_or_equal_to: 0 }
 
   validates :quantity,
-            presence: true, 
+            presence: true,
             numericality: { greater_than_or_equal_to: 0 }
 
   validates :featured,    inclusion: { in: [false, true] }
@@ -31,8 +31,8 @@ class Product < ActiveRecord::Base
   has_many  :order_products,     dependent: :destroy
   has_many  :orders,             through:   :order_products
 
-  has_attached_file :image, 
-                    styles: { medium: "454x627>", thumb: "182x304>" }, 
+  has_attached_file :image,
+                    styles: { medium: "454x627>", thumb: "182x304>" },
                     default_url: "http://placehold.it/1000x1000&text=Thumbnail"
 
   scope :active, where(active: true)

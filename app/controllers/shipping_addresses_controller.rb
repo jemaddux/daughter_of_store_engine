@@ -17,7 +17,8 @@ class ShippingAddressesController < ApplicationController
     @shipping_address = ShippingAddress.new(params[:shipping_address])
 
     if @shipping_address.save
-      redirect_to @shipping_address, notice: 'Shipping address was successfully created.'
+      redirect_to @shipping_address,
+      notice: 'Shipping address was successfully created.'
     else
       render action: "new"
     end
@@ -27,7 +28,8 @@ class ShippingAddressesController < ApplicationController
     @shipping_address = ShippingAddress.find(params[:id])
 
     if @shipping_address.update_attributes(params[:shipping_address])
-      redirect_to @shipping_address, notice: 'Shipping address was successfully updated.'
+      redirect_to @shipping_address,
+      notice: 'Shipping address was successfully updated.'
     else
       render action: "edit"
     end
