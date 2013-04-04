@@ -1,23 +1,34 @@
-%p#notice= notice
+.large-12.columns
+  .row
+    .large-12.columns
+      %h1.admin-heading= "Order #{@order.id}"
 
-%table
-  %tr
-    %th Customer
-    %th Order Total
-    %th Order Date & Time
-    %th Customer Email
-    %th Order Products
-    %th Status
-    %tr
-      %td= @order.customer.username
-      %td= "$#{@order.total}"
-      %td= @order.created_at
-      %td= @order.customer.email
-      - @order.order_products.each do |order_product|
-        - product = Product.find(order_product.product_id)
-        %td= product.name
-        = form_for admin_order_path(current_user), method: :put do |f|
-          %td= select(:order, :status, [['shipped'], ['returned'], ['canceled'], ['pending'], ['paid']])
-          %td=f.submit "save status", class: "button"
+.large-12.columns
+  .row
+    .large-12.columns
+      %table
+        %tr
+          %th Customer
+          %th Order Total
+          %th Order Date & Time
+          %th Customer Email
+          %th Order Products
+          %th Status
+          %tr
+            %td= @order.customer.username
+            %td= "$#{@order.total}"
+            %td= @order.created_at
+            %td= @order.customer.email
+            - @order.order_products.each do |order_product|
+              - product = Product.find(order_product.product_id)
+              %td= product.name
+              = form_for admin_order_path(current_user), method: :put do |f|
+                %td= select(:order, :status, [['shipped'], ['returned'], ['canceled'], ['pending'], ['paid']])
+                %td=f.submit "save status", class: "button"
+
+.large-12.columns
+  .row
+    .large-12.columns
+      = link_to 'Back', admin_orders_path, class: "button left"
 
         

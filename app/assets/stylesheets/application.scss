@@ -19,6 +19,10 @@
 body {
   margin-top: 4.5em !important;
 }
+table {
+  border:none !important;
+  width: 100%;
+}
 .panel {
   border: none !important;
   background: #fff !important;
@@ -28,6 +32,12 @@ body {
 .panel a {
   color: #2ba6cb !important;
   font-size:1.1em;
+}
+.admin-panel {
+  background: #fff;
+  padding: .5em;
+  border-radius: 3px;
+  margin-bottom: 1.5em !important;
 }
 a:hover {
   background-color: none !important;
@@ -48,8 +58,12 @@ a:hover {
 .top-bar-section ul li a:active {
   color: silver;
 }
+.top-bar-section .has-dropdown > a {
+  padding-right: 0px !important;
+}
 .top-bar-section .has-dropdown > a:after {
   display:none !important;
+  padding-right: 0px !important;
 }
 .dropdown {
   box-shadow: 1px 1px 3px #adadad;
@@ -61,7 +75,10 @@ a:hover {
   margin-left:auto !important;
   margin-right:auto !important;
 }
-
+.admin-heading {
+  font-size:2em;
+  text-transform:uppercase;
+}
 .section-heading{
   text-align: center;
   text-transform: uppercase;
