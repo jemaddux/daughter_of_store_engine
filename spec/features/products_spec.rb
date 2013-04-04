@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe "products" do
-
   before(:each) do
     @category = Category.create(name: "Some category", description: "Some description")
     @product  = @category.products.create(
