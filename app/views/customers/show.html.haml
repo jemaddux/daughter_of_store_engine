@@ -1,25 +1,35 @@
-%p#notice= notice
+- if notice
+  .large-12.columns
+    %p#notice= notice
 
-%p
-  %b Frist Name:
-  = @customer.first_name
-%p
-  %b Last Name:
-  = @customer.last_name
-%p
-  %b Username:
-  = @customer.username
-%p
-  %b Email:
-  = @customer.email
+.large-12.columns
+  .row
+    .large-12.columns
+      %h1.admin-heading= "Your Account"
 
-= link_to 'Edit', edit_customer_path(@customer)
-\|
-= link_to 'Home', root_path
-\|
-= link_to 'Login', login_path
-\|
-- if @customer.shipping_address != nil
-  = link_to 'Shipping Address', shipping_address_path(@customer)
-- else
-  = link_to 'Shipping Address', new_shipping_address_path
+    .large-12.columns
+      .row.admin-panel
+        .large-12.columns
+          %p
+            %b Frist Name:
+            = @customer.first_name
+          %p
+            %b Last Name:
+            = @customer.last_name
+          %p
+            %b Username:
+            = @customer.username
+          %p
+            %b Email:
+            = @customer.email
+
+          = link_to 'Edit', edit_customer_path(@customer)
+          \|
+          = link_to 'Home', root_path
+          \|
+          = link_to 'Login', login_path
+          \|
+          - if @customer.shipping_address != nil
+            = link_to 'Shipping Address', shipping_address_path(@customer)
+          - else
+            = link_to 'Shipping Address', new_shipping_address_path

@@ -1,3 +1,12 @@
-%h1 Edit category
-= render 'form'
-= link_to 'Back', admin_categories_path
+.large-12.columns
+  .row
+    .large-12.columns
+      %h1.admin-heading Edit category
+
+.large-12.columns
+  .row.admin-panel  
+    .large-12.columns    
+    = render 'form'
+
+.large-12.columns
+  = link_to 'Back', admin_categories_path, class: "button left"

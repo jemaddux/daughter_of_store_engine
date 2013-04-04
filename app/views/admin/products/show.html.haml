@@ -1,4 +1,6 @@
-%p#notice= notice
+- if notice
+  .large-12.columns
+    %p#notice= notice
 
 
 = link_to 'Edit', edit_admin_product_path(@admin_product)

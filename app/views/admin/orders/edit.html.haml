@@ -1,7 +1,12 @@
-%h1 Editing order
+.large-12.columns
+  .row
+    .large-12.columns
+      %h1.admin-heading Editing order
 
-= render 'form'
+.large-12.columns
+  .row.admin-panel  
+    .large-12.columns
+      = render 'form'
 
-= link_to 'Show', @order
-\|
-= link_to 'Back', admin_orders_path
+.large-12.columns
+  = link_to 'Back', admin_orders_path, class: "button left"
