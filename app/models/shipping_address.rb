@@ -18,14 +18,14 @@ class ShippingAddress < ActiveRecord::Base
     too_long: "Enter a 2 character state code"     
   }
 
-  validates :zipcode, presence: true, { 
+  validates :zipcode, presence: true, length: { 
     minimum: 5,
     maximum: 5,
     too_short: "Enter a 5 digit zipcode",
     too_long:  "Enter a 5 digit zipcode" 
   }
 
-  validates :phone, presence: true, { 
+  validates :phone, presence: true, length: { 
     minimum: 10,
     maximum: 10,
     too_short: "Enter a 10 digit phone number",
