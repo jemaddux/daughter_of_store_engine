@@ -1,5 +1,5 @@
 class ShippingAddress < ActiveRecord::Base
-  attr_accessible :street, 
+  attr_accessible :street,
                   :city,
                   :state,
                   :zipcode,

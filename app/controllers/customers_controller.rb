@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   before_filter :require_login, except: [:new, :create]
-  
+
   def show
     @customer = Customer.find(params[:id])
   end

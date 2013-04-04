@@ -6,7 +6,7 @@ class CartsController < ApplicationController
 
   def update
     @cart = Cart.find_or_create_by_id(session[:cart_id])
-    
+
     session[:cart_id] = @cart.id
 
     product = Product.find(params[:product])

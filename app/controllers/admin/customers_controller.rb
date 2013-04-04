@@ -1,4 +1,4 @@
-class Admin::CustomersController < ApplicationController 
+class Admin::CustomersController < ApplicationController
   layout 'admin/application.html.haml'
 
   before_filter :require_admin
