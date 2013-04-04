@@ -1,5 +1,5 @@
 - @products.each do |product|
-  .row
+  .row.admin-panel
     .large-2.columns.small-3
       =image_tag product.image.url(:thumb)
     .large-10.columns
@@ -7,9 +7,8 @@
         %h2= link_to product.name, product_path(product)
         %p= product.description
         - cart_product = @cart.cart_products.find_by_product_id(product.id)
-        %h5.left= link_to "Remove Product", cart_product_path(cart_product.id), method: :delete, class: "button small round"
+        %h5.left= link_to "Remove Product", cart_product_path(cart_product.id), method: :delete, class: "button small secondary"
       .right
         %h4.right Unit Price
         %h2= "#{number_to_currency(product.price)}"
-%hr
-%h4= link_to "Clear Cart", cart_path(@cart.id), method: :delete, confirm: "Do you really want to clear your cart?", class: "button tiny round"
+%h4= link_to "Clear Cart", cart_path(@cart.id), method: :delete, confirm: "Do you really want to clear your cart?", class: "button small secondary"

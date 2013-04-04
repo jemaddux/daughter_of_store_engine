@@ -1,8 +1,9 @@
-.row
-  .large-12.columns
-    .panel
-      %a.button.right{:href => new_admin_category_path} New Category
-      %h1 Categories
-.row
-  .large-12.columns
+.large-12.columns
+  .row
+    .large-12.columns
+      = link_to 'New Category', new_admin_category_path, class: "button right"
+      %h1.admin-heading= "Categories"
+
+.large-12.columns
+  .row.admin-panel
     = render @categories
