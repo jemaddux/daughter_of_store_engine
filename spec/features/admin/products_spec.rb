@@ -1,6 +1,14 @@
 require 'spec_helper'
 
 describe "products" do
+  def valid_attributes
+    { name:        "Awesome Product", 
+      description: "This is my product description.",
+      price:       124.99,
+      quantity:    3,
+      featured:    true,
+      active:      true }
+  end
 
   let!(:customer) { Fabricate(:customer) }
 
@@ -22,7 +30,8 @@ describe "products" do
   end
 
   it "edits the individual product" do 
-    visit admin_product_path(@product), action: :put
+    product = Product.create! valid_attributes
+    visit edit_admin_product_path(product.id)
     fill_in "product_name",        :with => "Some other product"
     fill_in "product_description", :with => "Some other description"
     fill_in "product_price",       :with => 4321
@@ -30,6 +39,6 @@ describe "products" do
     choose "product_featured_false"
     click_button "Update Product"
     expect( page ).to have_content "Some other description"
-    expect( page ).to have_content "4321"
+    expect( page ).to have_content "$4,321.00"
   end
 end
