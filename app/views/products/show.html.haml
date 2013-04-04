@@ -31,7 +31,7 @@
             - if @product.active == false
               %h4 None in Stock
             - else
-              = number_field_tag 'quantity', 1
+              = number_field_tag 'quantity', 1, min: 1
             - if @product.active == false
               %h4 Product Retired
             - else
