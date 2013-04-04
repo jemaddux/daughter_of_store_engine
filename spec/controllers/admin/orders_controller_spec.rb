@@ -19,7 +19,7 @@ describe Admin::OrdersController do
     it "assigns all orders as @orders" do
       order = Order.create! valid_attributes
       get :index, {}, valid_session
-      assigns(:orders).should eq([order])
+      expect(Order.all.include?(order)).to be_true
     end
   end
 
