@@ -25,6 +25,10 @@ body {
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
 }
+.panel a {
+  color: #2ba6cb !important;
+  font-size:1.1em;
+}
 a:hover {
   background-color: none !important;
 }
@@ -145,6 +149,9 @@ hr#tagline {
   text-transform: uppercase;
   text-align:center;
 }
+.subheader {
+  font-size:1.2em;
+}
 [class^="cart-hidden"] {
   position: absolute;
   background: rgba(0, 0, 0, 0.4);
@@ -160,11 +167,19 @@ hr#tagline {
 [class^="cart-hidden"] .button {
   margin:0;
 }
+.button {
+  background: #e74c3c;
+  border: none !important;
+  border-radius:3px;
+  font-weight: normal !important;
+  text-transform: uppercase;
+  box-shadow: none !important;
+}
 .product-stock {
   margin: 0;
   color: #fff;
   text-transform: uppercase;
-  font-size:1.2em;
+  font-size:1em;
   margin-top:.6em;
 }
 .product-feature {
