@@ -31,7 +31,7 @@
               / Title Area
               %li.name
                 %h1
-                  %a{:href => "/"} OBIGEAR
+                  %a{:href => "/"} OBIEGEAR
               %li.toggle-topbar.menu-icon
                 %a{:href => "#"}
                   %span menu
@@ -39,7 +39,7 @@
               / Right Nav Section
               %ul.right
                 %li.has-dropdown
-                  %a{:href => categories_path} Shop By Category <i class="icon-angle-down"></i>
+                  %a{:href => categories_path, id: "category-dropdown"} Shop By Category <i class="icon-angle-down"></i>
                   %ul.dropdown
                     - category_list.each do |category|
                       %li= link_to category.name, category_path(category)
@@ -91,6 +91,9 @@
         var className = $(this).children('[class^="cart-hidden"]').attr('class');
         var classIndex = className.match(/\d+/);
         $('.cart-hidden-'+classIndex).removeClass("cart-visible");
+      });
+      $('#category-dropdown').click(function() { 
+        return false;
       });
     });
   :javascript
