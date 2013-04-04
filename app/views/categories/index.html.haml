@@ -13,4 +13,4 @@
                 = image_tag product.image.url(:thumb)
                 .panel 
                   %h5= link_to product.name, product_path(product)
-                  %h6.subheader= product.price
+                  %h6.subheader= number_to_currency(product.price)

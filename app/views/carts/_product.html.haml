@@ -11,3 +11,5 @@
       .right
         %h4.right Unit Price
         %h2= "#{number_to_currency(product.price)}"
+%hr
+%h4= link_to "Clear Cart", cart_path(@cart.id), method: :delete, confirm: "Do you really want to clear your cart?", class: "button tiny round"
