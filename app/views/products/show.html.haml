@@ -28,7 +28,10 @@
         .row
           = form_tag(cart_path, method: :put) do
             = hidden_field_tag 'product', @product.id
-            = number_field_tag 'quantity', 1
+            - if @product.active == false
+              %h4 None in Stock
+            - else
+              = number_field_tag 'quantity', 1
             - if @product.active == false
               %h4 Product Retired
             - else
