@@ -10,7 +10,7 @@
           .large-3.columns.right
             - price = @cart.cart_products.find{ |cart_product| cart_product.product_id == product.id }.price
             = number_to_currency(price)
-          .large-2.columns.left
+          .large-3.columns.left
             = hidden_field_tag 'product', product.id
             - quantity = @cart.cart_products.find{ |cart_product| cart_product.product_id == product.id }.quantity
             = number_field_tag 'quantity', quantity, min: 1
