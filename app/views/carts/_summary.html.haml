@@ -20,7 +20,7 @@
       - if current_user != false && current_user.shipping_address != nil
         = link_to 'Checkout', new_charge_path(amount: @cart.total * 100, customer: current_user.id), class: "button left"
         %h3.right= number_to_currency(@cart.total)
-      - elsif current_user.shipping_address == nil
+      - elsif logged_in?
         = link_to 'Checkout', new_shipping_address_path, class: "button"
-      - else
+      - else 
         = link_to 'Checkout', login_path, class: "button"
