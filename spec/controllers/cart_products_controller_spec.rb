@@ -16,7 +16,7 @@ describe CartProductsController do
 
   describe "destroy" do
     it "destroys a cart product" do
-      cart = Cart.create!
+      cart = Cart.create(total: 0)
       cart.add(@product, 1)
       cart_product = cart.cart_products.first
       expect {
