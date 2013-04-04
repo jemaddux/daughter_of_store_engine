@@ -17,9 +17,7 @@
       %td= customer.email
       %td= customer.created_at
       %td= link_to 'Show', admin_customer_path(customer), class: "button tiny round"
-      %td= link_to 'Edit', edit_admin_customer_path(customer), class: "button tiny round"
-  
-
+      %td= link_to 'Destroy', admin_customer_path(customer), action: :delete, class: "button tiny round"
 %br
 
 = link_to 'New Order', new_admin_order_path, class: "button"

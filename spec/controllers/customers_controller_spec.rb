@@ -14,8 +14,12 @@ describe CustomersController do
     }
   end
 
+  before(:each) do
+    login_customer_post("MyString", "jorgesporno")
+  end
+
   def valid_session
-    {}
+    { user_id: 1 }
   end
 
   describe "GET show" do
