@@ -12,9 +12,9 @@ class Admin::CustomersController < ApplicationController
   end
 
   def destroy
-    @order = Order.find(params[:id])
-    @order.destroy
+    @customer = Customer.find(params[:id])
+    @customer.destroy
 
-    redirect_to admin_orders_path
+    redirect_to admin_customers_path
   end
 end
