@@ -1,22 +1,24 @@
-%h1 Customer List
+.large-12.columns
+  .row
+    .large-12.columns
+      %h1.admin-heading Customer List
 
-%table
-  %tr
-    %th Customer Name
-    %th Customer id
-    %th Email
-    %th Creation Date
-    %th
-    %th
-    %th
-
-  - @customers.each do |customer|
-    %tr
-      %td= customer.username
-      %td= customer.id
-      %td= customer.email
-      %td= customer.created_at
-      %td= link_to 'Show', admin_customer_path(customer), class: "button tiny round"
-      %td= link_to 'Destroy', admin_customer_path(customer.id), method: :delete, class: "button tiny round"
-%br
-
+.large-12.columns
+  .row.admin-panel
+    .large-12.columns
+      %table
+        %tr
+          %th Customer Name
+          %th Customer id
+          %th Email
+          %th Creation Date
+          %th
+          %th
+        - @customers.each do |customer|
+          %tr
+            %td= customer.username
+            %td= customer.id
+            %td= customer.email
+            %td= customer.created_at
+            %td= link_to 'Show', admin_customer_path(customer), class: "button small"
+            %td= link_to 'Destroy', admin_customer_path(customer.id), method: :delete, class: "button small"

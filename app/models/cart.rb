@@ -1,14 +1,14 @@
 class Cart < ActiveRecord::Base
-  attr_accessible :total, 
+  attr_accessible :total,
                   :customer_id
 
   belongs_to :customer
-  
+
   has_many   :cart_products, dependent: :destroy
   has_many   :products,      through: :cart_products
 
   def add(product, quantity)
-    product_price = quantity * product.price 
+    product_price = quantity * product.price
 
     unless products.include?(product)
       products << product
