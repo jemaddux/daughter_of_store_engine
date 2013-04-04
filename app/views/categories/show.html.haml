@@ -4,15 +4,16 @@
   .large-12.columns
     .row
       - @products.each_with_index do |product, index|
-        %div{class: "large-4 small-6 columns left", id: "product-wrapper-#{index}"}
-          / .cart-hidden + "index"
-          %div{class: "cart-hidden-#{index}"}
-            %p.product-stock.left= "#{product.quantity} in stock"
-            = form_tag(cart_path, method: :put) do
-              = hidden_field_tag 'product', product.id
-              = hidden_field_tag 'quantity', 1
-              = submit_tag 'Add to Cart', class: 'button right'
-          =link_to image_tag(product.image.url(:medium)), product_path(product), class: "product-image-#{index}"
-          .panel
-            %h5= link_to product.name, product_path(product)
-            %h6.subheader= product.price
+        - if product.active
+          %div{class: "large-4 small-6 columns left", id: "product-wrapper-#{index}"}
+            / .cart-hidden + "index"
+            %div{class: "cart-hidden-#{index}"}
+              %p.product-stock.left= "#{product.quantity} in stock"
+              = form_tag(cart_path, method: :put) do
+                = hidden_field_tag 'product', product.id
+                = hidden_field_tag 'quantity', 1
+                = submit_tag 'Add to Cart', class: 'button right'
+            =link_to image_tag(product.image.url(:medium)), product_path(product), class: "product-image-#{index}"
+            .panel
+              %h5= link_to product.name, product_path(product)
+              %h6.subheader= number_to_currency(product.price)
