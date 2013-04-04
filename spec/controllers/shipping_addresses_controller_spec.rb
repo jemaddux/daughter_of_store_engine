@@ -4,9 +4,9 @@ describe ShippingAddressesController do
   def valid_attributes
     { street:      "Street Name", 
       city:        "Denver",
-      state:       "Colorado",
+      state:       "CO",
       zipcode:     "20000",
-      phone:       "202123456" }
+      phone:       "2021234569" }
   end
 
   let!(:customer) { Fabricate(:customer) }
