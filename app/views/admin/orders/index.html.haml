@@ -9,16 +9,16 @@
       %table
         %tr
           %th Customer
-          %th ~Click Status to filter~
+          %th Click Status to filter
           %th Total
           %th Order Date & Time
           %th
           %th
         - @orders.each do |order|
           %tr
+          - if order.customer != nil
             %td= order.customer.username
             %td= link_to order.status, admin_orders_path(status: order.status) 
             %td= number_to_currency(order.total)
             %td= order.created_at
             %td= link_to 'Update Order', admin_order_path(order), class: "button small"
-  
