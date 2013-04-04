@@ -3,7 +3,7 @@
     .large-2.columns.small-3
       =image_tag product.image.url(:thumb)
     .large-10.columns
-      .left
+      .left.product-description
         %h2= link_to product.name, product_path(product)
         %p= product.description
         - cart_product = @cart.cart_products.find_by_product_id(product.id)
