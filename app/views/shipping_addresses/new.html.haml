@@ -1,5 +1,11 @@
-%h1 New shipping_address
+.large-12.columns
+  .row
+    .large-12.columns
+      %h1.admin-heading New Shipping Address
 
-= render 'form'
+.large-12.columns
+  .row.admin-panel
+    = render 'form'
 
-= link_to 'Back', shipping_addresses_path
+.large-12.columns
+  = link_to 'Back', shipping_addresses_path, class: "button left"
