@@ -17,6 +17,7 @@ gem 'zurb-foundation', '~> 4.0.0'
 gem 'font-awesome-rails'
 gem 'seed_dump'
 gem 'aws-sdk'
+gem 'asset_sync'
 
 group :development, :test do
   gem 'fabrication'
