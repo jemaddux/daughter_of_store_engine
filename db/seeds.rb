@@ -4,7 +4,7 @@
 
 Customer.create([
   { :username => "Franklin", :email => "demoXX+franklin@jumpstartlab.com", :crypted_password => "$2a$10$x2ltEpMymqD/d0CEreVbv.InKmIZ5aPaSvX4QHlzayKjlGxIMpRea", :salt => "x3QXvonoEpakrK7fwa1n", :created_at => "2013-04-04 04:20:53", :updated_at => "2013-04-04 04:25:21", :admin => nil, :first_name => "Franklin ", :last_name => "Webber" },
-  { :username => "admin", :email => "admin@jumpstartlab.com", :crypted_password => "$2a$10$PZNVZffKHQLdukHL78K7Q.OIaph9wfWiH0ww50AM/DgwGdDtpUYJ2", :salt => "h7TiXZf2wNxpMiJyFW4a", :created_at => "2013-04-04 04:27:34", :updated_at => "2013-04-04 04:28:50", :admin => true, :first_name => "admin", :last_name => "admin" }
+  { :username => "admin", :email => "admin@jumpstartlab.com", :crypted_password => "$2a$10$PZNVZffKHQLdukHL78K7Q.OIaph9wfWiH0ww50AM/DgwGdDtpUYJ2", :salt => "h7TiXZf2wNxpMiJyFW4a", :created_at => "2013-04-04 04:27:34", :updated_at => "2013-04-04 04:28:50", :admin => true, :first_name => "admin", :last_name => "admin" },
   { :username => "j3", :email => "demoXX+jeff@jumpstartlab.com", :crypted_password => "$2a$10$WZLfP3KibBanTgpsgBDM.eG/nwTJguhATJQFA6IC78s9Y5pZj33d.", :salt => "9rjRvA78x554e1mZuvtY", :created_at => "2013-04-04 04:26:24", :updated_at => "2013-04-04 04:26:24", :admin => nil, :first_name => "Jeff", :last_name => "Casimir" },
   { :username => "Skrillex", :email => "demoXX+steve@jumpstartlab.com", :crypted_password => "$2a$10$PZNVZffKHQLdukHL78K7Q.OIaph9wfWiH0ww50AM/DgwGdDtpUYJ2", :salt => "h7TiXZf2wNxpMiJyFW4a", :created_at => "2013-04-04 04:27:34", :updated_at => "2013-04-04 04:28:50", :admin => true, :first_name => "Steve", :last_name => "Klabnik" }
 ], :without_protection => true )
