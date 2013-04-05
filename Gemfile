@@ -16,6 +16,7 @@ gem 'uglifier', '>= 1.0.3'
 gem 'zurb-foundation', '~> 4.0.0'
 gem 'font-awesome-rails'
 gem 'seed_dump'
+gem 'aws-sdk'
 
 group :development, :test do
   gem 'fabrication'
