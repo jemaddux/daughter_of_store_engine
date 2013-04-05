@@ -5,7 +5,7 @@ class CartsController < ApplicationController
   end
 
   def update
-    @cart = Cart.find_or_create_by_id(session[:cart_id])
+    @cart = Cart.find_or_create_by_id(session[:cart_id], total: 0)
 
     session[:cart_id] = @cart.id
 

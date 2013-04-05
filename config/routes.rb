@@ -1,7 +1,6 @@
 StoreEngine::Application.routes.draw do
   resources :shipping_addresses
 
-
   resources :orders,             only:   [:show, :index]
   resources :carts,              only:   [:show, :update, :destroy]
   resources :categories,         only:   [:show, :index]
@@ -15,6 +14,7 @@ StoreEngine::Application.routes.draw do
   match 'login'  => 'customer_sessions#new'
   match 'logout' => 'customer_sessions#destroy'
   match 'admin'  => 'admin/products#index'
+  match '/code'   => redirect('https://github.com/novohispano/store_engine')
 
   namespace :admin do
     resources :categories

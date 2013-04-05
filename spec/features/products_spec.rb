@@ -13,7 +13,7 @@ describe "products" do
   end
 
   it "shows the product on the category page" do
-    visit categories_path
+    visit category_path(@category)
     expect( page ).to have_content "Some product"
   end
 

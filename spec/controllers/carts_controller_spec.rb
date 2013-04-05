@@ -22,7 +22,7 @@ describe CartsController do
 
   describe "GET show" do
     it "assigns the requested cart as @cart" do
-      cart = Cart.create!
+      cart = Cart.create( valid_attributes )
       cart.add(@product, 1)
       get :show, { id: 1 }, { cart_id: 1 }
       assigns(:cart).should eq(cart)
