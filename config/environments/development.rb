@@ -4,9 +4,10 @@ StoreEngine::Application.configure do
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
-      :bucket => ENV['AWS_BUCKET'],
-      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+      :bucket => ENV['engineproducts'],
+      :access_key_id => ENV['AKIAIX4NCHHZU44MT6NQ'],
+      :secret_access_key => ENV['b4SzYWIF5qt+dfwybDS3cyGOIX8qf59vrkDQhtBc
+']
     }
   }
   # In the development environment your application's code is reloaded on
