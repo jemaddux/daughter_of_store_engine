@@ -1,0 +1,7 @@
+rvm:
+  - 1.9.2
+  - 1.9.3
+  - 2.0.0
+  
+notifications:
+  flowdock: cbfb4e90965d3a7c9303298cf563c3cb
