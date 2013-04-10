@@ -25,18 +25,6 @@ describe Category do
     end
   end
 
-  context "when it does not have a description" do 
-    it "should be invalid" do
-      category.description = nil
-      expect(category).to be_invalid 
-    end
-
-    it "should have an error on description" do 
-      category.description = nil
-      expect(category).to have(1).error_on(:description)
-    end
-  end
-
   context "when creating a category with the same name" do
     let(:category2) { Category.create(
         name:        "Some category", 

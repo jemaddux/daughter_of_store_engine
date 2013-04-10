@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "orders" do
-  Order.create(customer_id: 1, id: 1, status: "processed", total: 1000)
+  let!(:order) {Order.create(customer_id: 1, id: 1, status: "processed", total: 1000)}
 
   let!(:customer) { Fabricate(:customer) }
 
@@ -19,8 +19,8 @@ describe "orders" do
     it "should display a category" do
       visit admin_path
       click_on "Orders"
-      click_on "processed"
-      expect( page ).to have_content "Customer"
+      click_link "processed"
+      expect( page ).to have_content "processed"
     end
   end
 end

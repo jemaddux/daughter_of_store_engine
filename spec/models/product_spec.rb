@@ -75,14 +75,14 @@ describe Product do
         )
       }
 
-    it "should be invalid" do
-      product.save
-      expect(product2).to be_invalid
+    it "should be valid" do
+      product2.save
+      expect(product2).to be
     end
 
     it "should have an error on name" do
       product.save
-      expect(product2).to have(1).error_on(:name)
+      expect(product2).to have(0).error_on(:name)
     end
   end
 end
