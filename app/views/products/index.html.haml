@@ -1,8 +1,16 @@
-.hero
-  %h1.tagline= "The Great Outdoors"
-  %hr#tagline
-  %h2.sub-tagline= "Get your gear on"
-
-%ul.home-list
-  - category_list.each do |category|
-    %li= link_to category.name, category_path(category), class: "home-link"
+.row
+  .large-12.columns
+    .row
+      - @products.each_with_index do |product, index|
+        - if product.active
+          .large-4.small-6.columns.left{id: "product-wrapper-#{index}"}
+            %div{class: "cart-hidden-#{index}"}
+              %p.product-stock.left= "#{product.quantity} in stock"
+              = form_tag(cart_path(current_store), action:"update") do
+                = hidden_field_tag 'product', product.id
+                = hidden_field_tag 'quantity', 1
+                = submit_tag 'Add to Cart', class: 'button right'
+            =link_to image_tag("http://placehold.it/600x600"), product_path(current_store.path, product), class: "product-image-#{index}"
+            .panel
+              %h5= link_to product.name, product_path(current_store.path,product)
+              %h6.subheader= number_to_currency(product.price)

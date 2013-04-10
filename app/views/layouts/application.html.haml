@@ -14,7 +14,7 @@
   -# Set the viewport width to device width for mobile
   %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
 
-  %title= content_for?(:title) ? yield(:title) : "SonOfSam"
+  %title= content_for?(:title) ? yield(:title) : "#{current_store.name}"
 
   = stylesheet_link_tag "application"
   <link href='http://fonts.googleapis.com/css?family=Questrial|Amatic+SC:700' rel='stylesheet' type='text/css'>
@@ -31,13 +31,15 @@
               / Title Area
               %li.name
                 %h1
-                  %a{:href => "/"} SonOfSam
+                  = link_to current_store.name, home_path
               %li.toggle-topbar.menu-icon
                 %a{:href => "#"}
                   %span menu
             %section.top-bar-section
               / Right Nav Section
               %ul.right
+                %li
+                  =link_to "Shop", products_path(current_store)
                 %li.has-dropdown
                   %a{:href => categories_path, id: "category-dropdown"} Shop By Category <i class="icon-angle-down"></i>
                   %ul.dropdown
@@ -68,6 +70,7 @@
           / End Top Bar
       / End Navigation
 
+
   = yield
 
   %footer.row
@@ -95,4 +98,4 @@
       $('#category-dropdown').click(function() { 
         return false;
       });
-    });
+      });

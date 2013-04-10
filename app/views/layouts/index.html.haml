@@ -1,4 +1,3 @@
-!!! 5
 / paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
 /[if lt IE 7 ] <html class=\"ie6\" lang=\"en\">
 /[if IE 7 ]    <html class=\"ie7\" lang=\"en\">
@@ -32,20 +31,22 @@
               / Title Area
               %li.name
                 %h1
-                  %a{:href => "/"} SonOfSam
+                  = link_to "SonOfSam", root_path
               %li.toggle-topbar.menu-icon
                 %a{:href => "#"}
                   %span menu
             %section.top-bar-section
               / Right Nav Section
               %ul.right
+                %li
+                  =link_to "Singup", "#"
                 %li.has-dropdown
-                  %a{:href => categories_path, id: "category-dropdown"} Shop By category <i class="icon-angle-down"></i>
-                  %ul.dropdown
-                    - category_list.each do |category|
-                      %li= link_to category.name, category_path(category)
+                  -#%a{:href => categories_path, id: "category-dropdown"} Shop By Category <i class="icon-angle-down"></i>
+                  -#%ul.dropdown
+                  -#  - category_list.each do |category|
+                  -#    %li= link_to category.name, category_path(category)
                 - if session[:cart_id] != nil
-                  %li.has-dropdown
+                  %li
                     %a{:href => cart_path(session[:cart_id])} <i class="icon-shopping-cart"></i> Cart
                 - if logged_in?
                   %li.has-dropdown
@@ -69,31 +70,32 @@
           / End Top Bar
       / End Navigation
 
+
   = yield
 
-  = javascript_include_tag "application", "vendor/custom.modernizr", "http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js", "supersized.3.2.7.min", "supersized.shutter.min"
+  %footer.row
+    .large-12.columns
+      %hr/
+      .row
+        .large-6.columns
+          %p 
+            © Copyright #{ link_to 'Logan', '#' } / #{ link_to 'Jenn', '#' } / #{ link_to 'Chris', 'http://twitter.com/nomadic_knight' } / #{ link_to 'Blair', 'http://twitter.com/blairanderson' }
+
+  = javascript_include_tag "application", "vendor/custom.modernizr", "http://code.jquery.com/jquery-1.9.1.min.js"
 
   :javascript
     $(document).ready(function(){
-      $('#category-dropdown').click(function() { 
-          return false;
-        });
+      $('[id^="product-wrapper"]').hover(function(){
+        var className = $(this).children('[class^="cart-hidden"]').attr('class');
+        var classIndex = className.match(/\d+/);
+        $('.cart-hidden-'+classIndex).addClass("cart-visible");
+        },
+        function() {
+        var className = $(this).children('[class^="cart-hidden"]').attr('class');
+        var classIndex = className.match(/\d+/);
+        $('.cart-hidden-'+classIndex).removeClass("cart-visible");
       });
-    $(function($){
-      
-      $.supersized({
-      
-        // Functionality
-        slide_interval          :   3500,   // Length between transitions
-        transition              :   1,      // 0-None, 1-Fade, 2-Slide Top, 3-Slide Right, 4-Slide Bottom, 5-Slide Left, 6-Carousel Right, 7-Carousel Left
-        transition_speed    : 2000,    // Speed of transition
-                               
-        // Components             
-        slide_links       : 'blank',  // Individual links for each slide (Options: false, 'num', 'name', 'blank')
-        slides          :   [     // Slideshow Images
-                          {image : 'http://farm9.staticflickr.com/8348/8154926648_4cb361d8ce_k.jpg', title : 'Image Credit: Maria Kazvan'},
-                          {image : 'http://i.imgur.com/Fgs1WK4.jpg', title : 'Image Credit: Maria Kazvan'}
-                      ]
-        
+      $('#category-dropdown').click(function() { 
+        return false;
       });
       });

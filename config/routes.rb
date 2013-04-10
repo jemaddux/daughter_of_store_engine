@@ -1,10 +1,6 @@
 StoreEngine::Application.routes.draw do
   resources :shipping_addresses
-
-  resources :orders,             only:   [:show, :index]
   resources :carts,              only:   [:show, :update, :destroy]
-  resources :categories,         only:   [:show, :index]
-  resources :products,           only:   [:show, :index]
   resources :customers,          except: [:index]
   resources :customer_sessions,  only:   [:new, :create, :destroy]
   resources :charges,            only:   [:new, :create]
@@ -21,8 +17,20 @@ StoreEngine::Application.routes.draw do
     resources :customers, only: [:index, :show, :destroy]
   end
 
-  root to: 'products#index'
+  resources :stores
+
+  root to: 'stores#index'
+
   match 'login'  => 'customer_sessions#new'
   match 'logout' => 'customer_sessions#destroy'
   match '/code'   => redirect('https://github.com/blairand/sonofstore_engine')
+
+  scope '/:store_path' do
+    match '/' => 'stores#show', as: 'home'
+    resources :categories,         only:   [:show, :index]
+    resources :products,           only:   [:show, :index]
+    resources :orders,             only:   [:show, :index]
+  end
+
+
 end

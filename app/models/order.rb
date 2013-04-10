@@ -4,6 +4,8 @@ class Order < ActiveRecord::Base
                   :total,
                   :customer
 
+  default_scope { where(store_id: Store.current_id)  }
+
   belongs_to  :customer
 
   has_many :order_products, dependent: :destroy

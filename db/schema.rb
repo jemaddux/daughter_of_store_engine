@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130405185030) do
+ActiveRecord::Schema.define(:version => 20130410202412) do
 
   create_table "cart_products", :force => true do |t|
     t.integer  "cart_id"
@@ -39,7 +39,10 @@ ActiveRecord::Schema.define(:version => 20130405185030) do
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "store_id"
   end
+
+  add_index "categories", ["store_id"], :name => "index_categories_on_store_id"
 
   create_table "customers", :force => true do |t|
     t.string   "username",         :null => false
@@ -71,9 +74,11 @@ ActiveRecord::Schema.define(:version => 20130405185030) do
     t.decimal  "total"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "store_id"
   end
 
   add_index "orders", ["customer_id"], :name => "index_orders_on_customer_id"
+  add_index "orders", ["store_id"], :name => "index_orders_on_store_id"
 
   create_table "product_categories", :force => true do |t|
     t.integer  "product_id"
@@ -99,7 +104,10 @@ ActiveRecord::Schema.define(:version => 20130405185030) do
     t.datetime "image_updated_at"
     t.boolean  "active"
     t.string   "photo_url"
+    t.integer  "store_id"
   end
+
+  add_index "products", ["store_id"], :name => "index_products_on_store_id"
 
   create_table "shipping_addresses", :force => true do |t|
     t.integer  "customer_id"
@@ -113,5 +121,12 @@ ActiveRecord::Schema.define(:version => 20130405185030) do
   end
 
   add_index "shipping_addresses", ["customer_id"], :name => "index_shipping_addresses_on_customer_id"
+
+  create_table "stores", :force => true do |t|
+    t.string   "name"
+    t.string   "path"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 end

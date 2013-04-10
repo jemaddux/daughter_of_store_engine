@@ -6,7 +6,10 @@ class Product < ActiveRecord::Base
                   :featured,
                   :image,
                   :active,
-                  :categories_list
+                  :categories_list,
+                  :store_id
+
+  default_scope { where(store_id: Store.current_id)  }
 
   validates :name,        presence: true
   validates :description, presence: true
@@ -35,7 +38,7 @@ class Product < ActiveRecord::Base
                     styles: { medium: "454x627>", thumb: "182x304>" },
                     default_url: "http://placehold.it/1000x1000&text=Thumbnail"
 
-  scope :active, where(active: true)
+  #scope :active, where(active: true)
 
   def categories_list
     categories.join(", ")

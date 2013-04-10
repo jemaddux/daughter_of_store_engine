@@ -1,8 +1,6 @@
 class ProductsController < ApplicationController
   def index
-    render :layout => 'index'
-
-    @products = Product.active
+    @products = Product.all
     @cart = current_user.cart if logged_in?
   end
 
