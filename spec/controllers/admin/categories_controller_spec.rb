@@ -28,10 +28,10 @@ describe Admin::CategoriesController do
     login_customer_post("admin", "admin")
   end
 
-  describe "GET index" do
+  describe "#index" do
     it "assigns all categories as @categories" do
       get :index, {}, valid_session
-      assigns(:categories).should eq([category])
+      expect( assigns(:categories)).to eq([category])
     end
   end
 

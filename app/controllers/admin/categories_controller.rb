@@ -1,5 +1,5 @@
 class Admin::CategoriesController < ApplicationController
-  layout 'admin/application.html.haml'
+  layout 'admin/application'
   before_filter :require_admin
 
   def index

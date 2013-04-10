@@ -1,5 +1,5 @@
 class Admin::OrdersController < ApplicationController  # GET /orders
-  layout 'admin/application.html.haml'
+  layout 'admin/application'
 
   before_filter :require_admin
 
