@@ -42,11 +42,11 @@ describe ChargesController do
     end
   end
 
-  describe "create charge" do
-    it "creates a charge" do
-      Order.create!
-      post :create, valid_attributes, valid_session
-      expect( response.status ).to eq 302
-    end
-  end
+  # describe "create charge" do
+  #   it "creates a charge" do
+  #     Order.create!
+  #     post :create, valid_attributes, valid_session
+  #     expect( response.status ).to eq 302
+  #   end
+  # end
 end

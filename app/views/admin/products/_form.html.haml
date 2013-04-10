@@ -19,9 +19,9 @@
     %br/
     = f.number_field :quantity, min: 0
   %p
-    = f.label :category
+    = f.label :categories_list
     %br/
-    = collection_select(:product, :categories, Category.all, :id, :name, { selected: @product.category_ids }, { multiple: true, size: 4 })
+    = f.text_field :categories_list
   %p
     = f.label :image
     %br/

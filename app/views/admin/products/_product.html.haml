@@ -6,7 +6,9 @@
     .left
       %h2= link_to product.name, product_path(product)
       %p= product.description
-      /%a= link_to Category.find(product.category_id), categories_path
+      %p
+        - product.categories.each do |cat|
+          = link_to cat.name, admin_category_path(cat)
     .right
       %h2= "#{number_to_currency(product.price)}"
       =link_to 'Edit', edit_admin_product_path(product), class: "button right"

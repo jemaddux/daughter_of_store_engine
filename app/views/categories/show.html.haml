@@ -1,12 +1,11 @@
 .row
-  %h2.section-heading= @category.name
+  %h1.section-heading= @category.name
 .row
   .large-12.columns
     .row
       - @products.each_with_index do |product, index|
         - if product.active
-          %div{class: "large-4 small-6 columns left", id: "product-wrapper-#{index}"}
-            / .cart-hidden + "index"
+          .large-4.small-6.columns.left{id: "product-wrapper-#{index}"}
             %div{class: "cart-hidden-#{index}"}
               %p.product-stock.left= "#{product.quantity} in stock"
               = form_tag(cart_path, method: :put) do
