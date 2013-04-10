@@ -11,12 +11,10 @@ StoreEngine::Application.routes.draw do
   resources :cart_products,      only:   [:destroy]
   resources :shipping_addresses, except: [:index]
 
-  match 'login'  => 'customer_sessions#new'
-  match 'logout' => 'customer_sessions#destroy'
   match 'admin'  => 'admin/products#index'
-  match '/code'   => redirect('https://github.com/blairand/sonofstore_engine')
 
   namespace :admin do
+    root :to => 'admin/products#index'
     resources :categories
     resources :products
     resources :orders
@@ -24,4 +22,7 @@ StoreEngine::Application.routes.draw do
   end
 
   root to: 'products#index'
+  match 'login'  => 'customer_sessions#new'
+  match 'logout' => 'customer_sessions#destroy'
+  match '/code'   => redirect('https://github.com/blairand/sonofstore_engine')
 end

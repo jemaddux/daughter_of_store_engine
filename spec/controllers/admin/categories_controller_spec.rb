@@ -1,15 +1,25 @@
 require 'spec_helper'
 
 describe Admin::CategoriesController do
-  let(:category) { Category.create( valid_attributes ) }
-
-  def valid_attributes
-    { name: "some name",
-      description: "some description" }
-  end
+  let!(:product)  {Product.create!(
+      name:        "Some Product", 
+      description: "This is my product description.",
+      price:       123.99,
+      quantity:    3,
+      featured:    true,
+      active:      true )
+}
+  let!(:category) { product.categories.create(
+      name: "some name",
+      description: "some description") }
 
   def valid_session
     { user_id: 1 }
+  end
+
+  def valid_attributes
+    { name: "another name",
+      description: "some description" }
   end
 
   let!(:customer) { Fabricate(:customer) }
@@ -20,7 +30,6 @@ describe Admin::CategoriesController do
 
   describe "GET index" do
     it "assigns all categories as @categories" do
-      category = Category.create! valid_attributes
       get :index, {}, valid_session
       assigns(:categories).should eq([category])
     end
@@ -35,7 +44,6 @@ describe Admin::CategoriesController do
 
   describe "GET edit" do
     it "assigns the requested category as @category" do
-      category = Category.create! valid_attributes
       get :edit, {:id => category.to_param}, valid_session
       assigns(:category).should eq(category)
     end
