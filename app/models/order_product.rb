@@ -1,6 +1,8 @@
 class OrderProduct < ActiveRecord::Base
   attr_accessible :quantity,
-                  :price
+                  :price,
+                  :product_id
+
 
   validates :quantity,
             presence: true,
@@ -15,4 +17,8 @@ class OrderProduct < ActiveRecord::Base
 
   belongs_to :order
   belongs_to :product
+
+  def subtotal
+    quantity * price
+  end
 end
