@@ -1,26 +1,35 @@
 %h2.admin-heading Your Order
 .row.admin-panel
   .large-12.columns
-    - @cart.products.each do |product|
-      = form_tag(cart_path, method: :put) do
+    - @shopping_cart.each do |product,quantity|
+      = form_tag(carts_path(current_store), method: :put) do
         .row
           .large-6.columns.left
             %h5= product.name
         .row
           .large-3.columns.right
-            - price = @cart.cart_products.find{ |cart_product| cart_product.product_id == product.id }.price
-            = number_to_currency(price)
+            = number_to_currency(product.price)
           .large-3.columns.left
             = hidden_field_tag 'product', product.id
-            - quantity = @cart.cart_products.find{ |cart_product| cart_product.product_id == product.id }.quantity
             = number_field_tag 'quantity', quantity, min: 1
           .large-4.columns.left
             = submit_tag 'Update quantity', class: "small button secondary"
-    %hr
-      - if current_user != false && current_user.shipping_address != nil
-        = link_to 'Checkout', new_charge_path(amount: @cart.total * 100, customer: current_user.id), class: "button left"
-        %h3.right= number_to_currency(@cart.total)
-      - elsif logged_in?
-        = link_to 'Checkout', new_shipping_address_path, class: "button"
-      - else 
-        = link_to 'Checkout', login_path, class: "button"
+          %hr
+            = link_to 'Checkout', new_charge_path, class: "button left"
+
+      / - if current_user != false && current_user.shipping_address != nil
+      /   %h3.right= number_to_currency(@cart.total)
+      / - elsif logged_in?
+      /   = link_to 'Checkout', new_shipping_address_path, class: "button"
+      / - else 
+      /   = link_to 'Checkout', login_path, class: "button"
+  
+
+    / if user is logged in, has shipping address, and billing address
+    / Checkout
+    / if user is logged in, but no shipping/billing info
+    / redirect to shipping/billing form then checkout
+    / if user is not logged in
+
+
+    /We already took care of this - -  redirect to login / signup

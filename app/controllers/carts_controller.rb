@@ -1,22 +1,28 @@
 class CartsController < ApplicationController
-  def show
-    @cart     = Cart.find_or_create_by_id(session[:cart_id])
-    @products = @cart.products
+
+  def show 
   end
 
   def update
-    @cart = Cart.find_or_create_by_id(session[:cart_id], total: 0)
-
-    session[:cart_id] = @cart.id
+    store = Store.find(params[:store_id])
+    session[:shopping_cart][store.id] = Hash.new(0)
 
     product = Product.find(params[:product])
-    @cart.add(product, params[:quantity].to_i)
+    quantity = params[:quantity].to_i
+    session[:shopping_cart][store.id][product.id] += quantity 
 
-    if @cart.update_attributes(params[:cart])
-      redirect_to @cart, notice: "Your cart was successfully updated."
-    else
-      redirect_to @cart, notice: "Your cart could not be updated."
-    end
+    redirect_to :back
+
+
+    # @cart = Cart.find_or_create_by_id(session[:cart_id], total: 0)
+    # session[:cart_id] = @cart.id
+    # product = Product.find(params[:product])
+    # @cart.add(product, params[:quantity].to_i)
+    # if @cart.update_attributes(params[:cart])
+    #   redirect_to @cart, notice: "Your cart was successfully updated."
+    # else
+    #   redirect_to @cart, notice: "Your cart could not be updated."
+    # end
   end
 
   def destroy

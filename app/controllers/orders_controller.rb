@@ -8,4 +8,9 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
   end
+
+  def create
+    
+    @order = Order.create(params[:order])
+  end
 end

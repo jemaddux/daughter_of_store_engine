@@ -1,6 +1,5 @@
 StoreEngine::Application.routes.draw do
   resources :shipping_addresses
-  resources :carts,              only:   [:show, :update, :destroy]
   resources :customers,          except: [:index]
   resources :customer_sessions,  only:   [:new, :create, :destroy]
   resources :charges,            only:   [:new, :create]
@@ -27,6 +26,7 @@ StoreEngine::Application.routes.draw do
 
   scope '/:store_path' do
     match '/' => 'stores#show', as: 'home'
+    resource :carts
     resources :categories,         only:   [:show, :index]
     resources :products,           only:   [:show, :index]
     resources :orders,             only:   [:show, :index]

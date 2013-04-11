@@ -4,9 +4,9 @@ describe ProductsController do
 
   let!(:customer) { Fabricate(:customer) }
 
-  before(:each) do
-    login_customer_post("admin", "admin")
-  end
+  # before(:each) do
+  #   login_customer_post("admin", "admin")
+  # end
 
   def valid_attributes
     { name:        "Some Product", 
