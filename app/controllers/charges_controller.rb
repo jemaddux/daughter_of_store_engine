@@ -1,9 +1,12 @@
 class ChargesController < ApplicationController
-  skip_filter :scope_current_store, only: [:new, :create]
+  # skip_filter :scope_current_store, only: [:new, :create]
   before_filter :request_login, only: [:new]
 
   def new
-    #if logged_in?
+    @customer = current_user
+    cart_products = session[:shopping_cart][current_store.id]
+    @order = Order.for_customer(current_user, cart_products, current_store.id)
+    session[:order_id] = @order.id
 
       #check for shipping
       #if shipping
@@ -32,32 +35,27 @@ class ChargesController < ApplicationController
   end
 
   def create
-    cart     = Cart.find(session[:cart_id])
-    session[:cart_id] = nil
+    order = Order.unscoped.find(session[:order_id])
 
-    @amount  = (cart.total * 100).to_i
 
-    customer = Customer.find(session[:user_id])
-    email    = customer.email
-    order    = Order.find(session[:order_id])
 
     customer = Stripe::Customer.create(
-      email: email,
+      email: current_user.email,
       card:  params[:stripeToken]
       )
 
     charge = Stripe::Charge.create(
       customer:    customer.id,
-      amount:      @amount,
+      amount:      (order.total*100).to_i,
       description: 'Rails Stripe customer',
       currency:    'usd'
       )
 
     order.update_attributes(status: "processed")
 
-    Mailer.order_confirmation(customer, order).deliver
+    # Mailer.order_confirmation(customer, order).deliver
 
-    cart.destroy
+    current_user.cart.destroy
 
   rescue Stripe::CardError => e
     flash[:error] = e.message

@@ -4,7 +4,7 @@
 
 %p
   %b Customer:
-  = @shipping_address.customer.first_name 
+  = @shipping_address.customer.first_name
   = @shipping_address.customer.last_name
 %p
   %b Street:
@@ -24,6 +24,6 @@
 
 = link_to 'Edit', edit_shipping_address_path(@shipping_address)
 \|
-= link_to 'Back', customer_path
+= link_to 'Back', customers_path
 -#to do: put this back in for users in stores but breaks users out of scope of a single store
 -#= link_to 'Continue to Cart', cart_path(:cart_id)

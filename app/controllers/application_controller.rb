@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :shopping_cart
-  around_filter :scope_current_store
+  around_filter :scope_current_store, except: [:request_login]
   helper_method :category_list
 
 
@@ -23,7 +23,6 @@ class ApplicationController < ActionController::Base
   end
 
   def request_login
-    #if logged_in?
 
     #check for shipping
     #if shipping
@@ -31,24 +30,18 @@ class ApplicationController < ActionController::Base
     #redirect to create shipping
     #end
 
-    #else
-    #ask if they want to login?
-    #ask if they want to create account
-    #offer guest checkout page
-    #end
 
-    unless current_user
-      #ask if they want to login?
-      #ask if they want to create account
-      #offer guest checkout page
+    if logged_in?
+      return
 
-
+    else
       session[:return_to_url] = request.url if Config.save_return_to_url && request.get?
-      self.send(Config.not_authenticated_action)
+      #     raise self._process_action_callbacks.inspect
+      # self.send(Config.not_authenticated_action)
 
-      redirect_to login_path, flash: "Want to checkout as a guest? #{link_to , "Click Here"}"
-      link_to("\##{ht[:text]}", "www.url.com"
 
+      redirect_to login_path, notice: "To checkout as a guest, click here"
+      return
     end
   end
 
