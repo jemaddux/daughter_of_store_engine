@@ -1,20 +1,18 @@
 class ChargesController < ApplicationController
-  before_filter :require_login
 
   def new
-    @amount   = params[:amount]
-    @customer = Customer.find(params[:customer])
-    @order    = Order.create(
-      customer_id: params[:customer],
-      status:      "pending",
-      total:       params[:amount].to_i / 100
-      )
+    # @customer = Customer.find(params[:customer])
+    # @order    = Order.create(
+      # customer_id: params[:customer],
+      # status:      "pending",
+      # total:       params[:amount].to_i / 100
+      # )
 
-    session[:order_id] = @order.id
+    # session[:order_id] = @order.id
 
-    @cart = Cart.find(session[:cart_id])
-    @cart.cart_products_to_order_products(@order)
-    @order.save
+    @cart = session[:shopping_cart][current_store.id]
+    
+    # @order.save
   end
 
   def create

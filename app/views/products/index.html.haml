@@ -1,3 +1,7 @@
+- if notice
+  .large-12.columns
+    %p#notice
+      = notice 
 .row
   .large-12.columns
     .row
@@ -6,11 +10,12 @@
           .large-4.small-6.columns.left{id: "product-wrapper-#{index}"}
             %div{class: "cart-hidden-#{index}"}
               %p.product-stock.left= "#{product.quantity} in stock"
-              = form_tag(cart_path(current_store), action:"update") do
+              = form_tag(carts_path(current_store), method: :put) do
                 = hidden_field_tag 'product', product.id
                 = hidden_field_tag 'quantity', 1
+                = hidden_field_tag 'store_id', current_store.id
                 = submit_tag 'Add to Cart', class: 'button right'
-            =link_to image_tag(product.photo_url), product_path(current_store.path, product), class: "product-image-#{index}"
+            =link_to image_tag(product.photo_url), product_path(current_store, product), class: "product-image-#{index}"
             .panel
-              %h5= link_to product.name, product_path(current_store.path,product)
+              %h5= link_to product.name, product_path(current_store, product)
               %h6.subheader= number_to_currency(product.price)

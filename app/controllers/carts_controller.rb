@@ -1,20 +1,28 @@
 class CartsController < ApplicationController
 
   def show 
-   @shopping_cart = session[:shopping_cart][current_store.id].collect{|k,v| [Product.unscoped.find(k), v]}
-    
+    cart_products = session[:shopping_cart][current_store.id]
+    if cart_products.empty?
+      @shopping_cart = []
+    else
+      @shopping_cart = cart_products.collect{|k,v| [Product.unscoped.find(k), v]}
+    end
   end
 
   def update
-    store = Store.find(params[:store_id])
-    session[:shopping_cart][store.id] = Hash.new(0)
-
     product = Product.find(params[:product])
-    quantity = params[:quantity].to_i
-    session[:shopping_cart][store.id][product.id] += quantity 
+    
+    if params[:quantity] == "1"  
+      session[:shopping_cart][current_store.id][product.id] += 1 
+    end
+    if params[:subtract] == "1"
+      session[:shopping_cart][current_store.id][product.id] -= 1 
+    end
+    if params[:add] == "1"
+      session[:shopping_cart][current_store.id][product.id] += 1 
+    end
 
-    redirect_to :back
-
+    redirect_to :back, notice: "item added to cart"
 
     # @cart = Cart.find_or_create_by_id(session[:cart_id], total: 0)
     # session[:cart_id] = @cart.id
@@ -28,10 +36,12 @@ class CartsController < ApplicationController
   end
 
   def destroy
-    @cart = Cart.find(params[:id])
-    @cart.destroy
+    product = Product.find(params[:product])
+    session[:shopping_cart][current_store.id].delete(product.id) 
+    # @cart = Cart.find(params[:id])
+    # @cart.destroy
 
-    session[:cart_id] = nil
-    redirect_to products_path, notice: "Your cart was successfully cleared."
+    # session[:cart_id] = nil
+    redirect_to carts_path, notice: "Your cart was successfully cleared."
   end
 end

@@ -10,7 +10,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    
     @order = Order.create(params[:order])
   end
 end

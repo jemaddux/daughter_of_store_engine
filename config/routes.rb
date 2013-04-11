@@ -2,7 +2,6 @@ StoreEngine::Application.routes.draw do
   resources :shipping_addresses
   resources :customers,          except: [:index]
   resources :customer_sessions,  only:   [:new, :create, :destroy]
-  resources :charges,            only:   [:new, :create]
   resources :cart_products,      only:   [:destroy]
   resources :shipping_addresses, except: [:index]
 
@@ -30,6 +29,7 @@ StoreEngine::Application.routes.draw do
     resources :categories,         only:   [:show, :index]
     resources :products,           only:   [:show, :index]
     resources :orders,             only:   [:show, :index]
+    resources :charges,            only:   [:new, :create]
   end
 
 
