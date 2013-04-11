@@ -1,9 +1,10 @@
 class ChargesController < ApplicationController
   before_filter :require_login
+  skip_filter :scope_current_store, only: [:new, :create]
 
   def new
     @amount   = params[:amount]
-    @customer = Customer.find(params[:customer])
+    @customer = Customer.find(session[:user_id])
     @order    = Order.create(
       customer_id: params[:customer],
       status:      "pending",
@@ -12,7 +13,7 @@ class ChargesController < ApplicationController
 
     session[:order_id] = @order.id
 
-    @cart = Cart.find(session[:cart_id])
+    @cart = @customer.cart
     @cart.cart_products_to_order_products(@order)
     @order.save
   end

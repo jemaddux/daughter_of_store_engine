@@ -7,10 +7,10 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    render layout: "layouts/landing"
   end
 
   def create
-    
     @order = Order.create(params[:order])
   end
 end

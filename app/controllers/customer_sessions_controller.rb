@@ -11,7 +11,7 @@ class CustomerSessionsController < ApplicationController
         redirect_back_or_to( admin_products_path,
           message: 'Logged in successfully.')
       else
-        redirect_to home_path(params[:store]), message: 'Logged in!'
+        redirect_back_or_to root_path, message: 'Logged in!'
       end
     else
       flash.now.alert = "Login failed."

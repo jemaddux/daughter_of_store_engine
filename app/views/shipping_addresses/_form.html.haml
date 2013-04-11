@@ -1,4 +1,5 @@
-= form_for @shipping_address do |f|
+- form_method = @shipping_address.new_record? ? "POST" : "PUT"
+= form_for @shipping_address, method: form_method do |f|
   - if @shipping_address.errors.any?
     #error_explanation
       %h2= "#{pluralize(@shipping_address.errors.count, "error")} prohibited this shipping_address from being saved:"

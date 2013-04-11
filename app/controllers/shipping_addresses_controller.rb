@@ -1,16 +1,20 @@
 class ShippingAddressesController < ApplicationController
   before_filter :require_login
+  skip_filter :scope_current_store
 
   def show
-    @shipping_address = ShippingAddress.find(params[:id])
+    @shipping_address = current_user.shipping_address
+    render layout: "layouts/landing"
   end
 
   def new
     @shipping_address = ShippingAddress.new
+    render layout: "layouts/landing"
   end
 
   def edit
     @shipping_address = ShippingAddress.find(params[:id])
+    render layout: "layouts/landing"
   end
 
   def create
@@ -28,10 +32,10 @@ class ShippingAddressesController < ApplicationController
     @shipping_address = ShippingAddress.find(params[:id])
 
     if @shipping_address.update_attributes(params[:shipping_address])
-      redirect_to @shipping_address,
+      redirect_to customer_path(current_user),
       notice: 'Shipping address was successfully updated.'
     else
-      render action: "edit"
+      redirect_to edit_shipping_address_path(@shipping_address)
     end
   end
 
