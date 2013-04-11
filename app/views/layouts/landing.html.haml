@@ -43,23 +43,23 @@
                 %li.has-dropdown
                 - if logged_in?
                   %li.has-dropdown
-                    %a{:href => customer_path(current_user) } <i class="icon-user"></i> #{current_user.username} <i class="icon-angle-down"></i>
+                    %a{:href => customers_path } <i class="icon-user"></i> #{current_user.username} <i class="icon-angle-down"></i>
                     %ul.dropdown
                       %li
-                        %a{:href => customer_path(current_user) } Account
+                        = link_to "Account",customers_path
                       %li
-                        %a{:href => "/orders"} Orders
+                        = link_to "Orders", orders_path
                       %li.divider
                       %li
-                        %a{:href => logout_path } Logout
+                        = link_to "Logout", logout_path
                 - else
                   %li.has-dropdown
-                    %a{:href => "/login" } Login / Signup <i class="icon-angle-down"></i>
+                    = link_to "Login / Signup <i class='icon-angle-down'></i>".html_safe, login_path 
                     %ul.dropdown
                       %li
-                        %a{:href => login_path } Login
+                        = link_to "Login", login_path
                       %li
-                        %a{:href => new_customer_path } Signup
+                        = link_to "Signup", new_customer_path
           / End Top Bar
       / End Navigation
 

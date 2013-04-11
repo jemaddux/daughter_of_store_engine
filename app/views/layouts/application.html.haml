@@ -49,10 +49,10 @@
                     = link_to "<i class='icon-shopping-cart'></i> Cart".html_safe, carts_path 
                 - if logged_in?
                   %li.has-dropdown
-                    %a{:href => customer_path(current_user) } <i class="icon-user"></i> #{current_user.username} <i class="icon-angle-down"></i>
+                    %a{:href => customers_path } <i class="icon-user"></i> #{current_user.username} <i class="icon-angle-down"></i>
                     %ul.dropdown
                       %li
-                        %a{:href => customer_path(current_user) } Account
+                        %a{:href => customers_path } Account
                       %li
                         %a{:href => "/orders"} Orders
                       %li.divider
@@ -68,7 +68,10 @@
                         = link_to "Signup", new_customer_path(store: current_store.path)
           / End Top Bar
       / End Navigation
-
+  - if notice
+    .large-12.columns
+      %p#notice
+        = notice 
 
   = yield
 

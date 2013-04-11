@@ -3,18 +3,17 @@ class CustomersController < ApplicationController
   skip_filter :scope_current_store
 
   def show
-    @customer = Customer.find(params[:id])
+    @customer = Customer.find(current_user.id)
     render layout: "layouts/landing"
   end
 
   def new
     @customer = Customer.new
     render layout: "layouts/landing"
-
   end
 
   def edit
-    @customer = Customer.find(params[:id])
+    @customer = Customer.find(current_user.id)
     render layout: "layouts/landing"
   end
 

@@ -12,12 +12,11 @@
     %th Order Products
     %tr
       %td= @order.customer.username
-      %td= "$#{@order.total}"
+      %td= "$#{@order.total.to_i}"
       %td= @order.created_at
       %td= @order.customer.email
       %td= @order.status
-      - @order.order_products.each do |order_product|
-        - product = Product.find(order_product.product_id)
+      - @products.each do |product|
         %td= product.name
 
 = link_to 'Back', orders_path

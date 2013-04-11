@@ -10,4 +10,4 @@
       .right
         %h4.right Unit Price
         %h2= "#{number_to_currency(product.price)}"
-%h4= link_to "Clear Cart", carts_path(current_store), method: :delete, confirm: "Do you really want to clear your cart?", class: "button small secondary"
+%h4= link_to "Clear Cart", carts_path(clear_cart:true), method: :delete, confirm: "Do you really want to clear your cart?", class: "button small secondary"
