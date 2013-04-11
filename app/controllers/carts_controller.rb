@@ -1,6 +1,8 @@
 class CartsController < ApplicationController
 
   def show 
+   @shopping_cart = session[:shopping_cart][current_store.id].collect{|k,v| [Product.unscoped.find(k), v]}
+    
   end
 
   def update

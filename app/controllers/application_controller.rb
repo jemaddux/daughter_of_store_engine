@@ -1,9 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :shopping_cart
-
   around_filter :scope_current_store
-
   helper_method :category_list
 
 
@@ -51,7 +49,6 @@ class ApplicationController < ActionController::Base
         current_user.create_cart(data: session[:shopping_cart])
       end
     end
-   @shopping_cart = session[:shopping_cart][current_store.id].collect{|k,v| [Product.unscoped.find(k), v]}
   end
 
 end
