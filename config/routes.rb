@@ -19,7 +19,7 @@ StoreEngine::Application.routes.draw do
 
   resources :stores
 
-  root to: 'stores#index'
+  root to: 'stores#landing'
 
   match 'login'  => 'customer_sessions#new'
   match 'logout' => 'customer_sessions#destroy'

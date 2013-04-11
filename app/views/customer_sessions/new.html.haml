@@ -5,7 +5,7 @@
     .large-12.columns
       .row.admin-panel.login-wrapper
         %h1.admin-heading Login
-        = form_tag customer_sessions_path, method: :post do
+        = form_tag customer_sessions_path(store:params[:store]), method: :post do
           .field
             = label_tag :username
             = text_field_tag :username

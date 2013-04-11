@@ -1,5 +1,8 @@
 class CustomerSessionsController < ApplicationController
+  skip_filter :scope_current_store
+
   def new
+    render layout: "layouts/landing"
   end
 
   def create
@@ -8,8 +11,7 @@ class CustomerSessionsController < ApplicationController
         redirect_back_or_to( admin_products_path,
           message: 'Logged in successfully.')
       else
-        redirect_back_or_to( root_path,
-          message: 'Logged in successfully.')
+        redirect_to home_path(params[:store]), message: 'Logged in!'
       end
     else
       flash.now.alert = "Login failed."
@@ -19,6 +21,6 @@ class CustomerSessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to( root_path, message: 'Logged out!')
+    redirect_to :back, notice: "Logged out!"
   end
 end

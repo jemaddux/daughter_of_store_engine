@@ -1,9 +1,13 @@
 class StoresController < ApplicationController
-  skip_filter :scope_current_store, only: [:index, :new]
+  skip_filter :scope_current_store, only: [:landing, :index, :new, :create]
+
+  def landing
+    render layout: "layouts/landing"
+  end
 
   def index
     @stores = Store.unscoped.all
-    render layout: "layouts/index"
+    render layout: "layouts/landing"
   end
   
   def show
@@ -12,6 +16,7 @@ class StoresController < ApplicationController
 
   def new
     @store = Store.new
+    render layout: "layouts/landing"
   end
 
   def edit
@@ -22,7 +27,7 @@ class StoresController < ApplicationController
     @store = Store.new(params[:store])
 
     if @store.save
-      redirect_to @store, notice: 'Store was successfully created.'
+      redirect_to home_path(@store), notice: 'Thank you. Your store is currently pending acceptance'
     else
       render action: "new"
     end

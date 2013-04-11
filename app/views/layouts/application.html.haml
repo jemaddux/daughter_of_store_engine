@@ -64,7 +64,7 @@
                     %a{:href => "/login" } Login / Signup <i class="icon-angle-down"></i>
                     %ul.dropdown
                       %li
-                        %a{:href => login_path } Login
+                        = link_to "Login", login_path(store: current_store.path)
                       %li
                         %a{:href => new_customer_path } Signup
           / End Top Bar
