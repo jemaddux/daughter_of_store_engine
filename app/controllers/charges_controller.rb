@@ -1,17 +1,5 @@
 class ChargesController < ApplicationController
-<<<<<<< HEAD
-  before_filter :require_login
   skip_filter :scope_current_store, only: [:new, :create]
-
-  def new
-    @amount   = params[:amount]
-    @customer = Customer.find(session[:user_id])
-    @order    = Order.create(
-      customer_id: params[:customer],
-      status:      "pending",
-      total:       params[:amount].to_i / 100
-      )
-=======
 
   def new
     #if logged_in?
