@@ -2,23 +2,24 @@ require 'spec_helper'
 
 describe "products" do
   before(:each) do
-    @category = Category.create(name: "Some category", description: "Some description")
-    @product  = @category.products.create(
+    @store = Store.create(name: "Sample Store", path: "samplestore")
+    @product  = Product.create(
       name: "Some product",
-      description: "Some description",
+      description: "Product description",
       quantity: 7,
       price: 123,
       featured: false,
-      active: true )
+      active: true,
+      store_id: 1)
   end
 
-  it "shows the product on the category page" do
-    visit category_path(@category)
+  it "shows the products index for a single store" do
+    visit products_path(@store)
     expect( page ).to have_content "Some product"
   end
 
-  it "shows the individual product" do
-    visit product_path(@product)
-    expect( page ).to have_content "Some description"
+  it "shows the individual product for a single store" do
+    visit product_path(@store, @product)
+    expect( page ).to have_content "Product description"
   end
 end

@@ -19,6 +19,7 @@ gem 'font-awesome-rails'
 gem 'seed_dump'
 gem 'aws-sdk'
 gem 'asset_sync'
+gem 'faker'
 
 group :development, :test do
   gem 'fabrication'

@@ -7,7 +7,8 @@ class Product < ActiveRecord::Base
                   :image,
                   :active,
                   :categories_list,
-                  :store_id
+                  :store_id,
+                  :photo_url
 
   default_scope { where(store_id: Store.current_id)  }
 
@@ -36,7 +37,7 @@ class Product < ActiveRecord::Base
 
   has_attached_file :image,
                     styles: { medium: "454x627>", thumb: "182x304>" },
-                    default_url: "http://placehold.it/1000x1000&text=Thumbnail"
+                    default_url: "http://placekitten.com/600/600"
 
   #scope :active, where(active: true)
 
@@ -47,7 +48,7 @@ class Product < ActiveRecord::Base
   def categories_list=(cats_string)
     cat_names = cats_string.split(",").collect{|s| s.strip.downcase}.uniq
     new_or_found_cats = cat_names.map do  |name| 
-      Category.find_or_create_by_name(name)
+      Category.find_or_create_by_name_and_store_id(name, self.store_id)
     end
     self.categories = new_or_found_cats
   end

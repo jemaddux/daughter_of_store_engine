@@ -44,7 +44,7 @@
                   %a{:href => categories_path, id: "category-dropdown"} Shop By Category <i class="icon-angle-down"></i>
                   %ul.dropdown
                     - category_list.each do |category|
-                      %li= link_to category.name, category_path(category)
+                      %li= link_to category.name, category_path(current_store, category)
                 - if session[:cart_id] != nil
                   %li
                     %a{:href => cart_path(session[:cart_id])} <i class="icon-shopping-cart"></i> Cart
