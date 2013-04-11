@@ -1,6 +1,23 @@
 class ChargesController < ApplicationController
 
   def new
+    #if logged_in?
+
+      #check for shipping
+      #if shipping
+      #else
+        #redirect to create shipping
+      #end
+
+    #else
+      #ask if they want to login?
+      #ask if they want to create account
+      #offer guest checkout page
+    #end
+
+
+
+
     # @customer = Customer.find(params[:customer])
     # @order    = Order.create(
       # customer_id: params[:customer],
@@ -10,7 +27,7 @@ class ChargesController < ApplicationController
 
     # session[:order_id] = @order.id
 
-    @cart = session[:shopping_cart][current_store.id]
+    # @cart = session[:shopping_cart][current_store.id]
     
     # @order.save
   end
