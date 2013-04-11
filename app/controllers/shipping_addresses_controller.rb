@@ -24,7 +24,7 @@ class ShippingAddressesController < ApplicationController
       redirect_to @shipping_address,
       notice: 'Shipping address was successfully created.'
     else
-      render action: "new"
+      redirect_to :back, notice: "Invalid shipping address"
     end
   end
 

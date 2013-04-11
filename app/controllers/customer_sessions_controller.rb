@@ -8,8 +8,7 @@ class CustomerSessionsController < ApplicationController
   def create
     if login(params[:username], params[:password])
       if current_user.admin
-        redirect_back_or_to( stores_path,
-          message: 'Logged in successfully.')
+        redirect_back_or_to stores_path, message: 'Logged in successfully.'
       else
         redirect_back_or_to root_path, message: 'Logged in!'
       end

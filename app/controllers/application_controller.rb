@@ -23,23 +23,10 @@ class ApplicationController < ActionController::Base
   end
 
   def request_login
-
-    #check for shipping
-    #if shipping
-    #else
-    #redirect to create shipping
-    #end
-
-
     if logged_in?
-      return
-
+      true
     else
       session[:return_to_url] = request.url if Config.save_return_to_url && request.get?
-      #     raise self._process_action_callbacks.inspect
-      # self.send(Config.not_authenticated_action)
-
-
       redirect_to login_path, notice: "To checkout as a guest, click here"
       return
     end
