@@ -6,8 +6,14 @@ class StoresController < ApplicationController
   end
 
   def index
-    @stores = Store.unscoped.all
-    render layout: "layouts/landing"
+    if current_user == nil
+      redirect_to root_path
+    elsif current_user.admin == true
+      @stores = Store.unscoped.all
+      render layout: "layouts/landing"
+    else
+      redirect_to root_path, notice:"You don't belong here"
+    end
   end
   
   def show

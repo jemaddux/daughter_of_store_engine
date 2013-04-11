@@ -1,20 +1,18 @@
-%h1 Listing stores
+%h1 Admin Store List
 
 %table
   %tr
-    %th Name
-    %th Path
+    %th.left Store Name
     %th
     %th
     %th
 
   - @stores.each do |store|
     %tr
-      %td= link_to store.name, "#"
-      %td= link_to store.path, "#"
-      %td= link_to 'Show', store
+      %td= link_to store.name, home_path(store)
       %td= link_to 'Edit', edit_store_path(store)
       %td= link_to 'Destroy', store, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= image_tag('http://placekitten.com/50/50')
 
 %br
 
