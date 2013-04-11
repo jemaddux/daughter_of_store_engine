@@ -62,6 +62,10 @@
                         = link_to "Signup", new_customers_path
           / End Top Bar
       / End Navigation
+  - if notice
+    .large-12.columns
+      %p#notice
+        = notice 
 
 
   = yield
