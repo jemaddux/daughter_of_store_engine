@@ -2,20 +2,20 @@
 .row.admin-panel
   .large-12.columns
     - @shopping_cart.each do |product,quantity|
-      = form_tag(carts_path(current_store), method: :put) do
-        .row
-          .large-6.columns.left
-            %h5= product.name
-        .row
-          .large-3.columns.right
-            = number_to_currency(product.price)
-          .large-3.columns.left
-            = hidden_field_tag 'product', product.id
-            = number_field_tag 'quantity', quantity, min: 1
-          .large-4.columns.left
-            = submit_tag 'Update quantity', class: "small button secondary"
-          %hr
-            = link_to 'Checkout', new_charge_path, class: "button left"
+      .row
+        .large-6.columns.left
+          %h5= product.name
+      .row
+        .large-3.columns.right
+          = number_to_currency(product.price*quantity)
+        .large-3.columns.left
+          = hidden_field_tag 'product', product.id
+          = "Quantity:#{quantity}"
+        .large-4.columns.left
+          = button_to "+", carts_path(product: product.id, add: 1), method: "put"
+          = button_to "-", carts_path(product: product.id, subtract: 1), method: "put"
+    %hr
+      = link_to 'Checkout', new_charge_path(current_store), class: "button left"
 
       / - if current_user != false && current_user.shipping_address != nil
       /   %h3.right= number_to_currency(@cart.total)

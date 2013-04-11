@@ -1,4 +1,5 @@
 class ChargesController < ApplicationController
+<<<<<<< HEAD
   before_filter :require_login
   skip_filter :scope_current_store, only: [:new, :create]
 
@@ -10,12 +11,35 @@ class ChargesController < ApplicationController
       status:      "pending",
       total:       params[:amount].to_i / 100
       )
+=======
 
-    session[:order_id] = @order.id
+  def new
+    #if logged_in?
 
-    @cart = @customer.cart
-    @cart.cart_products_to_order_products(@order)
-    @order.save
+      #check for shipping
+      #if shipping
+      #else
+        #redirect to create shipping
+      #end
+
+    #else
+      #ask if they want to login?
+      #ask if they want to create account
+      #offer guest checkout page
+    #end
+
+
+
+
+    # @customer = Customer.find(params[:customer])
+    # @order    = Order.create(
+      # customer_id: params[:customer],
+      # status:      "pending",
+      # total:       params[:amount].to_i / 100
+      # )
+    # session[:order_id] = @order.id
+    # @cart = session[:shopping_cart][current_store.id]
+    # @order.save
   end
 
   def create

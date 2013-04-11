@@ -12,6 +12,7 @@ class StoresController < ApplicationController
   
   def show
     @store = current_store
+    session[:shopping_cart][current_store.id] ||= Hash.new(0)
   end
 
   def new
