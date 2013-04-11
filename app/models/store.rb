@@ -1,5 +1,5 @@
 class Store < ActiveRecord::Base
-  attr_accessible :name, :path
+  attr_accessible :name, :path, :description
   cattr_accessor :current_id
 
   #def self.current_id=(id)

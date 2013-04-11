@@ -1,7 +1,7 @@
 .hero
   %h1.tagline= current_store.name
   %hr#tagline
-  %h2.sub-tagline= "current_store.description"
+  %h2.sub-tagline= current_store.description
 
 %ul.home-list
   - category_list.each do |category|

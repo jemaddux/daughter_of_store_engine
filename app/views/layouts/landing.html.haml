@@ -31,7 +31,7 @@
               / Title Area
               %li.name
                 %h1
-                  = link_to "SonOfSam", root_path
+                  = link_to "Son of Sam", root_path
               %li.toggle-topbar.menu-icon
                 %a{:href => "#"}
                   %span menu
@@ -39,15 +39,8 @@
               / Right Nav Section
               %ul.right
                 %li
-                  =link_to "Singup", "#"
+                  =link_to "Create a Store", new_store_path
                 %li.has-dropdown
-                  -#%a{:href => categories_path, id: "category-dropdown"} Shop By Category <i class="icon-angle-down"></i>
-                  -#%ul.dropdown
-                  -#  - category_list.each do |category|
-                  -#    %li= link_to category.name, category_path(category)
-                - if session[:cart_id] != nil
-                  %li
-                    %a{:href => cart_path(session[:cart_id])} <i class="icon-shopping-cart"></i> Cart
                 - if logged_in?
                   %li.has-dropdown
                     %a{:href => customer_path(current_user) } <i class="icon-user"></i> #{current_user.username} <i class="icon-angle-down"></i>
