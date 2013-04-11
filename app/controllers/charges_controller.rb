@@ -1,5 +1,6 @@
 class ChargesController < ApplicationController
   skip_filter :scope_current_store, only: [:new, :create]
+  before_filter :request_login, only: [:new]
 
   def new
     #if logged_in?

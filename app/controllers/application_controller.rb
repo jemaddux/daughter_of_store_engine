@@ -22,6 +22,36 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def request_login
+    #if logged_in?
+
+    #check for shipping
+    #if shipping
+    #else
+    #redirect to create shipping
+    #end
+
+    #else
+    #ask if they want to login?
+    #ask if they want to create account
+    #offer guest checkout page
+    #end
+
+    unless current_user
+      #ask if they want to login?
+      #ask if they want to create account
+      #offer guest checkout page
+
+
+      session[:return_to_url] = request.url if Config.save_return_to_url && request.get?
+      self.send(Config.not_authenticated_action)
+
+      redirect_to login_path, flash: "Want to checkout as a guest? #{link_to , "Click Here"}"
+      link_to("\##{ht[:text]}", "www.url.com"
+
+    end
+  end
+
   def current_store
     Store.find_by_path(params[:store_path])
   end
