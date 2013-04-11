@@ -32,7 +32,7 @@ class ShippingAddressesController < ApplicationController
     @shipping_address = ShippingAddress.find(params[:id])
 
     if @shipping_address.update_attributes(params[:shipping_address])
-      redirect_to customer_path(current_user),
+      redirect_to shipping_address_path(@shipping_address),
       notice: 'Shipping address was successfully updated.'
     else
       redirect_to edit_shipping_address_path(@shipping_address)

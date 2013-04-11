@@ -15,7 +15,7 @@ class CustomerSessionsController < ApplicationController
       end
     else
       flash.now.alert = "Login failed."
-      render action: :new
+      redirect_to login_path
     end
   end
 
