@@ -2,36 +2,45 @@ class ChargesController < ApplicationController
   # skip_filter :scope_current_store, only: [:new, :create]
   before_filter :request_login, only: [:new]
 
+  def checkout_options
+    @customer = Customer.new
+  end
+
+  def create_guest
+    username = params[:username]
+    password = params[:password]
+    first_name = params[:first_name]
+    last_name = params[:last_name]
+    email = params[:email]
+    billing_street = params[:billing_street]
+    billing_city = params[:billing_city]
+    billing_state = params[:billing_state]
+    billing_zip = params[:billing_zip]
+    shipping_street = params[:shipping_street]
+    shipping_city = params[:shipping_city]
+    shipping_state = params[:shipping_state]
+    shipping_zip = params[:shipping_zip]
+
+    if username && password
+      login(username,password, remember_me = false)
+    else
+
+      #create user with randomized password and password_confirmation
+      #auto_login(user)
+    end
+    redirect_to new_charge_path(current_store)
+  end
+
   def new
-    @customer = current_user
     cart_products = session[:shopping_cart][current_store.id]
     @order = Order.for_customer(current_user, cart_products, current_store.id)
+
+    products = []
+    @order.order_products.each do |order_product|
+        products << Product.find(order_product.product_id)
+    end
+    @products = products
     session[:order_id] = @order.id
-
-      #check for shipping
-      #if shipping
-      #else
-        #redirect to create shipping
-      #end
-
-    #else
-      #ask if they want to login?
-      #ask if they want to create account
-      #offer guest checkout page
-    #end
-
-
-
-
-    # @customer = Customer.find(params[:customer])
-    # @order    = Order.create(
-      # customer_id: params[:customer],
-      # status:      "pending",
-      # total:       params[:amount].to_i / 100
-      # )
-    # session[:order_id] = @order.id
-    # @cart = session[:shopping_cart][current_store.id]
-    # @order.save
   end
 
   def create
