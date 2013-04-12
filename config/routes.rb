@@ -11,16 +11,15 @@ StoreEngine::Application.routes.draw do
   match 'admin'  => 'admin/products#index'
 
   namespace :admin do
-    root :to => 'admin/products#index'
     resources :categories
     resources :products
     resources :orders
     resources :customers, only: [:index, :show, :destroy]
-    resources :stores, only: [:show, :destroy, :update]
+    resources :stores, only: [:show, :destroy, :update, :index]
   end
 
-  namespace :platform_admin do
-    resources :stores, only: [:index, :edit, :update, :destroy]
+  namespace :store_admin do
+    #resources :stores, only: [:index, :edit, :update, :destroy]
   end
 
   get '/account' => 'customers#show'

@@ -15,10 +15,10 @@ class ApplicationController < ActionController::Base
   end
 
   def require_admin
-    if logged_in?
-      redirect_to login_url unless current_user.admin
+    if !current_user || current_user.admin != true
+      redirect_to root_path, :notice => "Only system administrators may access this page"
     else
-      redirect_to login_url
+      true
     end
   end
 

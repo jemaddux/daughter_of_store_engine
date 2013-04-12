@@ -6,7 +6,7 @@ class Store < ActiveRecord::Base
   has_many :store_admins
 
   has_many :customers, through: :store_admins
-  has_many :customers, thorugh: :store_stockers
+  has_many :customers, through: :store_stockers
 
   def to_param
     path

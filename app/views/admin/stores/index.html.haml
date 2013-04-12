@@ -1,0 +1,13 @@
+%h1 Stores Dashboard
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @stores.each do |store|
+    %tr
+      %td= link_to "#{store.name}", admin_store_path(store.id)
+      %td= link_to 'Details', admin_store_path(store.id)
+      %td= link_to 'Destroy', admin_store_path(store.id), :method => :delete, :data => { :confirm => 'Are you sure?' }
