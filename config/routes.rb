@@ -7,6 +7,7 @@ StoreEngine::Application.routes.draw do
   resources :cart_products,      only:   [:destroy]
   resources :shipping_addresses, except: [:index]
 
+
   match 'admin'  => 'admin/products#index'
 
   namespace :admin do
@@ -15,6 +16,11 @@ StoreEngine::Application.routes.draw do
     resources :products
     resources :orders
     resources :customers, only: [:index, :show, :destroy]
+    resources :stores, only: [:show, :destroy, :update]
+  end
+
+  namespace :platform_admin do
+    resources :stores, only: [:index, :edit, :update, :destroy]
   end
 
   get '/account' => 'customers#show'

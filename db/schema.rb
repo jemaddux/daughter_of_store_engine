@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130411041849) do
+ActiveRecord::Schema.define(:version => 20130412011350) do
 
   create_table "cart_products", :force => true do |t|
     t.integer  "cart_id"
@@ -122,6 +122,26 @@ ActiveRecord::Schema.define(:version => 20130411041849) do
   end
 
   add_index "shipping_addresses", ["customer_id"], :name => "index_shipping_addresses_on_customer_id"
+
+  create_table "store_admins", :force => true do |t|
+    t.integer  "customer_id"
+    t.integer  "store_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "store_admins", ["customer_id"], :name => "index_store_admins_on_customer_id"
+  add_index "store_admins", ["store_id"], :name => "index_store_admins_on_store_id"
+
+  create_table "store_stockers", :force => true do |t|
+    t.integer  "customer_id"
+    t.integer  "store_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "store_stockers", ["customer_id"], :name => "index_store_stockers_on_customer_id"
+  add_index "store_stockers", ["store_id"], :name => "index_store_stockers_on_store_id"
 
   create_table "stores", :force => true do |t|
     t.string   "name"

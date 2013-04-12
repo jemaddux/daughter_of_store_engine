@@ -1,19 +1,14 @@
 class StoresController < ApplicationController
   skip_filter :scope_current_store, only: [:landing, :index, :new, :create]
+  before_filter :require_login, only: [:new]
 
   def landing
     render layout: "layouts/landing"
   end
 
   def index
-    if current_user == nil
-      redirect_to root_path
-    elsif current_user.admin == true
-      @stores = Store.unscoped.all
-      render layout: "layouts/landing"
-    else
-      redirect_to root_path, notice:"You don't belong here"
-    end
+    @stores = Store.unscoped.all
+    render layout: "layouts/landing"
   end
   
   def show

@@ -2,13 +2,11 @@ class Store < ActiveRecord::Base
   attr_accessible :name, :path, :description
   cattr_accessor :current_id
 
-  #def self.current_id=(id)
-  #  Thread.current[:store_path] = id
-  #end
-  #
-  #def self.current_id
-  #  Thread.current[:store_path]
-  #end
+  has_many :store_stockers
+  has_many :store_admins
+
+  has_many :customers, through: :store_admins
+  has_many :customers, thorugh: :store_stockers
 
   def to_param
     path

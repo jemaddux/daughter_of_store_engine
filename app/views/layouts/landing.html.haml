@@ -38,6 +38,9 @@
             %section.top-bar-section
               / Right Nav Section
               %ul.right
+                -if current_user.platform_admin
+                  %li
+                    =link_to "Admin", platform_admin_stores_path
                 %li
                   =link_to "Create a Store", new_store_path
                 %li.has-dropdown
