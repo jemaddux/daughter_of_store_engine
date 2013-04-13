@@ -2,14 +2,17 @@
 
 %table
   %tr
-    %th
-    %th
-    %th
+    %th.left Admin Access
+    %th Store URL
+    %th Description
+    %th Status
 
   - @stores.each do |store|
     %tr
       %td= link_to "#{store.name}", admin_store_path(store.id)
-      %td= store.status
+      %td= link_to "http://www.sonofsam.herokuapp.com/#{store.path}", store_path(store.id)
+      %td= "#{store.description.split('')[0..31].join}..."
+      %td= store.status.titleize
       - if store.status == 'pending'
         %td
           = button_to 'Approve', change_store_status_path(store.id, status: 'active'), method: :put
@@ -23,3 +26,6 @@
       - if store.status == 'enabled'
         %td
           = button_to 'Disable', change_store_status_path(store.id, status: 'disabled'), method: :put
+      - if store.status == 'declined'
+        %td
+          = button_to 'Accept', change_store_status_path(store.id, status: 'active'), method: :put
