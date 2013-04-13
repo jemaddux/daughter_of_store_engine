@@ -9,7 +9,11 @@ class CustomerSessionsController < ApplicationController
       if current_user.admin
         redirect_back_or_to stores_path, message: 'Logged in successfully.'
       else
-        redirect_back_or_to root_path, message: 'Logged in!'
+        if params[:store]
+          redirect_to "/#{params[:store]}", message: 'Logged in!'
+        else
+          redirect_back_or_to root_path, message: 'Logged in!'
+        end
       end
     else
       flash.now.notice = 'Username or password invalid'
