@@ -32,6 +32,8 @@ class ChargesController < ApplicationController
   end
 
   def new
+    session[:return_to_url] = request.url
+    @shipping_address = ShippingAddress.new
     cart_products = session[:shopping_cart][current_store.id]
     @order = Order.for_customer(current_user, cart_products, current_store.id)
 
@@ -44,6 +46,7 @@ class ChargesController < ApplicationController
   end
 
   def create
+    session[:return_to_url] = nil
     order = Order.unscoped.find(session[:order_id])
 
 

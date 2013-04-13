@@ -1,0 +1,20 @@
+= form_tag shipping_addresses_path, method: :post do |f|
+  .field
+    = hidden_field_tag "shipping_address[customer_id]", current_user.id
+  .field
+    = label_tag :street
+    = text_field_tag "shipping_address[street]"
+  .field
+    = label_tag :city
+    = text_field_tag "shipping_address[city]"
+  .field
+    = label_tag :state
+    = text_field_tag "shipping_address[state]"
+  .field
+    = label_tag :zipcode
+    = text_field_tag "shipping_address[zipcode]"
+  .field
+    = label_tag :phone
+    = text_field_tag "shipping_address[phone]"
+  .action
+    = submit_tag 'Save', class:"button"

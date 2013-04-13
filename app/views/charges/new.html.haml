@@ -1,18 +1,19 @@
 
 .large-8.columns.left
-  = form_tag charges_path do
-    %h3 Order Information
-    %table
-      %th
-      %th Item
-      %th Description
-      %th Unit Price
-      - @products.each do |product|
-        %tr
-          %td= image_tag "http://placekitten.com/100/100"
-          %td= product.name
-          %td= product.description
-          %td= "$#{product.price}0"
+  %h3 Order Information
+  %table
+    %th
+    %th Item
+    %th Description
+    %th Unit Price
+    - @products.each do |product|
+      %tr
+        %td= image_tag "http://placekitten.com/100/100"
+        %td= product.name
+        %td= product.description
+        %td= "$#{product.price}0"
+
+  - if current_user.shipping_address
 
     %h3 Shipping Information
     - shipping = current_user.shipping_address
@@ -28,7 +29,14 @@
         %td= shipping.state
         %td= shipping.zipcode
         %td= shipping.phone
-    = link_to 'edit shipping information', edit_shipping_address_path(current_user.shipping_address)
+    = link_to 'edit shipping information', edit_shipping_address_path(current_user)
     %br/
+    = form_tag charges_path do
+      %br/
+      %script.stripe-button{"data-amount" => @order.total*100, "data-description" => "#{current_store.name}", "data-key" => Rails.configuration.stripe[:publishable_key], :src => "https://checkout.stripe.com/v2/checkout.js"}
+  - else
+    %h3 Your Shipping Information is Required Before Continuing
+    = render 'shipping_form'
 
-    %script.stripe-button{"data-amount" => @order.total, "data-description" => "#{current_store.name}", "data-key" => Rails.configuration.stripe[:publishable_key], :src => "https://checkout.stripe.com/v2/checkout.js"}
+
+      
