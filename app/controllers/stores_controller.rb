@@ -31,7 +31,7 @@ class StoresController < ApplicationController
     if @store.save
       redirect_to home_path(@store), notice: 'Thank you. Your store is currently pending acceptance'
     else
-      render action: "new"
+      render new_store_path, notice: 'The store name or url you have chosen has already been taken'
     end
   end
 

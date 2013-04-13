@@ -8,6 +8,11 @@ class Store < ActiveRecord::Base
   has_many :customers, through: :store_admins
   has_many :customers, through: :store_stockers
 
+  validates :name, presence: true
+  validates :path, presence: true
+  validates_uniqueness_of :name
+  validates_uniqueness_of :path
+
   def to_param
     path
   end

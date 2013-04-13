@@ -21,10 +21,11 @@ class CustomersController < ApplicationController
     @customer = Customer.new(params[:customer])
 
     if @customer.save
+      auto_login(@customer)
       Mailer.welcome_email(@customer).deliver
-      redirect_to @customer, notice: 'Customer was successfully created.'
+      redirect_back_or_to edit_customers_path, notice: 'Thanks for registering with us!'
     else
-      render action: "new"
+      redirect_to new_customers_path, notice: 'Something went wrong, try again!'
     end
   end
 

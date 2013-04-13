@@ -5,7 +5,8 @@
 .large-12.columns
   .row
     .large-12.columns
-      %h1.admin-heading= "Your Account"
+      %h1.left #{current_user.username}'s Account
+      %h4.right=link_to "Create a Store", new_store_path, class: "button"
 
     .large-12.columns
       .row.admin-panel

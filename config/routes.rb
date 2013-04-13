@@ -26,7 +26,7 @@ StoreEngine::Application.routes.draw do
   get '/signup' => 'customers#new'
 
   resources :stores
-  put '/stores/:id/status' => "stores#change_status", :as => 'change_store_status'
+  put '/stores/:id/status' => 'stores#change_status', :as => 'change_store_status'
   root to: 'stores#landing'
 
   match 'login'  => 'customer_sessions#new'

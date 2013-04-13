@@ -4,7 +4,7 @@ class Admin::StoresController < ApplicationController
 
 
   def index
-    @stores = Store.unscoped.all
+    @stores = Store.unscoped.all( :order => "created_at DESC")
     render layout: "layouts/landing"
   end
 
