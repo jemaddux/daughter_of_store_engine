@@ -23,25 +23,11 @@ class CartsController < ApplicationController
     end
 
     redirect_to :back, notice: "item added to cart"
-
-    # @cart = Cart.find_or_create_by_id(session[:cart_id], total: 0)
-    # session[:cart_id] = @cart.id
-    # product = Product.find(params[:product])
-    # @cart.add(product, params[:quantity].to_i)
-    # if @cart.update_attributes(params[:cart])
-    #   redirect_to @cart, notice: "Your cart was successfully updated."
-    # else
-    #   redirect_to @cart, notice: "Your cart could not be updated."
-    # end
   end
 
   def destroy
     product = Product.find(params[:product])
-    session[:shopping_cart][current_store.id].delete(product.id) 
-    # @cart = Cart.find(params[:id])
-    # @cart.destroy
-
-    # session[:cart_id] = nil
+    session[:shopping_cart][current_store.id].delete(product.id)
     redirect_to carts_path, notice: "Your cart was successfully cleared."
   end
 end

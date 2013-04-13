@@ -5,17 +5,14 @@ class Admin::StoresController < ApplicationController
 
   def index
     @stores = Store.unscoped.all( :order => "created_at DESC")
-    render layout: "layouts/landing"
   end
 
   def show
     @store = Store.find(params[:id])
-    render layout: "layouts/landing"
   end
 
   def edit
     @store = Store.find(params[:id])
-    render layout: "layouts/landing"
   end
 
   def update
@@ -24,7 +21,7 @@ class Admin::StoresController < ApplicationController
     if @store.update_attributes(params[:admin_store])
       redirect_to @store, notice: 'Store was successfully updated.'
     else
-      render action: "edit"
+      render action: 'edit'
     end
   end
 

@@ -7,10 +7,5 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @cart = current_user.cart if logged_in?
-
-    respond_to do |format|
-      format.html
-      format.json { render json: @product }
-    end
   end
 end

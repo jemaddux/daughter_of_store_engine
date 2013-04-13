@@ -4,7 +4,6 @@ class OrdersController < ApplicationController
 
   def index
     @orders = current_user.orders
-    render layout: "layouts/landing"
   end
 
   def show
@@ -12,7 +11,6 @@ class OrdersController < ApplicationController
     @products = @order.order_products.map do |o|
       Product.unscoped.find_by_id(o.product_id)
     end
-    render layout: "layouts/landing"
   end
 
 end

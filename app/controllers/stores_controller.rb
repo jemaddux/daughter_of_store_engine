@@ -3,12 +3,10 @@ class StoresController < ApplicationController
   before_filter :require_login, only: [:new]
 
   def landing
-    render layout: "layouts/landing"
   end
 
   def index
     @stores = Store.unscoped.all
-    render layout: "layouts/landing"
   end
   
   def show
@@ -18,7 +16,6 @@ class StoresController < ApplicationController
 
   def new
     @store = Store.new
-    render layout: "layouts/landing"
   end
 
   def edit
@@ -31,7 +28,7 @@ class StoresController < ApplicationController
     if @store.save
       redirect_to home_path(@store), notice: 'Thank you. Your store is currently pending acceptance'
     else
-      render new_store_path, notice: 'The store name or url you have chosen has already been taken'
+      render action: 'new'
     end
   end
 
@@ -41,7 +38,7 @@ class StoresController < ApplicationController
     if @store.update_attributes(params[:store])
       redirect_to @store, notice: 'Store was successfully updated.'
     else
-      render action: "edit"
+      render action: 'edit'
     end
   end
 

@@ -4,17 +4,14 @@ class CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(current_user.id)
-    render layout: "layouts/landing"
   end
 
   def new
     @customer = Customer.new
-    render layout: "layouts/landing"
   end
 
   def edit
     @customer = Customer.find(current_user.id)
-    render layout: "layouts/landing"
   end
 
   def create
@@ -25,7 +22,7 @@ class CustomersController < ApplicationController
       Mailer.welcome_email(@customer).deliver
       redirect_back_or_to edit_customers_path, notice: 'Thanks for registering with us!'
     else
-      redirect_to new_customers_path, notice: 'Something went wrong, try again!'
+      render action: 'new'
     end
   end
 
@@ -35,7 +32,7 @@ class CustomersController < ApplicationController
     if @customer.update_attributes(params[:customer])
       redirect_to @customer, notice: 'Customer was successfully updated.'
     else
-      render action: "edit"
+      render action: 'edit'
     end
   end
 

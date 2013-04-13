@@ -13,8 +13,11 @@
 
   -# Set the viewport width to device width for mobile
   %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
+  - if current_store
+    %title= content_for?(:title) ? yield(:title) : "#{current_store.name}"
+  -else
+    %title= content_for?(:title) ? yield(:title) : "SonOfSam"
 
-  %title= content_for?(:title) ? yield(:title) : "#{current_store.name}"
 
   = stylesheet_link_tag "application"
   <link href='http://fonts.googleapis.com/css?family=Questrial|Amatic+SC:700' rel='stylesheet' type='text/css'>
@@ -30,23 +33,33 @@
             %ul.title-area
               / Title Area
               %li.name
-                %h1
-                  = link_to current_store.name, home_path
+                -if current_store
+                  %h1
+                    = link_to current_store.name, home_path
+                -else
+                  %h1
+                    = link_to "Son of Sam", root_path
               %li.toggle-topbar.menu-icon
                 %a{:href => "#"}
                   %span menu
             %section.top-bar-section
               / Right Nav Section
               %ul.right
-                %li
-                  =link_to "Shop", products_path(current_store)
-                %li.has-dropdown
-                  %a{:href => categories_path, id: "category-dropdown"} Shop By Category <i class="icon-angle-down"></i>
-                  %ul.dropdown
-                    - category_list.each do |category|
-                      %li= link_to category.name, category_path(current_store, category)
+                -if current_user
+                  - if current_user.admin
+                    %li
+                      =link_to "Admin", admin_stores_path
+                -if current_store
                   %li
-                    = link_to "<i class='icon-shopping-cart'></i> Cart".html_safe, carts_path
+                    =link_to "Shop", products_path(current_store)
+                -if current_store
+                  %li.has-dropdown
+                    %a{:href => categories_path, id: "category-dropdown"} Shop By Category <i class="icon-angle-down"></i>
+                    %ul.dropdown
+                      - category_list.each do |category|
+                        %li= link_to category.name, category_path(current_store, category)
+                    %li
+                      = link_to "<i class='icon-shopping-cart'></i> Cart".html_safe, carts_path
                 - if logged_in?
                   %li.has-dropdown
                     %a{:href => customers_path } <i class="icon-user"></i> #{current_user.username} <i class="icon-angle-down"></i>
@@ -58,7 +71,7 @@
                       %li.divider
                       %li
                         %a{:href => logout_path } Logout
-                - else
+                - elsif current_store
                   %li.has-dropdown
                     = link_to "Login / Signup <i class='icon-angle-down'></i>".html_safe, login_path(store: current_store.path)
                     %ul.dropdown
@@ -66,6 +79,14 @@
                         = link_to "Login", login_path(store: current_store.path)
                       %li
                         = link_to "Signup", new_customers_path(store: current_store.path)
+                -else
+                  %li.has-dropdown
+                    = link_to "Login / Signup <i class='icon-angle-down'></i>".html_safe, login_path
+                    %ul.dropdown
+                      %li
+                        = link_to "Login", login_path
+                      %li
+                        = link_to "Signup", new_customers_path
           / End Top Bar
       / End Navigation
   = render partial: "layouts/messages"
