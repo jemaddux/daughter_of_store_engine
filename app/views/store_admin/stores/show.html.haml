@@ -1,0 +1,9 @@
+%h4= "Store Name: #{@store.name}"
+%h6= "Description: #{@store.description}"
+%h6= "Path: #{@store.path}"
+%h6= "Status: #{@store.status}"
+
+
+= link_to 'Edit', edit_store_admin_store_path(@store)
+\|
+= link_to 'Back', store_admin_stores_path

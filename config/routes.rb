@@ -19,7 +19,7 @@ StoreEngine::Application.routes.draw do
   end
 
   namespace :store_admin do
-    #resources :stores, only: [:index, :edit, :update, :destroy]
+    resources :stores, only: [:index, :edit, :update, :destroy, :show]
   end
 
   get '/account' => 'customers#show'

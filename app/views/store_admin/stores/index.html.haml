@@ -1,0 +1,17 @@
+%h1 Listing store_admin_stores
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @store_admin_stores.each do |store_admin_store|
+    %tr
+      %td= link_to 'Show', store_admin_store
+      %td= link_to 'Edit', edit_store_admin_store_path(store_admin_store)
+      %td= link_to 'Destroy', store_admin_store, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Store', new_store_admin_store_path

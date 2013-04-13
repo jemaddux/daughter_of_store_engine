@@ -26,7 +26,7 @@ class StoresController < ApplicationController
     @store = Store.new(params[:store])
 
     if @store.save
-      redirect_to home_path(@store), notice: 'Thank you. Your store is currently pending acceptance'
+      redirect_to store_admin_store_path(@store.id), notice: 'Thank you. Your store is currently pending acceptance'
     else
       render action: 'new'
     end
