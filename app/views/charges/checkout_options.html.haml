@@ -32,28 +32,19 @@
       = label_tag :email
       = text_field_tag :email
     .field
-      = label_tag :billing_street
-      = text_field_tag :billing_street
+      = label_tag :street
+      = text_field_tag "shipping_address[street]"
     .field
-      = label_tag :billing_city
-      = text_field_tag :billing_city
+      = label_tag :city
+      = text_field_tag "shipping_address[city]"
     .field
-      = label_tag :billing_state
-      = text_field_tag :billing_state
+      = label_tag :state
+      = text_field_tag "shipping_address[state]"
     .field
-      = label_tag :billing_zip
-      = text_field_tag :billing_zip
+      = label_tag :zipcode
+      = text_field_tag "shipping_address[zipcode]"
     .field
-      = label_tag :shipping_street
-      = text_field_tag :shipping_street
-    .field
-      = label_tag :shipping_city
-      = text_field_tag :shipping_city
-    .field
-      = label_tag :shipping_state
-      = text_field_tag :shipping_state
-    .field
-      = label_tag :shipping_zip
-      = text_field_tag :shipping_zip
+      = label_tag :phone
+      = text_field_tag "shipping_address[phone]"
 
-      = submit_tag 'Save'
+      = submit_tag 'Proceed to Checkout', class: "button"

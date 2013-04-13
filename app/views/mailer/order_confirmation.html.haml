@@ -4,25 +4,30 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
   %body
     %h1
-      Thank you for your purchase,
-    %p
-      The amount paid is: #{number_to_currency(@order.total)}.
-    %p
-      Your order is the following,
+      Thank you for your purchase from 
+      = @store.name
+    %h2 
+      Order Details:
+    %h3
+      Order Number:# 
+      = link_to @order.id.to_s.rjust(7,"0"), "http://0.0.0.0:3000#{url_token_path(@store, @order.url_token)}" 
     %table
-      %tr
-        %th Product
-        %th Description
-        %th Quantity
-        %th Subtotal
-      - @order.products.each do |product|
+      %th Item
+      %th Quantity
+      %th Price
+      %th Description
+      %th Subtotal
+      - @products.each do |line_item, product|
         %tr
           %td= product.name
+          %td= line_item.quantity
+          %td= number_to_currency(product.price)
           %td= product.description
-          - order_product = @order.order_products.find_by_product_id(product.id)
-          %td= order_product.quantity
-          %td= order_product.price
+          %td= number_to_currency(line_item.subtotal)       
+    %h4
+      Order Total:
+      = number_to_currency(@order.total)
     %p 
-      Thank you and may the force be with you,
+      Thank you,
     %p
-      The Obi Team. 
+      = @store.name

@@ -20,7 +20,7 @@ class CustomersController < ApplicationController
     if @customer.save
       auto_login(@customer)
       Mailer.welcome_email(@customer).deliver
-      redirect_back_or_to edit_customers_path, notice: 'Thanks for registering with us!'
+      redirect_to account_path, notice: 'Customer was successfully created.'
     else
       render action: 'new'
     end

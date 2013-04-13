@@ -1,17 +1,27 @@
 
 .large-8.columns.left
-  %h3 Order Information
+  %h2 Please Review Order Details
+  %h4 
+    Order Number:# 
+    = @order.id.to_s.rjust(7,"0") 
   %table
     %th
     %th Item
+    %th Quantity
+    %th Price
     %th Description
-    %th Unit Price
-    - @products.each do |product|
+    %th Subtotal
+    - @products.each do |line_item, product|
       %tr
         %td= image_tag "http://placekitten.com/100/100"
         %td= product.name
+        %td= line_item.quantity
+        %td= number_to_currency(product.price)
         %td= product.description
-        %td= "$#{product.price}0"
+        %td= number_to_currency(line_item.subtotal)       
+  %h4
+    Order Total:
+    = number_to_currency(@order.total)
 
   - if current_user.shipping_address
 

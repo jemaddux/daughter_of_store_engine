@@ -35,6 +35,7 @@ StoreEngine::Application.routes.draw do
 
   scope '/:store_path' do
     match '/' => 'stores#show', as: 'home'
+    get '/orders/:url_token' => 'orders#unique_order_confirmation', as: 'url_token'
     resource :carts
     resources :categories,         only:   [:show, :index]
     resources :products,           only:   [:show, :index]

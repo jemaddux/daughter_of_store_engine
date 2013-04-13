@@ -5,11 +5,20 @@ class Order < ActiveRecord::Base
                   :customer,
                   :store_id
 
+  before_save :generate_token
+
+
 
   default_scope { where(store_id: Store.current_id)  }
 
   belongs_to  :customer
   has_many :order_products
+
+  def products
+    order_products.map do |order_product|
+      [order_product, Product.unscoped.find_by_id(order_product.product_id)]
+    end
+  end
 
 
   def self.for_customer(customer,cart,store_id)
@@ -33,4 +42,17 @@ class Order < ActiveRecord::Base
   def calculate_total
     self.total = self.order_products.map(&:subtotal).reduce(:+)
   end
+  
+
+  protected
+
+  def generate_token
+    self.url_token = loop do
+      random_token = SecureRandom.urlsafe_base64
+      break random_token unless Order.unscoped.where(url_token: random_token).exists?
+    end
+  end
+
+
+
 end

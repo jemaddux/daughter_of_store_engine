@@ -1,7 +1,7 @@
 class Mailer < ActionMailer::Base
   include SendGrid
 
-  default from: "theforce@obiwear.com"
+  default from: "customerservice@sonofsam.com"
 
   def welcome_email(user)
     @customer = user
@@ -9,9 +9,14 @@ class Mailer < ActionMailer::Base
     mail(to: @customer.email, subject: "Welcome to Obiwear")
   end
 
-  def order_confirmation(user, input_order)
+  def order_confirmation(current_store, user, input_order)
     @customer = user
     @order    = input_order
-    mail(to: @customer.email, subject: "Order Confirmation")
+    @store    = current_store
+    @products = @order.products
+    mail(
+      to: @customer.email, 
+      subject: "Order Confirmation", 
+      from: "customerservice@#{current_store.path}.com")
   end
 end

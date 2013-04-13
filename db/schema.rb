@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130413173211) do
+ActiveRecord::Schema.define(:version => 20130413202041) do
 
   create_table "cart_products", :force => true do |t|
     t.integer  "cart_id"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20130413173211) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "store_id"
+    t.string   "url_token"
   end
 
   add_index "orders", ["customer_id"], :name => "index_orders_on_customer_id"

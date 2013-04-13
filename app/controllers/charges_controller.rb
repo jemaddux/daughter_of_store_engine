@@ -7,26 +7,32 @@ class ChargesController < ApplicationController
   end
 
   def create_guest
-    username = params[:username]
-    password = params[:password]
-    first_name = params[:first_name]
-    last_name = params[:last_name]
-    email = params[:email]
-    billing_street = params[:billing_street]
-    billing_city = params[:billing_city]
-    billing_state = params[:billing_state]
-    billing_zip = params[:billing_zip]
-    shipping_street = params[:shipping_street]
-    shipping_city = params[:shipping_city]
-    shipping_state = params[:shipping_state]
-    shipping_zip = params[:shipping_zip]
-
-    if username && password
+    if params[:username] && params[:password]
+      username = params[:username]
+      password = params[:password]
       login(username,password, remember_me = false)
     else
+      username = params[:email]
+      email = params[:email]
+      password = SecureRandom.hex(4)
+      password_confirmation = password
+      first_name = params[:first_name]
+      last_name = params[:last_name]
+      
+      customer = Customer.create!(
+        :username => username, 
+        :email => email, 
+        :first_name => first_name, 
+        :last_name => last_name, 
+        :password => password, 
+        :password_confirmation => password_confirmation)
 
-      #create user with randomized password and password_confirmation
-      #auto_login(user)
+      address = params[:shipping_address]
+      address["customer_id"] = customer.id
+
+      customer.create_shipping_address(address)
+
+      auto_login(customer)
     end
     redirect_to new_charge_path(current_store)
   end
@@ -36,20 +42,14 @@ class ChargesController < ApplicationController
     @shipping_address = ShippingAddress.new
     cart_products = session[:shopping_cart][current_store.id]
     @order = Order.for_customer(current_user, cart_products, current_store.id)
-
-    products = []
-    @order.order_products.each do |order_product|
-        products << Product.find(order_product.product_id)
-    end
-    @products = products
+    @products = @order.products
+    
     session[:order_id] = @order.id
   end
 
   def create
     session[:return_to_url] = nil
     order = Order.unscoped.find(session[:order_id])
-
-
 
     customer = Stripe::Customer.create(
       email: current_user.email,
@@ -65,9 +65,10 @@ class ChargesController < ApplicationController
 
     order.update_attributes(status: "processed")
 
-    # Mailer.order_confirmation(customer, order).deliver
+    Mailer.order_confirmation(current_store, current_user, order).deliver
 
     current_user.cart.destroy
+    redirect_to url_token_path(current_store, order.url_token)
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
