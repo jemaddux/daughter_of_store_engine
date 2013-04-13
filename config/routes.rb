@@ -39,6 +39,8 @@ StoreEngine::Application.routes.draw do
     resources :categories,         only:   [:show, :index]
     resources :products,           only:   [:show, :index]
     resources :charges,            only:   [:new, :create]
+    get '/checkout_options' => 'charges#checkout_options'
+    post '/create_guest' => 'charges#create_guest'
   end
 
 

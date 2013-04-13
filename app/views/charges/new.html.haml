@@ -1,35 +1,21 @@
 
 .large-8.columns.left
   = form_tag charges_path do
-    %h1= "Hello, #{@customer.first_name} #{@customer.last_name}"
-    %h3 Customer Order Information
+    %h3 Order Information
     %table
-      %th Full Name
-      %th Username
-      %th Email
-      %th Total Amount:
-      %th Order Date & Time:
-      %tr
-        %td= "#{@customer.first_name} #{@customer.last_name}"
-        %td= @customer.username
-        %td= @customer.email
-        %td= "#{number_to_currency(@amount.to_i/100)}"
-        %td= "#{@order.created_at}"
-    %h3 Items
-    %table
-      %th Items
+      %th
+      %th Item
       %th Description
       %th Unit Price
-      - @order.order_products.each do |order_product|
-        - product = Product.find(order_product.product_id)
+      - @products.each do |product|
         %tr
-        %td= product.name.capitalize
-        %td= product.description
-        %td= "$#{product.price}0"
-        %a= image_tag product.image(:thumb)
+          %td= image_tag "http://placekitten.com/100/100"
+          %td= product.name
+          %td= product.description
+          %td= "$#{product.price}0"
+
     %h3 Shipping Information
-    - shipping = @customer.shipping_address
-    = link_to 'edit shipping information', edit_shipping_address_path(@customer.shipping_address)
+    - shipping = current_user.shipping_address
     %table
       %th Street:
       %th City:
@@ -42,5 +28,7 @@
         %td= shipping.state
         %td= shipping.zipcode
         %td= shipping.phone
+    = link_to 'edit shipping information', edit_shipping_address_path(current_user.shipping_address)
+    %br/
 
-    %script.stripe-button{"data-amount" => @amount, "data-description" => "Obiwear", "data-key" => Rails.configuration.stripe[:publishable_key], :src => "https://checkout.stripe.com/v2/checkout.js"}
+    %script.stripe-button{"data-amount" => @order.total, "data-description" => "#{current_store.name}", "data-key" => Rails.configuration.stripe[:publishable_key], :src => "https://checkout.stripe.com/v2/checkout.js"}

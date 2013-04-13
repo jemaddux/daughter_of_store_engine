@@ -1,0 +1,59 @@
+.row
+  .large-6.columns
+    %p
+      Already have an account? Sign in
+    = form_tag create_guest_path(current_store), method: :post do
+      .field
+        = label_tag :username
+        = text_field_tag :username
+        %br/
+      .field
+        = label_tag :password
+        = password_field_tag :password
+        %br/
+      .actions
+        = submit_tag "Login", class: "button"
+  .large-6.columns
+    %p
+      Create Account
+    = render 'customers/form'
+.row
+  %p
+    Check Out as a Guest, without Creating an Account
+  = form_tag create_guest_path(current_store), method: :post do
+
+    .field
+      = label_tag :first_name
+      = text_field_tag :first_name
+    .field
+      = label_tag :last_name
+      = text_field_tag :last_name
+    .field
+      = label_tag :email
+      = text_field_tag :email
+    .field
+      = label_tag :billing_street
+      = text_field_tag :billing_street
+    .field
+      = label_tag :billing_city
+      = text_field_tag :billing_city
+    .field
+      = label_tag :billing_state
+      = text_field_tag :billing_state
+    .field
+      = label_tag :billing_zip
+      = text_field_tag :billing_zip
+    .field
+      = label_tag :shipping_street
+      = text_field_tag :shipping_street
+    .field
+      = label_tag :shipping_city
+      = text_field_tag :shipping_city
+    .field
+      = label_tag :shipping_state
+      = text_field_tag :shipping_state
+    .field
+      = label_tag :shipping_zip
+      = text_field_tag :shipping_zip
+
+      = submit_tag 'Save'
