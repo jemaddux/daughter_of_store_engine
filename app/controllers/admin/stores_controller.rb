@@ -2,6 +2,7 @@ class Admin::StoresController < ApplicationController
   skip_filter :scope_current_store
   before_filter :require_admin
 
+
   def index
     @stores = Store.unscoped.all
     render layout: "layouts/landing"

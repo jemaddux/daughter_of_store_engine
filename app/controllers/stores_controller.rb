@@ -1,5 +1,5 @@
 class StoresController < ApplicationController
-  skip_filter :scope_current_store, only: [:landing, :index, :new, :create]
+  skip_filter :scope_current_store, only: [:landing, :index, :new, :create, :update, :change_status]
   before_filter :require_login, only: [:new]
 
   def landing
@@ -50,5 +50,12 @@ class StoresController < ApplicationController
     @store.destroy
 
     redirect_to stores_url
+  end
+
+  def change_status
+    @store = Store.find(params[:id])
+
+    @store.update_attribute(:status, params[:status])
+    redirect_to admin_stores_path, notice: 'Store updated successfully.'
   end
 end

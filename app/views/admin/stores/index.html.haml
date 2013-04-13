@@ -9,5 +9,17 @@
   - @stores.each do |store|
     %tr
       %td= link_to "#{store.name}", admin_store_path(store.id)
-      %td= link_to 'Details', admin_store_path(store.id)
-      %td= link_to 'Destroy', admin_store_path(store.id), :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= store.status
+      - if store.status == 'pending'
+        %td
+          = button_to 'Approve', change_store_status_path(store.id, status: 'active'), method: :put
+          = button_to 'Decline', change_store_status_path(store.id, status: 'declined'), method: :put
+      - if store.status == 'active'
+        %td
+          = button_to 'Disable', change_store_status_path(store.id, status: 'disabled'), method: :put
+      - if store.status == 'disabled'
+        %td
+          = button_to 'Enable', change_store_status_path(store.id, status: 'enabled'), method: :put
+      - if store.status == 'enabled'
+        %td
+          = button_to 'Disable', change_store_status_path(store.id, status: 'disabled'), method: :put

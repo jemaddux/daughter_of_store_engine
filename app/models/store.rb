@@ -1,5 +1,5 @@
 class Store < ActiveRecord::Base
-  attr_accessible :name, :path, :description
+  attr_accessible :name, :path, :description, :status
   cattr_accessor :current_id
 
   has_many :store_stockers

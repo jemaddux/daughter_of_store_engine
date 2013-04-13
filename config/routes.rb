@@ -26,7 +26,7 @@ StoreEngine::Application.routes.draw do
   get '/signup' => 'customers#new'
 
   resources :stores
-
+  put '/stores/:id/status' => "stores#change_status", :as => 'change_store_status'
   root to: 'stores#landing'
 
   match 'login'  => 'customer_sessions#new'
@@ -41,6 +41,7 @@ StoreEngine::Application.routes.draw do
     resources :charges,            only:   [:new, :create]
     get '/checkout_options' => 'charges#checkout_options'
     post '/create_guest' => 'charges#create_guest'
+
   end
 
 
