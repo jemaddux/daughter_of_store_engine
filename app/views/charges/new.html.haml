@@ -1,9 +1,6 @@
 
 .large-8.columns.left
   %h2 Please Review Order Details
-  %h4 
-    Order Number:# 
-    = @order.id.to_s.rjust(7,"0") 
   %table
     %th
     %th Item
@@ -23,30 +20,50 @@
     Order Total:
     = number_to_currency(@order.total)
 
+.large-6.columns
   - if current_user.shipping_address
-
-    %h3 Shipping Information
+    %h3 Shipping Address:
     - shipping = current_user.shipping_address
     %table
+      %th Status:
       %th Street:
       %th City:
       %th State:
       %th Zip:
       %th Phone:
       %tr
+        %td Shipping
         %td= shipping.street
         %td= shipping.city
         %td= shipping.state
         %td= shipping.zipcode
         %td= shipping.phone
-    = link_to 'edit shipping information', edit_shipping_address_path(current_user)
-    %br/
-    = form_tag charges_path do
-      %br/
-      %script.stripe-button{"data-amount" => @order.total*100, "data-description" => "#{current_store.name}", "data-key" => Rails.configuration.stripe[:publishable_key], :src => "https://checkout.stripe.com/v2/checkout.js"}
   - else
-    %h3 Your Shipping Information is Required Before Continuing
-    = render 'shipping_form'
+    %h3 Shipping Address:
+    = render 'shipping_form' 
 
+.large-6.columns
+  - if current_user.addresses.count > 0
+    %h3 Billing Address:
+    - current_user.addresses.each do |billing|
+      %table
+        %th Status:
+        %th Street:
+        %th City:
+        %th State:
+        %th Zip:
+        %th Phone:
+        %tr
+          %td= billing.type
+          %td= billing.street
+          %td= billing.city
+          %td= billing.state
+          %td= billing.zipcode
+          %td= billing.phone
 
-      
+  - else
+    %h3 Billing Address:
+    = render 'addresses/billing_form' 
+.large-2.columns.left
+  = form_tag charges_path do 
+    %script.stripe-button{"data-amount" => @order.total*100, "data-description" => "#{current_store.name}", "data-key" => Rails.configuration.stripe[:publishable_key], :src => "https://checkout.stripe.com/v2/checkout.js"}
