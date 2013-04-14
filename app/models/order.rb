@@ -14,6 +14,10 @@ class Order < ActiveRecord::Base
   belongs_to  :customer
   has_many :order_products
 
+  # This doesn't work yet, but i think its close. Currently the associations are one way, a customer can find addresses, but we can't find an address from the billing or shipping ID.
+  # has_one :address, :foreign_key => :billing_id
+  # has_one :shipping_address, :foreign_key => :shipping_id
+
   def products
     order_products.map do |order_product|
       [order_product, Product.unscoped.find_by_id(order_product.product_id)]
@@ -28,6 +32,7 @@ class Order < ActiveRecord::Base
     order.save
     return order
   end
+
 
   def create_order_products(cart)
     cart.each do |id,quantity|

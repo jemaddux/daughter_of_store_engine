@@ -5,8 +5,7 @@ class Mailer < ActionMailer::Base
 
   def welcome_email(user)
     @customer = user
-    @url      = "http://obiwear.com/login"
-    mail(to: @customer.email, subject: "Welcome to Obiwear")
+    mail(to: @customer.email, subject: "New Account Confirmation")
   end
 
   def order_confirmation(current_store, user, input_order)

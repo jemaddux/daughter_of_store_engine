@@ -10,6 +10,7 @@ class CartsController < ApplicationController
   end
 
   def update
+    session[:order_id] = nil
     product = Product.find(params[:product])
     
     if params[:quantity] == "1"  

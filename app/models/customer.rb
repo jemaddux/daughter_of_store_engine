@@ -1,6 +1,6 @@
 class Customer < ActiveRecord::Base
   authenticates_with_sorcery!
-
+  
   validates_confirmation_of :password,
                             message: "Password should match confirmation.",
                             if: :password
@@ -13,4 +13,7 @@ class Customer < ActiveRecord::Base
   has_one  :cart
   has_one  :shipping_address
   has_many :orders
+
+  has_many :addresses
+
 end

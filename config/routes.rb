@@ -1,6 +1,7 @@
 StoreEngine::Application.routes.draw do
 
   resource :customers,          except: [:index]
+  resources :addresses
   resources :shipping_addresses
   resources :orders,             only:   [:show, :index]
   resources :customer_sessions,  only:   [:new, :create, :destroy]

@@ -73,12 +73,12 @@
                         %a{:href => logout_path } Logout
                 - elsif current_store
                   %li.has-dropdown
-                    = link_to "Login / Signup <i class='icon-angle-down'></i>".html_safe, login_path(store: @current_store.path)
+                    = link_to "Login / Signup <i class='icon-angle-down'></i>".html_safe, login_path(path: request.path)
                     %ul.dropdown
                       %li
-                        = link_to "Login", login_path(store: @current_store.path)
+                        = link_to "Login", login_path(path: request.path)
                       %li
-                        = link_to "Signup", new_customers_path(store: @current_store.path)
+                        = link_to "Signup", new_customers_path(path: request.path)
                 -else
                   %li.has-dropdown
                     = link_to "Login / Signup <i class='icon-angle-down'></i>".html_safe, login_path

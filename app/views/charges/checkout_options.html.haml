@@ -1,27 +1,19 @@
-.row
-  .large-6.columns
-    %p
-      Already have an account? Sign in
-    = form_tag create_guest_path(current_store), method: :post do
-      .field
-        = label_tag :username
-        = text_field_tag :username
-        %br/
-      .field
-        = label_tag :password
-        = password_field_tag :password
-        %br/
-      .actions
-        = submit_tag "Login", class: "button"
-  .large-6.columns
-    %p
-      Create Account
-    = render 'customers/form'
-.row
+.large-4.columns
+  %p
+    Already have an account? Sign in
+  = form_tag create_guest_path(current_store), method: :post do
+    .field
+      = label_tag :username
+      = text_field_tag :username
+    .field
+      = label_tag :password
+      = password_field_tag :password
+    .actions
+      = submit_tag "Login", class: "button"
+.large-4.columns
   %p
     Check Out as a Guest, without Creating an Account
   = form_tag create_guest_path(current_store), method: :post do
-
     .field
       = label_tag :first_name
       = text_field_tag :first_name
@@ -31,20 +23,9 @@
     .field
       = label_tag :email
       = text_field_tag :email
-    .field
-      = label_tag :street
-      = text_field_tag "shipping_address[street]"
-    .field
-      = label_tag :city
-      = text_field_tag "shipping_address[city]"
-    .field
-      = label_tag :state
-      = text_field_tag "shipping_address[state]"
-    .field
-      = label_tag :zipcode
-      = text_field_tag "shipping_address[zipcode]"
-    .field
-      = label_tag :phone
-      = text_field_tag "shipping_address[phone]"
-
-      = submit_tag 'Proceed to Checkout', class: "button"
+    .actions
+      = submit_tag 'Checkout as Guest', class: "button"
+.large-4.columns
+  %p
+    Create Account
+  = render 'customers/form'

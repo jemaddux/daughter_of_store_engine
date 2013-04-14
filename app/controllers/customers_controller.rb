@@ -7,6 +7,7 @@ class CustomersController < ApplicationController
   end
 
   def new
+    session[:redirect_after_create] = params[:path]
     @customer = Customer.new
   end
 
@@ -20,7 +21,11 @@ class CustomersController < ApplicationController
     if @customer.save
       auto_login(@customer)
       Mailer.welcome_email(@customer).deliver
-      redirect_to account_path, notice: 'Customer was successfully created.'
+      if session[:redirect_after_create]
+        redirect_to session[:redirect_after_create], notice: "Thanks for Signing up, <a href='/account'>click here to edit your details</a>".html_safe
+      else
+        redirect_back_or_to account_path, notice: 'Thanks for signing up.'
+      end
     else
       render action: 'new'
     end
