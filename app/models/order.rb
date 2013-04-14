@@ -29,6 +29,7 @@ class Order < ActiveRecord::Base
     return order
   end
 
+
   def create_order_products(cart)
     cart.each do |id,quantity|
       product = Product.unscoped.find(id)

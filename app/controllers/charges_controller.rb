@@ -40,11 +40,24 @@ class ChargesController < ApplicationController
   def new
     session[:return_to_url] = request.url
     @shipping_address = ShippingAddress.new
+    @billing_address = Address.new
     cart_products = session[:shopping_cart][current_store.id]
-    @order = Order.for_customer(current_user, cart_products, current_store.id)
-    @products = @order.products
     
-    session[:order_id] = @order.id
+    if session[:order_id]
+      order = Order.unscoped.find(session[:order_id])
+    else
+      order = Order.for_customer(
+        current_user, 
+        cart_products, 
+        current_store.id)
+      session[:order_id] = order.id
+    end
+    order.shipping_id = current_user.shipping_address.id 
+    order.billing_id = current_user.addresses.first.id
+    order.save
+    @order = order
+
+    @products = @order.products
   end
 
   def create

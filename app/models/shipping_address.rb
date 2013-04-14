@@ -6,6 +6,7 @@ class ShippingAddress < ActiveRecord::Base
                   :phone,
                   :customer_id
 
+
   belongs_to :customer
 
   validates :street,  presence: true
@@ -31,4 +32,5 @@ class ShippingAddress < ActiveRecord::Base
     too_short: "Enter a 10 digit phone number",
     too_long:  "Enter a 10 digit phone number"
   }
+
 end
