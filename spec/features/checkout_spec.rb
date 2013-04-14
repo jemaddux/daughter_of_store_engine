@@ -67,12 +67,7 @@ describe 'Checkout Flow:' do
         fill_in 'first_name', with: 'Logan'
         fill_in 'last_name', with: 'Sears'
         fill_in 'email', with: 'lsears@test.com'
-        fill_in 'shipping_address_street', with: '3181 W Avondale Dr.'
-        fill_in 'shipping_address_city', with: 'Denver'
-        fill_in 'shipping_address_state', with: 'CO'
-        fill_in 'shipping_address_zipcode', with: '80204'
-        fill_in 'shipping_address_phone', with: '8155207020'
-        click_button 'Proceed to Checkout'
+        click_button 'Checkout as Guest'
         page.should have_content 'Review Order Details'
       end
     end
@@ -80,7 +75,7 @@ describe 'Checkout Flow:' do
 
   context 'when the customer is logged in' do
     context 'when the customer does not have a saved shipping address' do
-      it 'it takes the user to his/her order confirmation page and require them to enter shipping details' do
+      it 'it takes the user to his/her order confirmation page and requires them to enter shipping details' do
         visit '/cool-sunglasses'
         click_link 'Login / Signup'
         fill_in 'username', with: 'test'
@@ -91,8 +86,7 @@ describe 'Checkout Flow:' do
         click_button 'Add to Cart'
         click_link 'Cart'
         click_link 'Checkout'
-        page.should have_content 'Review Order Details'
-        page.should have_content 'Shipping Information is Required'
+        page.should have_field 'shipping_address_street'
       end
     end
 

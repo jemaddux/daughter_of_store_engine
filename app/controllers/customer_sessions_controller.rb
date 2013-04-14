@@ -2,6 +2,7 @@ class CustomerSessionsController < ApplicationController
   skip_filter :scope_current_store
 
   def new
+    session[:redirect_after_create] = params[:path]
   end
 
   def create
@@ -9,8 +10,8 @@ class CustomerSessionsController < ApplicationController
       if current_user.admin
         redirect_back_or_to stores_path, message: 'Logged in successfully.'
       else
-        if params[:store]
-          redirect_to "/#{params[:store]}", message: 'Logged in!'
+        if session[:redirect_after_create]
+          redirect_to session[:redirect_after_create], message: 'Logged in!'
         else
           redirect_back_or_to root_path, message: 'Logged in!'
         end
