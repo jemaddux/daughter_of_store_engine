@@ -31,6 +31,7 @@ describe 'Checkout Flow:' do
         fill_in 'username', with: 'test'
         fill_in 'password', with: 'password'
         click_button 'Login'
+        page.should have_content 'Review Order Details'
       end
     end
 
