@@ -19,19 +19,16 @@ class ChargesController < ApplicationController
       first_name = params[:first_name]
       last_name = params[:last_name]
       
-      customer = Customer.create!(
+      if customer = Customer.create(
         :username => username, 
         :email => email, 
         :first_name => first_name, 
         :last_name => last_name, 
         :password => password, 
         :password_confirmation => password_confirmation)
-
-      address = params[:shipping_address]
-      address["customer_id"] = customer.id
-
-      customer.create_shipping_address(address)
-
+      else
+        redirect_to :back, notice:"Sorry, that email has already been taken."
+      end
       auto_login(customer)
     end
     redirect_to new_charge_path(current_store)
@@ -44,18 +41,14 @@ class ChargesController < ApplicationController
     cart_products = session[:shopping_cart][current_store.id]
     
     if session[:order_id]
-      order = Order.unscoped.find(session[:order_id])
+      @order = Order.unscoped.find(session[:order_id])
     else
-      order = Order.for_customer(
+      @order = Order.for_customer(
         current_user, 
         cart_products, 
         current_store.id)
-      session[:order_id] = order.id
+      session[:order_id] = @order.id
     end
-    order.shipping_id = current_user.shipping_address.id 
-    order.billing_id = current_user.addresses.first.id
-    order.save
-    @order = order
 
     @products = @order.products
   end
@@ -63,6 +56,9 @@ class ChargesController < ApplicationController
   def create
     session[:return_to_url] = nil
     order = Order.unscoped.find(session[:order_id])
+    order.shipping_id = current_user.shipping_address.id 
+    order.billing_id = current_user.addresses.first.id
+    order.save
 
     customer = Stripe::Customer.create(
       email: current_user.email,

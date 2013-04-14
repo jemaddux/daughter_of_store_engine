@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
       true
     else
       session[:return_to_url] = request.url if Config.save_return_to_url && request.get?
-      redirect_to login_path, notice: "To checkout as a guest, click here"
+      redirect_to login_path, notice: "Please log in to your account. "
       return
     end
   end

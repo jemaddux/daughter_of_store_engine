@@ -65,5 +65,5 @@
     %h3 Billing Address:
     = render 'addresses/billing_form' 
 .large-2.columns.left
-  =form_tag charges_path
-  %script.stripe-button{"data-amount" => @order.total*100, "data-description" => "#{current_store.name}", "data-key" => Rails.configuration.stripe[:publishable_key], :src => "https://checkout.stripe.com/v2/checkout.js"}
+  = form_tag charges_path do 
+    %script.stripe-button{"data-amount" => @order.total*100, "data-description" => "#{current_store.name}", "data-key" => Rails.configuration.stripe[:publishable_key], :src => "https://checkout.stripe.com/v2/checkout.js"}
