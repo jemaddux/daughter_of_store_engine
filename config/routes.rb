@@ -9,13 +9,12 @@ StoreEngine::Application.routes.draw do
 
 
   match 'admin'  => 'admin/products#index'
-
   namespace :admin do
+    resources :stores, only: [:show, :destroy, :update, :index]
     resources :categories
     resources :products
     resources :orders
     resources :customers, only: [:index, :show, :destroy]
-    resources :stores, only: [:show, :destroy, :update, :index]
   end
 
   namespace :store_admin do
@@ -34,6 +33,7 @@ StoreEngine::Application.routes.draw do
   match '/code'   => redirect('https://github.com/blairand/sonofstore_engine')
 
   scope '/:store_path' do
+    
     match '/' => 'stores#show', as: 'home'
     get '/orders/:url_token' => 'orders#unique_order_confirmation', as: 'url_token'
     resource :carts

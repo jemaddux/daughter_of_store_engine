@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_store
-    Store.find_by_path(params[:store_path])
+    @current_store ||= Store.find_by_path(params[:store_path])
   end
 
   helper_method :current_store
