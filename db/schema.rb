@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130414175750) do
+ActiveRecord::Schema.define(:version => 20130414211356) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "status"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(:version => 20130414175750) do
     t.boolean  "admin"
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "display_name"
   end
 
   create_table "order_products", :force => true do |t|
