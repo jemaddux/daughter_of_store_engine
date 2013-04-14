@@ -26,7 +26,7 @@
         %p= @product.description
         %hr/  
         .row
-          = form_tag(cart_path, method: :put) do
+          = form_tag(carts_path, method: :put) do
             = hidden_field_tag 'product', @product.id
             - if @product.active == false
               %h4 None in Stock
