@@ -51,10 +51,14 @@ class StoresController < ApplicationController
   end
 
   def change_status
-    @store = Store.find(params[:id])
-
-    @store.update_attribute(:status, params[:status])
+    store = Store.find(params[:id])
+    
+    store.update_attribute(:status, params[:status])
+    
+    store.status_email
 
     redirect_to admin_stores_path, notice: 'Store updated successfully.'
   end
+
+
 end

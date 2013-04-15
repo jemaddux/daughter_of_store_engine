@@ -104,6 +104,7 @@
   = javascript_include_tag "application", "vendor/custom.modernizr", "http://code.jquery.com/jquery-1.9.1.min.js"
 
   :javascript
+    $(function () {$.scrollUp();});
     $(document).ready(function(){
       $('[id^="product-wrapper"]').hover(function(){
         var className = $(this).children('[class^="cart-hidden"]').attr('class');

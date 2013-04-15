@@ -16,4 +16,12 @@ class Store < ActiveRecord::Base
   def to_param
     path
   end
+
+  def status_email
+    admins.each do |admin|
+      Mailer.store_status(admin, status).deliver
+    end
+  end
+
+
 end
