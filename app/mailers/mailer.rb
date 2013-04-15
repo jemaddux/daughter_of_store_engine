@@ -18,4 +18,9 @@ class Mailer < ActionMailer::Base
       subject: "Order Confirmation", 
       from: "customerservice@#{current_store.path}.com")
   end
+
+  def new_store_confirmation(user)
+    @customer = user
+    mail(to: @customer.email, subject:"Store Activated")
+  end
 end

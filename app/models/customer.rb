@@ -16,4 +16,12 @@ class Customer < ActiveRecord::Base
 
   has_many :addresses
 
+  def store_admin?
+    current_store.admins.include?(current_user)
+  end
+
+  def store_stocker?
+    current_store.stockers.include?(current_user)    
+  end
+
 end

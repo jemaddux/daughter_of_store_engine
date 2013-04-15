@@ -9,14 +9,19 @@ StoreEngine::Application.routes.draw do
   resources :shipping_addresses, except: [:index]
 
 
-  match 'admin'  => 'admin/products#index'
   namespace :admin do
     resources :stores, only: [:show, :destroy, :update, :index]
-    resources :categories
-    resources :products
-    resources :orders
     resources :customers, only: [:index, :show, :destroy]
   end
+
+
+  # namespace :admin do
+  #   resources :stores, only: [:show, :destroy, :update, :index]
+  #   resources :categories
+  #   resources :products
+  #   resources :orders
+  #   resources :customers, only: [:index, :show, :destroy]
+  # end
 
   namespace :store_admin do
     resources :stores, only: [:index, :edit, :update, :destroy, :show]

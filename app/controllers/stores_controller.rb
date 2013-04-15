@@ -26,6 +26,7 @@ class StoresController < ApplicationController
     @store = Store.new(params[:store])
 
     if @store.save
+      StoreAdmin.create(customer_id: current_user.id, store_id: @store.id)
       redirect_to store_admin_store_path(@store.id), notice: 'Thank you. Your store is currently pending acceptance'
     else
       render action: 'new'
@@ -53,6 +54,7 @@ class StoresController < ApplicationController
     @store = Store.find(params[:id])
 
     @store.update_attribute(:status, params[:status])
+
     redirect_to admin_stores_path, notice: 'Store updated successfully.'
   end
 end
