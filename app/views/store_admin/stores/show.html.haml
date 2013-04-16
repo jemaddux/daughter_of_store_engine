@@ -3,7 +3,27 @@
 %h6= "Path: #{@store.path}"
 %h6= "Status: #{@store.status}"
 
-
-= link_to 'Edit', store_admin_edit_store_path(@store.path)
+= link_to 'Edit Store Details', store_admin_edit_store_path(@store.path)
 \|
-= link_to 'Back', home_path(@store.path)
+= link_to 'Back to Store', home_path(@store.path)
+
+%hr/
+
+%h4 Current Store Admins
+- @store.admins.each do |admin|
+  =admin.email
+  =link_to "remove admin", "#"
+= form_tag add_store_admin_path(@store), method: :put, class: "navbar-form" do
+  %input.large-3.columns{:placeholder => "Email", name:"email", :type => "email"}/
+  = submit_tag "Add New Admin", class: "button"
+
+
+%hr/
+
+%h4 Current Store Stockers
+- @store.stockers.each do |stocker|
+  =stocker.email
+  =link_to "remove stocker", "#"
+= form_tag customer_sessions_path(@customer), method: :post, class: "navbar-form" do
+  %input.large-3.columns{:placeholder => "Email", name:"email", :type => "email"}/
+  = submit_tag "Add New Stocker", class: "button"
