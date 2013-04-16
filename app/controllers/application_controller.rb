@@ -22,6 +22,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_store_admin
+    admin_ids = Store.find(current_store.id).store_admins.collect { |s| s.id }
+    if !current_user || !admin_ids.include?(current_user.id)
+      redirect_to home_path(params[:store_path]), :notice => "Only store administrators may access this page"
+    else
+      true
+    end
+  end
+
   def request_login
     if logged_in?
       true

@@ -1,0 +1,17 @@
+%h1= "Products Listing for #{@store.name}"
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @products.each do |product|
+    %tr
+      %td= link_to 'Show', store_admin_store
+      %td= link_to 'Edit', edit_store_admin_store_path(store_admin_store)
+      %td= link_to 'Destroy', store_admin_store, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Store', new_store_admin_store_path

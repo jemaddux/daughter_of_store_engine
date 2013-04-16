@@ -1,8 +1,9 @@
-class Admin::ProductsController < ApplicationController
+class StoreAdmin::ProductsController < ApplicationController
   layout 'admin/application'
-  before_filter :require_admin
+  before_filter :require_store_admin
 
   def index
+    @store = Store.find(current_store.id)
     @products = Product.all
   end
 

@@ -37,7 +37,7 @@ class StoresController < ApplicationController
 
     if @store.save
       StoreAdmin.create(customer_id: current_user.id, store_id: @store.id)
-      redirect_to store_admin_store_path(@store.id), notice: 'Thank you. Your store is currently pending acceptance'
+      redirect_to admin_path(@store.path), notice: 'Thank you. Your store is currently pending acceptance'
     else
       render action: 'new'
     end

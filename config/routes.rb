@@ -28,23 +28,17 @@ StoreEngine::Application.routes.draw do
   match '/code'   => redirect('https://github.com/blairand/sonofstore_engine')
 
   scope '/:store_path' do
-    get '/admin' => 'store_admin/stores#show'
-    get '/admin/store/edit' => 'store_admin/stores#edit'
-    put '/admin/store/edit' => 'store_admin/stores#update'
+    get '/admin' => 'store_admin/stores#show', as: 'store_admin'
+    get '/admin/store/edit' => 'store_admin/stores#edit', as: 'store_admin_edit_store'
+    put '/admin/store/edit' => 'store_admin/stores#update', as: 'store_admin_edit_store'
 
-    get '/admin/store/products' => 'admin/products#index'
-    get '/admin/store/products/cate' => 'admin/products#index'
-
-
-
-
-    namespace :admin do
-      #resources :stores, only: [:edit, :update, :destroy, :show]
-      #   resources :categories
-      #   resources :products
-      #   resources :orders
-      #   resources :customers, only: [:index, :show, :destroy]
-    end
+    get '/admin/store/products' => 'store_admin/products#index', as: 'store_admin_products'
+    get '/admin/store/products/:id' => 'store_admin/products#show', as: 'store_admin_product'
+    get '/admin/store/products/new' => 'store_admin/products#new', as: 'store_admin_new_product'
+    post '/admin/store/products/new' => 'store_admin/products#create', as: 'store_admin_new_product'
+    get '/admin/store/products/:id/edit' => 'store_admin/products#edit', as: 'store_admin_edit_product'
+    put '/admin/store/products/:id/edit' => 'store_admin/products#update', as: 'store_admin_edit_product'
+    delete '/admin/store/products/:id' => 'store_admin/products#destroy', as: 'store_admin_delete_product'
 
     match '/' => 'stores#show', as: 'home'
     get '/orders/:url_token' => 'orders#unique_order_confirmation', as: 'url_token'
