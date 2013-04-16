@@ -1,7 +1,5 @@
-%h1 Editing store_admin_store
+%h1= "Edit Store Information: #{@store.name}"
 
 = render 'form'
 
-= link_to 'Show', @store_admin_store
-\|
-= link_to 'Back', store_admin_stores_path
+= link_to 'Cancel', admin_path(@store.path), class: 'button small'

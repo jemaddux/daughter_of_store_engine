@@ -1,10 +1,15 @@
-= form_for @store_admin_store do |f|
-  - if @store_admin_store.errors.any?
+= form_for @store do |f|
+  - if @store.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@store_admin_store.errors.count, "error")} prohibited this store_admin_store from being saved:"
+      %h2= "#{pluralize(@store.errors.count, "error")} prohibited this store_admin_store from being saved:"
       %ul
-        - @store_admin_store.errors.full_messages.each do |msg|
+        - @store.errors.full_messages.each do |msg|
           %li= msg
-
+  .field
+    = f.label 'Store Name:'
+    = f.text_field :name
+  .field
+    = f.label 'Store URL Id:'
+    = f.text_field :path
   .actions
-    = f.submit 'Save'
+    = f.submit 'Update', confirm: "Are you sure you want to make these changes? Changing your store's name or URL Id may result in broken links or customer confusion."
