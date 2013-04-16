@@ -55,7 +55,7 @@ class StoresController < ApplicationController
     
     store.update_attribute(:status, params[:status])
     
-    store.status_email
+    Resque.enqueue(SendStatusEmail, store.id)
 
     redirect_to admin_stores_path, notice: 'Store updated successfully.'
   end

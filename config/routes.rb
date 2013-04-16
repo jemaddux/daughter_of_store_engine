@@ -1,5 +1,7 @@
-StoreEngine::Application.routes.draw do
+require 'resque/server'
 
+StoreEngine::Application.routes.draw do
+  mount Resque::Server.new, at: "/resque"
   resource :customers,          except: [:index]
   resources :addresses
   resources :shipping_addresses

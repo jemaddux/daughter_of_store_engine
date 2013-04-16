@@ -14,9 +14,13 @@ class Order < ActiveRecord::Base
   belongs_to  :customer
   has_many :order_products
 
-  # This doesn't work yet, but i think its close. Currently the associations are one way, a customer can find addresses, but we can't find an address from the billing or shipping ID.
-  # has_one :address, :foreign_key => :billing_id
-  # has_one :shipping_address, :foreign_key => :shipping_id
+
+  def include_addresses(user)
+    self.shipping_id = user.shipping_address.id 
+    self.billing_id = user.addresses.first.id
+    self.save
+  end
+
 
   def products
     order_products.map do |order_product|
@@ -47,7 +51,6 @@ class Order < ActiveRecord::Base
   def calculate_total
     self.total = self.order_products.map(&:subtotal).reduce(:+)
   end
-  
 
   protected
 
@@ -57,7 +60,4 @@ class Order < ActiveRecord::Base
       break random_token unless Order.unscoped.where(url_token: random_token).exists?
     end
   end
-
-
-
 end

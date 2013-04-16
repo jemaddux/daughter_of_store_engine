@@ -8,15 +8,15 @@ class Mailer < ActionMailer::Base
     mail(to: @customer.email, subject: "New Account Confirmation")
   end
 
-  def order_confirmation(current_store, user, input_order)
+  def order_confirmation(store, user, order)
     @customer = user
-    @order    = input_order
-    @store    = current_store
+    @order    = order
+    @store    = store
     @products = @order.products
     mail(
       to: @customer.email, 
       subject: "Order Confirmation", 
-      from: "customerservice@#{current_store.path}.com")
+      from: "customerservice@#{store.path}.com")
   end
 
   def store_status(user, status)

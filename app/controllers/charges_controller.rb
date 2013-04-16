@@ -56,31 +56,25 @@ class ChargesController < ApplicationController
   def create
     session[:return_to_url] = nil
     order = Order.unscoped.find(session[:order_id])
-    order.shipping_id = current_user.shipping_address.id 
-    order.billing_id = current_user.addresses.first.id
-    order.save
+    order.include_addresses(current_user)
 
-    customer = Stripe::Customer.create(
-      email: current_user.email,
-      card:  params[:stripeToken]
-      )
-
-    charge = Stripe::Charge.create(
-      customer:    customer.id,
-      amount:      (order.total*100).to_i,
-      description: 'Rails Stripe customer',
-      currency:    'usd'
+    Resque.enqueue(
+      ProcessStripeCharge,
+      current_user.email,
+      params[:stripeToken],
+      (order.total*100)
       )
 
     order.update_attributes(status: "processed")
 
-    Mailer.order_confirmation(current_store, current_user, order).deliver
+    Resque.enqueue(
+      OrderConfirmationEmail, 
+      current_store.id, 
+      current_user.id, 
+      order.id)
 
     current_user.cart.destroy
     redirect_to url_token_path(current_store, order.url_token)
-
-  rescue Stripe::CardError => e
-    flash[:error] = e.message
-    redirect_to charges_path
+ 
   end
 end

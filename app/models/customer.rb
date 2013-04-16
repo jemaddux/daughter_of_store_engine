@@ -1,5 +1,7 @@
 class Customer < ActiveRecord::Base
   authenticates_with_sorcery!
+
+  after_create :welcome_email
   
   validates_confirmation_of :password,
                             message: "Password should match confirmation.",
@@ -22,6 +24,10 @@ class Customer < ActiveRecord::Base
 
   def store_stocker?
     current_store.stockers.include?(current_user)    
+  end
+
+  def welcome_email
+    Resque.enqueue(SendWelcomeEmail, self.id)
   end
 
 end
