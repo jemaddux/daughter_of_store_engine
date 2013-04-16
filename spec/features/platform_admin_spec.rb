@@ -9,10 +9,9 @@ describe 'Platform Admin:' do
   context 'when the current user is a platform admin' do
     it 'they can view an index of all current stores with their details' do
       visit '/'
-      click_link 'Login / Signup'
       fill_in 'username', with: 'admin'
       fill_in 'password', with: 'password'
-      click_button 'Login'
+      click_button 'Sign in'
       click_link 'Admin'
       page.should have_content 'Stores Dashboard'
       page.should have_content 'Admin Access'
@@ -24,10 +23,9 @@ describe 'Platform Admin:' do
     context 'and there is a pending store' do
       it 'they can approve the store' do
         visit '/'
-        click_link 'Login / Signup'
         fill_in 'username', with: 'admin'
         fill_in 'password', with: 'password'
-        click_button 'Login'
+        click_button 'Sign in'
         click_link 'Admin'
         within('tr#1') do
           page.should have_content 'Pending'
@@ -42,10 +40,9 @@ describe 'Platform Admin:' do
 
       it 'they can reject the store' do
         visit '/'
-        click_link 'Login / Signup'
         fill_in 'username', with: 'admin'
         fill_in 'password', with: 'password'
-        click_button 'Login'
+        click_button 'Sign in'
         click_link 'Admin'
         within('tr#1') do
           page.should have_content 'Pending'
@@ -62,10 +59,9 @@ describe 'Platform Admin:' do
     context 'and there is an approved store' do
       it 'they can disable the store' do
         visit '/'
-        click_link 'Login / Signup'
         fill_in 'username', with: 'admin'
         fill_in 'password', with: 'password'
-        click_button 'Login'
+        click_button 'Sign in'
         click_link 'Admin'
         within('tr#1') do
           click_button 'Approve'
@@ -84,10 +80,9 @@ describe 'Platform Admin:' do
     context 'and there is a declined store' do
       it 'they can still approve the store' do
         visit '/'
-        click_link 'Login / Signup'
         fill_in 'username', with: 'admin'
         fill_in 'password', with: 'password'
-        click_button 'Login'
+        click_button 'Sign in'
         click_link 'Admin'
         within('tr#1') do
           click_button 'Reject'
@@ -106,10 +101,9 @@ describe 'Platform Admin:' do
     context 'and there is an inactive store' do
       it 'they can enable the store' do
         visit '/'
-        click_link 'Login / Signup'
         fill_in 'username', with: 'admin'
         fill_in 'password', with: 'password'
-        click_button 'Login'
+        click_button 'Sign in'
         click_link 'Admin'
         within('tr#1') do
           click_button 'Approve'
@@ -133,10 +127,9 @@ describe 'Platform Admin:' do
   context 'when the current user is not a platform admin' do
     it 'they cannot view the platform admin page' do
       visit '/'
-      click_link 'Login / Signup'
       fill_in 'username', with: 'user'
       fill_in 'password', with: 'password'
-      click_button 'Login'
+      click_button 'Sign in'
       page.should_not have_content 'Admin'
       visit '/admin/stores'
       page.should have_content 'Only system administrators may access this page'

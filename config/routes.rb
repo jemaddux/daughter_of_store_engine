@@ -32,6 +32,12 @@ StoreEngine::Application.routes.draw do
     get '/admin/store/edit' => 'store_admin/stores#edit'
     put '/admin/store/edit' => 'store_admin/stores#update'
 
+    get '/admin/store/products' => 'admin/products#index'
+    get '/admin/store/products/cate' => 'admin/products#index'
+
+
+
+
     namespace :admin do
       #resources :stores, only: [:edit, :update, :destroy, :show]
       #   resources :categories
