@@ -1,0 +1,16 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    %p
+      Congratulations, you are now a Store Admin with
+      = @store.name
+    %p
+      You can access your Admin page at
+      = link_to "http://0.0.0.0:3000#{store_admin_path(@store)}"
+    %p
+      Thank you,
+    %p
+      = @store.name
+
