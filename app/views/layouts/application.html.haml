@@ -18,7 +18,6 @@
   -else
     %title= content_for?(:title) ? yield(:title) : "SonOfSam"
 
-
   = stylesheet_link_tag "application"
   <link href='http://fonts.googleapis.com/css?family=Questrial|Amatic+SC:700' rel='stylesheet' type='text/css'>
   = csrf_meta_tag
@@ -39,69 +38,42 @@
                 -else
                   %h1
                     = link_to "Son of Sam", root_path
-              %li.toggle-topbar.menu-icon
-                %a{:href => "#"}
-                  %span menu
             %section.top-bar-section
               / Right Nav Section
               %ul.right
-                -if current_user
-                  - if current_user.admin
-                    %li
-                      =link_to "Admin", admin_stores_path
                 -if @current_store
-                  %li
-                    =link_to "Products", products_path(@current_store)
-                -if @current_store
-                  %li.has-dropdown
-                    %a{:href => categories_path, id: "category-dropdown"} Shop By Category <i class="icon-angle-down"></i>
-                    %ul.dropdown
-                      - category_list.each do |category|
-                        %li= link_to category.name, category_path(@current_store, category)
-                    %li
-                      = link_to "<i class='icon-shopping-cart'></i> Cart".html_safe, carts_path
+                  = render partial: "layouts/products_categories"
                 - if logged_in?
                   %li.has-dropdown
-                    %a{:href => customers_path } <i class="icon-user"></i> #{current_user.username} <i class="icon-angle-down"></i>
+                    =link_to "<i class='icon-user'></i> #{current_user.username} <i class='icon-angle-down'></i>".html_safe, account_path
                     %ul.dropdown
-                      %li
-                        %a{:href => customers_path } Account
-                      %li
-                        %a{:href => "/orders"} Orders
+                      - if current_user.admin
+                        %li= link_to "Admin", admin_stores_path
+                      %li= link_to "Account", account_path
+                      %li= link_to "Orders", orders_path
                       %li.divider
-                      %li
-                        %a{:href => logout_path } Logout
-                - elsif current_store
-                  %li.has-dropdown
-                    = link_to "Login / Signup <i class='icon-angle-down'></i>".html_safe, login_path(path: request.path)
-                    %ul.dropdown
-                      %li
-                        = link_to "Login", login_path(path: request.path)
-                      %li
-                        = link_to "Signup", new_customers_path(path: request.path)
-                -else
-                  %li.has-dropdown
-                    = link_to "Login / Signup <i class='icon-angle-down'></i>".html_safe, login_path
-                    %ul.dropdown
-                      %li
-                        = link_to "Login", login_path
-                      %li
-                        = link_to "Signup", new_customers_path
-          / End Top Bar
-      / End Navigation
+                      %li= link_to "Logout", logout_path
+                - else
+                  -if @current_store
+                    %li.has-dropdown
+                      = link_to "Login / Signup <i class='icon-angle-down'></i>".html_safe, login_path(path: request.path)
+                      %ul.dropdown
+                        %li= link_to "Login", login_path(path: request.path)
+                        %li= link_to "Signup", new_customers_path(path: request.path)
+                  -else
+                    %li.has-dropdown
+                      = link_to "Login / Signup <i class='icon-angle-down'></i>".html_safe, login_path
+                      %ul.dropdown
+                        %li= link_to "Login", login_path
+                        %li= link_to "Signup", new_customers_path
+              / End Top Bar
+          / End Navigation
   = render partial: "layouts/messages"
 
   = yield
 
-  %footer.row
-    .large-12.columns
-      %hr/
-      .row
-        .large-6.columns
-          %p
-            © Copyright #{ link_to 'Logan', '#' } / #{ link_to 'Jenn', 'http://twitter.com/7maples' } / #{ link_to 'Chris', 'http://twitter.com/nomadic_knight' } / #{ link_to 'Blair', 'http://twitter.com/blairanderson' }
-
-  = javascript_include_tag "application", "vendor/custom.modernizr", "http://code.jquery.com/jquery-1.9.1.min.js"
+  = render partial: "layouts/footer"
+  
 
   :javascript
     $(document).ready(function(){

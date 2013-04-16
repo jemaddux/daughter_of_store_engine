@@ -1,0 +1,8 @@
+%li= link_to "Products", products_path(@current_store)
+%li.has-dropdown
+  = link_to "Shop By Category <i class='icon-angle-down'></i>".html_safe, categories_path,id:"category-dropdown"
+  %ul.dropdown
+    - category_list.each do |category|
+      %li= link_to category.name, category_path(@current_store, category)
+  %li
+    = link_to "<i class='icon-shopping-cart'></i> Cart".html_safe, carts_path

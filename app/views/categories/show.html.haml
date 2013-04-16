@@ -17,3 +17,4 @@
             .panel
               %h5= link_to product.name, product_path(current_store, product)
               %h6.subheader= number_to_currency(product.price)
+= javascript_include_tag "application", "vendor/custom.modernizr", "http://code.jquery.com/jquery-1.9.1.min.js"
