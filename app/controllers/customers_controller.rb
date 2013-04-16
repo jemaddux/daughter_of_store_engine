@@ -32,10 +32,9 @@ class CustomersController < ApplicationController
   end
 
   def update
-    @customer = Customer.find(params[:id])
-
+    @customer = Customer.find(current_user.id)
     if @customer.update_attributes(params[:customer])
-      redirect_to @customer, notice: 'Customer was successfully updated.'
+      redirect_to customers_path, notice: 'Customer was successfully updated.'
     else
       render action: 'edit'
     end
