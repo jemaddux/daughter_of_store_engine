@@ -1,5 +1,6 @@
 StoreEngine::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
+  ENV["REDISTOGO_URL"] = 'redis://redistogo:a32b86dc8c1e5cdad7e87101fd9ee5de@squawfish.redistogo.com:9313/'
 
   config.paperclip_defaults = {
     :storage => :s3,
@@ -45,4 +46,6 @@ StoreEngine::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+
 end
