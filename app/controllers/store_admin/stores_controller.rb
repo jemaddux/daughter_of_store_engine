@@ -1,5 +1,6 @@
 class StoreAdmin::StoresController < ApplicationController
   skip_filter :scope_current_store
+  before_filter :require_store_admin
 
   #def index
   #  @store = Store.all
@@ -19,16 +20,16 @@ class StoreAdmin::StoresController < ApplicationController
     @store = Store.find_by_path(params[:store_path])
 
     if @store.update_attributes(params[:store])
-      redirect_to @store, notice: 'Store was successfully updated.'
+      redirect_to store_admin_path(params[:store_path]), notice: 'Store was successfully updated.'
     else
       render action: 'edit'
     end
   end
 
-  #def destroy
-  #  @store = Store.find_by_path(params[:store_path])
-  #  @store.destroy
-  #
-  #  redirect_to store_admin_stores_url
-  #end
+  def destroy
+    @store = Store.find_by_path(params[:store_path])
+    @store.destroy
+
+    redirect_to store_admin_stores_url
+  end
 end

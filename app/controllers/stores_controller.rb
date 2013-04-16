@@ -28,10 +28,6 @@ class StoresController < ApplicationController
     @store = Store.new
   end
 
-  def edit
-    @store = current_store
-  end
-
   def create
     @store = Store.new(params[:store])
 
@@ -43,23 +39,6 @@ class StoresController < ApplicationController
     end
   end
 
-  def update
-    @store = Store.find_by_path(params[:id])
-
-    if @store.update_attributes(params[:store])
-      redirect_to admin_path(@store.path), notice: 'Store was successfully updated.'
-    else
-      render action: 'edit'
-    end
-  end
-
-  def destroy
-    @store = Store.find(params[:id])
-    @store.destroy
-
-    redirect_to stores_url
-  end
-
   def change_status
     store = Store.find(params[:id])
     
@@ -69,6 +48,5 @@ class StoresController < ApplicationController
 
     redirect_to admin_stores_path, notice: 'Store updated successfully.'
   end
-
 
 end
