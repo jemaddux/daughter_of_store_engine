@@ -22,7 +22,7 @@ class Mailer < ActionMailer::Base
   def store_status(user, status)
     @customer = user
     @status = status
-    mail(to: @customer.email, subject:"Store Activated")
+    mail(to: @customer.email, subject:"Store #{@status}")
   end
 
 end
