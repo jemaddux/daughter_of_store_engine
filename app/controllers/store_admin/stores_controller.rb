@@ -10,7 +10,6 @@ class StoreAdmin::StoresController < ApplicationController
     @store = Store.find_by_path(params[:store_path])
   end
 
-
   def edit
     @store = Store.find_by_path(params[:store_path])
   end
