@@ -43,7 +43,7 @@ StoreEngine::Application.routes.draw do
 
     get '/stock/products' => 'store_stocker/products#index', as: 'store_stocker_products'
     get '/stock/products/new' => 'store_stocker/products#new', as: 'store_stocker_new_product'
-    post '/stock/products/create' => 'store_stocker/products#create', as: 'store_stocker_new_product'
+    post '/stock/products/new' => 'store_stocker/products#create', as: 'store_stocker_new_product'
     get '/stock/products/:id' => 'store_stocker/products#show', as: 'store_stocker_product'
     get '/stock/products/:id/edit' => 'store_stocker/products#edit', as: 'store_stocker_edit_product'
     put '/stock/products/:id/edit' => 'store_stocker/products#update', as: 'store_stocker_edit_product'
