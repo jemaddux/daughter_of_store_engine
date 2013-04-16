@@ -1,17 +1,10 @@
-%h1= "Products Listing for #{@store.name}"
+%h1= "#{@store.name} Product Listing:"
 
-%table
-  %tr
-    %th
-    %th
-    %th
-
-  - @products.each do |product|
-    %tr
-      %td= link_to 'Show', store_admin_store
-      %td= link_to 'Edit', edit_store_admin_store_path(store_admin_store)
-      %td= link_to 'Destroy', store_admin_store, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Store', new_store_admin_store_path
+.large-12.columns
+  .row
+    .large-12.columns
+      = link_to "New Product", store_admin_new_product_path(@store.path), action: :new, class: "button right"
+      %h1.admin-heading Products
+.row
+  .large-12.columns
+    = render @products

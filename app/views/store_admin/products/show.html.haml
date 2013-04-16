@@ -1,0 +1,38 @@
+- if notice
+  .large-12.columns
+    %p#notice= notice
+
+
+.row.content
+  .large-12.columns
+    %ul.button-group
+      %li
+    .row
+      .large-12.columns
+        %ul.breadcrumbs
+          %li
+            = link_to "Home", home_path
+          - @product.categories.each do |category|
+            %li
+              = link_to category.name, categories_path(current_store,category)
+          %li.current
+            %a{:href => "#"}
+              = @product.name
+    .row
+      .large-6.columns
+        =image_tag "http://placekitten.com/500/500", class: "product-feature"
+      .large-6.columns
+        %h3.show-for-small Header
+        %h2.hide-for-small.left= @product.name
+        %h2.hide-for-small.right= "#{number_to_currency(@product.price)}"
+        %hr/
+        %h5.subheader= @products
+        %h4 Description
+        %p= @product.description
+        %hr/
+        .row
+
+
+= link_to 'Edit', store_admin_edit_product_path(@store.path, @product.id)
+\|
+= link_to 'Back', store_admin_products_path(@store.path)
