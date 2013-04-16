@@ -9,7 +9,6 @@ StoreEngine::Application.routes.draw do
   resources :customer_sessions,  only:   [:new, :create, :destroy]
   resources :cart_products,      only:   [:destroy]
   resources :shipping_addresses, except: [:index]
-  resources :products,           only:   [:show, :index], controller: 'products'
 
   namespace :admin do
     resources :stores, only: [:show, :destroy, :update, :index]
@@ -54,6 +53,7 @@ StoreEngine::Application.routes.draw do
     resource :carts
     resources :categories,         only:   [:show, :index]
     resources :charges,            only:   [:new, :create]
+    resources :products,           only:   [:show, :index]
     get '/checkout_options' => 'charges#checkout_options'
     post '/create_guest' => 'charges#create_guest'
 
