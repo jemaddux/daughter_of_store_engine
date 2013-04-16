@@ -1,0 +1,296 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %title Carousel Template · Bootstrap
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %meta{:content => "", :name => "description"}/
+    %meta{:content => "", :name => "author"}/
+    %link{:href => "//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css", :rel => "stylesheet"}/
+    %script{:src => "//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"}
+    :css
+      /* GLOBAL STYLES
+      -------------------------------------------------- */
+      /* Padding below the footer and lighter body text */
+
+      body {
+        padding-bottom: 40px;
+        color: #5a5a5a;
+      }
+
+
+      /* CUSTOMIZE THE CAROUSEL
+      -------------------------------------------------- */
+
+      /* Carousel base class */
+      .carousel {
+        margin-bottom: 60px;
+      }
+
+      .carousel .container {
+        position: relative;
+        z-index: 9;
+      }
+
+      .carousel-control {
+        height: 80px;
+        margin-top: 0;
+        font-size: 120px;
+        text-shadow: 0 1px 1px rgba(0,0,0,.4);
+        background-color: transparent;
+        border: 0;
+        z-index: 10;
+      }
+
+      .carousel .item {
+        height: 500px;
+      }
+      .carousel img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        min-width: 100%;
+        height: 500px;
+      }
+
+      .carousel-caption {
+        background-color: transparent;
+        position: static;
+        max-width: 1200px;
+        padding: 0 20px;
+        margin-top: 200px;
+      }
+      .carousel-caption h1,
+      .carousel-caption .lead {
+        margin: 0;
+        line-height: 1.25;
+        color: #fff;
+        text-shadow: 0 1px 1px rgba(0,0,0,.4);
+      }
+      .carousel-caption .btn {
+        margin-top: 10px;
+      }
+
+
+
+      /* MARKETING CONTENT
+      -------------------------------------------------- */
+
+      /* Center align the text within the three columns below the carousel */
+      .marketing .span4 {
+        text-align: center;
+      }
+      .marketing h2 {
+        font-weight: normal;
+      }
+      .marketing .span4 p {
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+
+
+      /* Featurettes
+      ------------------------- */
+
+      .featurette-divider {
+        margin: 80px 0; /* Space out the Bootstrap <hr> more */
+      }
+      .featurette {
+        padding-top: 120px; /* Vertically center images part 1: add padding above and below text. */
+        overflow: hidden; /* Vertically center images part 2: clear their floats. */
+      }
+      .featurette-image {
+        margin-top: -120px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
+      }
+
+      /* Give some space on the sides of the floated elements so text doesn't run right into it. */
+      .featurette-image.pull-left {
+        margin-right: 40px;
+      }
+      .featurette-image.pull-right {
+        margin-left: 40px;
+      }
+
+      /* Thin out the marketing headings */
+      .featurette-heading {
+        font-size: 50px;
+        font-weight: 300;
+        line-height: 1;
+        letter-spacing: -1px;
+      }
+
+
+
+      /* RESPONSIVE CSS
+      -------------------------------------------------- */
+
+      @media (max-width: 979px) {
+
+        .container.navbar-wrapper {
+          margin-bottom: 0;
+          width: auto;
+        }
+        .navbar-inner {
+          border-radius: 0;
+          margin: -20px 0;
+        }
+
+        .carousel .item {
+          height: 500px;
+        }
+        .carousel img {
+          width: auto;
+          height: 500px;
+        }
+
+        .featurette {
+          height: auto;
+          padding: 0;
+        }
+        .featurette-image.pull-left,
+        .featurette-image.pull-right {
+          display: block;
+          float: none;
+          max-width: 40%;
+          margin: 0 auto 20px;
+        }
+      }
+
+      .carousel h1{
+        font-size: 80px; 
+      }
+      p.lead#subheader{
+        font-size: 80px; 
+      }
+      #new-customer-link {
+        font-size: 30px;
+        margin-top:-30px;
+        margin-bottom:30px;
+      }
+
+      @media (max-width: 767px) {
+
+        .navbar-inner {
+          margin: -20px;
+        }
+
+        .carousel {
+          margin-left: -20px;
+          margin-right: -20px;
+        }
+        .carousel .container {
+
+        }
+        .carousel .item {
+          height: 300px;
+        }
+        .carousel img {
+          height: 300px;
+        }
+        .carousel-caption {
+          width: 100%;
+          padding: 0 70px;
+          margin-top: 100px;
+        }
+
+        .carousel-caption .lead,
+        .carousel-caption .btn {
+          font-size: 30px;
+        }
+
+        .marketing .span4 + .span4 {
+          margin-top: 40px;
+        }
+
+        .featurette-heading {
+          font-size: 30px;
+        }
+        .featurette .lead {
+          font-size: 18px;
+          line-height: 1.5;
+        }
+
+      }
+        %body
+    /
+      Carousel
+      \==================================================
+    #myCarousel.carousel.slide
+      .carousel-inner
+        .item.active
+          %img{:alt => "", :src => "https://s3.amazonaws.com/sonofstoreengine/homeheroimage.png"}/
+          .container
+            .carousel-caption
+              %h1 You Have Customers.
+              %p.lead#subheader We Make Stores.
+              = form_tag customer_sessions_path(@customer), method: :post, class: "navbar-form pull-right" do
+                %input.span2{:placeholder => "Username", name:"username", :type => "text"}/
+
+                %input.span2{:placeholder => "Password", name:"password", :type => "password"}/
+                = submit_tag "Sign in", class: "btn"
+
+
+    / Wrap the rest of the page in another container to center all the content.
+    .container.marketing
+      .row
+        .well.pull-right#new-customer-link
+          = link_to 'New customer? Create a New Account Here.', new_customers_path, id:"new-customer-link"
+
+      / Three columns of text below the carousel
+      .row
+        .span4
+          %img.img-rounded{:src => "https://s3.amazonaws.com/sonofstoreengine/stripe.png"}/
+          %h2 Credit Card Processing.
+          %p We want you to have your money fast, we integrated with stripe so that you don't have to. We get the money one-week after a customer pays, then we send it to you next day.
+          %p
+            = link_to 'Get Started.', new_customers_path, id:"new-customer-link"
+        / /.span4
+        .span4
+          %img.img-rounded{:src => "https://s3.amazonaws.com/sonofstoreengine/sendgrid.png"}/
+          %h2 Free Emails.
+          %p For beta customers, we're offering free emails through SendGrid. Each time a customer purchases through your store, they get an email notification and their name is added to your sales dashboard. 
+          %p
+            = link_to 'Try us Out.', new_customers_path, id:"new-customer-link"
+        / /.span4
+        .span4
+          %img.img-rounded{:src => "https://s3.amazonaws.com/sonofstoreengine/chart.jpg"}/
+          %h2 Sales Dashboard.
+          %p The sales dashboard is the home-base for store administrators. If you choose to add other people to your store, they'll also be able to access the sales dashboard.
+          %p
+            = link_to 'Sign Up Today', new_customers_path, id:"new-customer-link"
+        / /.span4
+      / /.row
+      / START THE FEATURETTES
+      %hr.featurette-divider/
+      .featurette
+        %img.featurette-image.pull-right{:src => "../assets/img/examples/browser-icon-chrome.png"}/
+        %h2.featurette-heading
+          First featurette headling.
+          %span.muted It'll blow your mind.
+        %p.lead Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+      %hr.featurette-divider/
+      .featurette
+        %img.featurette-image.pull-left{:src => "../assets/img/examples/browser-icon-firefox.png"}/
+        %h2.featurette-heading
+          Oh yeah, it's that good.
+          %span.muted See for yourself.
+        %p.lead Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+      %hr.featurette-divider/
+      .featurette
+        %img.featurette-image.pull-right{:src => "../assets/img/examples/browser-icon-safari.png"}/
+        %h2.featurette-heading
+          And lastly, this one.
+          %span.muted Checkmate.
+        %p.lead Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+      %hr.featurette-divider/
+      / /END THE FEATURETTES
+      / FOOTER
+      %footer
+        %p.pull-right
+          %a{:href => "#"} Back to top
+        %p
+          \© 2013 Company, Inc. ·
+          %a{:href => "#"} Privacy
+          \·
+          %a{:href => "#"} Terms
+

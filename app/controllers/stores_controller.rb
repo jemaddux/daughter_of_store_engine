@@ -3,6 +3,11 @@ class StoresController < ApplicationController
   before_filter :require_login, only: [:new]
 
   def landing
+    if logged_in?
+      redirect_to stores_path
+    else
+      render :layout => "landing"
+    end
   end
 
   def index
@@ -10,8 +15,13 @@ class StoresController < ApplicationController
   end
   
   def show
-    @store ||= current_store
-    session[:shopping_cart][@store.id] ||= Hash.new(0)
+    store ||= current_store
+    if store.status == "pending"
+      render :inline => "This store is pending"
+    else
+      @store = store
+      session[:shopping_cart][@store.id] ||= Hash.new(0)
+    end
   end
 
   def new
