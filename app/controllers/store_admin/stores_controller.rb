@@ -25,10 +25,10 @@ class StoreAdmin::StoresController < ApplicationController
     end
   end
 
-  def destroy
-    @store = Store.find_by_path(params[:store_path])
-    @store.destroy
-
-    redirect_to store_admin_stores_url
-  end
+  #def destroy
+  #  @store = Store.find_by_path(params[:store_path])
+  #  @store.destroy
+  #
+  #  redirect_to store_admin_stores_url
+  #end
 end

@@ -27,9 +27,11 @@ StoreEngine::Application.routes.draw do
 
   scope '/:store_path' do
     get '/admin' => 'store_admin/stores#show'
+    get '/admin/store/edit' => 'store_admin/stores#edit'
+    put '/admin/store/edit' => 'store_admin/stores#update'
 
     namespace :admin do
-      resources :stores, only: [:edit, :update, :destroy, :show]
+      #resources :stores, only: [:edit, :update, :destroy, :show]
       #   resources :categories
       #   resources :products
       #   resources :orders

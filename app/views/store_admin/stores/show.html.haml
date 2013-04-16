@@ -4,6 +4,6 @@
 %h6= "Status: #{@store.status}"
 
 
-= link_to 'Edit', edit_admin_store_path(@store.path, @store.id)
--#\|
--#= link_to 'Back', admin_path(@store.path)
+= link_to 'Edit', admin_store_edit_path(@store.path)
+\|
+= link_to 'Back', home_path(@store.path)
