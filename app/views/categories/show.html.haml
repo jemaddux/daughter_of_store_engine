@@ -1,20 +1,22 @@
-.row
-  %h1.section-heading= @category.name.to_s
-.row
-  .large-12.columns
-    .row
-      - @products.each_with_index do |product, index|
-        - if product.active
-          .large-4.small-6.columns.left{id: "product-wrapper-#{index}"}
-            %div{class: "cart-hidden-#{index}"}
-              %p.product-stock.left= "#{product.quantity} in stock"
-              = form_tag(carts_path(current_store), method: :put) do
-                = hidden_field_tag 'product', product.id
-                = hidden_field_tag 'quantity', 1
-                = hidden_field_tag 'store_id', current_store.id
-                = submit_tag 'Add to Cart', class: 'button right'
-            =link_to image_tag(product.photo_url), product_path(current_store, product), class: "product-image-#{index}"
-            .panel
-              %h5= link_to product.name, product_path(current_store, product)
-              %h6.subheader= number_to_currency(product.price)
-= javascript_include_tag "application", "vendor/custom.modernizr", "http://code.jquery.com/jquery-1.9.1.min.js"
+- cache("#{current_store.path}_category_view_#{@category.id}") do 
+  .row
+    %h1.section-heading= @category.name.to_s
+  .row
+    .large-12.columns
+      .row
+        - @products.each_with_index do |product, index|
+          - if product.active
+            .large-4.small-6.columns.left{id: "product-wrapper-#{index}"}
+              %div{class: "cart-hidden-#{index}"}
+                %p.product-stock.left= "#{product.quantity} in stock"
+                = form_tag(carts_path(current_store), method: :put) do
+                  = hidden_field_tag 'product', product.id
+                  = hidden_field_tag 'quantity', 1
+                  = hidden_field_tag 'store_id', current_store.id
+                  = submit_tag 'Add to Cart', class: 'button right'
+              =link_to image_tag(product.photo_url), product_path(current_store, product), class: "product-image-#{index}"
+              .panel
+                %h5= link_to product.name, product_path(current_store, product)
+                %h6.subheader= number_to_currency(product.price)
+
+  = javascript_include_tag "application", "vendor/custom.modernizr", "http://code.jquery.com/jquery-1.9.1.min.js"

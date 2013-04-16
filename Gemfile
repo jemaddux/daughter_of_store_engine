@@ -20,7 +20,8 @@ gem 'seed_dump'
 gem 'aws-sdk'
 gem 'asset_sync'
 gem 'faker'
-gem "resque", "~>1.24.0"
+gem "resque"
+gem "redis-store", "~> 1.0.0"
 
 group :development, :test do
   gem 'fabrication'
