@@ -29,6 +29,7 @@ StoreEngine::Application.routes.draw do
 
   scope '/:store_path' do
     put '/administer'  => 'admin/stores#administer', :as => 'administer'
+    put '/add_store_admin' => 'store_admin/stores#add_store_admin', :as => 'add_store_admin'
     get '/admin' => 'store_admin/stores#show', as: 'store_admin'
     get '/admin/store/edit' => 'store_admin/stores#edit', as: 'store_admin_edit_store'
     put '/admin/store/edit' => 'store_admin/stores#update', as: 'store_admin_edit_store'

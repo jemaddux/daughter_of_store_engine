@@ -18,12 +18,12 @@ class Customer < ActiveRecord::Base
 
   has_many :addresses
 
-  def store_admin?
-    current_store.admins.include?(current_user)
+  def store_admin?(store)
+    store.admins.include?(self)
   end
 
-  def store_stocker?
-    current_store.stockers.include?(current_user)    
+  def store_stocker?(store)
+    store.stockers.include?(self)    
   end
 
   def welcome_email
