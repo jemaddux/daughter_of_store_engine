@@ -13,6 +13,10 @@ class Store < ActiveRecord::Base
   validates_uniqueness_of :name
   validates_uniqueness_of :path
 
+  def self.include_admin(admin_id, store_id)
+    StoreAdmin.create(customer_id: admin_id, store_id: store_id)
+  end
+
   def to_param
     path
   end

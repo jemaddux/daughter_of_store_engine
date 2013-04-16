@@ -10,7 +10,6 @@ StoreEngine::Application.routes.draw do
   resources :cart_products,      only:   [:destroy]
   resources :shipping_addresses, except: [:index]
 
-
   namespace :admin do
     resources :stores, only: [:show, :destroy, :update, :index]
     resources :customers, only: [:index, :show, :destroy]
@@ -29,6 +28,7 @@ StoreEngine::Application.routes.draw do
   match '/code'   => redirect('https://github.com/blairand/sonofstore_engine')
 
   scope '/:store_path' do
+    put '/administer'  => 'admin/stores#administer', :as => 'administer'
     get '/admin' => 'store_admin/stores#show', as: 'store_admin'
     get '/admin/store/edit' => 'store_admin/stores#edit', as: 'store_admin_edit_store'
     put '/admin/store/edit' => 'store_admin/stores#update', as: 'store_admin_edit_store'
