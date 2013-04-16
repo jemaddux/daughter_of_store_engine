@@ -7,6 +7,19 @@ class Admin::StoresController < ApplicationController
     @stores = Store.unscoped.all( :order => "created_at DESC")
   end
 
+  def administer
+    platform_admin = current_user
+    store_admin = Customer.find(params[:admin_id])
+    logout
+
+    session[:platform_admin] = "true"
+    session[:platform_admin_id] = platform_admin.id
+    
+    auto_login(store_admin)
+    
+    redirect_to home_path(current_store)
+  end
+
   def show
     @store = Store.find(params[:id])
   end

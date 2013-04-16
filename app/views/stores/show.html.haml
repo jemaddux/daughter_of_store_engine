@@ -1,40 +1,37 @@
--if @store.status == 'pending'
-  %h4 Store not found
--else
-  .hero
-    %h1.tagline= @store.name
-    %hr#tagline
-    %h2.sub-tagline= @store.description
+.hero
+  %h1.tagline= @store.name
+  %hr#tagline
+  %h2.sub-tagline= @store.description
 
-  %ul.home-list
-    - category_list.each do |category|
-      %li= link_to category.name, category_path(@store, category), class: "home-link"
+%ul.home-list
+  - category_list.each do |category|
+    %li= link_to category.name, category_path(@store, category), class: "home-link"
 
 
-  = javascript_include_tag "application", "vendor/custom.modernizr", "http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js", "supersized.3.2.7.min", "supersized.shutter.min"
+= javascript_include_tag "application", "vendor/custom.modernizr", "http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js", "supersized.3.2.7.min", "supersized.shutter.min"
 
-  :javascript
-    
-    $(document).ready(function(){
-      $('#category-dropdown').click(function() {
-          return false;
-        });
-      });
-    $(function($){
-
-      $.supersized({
-
-        // Functionality
-        slide_interval          :   3500,   // Length between transitions
-        transition              :   1,      // 0-None, 1-Fade, 2-Slide Top, 3-Slide Right, 4-Slide Bottom, 5-Slide Left, 6-Carousel Right, 7-Carousel Left
-        transition_speed    : 2000,    // Speed of transition
-
-        // Components
-        slide_links       : 'blank',  // Individual links for each slide (Options: false, 'num', 'name', 'blank')
-        slides          :   [     // Slideshow Images
-                          {image : 'http://farm9.staticflickr.com/8348/8154926648_4cb361d8ce_k.jpg', title : 'Image Credit: Maria Kazvan'},
-                          {image : 'http://i.imgur.com/Fgs1WK4.jpg', title : 'Image Credit: Maria Kazvan'}
-                      ]
-
+:javascript
+  
+  $(document).ready(function(){
+    $('#category-dropdown').click(function() {
+        return false;
       });
     });
+  $(function($){
+
+    $.supersized({
+
+      // Functionality
+      slide_interval          :   3500,   // Length between transitions
+      transition              :   1,      // 0-None, 1-Fade, 2-Slide Top, 3-Slide Right, 4-Slide Bottom, 5-Slide Left, 6-Carousel Right, 7-Carousel Left
+      transition_speed    : 2000,    // Speed of transition
+
+      // Components
+      slide_links       : 'blank',  // Individual links for each slide (Options: false, 'num', 'name', 'blank')
+      slides          :   [     // Slideshow Images
+                        {image : 'http://farm9.staticflickr.com/8348/8154926648_4cb361d8ce_k.jpg', title : 'Image Credit: Maria Kazvan'},
+                        {image : 'http://i.imgur.com/Fgs1WK4.jpg', title : 'Image Credit: Maria Kazvan'}
+                    ]
+
+    });
+  });

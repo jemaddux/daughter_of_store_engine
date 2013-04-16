@@ -3,29 +3,36 @@
 %table
   %tr
     %th.left Admin Access
+    %th Administer
     %th Store URL
     %th Description
     %th Status
+    %th Action
+
 
   - @stores.each do |store|
     %tr{:id => "#{store.id}"}
       %td= link_to store.name, admin_store_path(store.id)
+      %td
+        - store.admins.each do |admin|
+          = button_to "administer as #{admin.email}", administer_path(store,admin_id: admin.id), method: :put
       %td= link_to "link to #{store.path}", home_path(store)
       %td= "#{store.description.split('')[0..31].join}..."
       %td= store.status.titleize
       - if store.status == 'pending'
         %td
           = button_to 'Approve', change_store_status_path(store.id, status: 'active'), method: :put
+
           = button_to 'Reject', change_store_status_path(store.id, status: 'declined'), method: :put
+
       - if store.status == 'active'
         %td
           = button_to 'Disable', change_store_status_path(store.id, status: 'disabled'), method: :put
+
       - if store.status == 'disabled'
         %td
           = button_to 'Enable', change_store_status_path(store.id, status: 'active'), method: :put
-      - if store.status == 'enabled'
-        %td
-          = button_to 'Disable', change_store_status_path(store.id, status: 'disabled'), method: :put
+
       - if store.status == 'declined'
         %td
           = button_to 'Approve', change_store_status_path(store.id, status: 'active'), method: :put
