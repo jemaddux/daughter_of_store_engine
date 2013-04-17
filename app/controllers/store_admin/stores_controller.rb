@@ -77,12 +77,12 @@ class StoreAdmin::StoresController < ApplicationController
       Resque.enqueue(SignUpEmail, current_user.id, params[:email])
       redirect_to :back, notice: "User does not have an account, email invitation sent."
     elsif new_stocker.store_stocker?(current_store)
-      redirect_to :back, notice: "User is already an stocker for your store"
+      redirect_to :back, notice: "User is already an stocker for your store."
     else
       Store.include_stocker(new_stocker.id, current_store.id)
-      Resque.enqueue(NewStorestockerEmail, new_stocker.id,current_store.id)
+      Resque.enqueue(NewStoreStockerEmail, new_stocker.id,current_store.id)
 
-      redirect_to :back, notice: "User assigned as an admin"
+      redirect_to :back, notice: "User assigned as a stocker."
     end
   end
 
