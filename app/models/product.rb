@@ -35,10 +35,25 @@ class Product < ActiveRecord::Base
   has_many  :orders,             through:   :order_products
 
   has_attached_file :image,
-                    styles: { medium: "454x627>", thumb: "182x304>" },
-                    default_url: "http://placekitten.com/600/600"
+                    styles: { large: "454x627>", thumb: "182x304>" },
+                    default_url: "http://placehold.it/457/627"
 
-  #scope :active, where(active: true)
+  if Rails.env.production?
+    has_attached_file :image,
+                      styles: { large: "454x627>", thumb: "182x304>" },
+                      default_url: "http://placehold.it/457/627",
+                      :storage => :s3,
+                      :bucket => 'c3po_store_engine',
+                      :path => ":attachment/:id/:style.:extension",
+                      :s3_credentials => {
+                          :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+                          :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+                      }
+  else
+    has_attached_file :image,
+                      styles: { large: "454x627>", thumb: "182x304>" },
+                      default_url: "http://placehold.it/457/627"
+  end
 
   def categories_list
     categories.join(", ")
