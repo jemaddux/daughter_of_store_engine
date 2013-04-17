@@ -16,11 +16,8 @@
     = f.label :last_name
     = f.text_field :last_name
   .field
-    = f.label :display_name
+    = f.label "display name (optional)"
     = f.text_field :display_name
-  .field
-    = f.label :username
-    = f.text_field :username
   .field
     = f.label :email
     = f.text_field :email
@@ -31,6 +28,6 @@
     = f.label :password_confirmation
     = f.password_field :password_confirmation
   .actions
-    = f.submit 'Save'
+    = f.submit 'Create Account', class: "button small"
 
 %h6= link_to 'Already a customer? Click here to login', login_path

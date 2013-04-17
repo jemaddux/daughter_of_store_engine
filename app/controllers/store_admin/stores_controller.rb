@@ -1,6 +1,6 @@
 class StoreAdmin::StoresController < ApplicationController
   skip_filter :scope_current_store
-  # before_filter :require_store_admin
+  before_filter :require_store_admin
 
   #def index
   #  @store = Store.all
