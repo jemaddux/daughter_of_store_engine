@@ -7,7 +7,7 @@
     %th Status
     %th Order Products
     %tr
-      %td= @order.customer.username
+      %td= @order.customer.display_name
       %td= "$#{@order.total.to_i}"
       %td= @order.created_at
       %td= @order.customer.email

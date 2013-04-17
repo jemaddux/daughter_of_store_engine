@@ -29,8 +29,10 @@ StoreEngine::Application.routes.draw do
 
   scope '/:store_path' do
     put '/remove_store_admin' => 'store_admin/stores#remove_store_admin', :as => 'remove_store_admin'
-    put '/administer'  => 'admin/stores#administer', :as => 'administer'
     put '/add_store_admin' => 'store_admin/stores#add_store_admin', :as => 'add_store_admin'
+    put '/remove_store_stocker' => 'store_admin/stores#remove_store_stocker', :as => 'remove_store_stocker'
+    put '/add_store_stocker' => 'store_admin/stores#add_store_stocker', :as => 'add_store_stocker'
+    put '/administer'  => 'admin/stores#administer', :as => 'administer'
     get '/admin' => 'store_admin/stores#show', as: 'store_admin'
     get '/admin/store/edit' => 'store_admin/stores#edit', as: 'store_admin_edit_store'
     put '/admin/store/edit' => 'store_admin/stores#update', as: 'store_admin_edit_store'
@@ -42,10 +44,10 @@ StoreEngine::Application.routes.draw do
     get '/admin/products/:id/edit' => 'store_admin/products#edit', as: 'store_admin_edit_product'
     put '/admin/products/:id/edit' => 'store_admin/products#update', as: 'store_admin_edit_product'
     delete '/admin/products/:id' => 'store_admin/products#destroy', as: 'store_admin_delete_product'
-    
+
     get '/admin/orders' => 'store_admin/stores#orders', as: "admin_orders"
 
-    namespace "admin" do 
+    namespace "admin" do
       scope :module => "store_admin" do
         resources :categories
       end

@@ -3,7 +3,7 @@
 # Do not hesitate to tweak this to your needs
 
   customer1 = Customer.create(
-    :username => "Franklin",
+    :display_name => "Franklin",
     :email => "demoXX+franklin@jumpstartlab.com",
     :password => "password",
     :password_confirmation => "password",
@@ -12,7 +12,7 @@
     :last_name => "Webber" )
 
   customer2 = Customer.create(
-    :username => "admin",
+    :display_name => "admin",
     :email => "admin@jumpstartlab.com",
     :password => "password",
     :password_confirmation => "password",
@@ -21,7 +21,7 @@
     :last_name => "admin" )
 
   customer3 = Customer.create(
-    :username => "j3",
+    :display_name => "j3",
     :email => "demoXX+jeff@jumpstartlab.com",
     :password => "password",
     :password_confirmation => "password",
@@ -31,7 +31,7 @@
 
 
   customer4 = Customer.create(
-    :username => "SkrilleX",
+    :display_name => "SkrilleX",
     :email => "demoXX+steve@jumpstartlab.com",
     :password => "password",
     :password_confirmation => "password",
@@ -52,7 +52,7 @@ store_names.each do |name,path|
   print "\ncreating #{store.name}..."
   cats = %w(sunglasses glasses hats ice-cream backpacks coffee friends cake chairs whiteboards)
 
-  1000.times do |i|
+  100.times do |i|
     Product.create!(store_id: store.id, name: Faker::Name.name, description: Faker::Lorem.paragraph(3), price: "#{(1..500).to_a.sample}.0".to_f, quantity: "#{(1..500).to_a.sample}".to_i, featured: false, active: true, categories_list:cats.sample)
     print "..."
   end

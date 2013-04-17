@@ -19,6 +19,10 @@ class Store < ActiveRecord::Base
     StoreAdmin.create(customer_id: admin_id, store_id: store_id)
   end
 
+  def self.include_stocker(stocker_id, store_id)
+    StoreStocker.create(customer_id: stocker_id, store_id: store_id)
+  end
+
   def to_param
     path
   end
