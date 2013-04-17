@@ -1,0 +1,2 @@
+module StoreAdmin::CategoriesHelper
+end

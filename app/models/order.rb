@@ -12,6 +12,7 @@ class Order < ActiveRecord::Base
   default_scope { where(store_id: Store.current_id)  }
 
   belongs_to  :customer
+  belongs_to  :store
   has_many :order_products
 
 

@@ -43,14 +43,9 @@
             %section.top-bar-section
               / Right Nav Section
               %ul.right
-                %li
-                  %a{:href => "/admin/categories"} Categories
-                %li 
-                  %a{:href => "/admin/customers"} Customers
-                %li 
-                  %a{:href => "/admin/products"} Products
-                %li
-                  %a{:href => "/admin/orders"} Orders
+                %li= link_to "Categories", admin_categories_path(current_store) 
+                %li= link_to "Products", store_admin_products_path(current_store) 
+                %li= link_to "Orders", admin_orders_path(current_store)
                 %li
                   %a{:href => "/"} Logout
                   %ul.dropdown

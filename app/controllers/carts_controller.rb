@@ -23,12 +23,17 @@ class CartsController < ApplicationController
       session[:shopping_cart][current_store.id][product.id] += 1 
     end
 
-    redirect_to :back, notice: "item added to cart"
+    redirect_to :back, notice: "Cart Updated"
   end
 
   def destroy
-    product = Product.find(params[:product])
-    session[:shopping_cart][current_store.id].delete(product.id)
-    redirect_to carts_path, notice: "Your cart was successfully cleared."
+    if params[:remove]
+      product = Product.find(params[:remove])
+      session[:shopping_cart][current_store.id].delete(product.id)
+      redirect_to carts_path, notice: "Product removed."
+    elsif params[:clear_cart]
+      session[:shopping_cart].delete(current_store.id)
+      redirect_to carts_path, notice: "Cart has been cleared."
+    end
   end
 end

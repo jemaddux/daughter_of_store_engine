@@ -2,6 +2,8 @@ class Store < ActiveRecord::Base
   attr_accessible :name, :path, :description, :status
   cattr_accessor :current_id
 
+  has_many :orders
+
   has_many :store_admins
   has_many :admins, through: :store_admins, source: :customer
 
