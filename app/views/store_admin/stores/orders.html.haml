@@ -1,18 +1,23 @@
 .large-12.columns
-  .row.admin-panel
-    %table
-      %tr
-        %th Customer
-        %th Order Total
-        %th Order Date & Time
-        %th Customer Email
-        %th Order Products
-        %th Status
-        %tr
-          %td= @testing_orders
-      
-
-.large-12.columns
   .row
     .large-12.columns
-      = link_to 'Back', "/"
+      %h1.admin-heading= "Listing #{@all_orders.count} Orders"
+
+.large-12.columns
+  .row.admin-panel
+    .large-12.columns
+      %table
+        %tr
+          %th Customer
+          %th Click Status to filter
+          %th Total
+          %th Order Date & Time
+          %th
+          %th
+        - @all_orders.each do |order|
+          %tr
+          - if order.customer != nil
+            %td= order.customer.username
+            %td= link_to order.status, admin_orders_path(status: order.status) 
+            %td= number_to_currency(order.total)
+            %td= order.created_at

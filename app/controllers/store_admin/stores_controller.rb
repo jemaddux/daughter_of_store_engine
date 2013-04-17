@@ -1,6 +1,6 @@
 class StoreAdmin::StoresController < ApplicationController
   layout 'admin/application'
-  skip_filter :scope_current_store
+  skip_filter :scope_current_store 
   before_filter :require_store_admin
 
   #def index
@@ -9,7 +9,7 @@ class StoreAdmin::StoresController < ApplicationController
 
   def orders
     @store = Store.find_by_path(params[:store_path])
-    @testing_orders = @store.orders
+    @all_orders = @store.orders
     @orders = Order.unscoped.where(store_id: @store.id).all
   end
 
