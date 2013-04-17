@@ -25,15 +25,15 @@ class Mailer < ActionMailer::Base
     mail(to: @customer.email, subject:"Store #{@status}")
   end
 
-  def new_store_admin(store, user)
+  def new_store_admin(user, store)
     @customer = user
+    @store = store
     mail(to: @customer.email, subject:"You are now a Store Admin")
   end
 
   def sign_up(store, email)
-    ####how do we do this when that user doesn't exist in the database?
-    ####do we need to create a new table to store the email address we searched for?
-    @customer = user
+    @store = store
+    @customer = user  ##email here?
     mail(to: @customer.email, subject:"Please create an account")
   end
 

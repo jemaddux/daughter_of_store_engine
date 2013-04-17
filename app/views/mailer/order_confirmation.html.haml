@@ -4,13 +4,13 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
   %body
     %h1
-      Thank you for your purchase from 
+      Thank you for your purchase from
       = @store.name
-    %h2 
+    %h2
       Order Details:
     %h3
-      Order Number:# 
-      = link_to @order.id.to_s.rjust(7,"0"), "http://0.0.0.0:3000#{url_token_path(@store, @order.url_token)}" 
+      Order Number:#
+      = link_to @order.id.to_s.rjust(7,"0"), "http://mrbrown-sose.herokuapp.com/#{url_token_path(@store, @order.url_token)}"
     %table
       %th Item
       %th Quantity
@@ -21,11 +21,11 @@
           %td= product.name
           %td= line_item.quantity
           %td= number_to_currency(product.price)
-          %td= number_to_currency(line_item.subtotal)       
+          %td= number_to_currency(line_item.subtotal)
     %h4
       Order Total:
       = number_to_currency(@order.total)
-    %p 
+    %p
       Thank you,
     %p
       = @store.name
