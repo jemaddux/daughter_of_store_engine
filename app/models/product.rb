@@ -38,6 +38,23 @@ class Product < ActiveRecord::Base
                     styles: { large: "454x627>", thumb: "182x304>" },
                     default_url: "http://placehold.it/457/627"
 
+  if Rails.env.production?
+    has_attached_file :image,
+                      styles: { large: "454x627>", thumb: "182x304>" },
+                      default_url: "http://placehold.it/457/627",
+                      :storage => :s3,
+                      :bucket => 'c3po_store_engine',
+                      :path => ":attachment/:id/:style.:extension",
+                      :s3_credentials => {
+                          :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+                          :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+                      }
+  else
+    has_attached_file :image,
+                      styles: { large: "454x627>", thumb: "182x304>" },
+                      default_url: "http://placehold.it/457/627"
+  end
+
   def categories_list
     categories.join(", ")
   end
