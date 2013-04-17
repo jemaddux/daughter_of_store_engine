@@ -3,7 +3,7 @@
 # Do not hesitate to tweak this to your needs
 
   customer1 = Customer.create(
-    :username => "Franklin",
+    :display_name => "Franklin",
     :email => "demoXX+franklin@jumpstartlab.com",
     :password => "password",
     :password_confirmation => "password",
@@ -12,7 +12,7 @@
     :last_name => "Webber" )
 
   customer2 = Customer.create(
-    :username => "admin",
+    :display_name => "admin",
     :email => "admin@jumpstartlab.com",
     :password => "password",
     :password_confirmation => "password",
@@ -21,7 +21,7 @@
     :last_name => "admin" )
 
   customer3 = Customer.create(
-    :username => "j3",
+    :display_name => "j3",
     :email => "demoXX+jeff@jumpstartlab.com",
     :password => "password",
     :password_confirmation => "password",
@@ -31,7 +31,7 @@
 
 
   customer4 = Customer.create(
-    :username => "SkrilleX",
+    :display_name => "SkrilleX",
     :email => "demoXX+steve@jumpstartlab.com",
     :password => "password",
     :password_confirmation => "password",

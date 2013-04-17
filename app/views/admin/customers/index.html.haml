@@ -16,7 +16,7 @@
           %th
         - @customers.each do |customer|
           %tr
-            %td= customer.username
+            %td= customer.display_name
             %td= customer.id
             %td= customer.email
             %td= customer.created_at
