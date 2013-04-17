@@ -1,6 +1,6 @@
 class StoreAdmin::StoresController < ApplicationController
   skip_filter :scope_current_store
-  before_filter :require_store_admin
+  # before_filter :require_store_admin
 
   #def index
   #  @store = Store.all
@@ -33,7 +33,6 @@ class StoreAdmin::StoresController < ApplicationController
   end
 
   def add_store_admin
-    fail
     new_admin = Customer.find_by_email(params[:email])
     if new_admin.nil?
       #send fancy email that invites them to be an admin for the store

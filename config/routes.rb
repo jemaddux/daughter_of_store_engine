@@ -17,6 +17,7 @@ StoreEngine::Application.routes.draw do
 
   get '/account' => 'customers#show'
   get '/signup' => 'customers#new'
+  get '/profile' => 'customers#show'
 
   resources :stores
   put '/stores/:id/status' => 'stores#change_status', :as => 'change_store_status'

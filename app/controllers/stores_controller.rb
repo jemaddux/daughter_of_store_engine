@@ -17,7 +17,7 @@ class StoresController < ApplicationController
   def show
     store ||= current_store
     if store.status == "pending"
-      render :inline => "This store is pending",:layout => "dead_store"
+      render :inline => "Store Not Found",:layout => "dead_store"
     elsif store.status == "disabled"
       render :inline => "This store is down for maintenance",:layout => "dead_store"
     elsif store.status == "rejected"
@@ -36,8 +36,9 @@ class StoresController < ApplicationController
     @store = Store.new(params[:store])
 
     if @store.save
-      Store.include_admin(current_user.id, store.id)
-      redirect_to store_admin_store_path(@store.id), notice: 'Thank you. Your store is currently pending acceptance'
+      StoreAdmin.create(customer_id: current_user.id, store_id: @store.id)
+      Store.include_admin(current_user.id, @store.id)
+      redirect_to store_admin_path(Store.find(@store.id).path), notice: 'Thank you. Your store is currently pending acceptance'
     else
       render action: 'new'
     end
