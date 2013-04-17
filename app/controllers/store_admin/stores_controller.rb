@@ -1,10 +1,22 @@
 class StoreAdmin::StoresController < ApplicationController
-  skip_filter :scope_current_store
+  layout 'admin/application'
+  skip_filter :scope_current_store 
   before_filter :require_store_admin
 
   #def index
   #  @store = Store.all
   #end
+
+  def orders
+    @store = Store.find_by_path(params[:store_path])
+
+    if params[:status]
+      @orders = @store.orders.where(status: params[:status]).all
+    else
+      @orders = @store.orders
+    end
+
+  end
 
   def show
     @store = Store.find_by_path(params[:store_path])

@@ -6,8 +6,8 @@
       .left.product-description
         %h2= link_to product.name, product_path(current_store, product)
         %p= product.description
-        %h5.left= link_to "Remove Product", carts_path(product: product.id), method: :delete, class: "button small secondary"
+        %h5= button_to "Remove Product", carts_path(current_store, remove: product.id), method: :delete, class: "button small secondary"
       .right
         %h4.right Unit Price
         %h2= "#{number_to_currency(product.price)}"
-%h4= link_to "Clear Cart", carts_path(clear_cart:true), method: :delete, confirm: "Do you really want to clear your cart?", class: "button small secondary"
+%h4= button_to "Clear Cart", carts_path(current_store ,clear_cart:true),method: :delete, confirm: "Do you really want to clear your cart?", class: "button small secondary"

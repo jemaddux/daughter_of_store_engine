@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.all
+    @products = Product.where(active: true).all
     @cart = current_user.cart if logged_in?
   end
 

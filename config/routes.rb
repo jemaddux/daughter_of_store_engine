@@ -42,6 +42,14 @@ StoreEngine::Application.routes.draw do
     get '/admin/products/:id/edit' => 'store_admin/products#edit', as: 'store_admin_edit_product'
     put '/admin/products/:id/edit' => 'store_admin/products#update', as: 'store_admin_edit_product'
     delete '/admin/products/:id' => 'store_admin/products#destroy', as: 'store_admin_delete_product'
+    
+    get '/admin/orders' => 'store_admin/stores#orders', as: "admin_orders"
+
+    namespace "admin" do 
+      scope :module => "store_admin" do
+        resources :categories
+      end
+    end
 
     get '/stock/products' => 'store_stocker/products#index', as: 'store_stocker_products'
     get '/stock/products/new' => 'store_stocker/products#new', as: 'store_stocker_new_product'

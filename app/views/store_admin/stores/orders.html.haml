@@ -1,0 +1,26 @@
+.large-12.columns
+  .row
+    .large-12.columns
+      %h1.admin-heading= "Listing #{@orders.count} Orders"
+
+.large-12.columns
+  .row.admin-panel
+    .large-12.columns
+      %table
+        %tr
+          %th.text-left customer
+          %th.text-left= link_to "Status (click here for all orders)", admin_orders_path
+          %th.text-left Total
+          %th.text-left Order Date & Time
+          %th
+          %th
+        - @orders.each do |order|
+          %tr
+          - if order.customer != nil
+            %td= order.customer.username
+            %td= link_to order.status, admin_orders_path(status: order.status) 
+            %td= number_to_currency(order.total)
+            %td= order.created_at
+
+
+            
