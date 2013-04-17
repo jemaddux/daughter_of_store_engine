@@ -20,7 +20,7 @@
 
   = stylesheet_link_tag "application"
   <link href='http://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
-  = javascript_include_tag "vendor/custom.modernizr"
+  = javascript_include_tag "application", "rails" "vendor/custom.modernizr"
   = csrf_meta_tag
 
 %body
@@ -43,8 +43,8 @@
             %section.top-bar-section
               / Right Nav Section
               %ul.right
-                %li= link_to "Categories", admin_categories_path(current_store) 
-                %li= link_to "Products", store_admin_products_path(current_store) 
+                %li= link_to "Categories", admin_categories_path(current_store)
+                %li= link_to "Products", store_admin_products_path(current_store)
                 %li= link_to "Orders", admin_orders_path(current_store)
                 %li
                   %a{:href => "/"} Logout

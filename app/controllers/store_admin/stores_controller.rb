@@ -9,8 +9,13 @@ class StoreAdmin::StoresController < ApplicationController
 
   def orders
     @store = Store.find_by_path(params[:store_path])
-    @all_orders = @store.orders
-    @orders = Order.unscoped.where(store_id: @store.id).all
+
+    if params[:status]
+      @orders = @store.orders.where(status: params[:status]).all
+    else
+      @orders = @store.orders
+    end
+
   end
 
   def show
@@ -42,17 +47,22 @@ class StoreAdmin::StoresController < ApplicationController
   def add_store_admin
     new_admin = Customer.find_by_email(params[:email])
     if new_admin.nil?
-      #send fancy email that invites them to be an admin for the store
+      Resque.enqueue(SignUpEmail, current_user.id, params[:email])
       redirect_to :back, notice: "User does not have an account, email sent to sign up"
     elsif new_admin.store_admin?(current_store)
       redirect_to :back, notice: "User is already an admin"
-    else 
+    else
       Store.include_admin(new_admin.id, current_store.id)
-      #send email
+      Resque.enqueue(NewStoreAdminEmail, new_admin.id,current_store.id)
+
       redirect_to :back, notice: "User assigned as an admin"
     end
   end
 
   def remove_store_admin
+    store = Store.find_by_path(params[:store_path])
+    customer = Customer.find(params[:id])
+    StoreAdmin.find_by_customer_id_and_store_id(customer.id,store.id).destroy
+    redirect_to :back, notice: "User removed."
   end
 end

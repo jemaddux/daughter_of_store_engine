@@ -14,8 +14,8 @@ class Mailer < ActionMailer::Base
     @store    = store
     @products = @order.products
     mail(
-      to: @customer.email, 
-      subject: "Order Confirmation", 
+      to: @customer.email,
+      subject: "Order Confirmation",
       from: "customerservice@#{store.path}.com")
   end
 
@@ -23,6 +23,17 @@ class Mailer < ActionMailer::Base
     @customer = user
     @status = status
     mail(to: @customer.email, subject:"Store #{@status}")
+  end
+
+  def new_store_admin(user, store)
+    @customer = user
+    @store = store
+    mail(to: @customer.email, subject:"You are now a Store Admin")
+  end
+
+  def sign_up(admin, email)
+    @admin = admin ##email here?
+    mail(to: email, subject:"#{@admin.email} has sent you an invitation")
   end
 
 end

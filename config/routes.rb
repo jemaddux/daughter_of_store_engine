@@ -28,6 +28,7 @@ StoreEngine::Application.routes.draw do
   match '/code'   => redirect('https://github.com/blairand/sonofstore_engine')
 
   scope '/:store_path' do
+    put '/remove_store_admin' => 'store_admin/stores#remove_store_admin', :as => 'remove_store_admin'
     put '/administer'  => 'admin/stores#administer', :as => 'administer'
     put '/add_store_admin' => 'store_admin/stores#add_store_admin', :as => 'add_store_admin'
     get '/admin' => 'store_admin/stores#show', as: 'store_admin'
