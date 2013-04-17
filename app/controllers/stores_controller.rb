@@ -24,7 +24,6 @@ class StoresController < ApplicationController
       render :inline => "This store has been rejected. Please email the administrator",:layout => "dead_store"
     else
       @store = store
-      session[:shopping_cart][@store.id] ||= Hash.new(0)
     end
   end
 

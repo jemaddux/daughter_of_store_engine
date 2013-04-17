@@ -58,6 +58,7 @@ class ApplicationController < ActionController::Base
 
   def shopping_cart
     session[:shopping_cart] ||= {}
+    shopping_cart_for_store
     if logged_in?
       if current_user.cart
         unless session[:shopping_cart] == current_user.cart.data
@@ -69,5 +70,12 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+  
+  def shopping_cart_for_store
+    if current_store
+      session[:shopping_cart][current_store.id] ||= Hash.new(0)
+    end
+  end 
 
 end
+
