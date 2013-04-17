@@ -1,0 +1,12 @@
+.large-12.columns
+  .row
+    .large-12.columns
+      = link_to 'Back', store_stocker_products_path(@store.path), class: "button right"
+      %h1.admin-heading Edit product
+.row
+  .large-12.columns
+    .admin-panel
+      = render 'form'
+
+
+

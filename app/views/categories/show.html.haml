@@ -14,7 +14,7 @@
                   = hidden_field_tag 'quantity', 1
                   = hidden_field_tag 'store_id', current_store.id
                   = submit_tag 'Add to Cart', class: 'button right'
-              =link_to image_tag(product.photo_url), product_path(current_store, product), class: "product-image-#{index}"
+              =link_to image_tag(product.image.url), product_path(current_store, product), class: "product-image-#{index}"
               .panel
                 %h5= link_to product.name, product_path(current_store, product)
                 %h6.subheader= number_to_currency(product.price)

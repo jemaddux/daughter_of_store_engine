@@ -218,13 +218,13 @@
     #myCarousel.carousel.slide
       .carousel-inner
         .item.active
-          %img{:alt => "", :src => "https://s3.amazonaws.com/sonofstoreengine/homeheroimage.png"}/
+          %img{:alt => "", :src => "http://d3b5cprckrbz8i.cloudfront.net/homeheroimage.png"}/
           .container
             .carousel-caption
               %h1 You Have Customers.
               %p.lead#subheader We Make Stores.
               = form_tag customer_sessions_path(@customer), method: :post, class: "navbar-form pull-right" do
-                %input.span2{:placeholder => "Username", name:"username", :type => "text"}/
+                %input.span2{:placeholder => "Email", name:"email", :type => "text"}/
 
                 %input.span2{:placeholder => "Password", name:"password", :type => "password"}/
                 = submit_tag "Sign in", class: "btn"
@@ -289,8 +289,8 @@
         %p.pull-right
           %a{:href => "#"} Back to top
         %p
-          \© 2013 Company, Inc. ·
-          %a{:href => "#"} Privacy
+          \© 2013 some gSchool Students
+          %a{:href => "#"} non-privacy
           \·
-          %a{:href => "#"} Terms
+          %a{:href => "#"} lacking-terms
 

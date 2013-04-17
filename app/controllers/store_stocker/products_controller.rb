@@ -1,21 +1,28 @@
-class StoreAdmin::ProductsController < ApplicationController
+class StoreStocker::ProductsController < ApplicationController
   layout 'admin/application'
-  before_filter :require_store_stocker ***************
+  # skip_filter :scope_current_store
+
+  #before_filter :require_store_stocker
 
   def index
     @store = Store.find(current_store.id)
     @products = Product.all
   end
 
+  def new
+    @product = Product.new
+    @store = Store.find(current_store.id)
+  end
+
   def show
     @product = Product.find(params[:id])
+    @store = Store.find(current_store.id)
   end
 
   def create
     @product = Product.new(params[:product])
     if @product.save
-      redirect_to admin_products_path,
-      notice: 'Product was successfully created.'
+      redirect_to store_stocker_products_path, notice: "Product was successfully created."
     else
       render action: "new"
     end
@@ -39,7 +46,6 @@ class StoreAdmin::ProductsController < ApplicationController
 
         @product.categories = categories
       end
-
       redirect_to admin_products_path,
       notice: 'Product was successfully updated.'
     else

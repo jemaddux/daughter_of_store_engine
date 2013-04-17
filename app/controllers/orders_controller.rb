@@ -1,14 +1,18 @@
 class OrdersController < ApplicationController
-  before_filter :require_login
+  before_filter :require_login, except: [:show]
   skip_filter :scope_current_store
 
   def index
-    @orders = current_user.orders
+    if params[:status]
+      @orders = Order.unscoped.where(status: params[:status]).find_all_by_customer_id(current_user.id)
+    else
+      @orders = Order.unscoped.find_all_by_customer_id(current_user.id)
+    end
   end
 
   def show
-    @order = Order.find(params[:id])
-    @products = @order.products
+    @order = Order.unscoped.find(params[:id])
+    @products = @order.products.collect { |p| p.last.name }
   end
 
   def unique_order_confirmation

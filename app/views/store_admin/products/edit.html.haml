@@ -1,0 +1,44 @@
+.large-12.columns
+  .row
+    .large-12.columns
+      = link_to 'Back', store_admin_products_path(@store.path), class: "button right"
+      %h1.admin-heading Edit product
+.row
+  .large-12.columns
+    .admin-panel
+      = form_for [ :store_admin, @product ], method: 'PUT', url: store_admin_edit_product_path(@store,@product) do |f|
+        %ul
+          - @product.errors.full_messages.each do |error|
+            %li= error
+        %p
+          = f.label :name
+          %br/
+          = f.text_field :name
+        %p
+          = f.label :description
+          %br/
+          = f.text_area :description
+        %p
+          = f.label :price
+          %br/
+          = f.number_field :price, min: 0
+        %p
+          = f.label :quantity
+          %br/
+          = f.number_field :quantity, min: 0
+        %p
+          = f.label :categories_list
+          %br/
+          = f.text_field :categories_list
+        %p
+          = f.label :image
+          %br/
+          = f.file_field :image
+        %p
+          = f.label 'status'
+          = f.label :active, "Active"
+          = f.radio_button :active, true
+          = f.label :active, "Retired"
+          = f.radio_button :active, false
+        %p
+          = f.submit

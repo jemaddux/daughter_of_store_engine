@@ -10,7 +10,6 @@ class StoreAdmin::StoresController < ApplicationController
     @store = Store.find_by_path(params[:store_path])
   end
 
-
   def edit
     @store = Store.find_by_path(params[:store_path])
   end
@@ -20,7 +19,7 @@ class StoreAdmin::StoresController < ApplicationController
     @store = Store.find_by_path(params[:store_path])
 
     if @store.update_attributes(params[:store])
-      redirect_to store_admin_path(params[:store_path]), notice: 'Store was successfully updated.'
+      redirect_to store_admin_path(@store.path), notice: 'Store was successfully updated.'
     else
       render action: 'edit'
     end

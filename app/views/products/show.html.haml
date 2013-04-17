@@ -9,13 +9,13 @@
             = link_to "Home", home_path
           - @product.categories.each do |category|
             %li
-              = link_to category.name, categories_path(current_store,category)
+              = link_to category.name, category_path(current_store,category)
           %li.current
             %a{:href => "#"}
               = @product.name
     .row
       .large-6.columns
-        =image_tag "http://placekitten.com/500/500", class: "product-feature"
+        =image_tag @product.image.url, class: "product-feature"
       .large-6.columns
         %h3.show-for-small Header    
         %h2.hide-for-small.left= @product.name

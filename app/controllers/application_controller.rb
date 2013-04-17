@@ -23,13 +23,16 @@ class ApplicationController < ActionController::Base
   end
 
   def require_store_admin
-    admin_ids = Store.find(current_store.id).store_admins.collect { |s| s.id }
-    if !current_user || !admin_ids.include?(current_user.id)
-      redirect_to home_path(params[:store_path]), :notice => "Only store administrators may access this page"
-    else
-      true
+    if !current_user || !current_user.store_admin?(current_store)
+      redirect_to home_path(current_store), notice:"Only store administrators may access this page"
     end
   end
+    # admin_ids = Store.find(current_store.id).store_admins.collect { |s| s.id }
+    # if !current_user || !admin_ids.include?(current_user.id)
+    #   redirect_to home_path(params[:store_path]), :notice => "Only store administrators may access this page"
+    # else
+    #   true
+    # end
 
   def request_login
     if logged_in?
@@ -58,6 +61,7 @@ class ApplicationController < ActionController::Base
 
   def shopping_cart
     session[:shopping_cart] ||= {}
+    shopping_cart_for_store
     if logged_in?
       if current_user.cart
         unless session[:shopping_cart] == current_user.cart.data
@@ -69,5 +73,12 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+  
+  def shopping_cart_for_store
+    if current_store
+      session[:shopping_cart][current_store.id] ||= Hash.new(0)
+    end
+  end 
 
 end
+

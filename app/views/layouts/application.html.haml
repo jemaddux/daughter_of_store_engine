@@ -45,7 +45,7 @@
                   = render partial: "layouts/products_categories"
                 - if logged_in?
                   %li.has-dropdown
-                    =link_to "<i class='icon-user'></i> #{current_user.username} <i class='icon-angle-down'></i>".html_safe, account_path
+                    =link_to "<i class='icon-user'></i> #{current_user.first_name} <i class='icon-angle-down'></i>".html_safe, account_path
                     %ul.dropdown
                       - if current_user.admin
                         %li= link_to "Admin", admin_stores_path

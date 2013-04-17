@@ -38,10 +38,10 @@
     :first_name => "Steve",
     :last_name => "Klabnik" )
 
-store_names = [["Slick Bike Shop", "slick-bike-shop"], ["Cool Runnings", "cool-runnings"], ["Cool Sunglasses", "cool-sunglasses"], ["Hotty Threads", "hot-threads"], ["Obigear", "obigear"], ["ObiWear", "obiwear"], ["Panda Pants", "panda-pants"], ["Blairs HotDog Store", "blairs-hotdog-store"], ["UnGather", "ungather"], ["NotGather", "not-gather"]]
+store_names = [["Slick Bike Shop", "slick-bike-shop"], ["Cool Runnings", "cool-runnings"], ["Cool Sunglasses", "cool-sunglasses"], ["Hotty Threads", "hot-threads"], ["Obigear", "obigear"], ["ObiWear", "obiwear"], ["Panda Pants", "panda-pants"], ["Blairs HotDog Store", "blairs-hotdog-store"], ["Gather", "gather"], ["ToysRUs", "toysrus"]]
 
 store_names.each do |name,path|
-  store = Store.create!(name: name, path: path, description: Faker::Lorem.paragraph(1))
+  store = Store.create!(name: name, path: path, description: Faker::Lorem.paragraph(1), status:"active")
   if store.path == "slick-bike-shop"
     Store.include_admin(customer1.id, store.id)
   end
@@ -49,7 +49,7 @@ store_names.each do |name,path|
   cats = %w(sunglasses glasses hats ice-cream backpacks coffee friends cake chairs whiteboards)
 
   10.times do |i|
-    Product.create!(store_id: store.id, name: Faker::Name.name, description: Faker::Lorem.paragraph(3), price: "#{(1..500).to_a.sample}.0".to_f, quantity: "#{(1..500).to_a.sample}".to_i, featured: false, photo_url: "http://lorempixel.com/600/600", active: true, categories_list:cats[i])
+    Product.create!(store_id: store.id, name: Faker::Name.name, description: Faker::Lorem.paragraph(3), price: "#{(1..500).to_a.sample}.0".to_f, quantity: "#{(1..500).to_a.sample}".to_i, featured: false, active: true, categories_list:cats[i])
     print "..."
   end
 end
