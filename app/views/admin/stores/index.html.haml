@@ -14,8 +14,8 @@
     %tr{:id => "#{store.id}"}
       %td= link_to store.name, admin_store_path(store.id)
       %td
-        - store.admins.each do |admin|
-          = button_to "administer as #{admin.email}", administer_path(store,admin_id: admin.id), method: :put
+        - admin = store.admins.first
+        = button_to "Administer", administer_path(store, admin_id: admin.id), method: :put if admin
       %td= link_to "link to #{store.path}", home_path(store)
       %td= "#{store.description.split('')[0..31].join}..."
       %td= store.status.titleize

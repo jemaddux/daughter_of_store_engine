@@ -17,7 +17,7 @@ class Admin::StoresController < ApplicationController
     
     auto_login(store_admin)
     
-    redirect_to home_path(current_store)
+    redirect_to store_admin_path(current_store.path)
   end
 
   def show
