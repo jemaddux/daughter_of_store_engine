@@ -43,15 +43,16 @@
             %section.top-bar-section
               / Right Nav Section
               %ul.right
-                %li= link_to "Categories", admin_categories_path(current_store)
-                %li= link_to "Products", store_admin_products_path(current_store)
-                %li= link_to "Orders", admin_orders_path(current_store)
-                %li
-                  %a{:href => "/"} Logout
+                %li= link_to "Store Categories", admin_categories_path(current_store)
+                %li= link_to "Store Products", store_admin_products_path(current_store)
+                %li= link_to "Store Orders", admin_orders_path(current_store)
+                %li.has-dropdown
+                  =link_to "<i class='icon-user'></i> #{current_user.first_name} <i class='icon-angle-down'></i>".html_safe, account_path
                   %ul.dropdown
+                    %li= link_to "Your Account", account_path
+                    %li= link_to "Your Orders", orders_path
                     %li.divider
-                    %li
-                      %a{:href => "#"} See all →
+                    %li= link_to "Logout", logout_path
           / End Top Bar
       / End Navigation
   = render partial: "layouts/messages"
