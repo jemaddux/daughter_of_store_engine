@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(:version => 20130414211356) do
   add_index "categories", ["store_id"], :name => "index_categories_on_store_id"
 
   create_table "customers", :force => true do |t|
-    t.string   "username"
+    t.string   "username",         :null => false
     t.string   "email"
     t.string   "crypted_password"
     t.string   "salt"
@@ -112,11 +112,11 @@ ActiveRecord::Schema.define(:version => 20130414211356) do
   create_table "products", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.decimal  "price"
+    t.decimal  "price",              :precision => 8, :scale => 2
     t.integer  "quantity"
     t.boolean  "featured"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
