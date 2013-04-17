@@ -23,7 +23,6 @@ class Product < ActiveRecord::Base
             presence: true,
             numericality: { greater_than_or_equal_to: 0 }
 
-  validates :featured,    inclusion: { in: [false, true] }
   validates :active,      inclusion: { in: [false, true] }
 
   has_many  :product_categories

@@ -1,3 +1,37 @@
 %h1 New product
-= render 'form'
-= link_to 'Back', store_admin_products_path(@store.path)
+= form_for [ :store_admin, @product ], method: 'POST', url: "/#{@store.path}/admin/products/new" do |f|
+  %ul
+    - @product.errors.full_messages.each do |error|
+      %li= error
+  %p
+    = f.label :name
+    %br/
+    = f.text_field :name
+  %p
+    = f.label :description
+    %br/
+    = f.text_area :description
+  %p
+    = f.label :price
+    %br/
+    = f.number_field :price, min: 0
+  %p
+    = f.label :quantity
+    %br/
+    = f.number_field :quantity, min: 0
+  %p
+    = f.label :categories_list
+    %br/
+    = f.text_field :categories_list
+  %p
+    = f.label :image
+    %br/
+    = f.file_field :image
+  %p
+    = f.label 'status'
+    = f.label :active, "Active"
+    = f.radio_button :active, true
+    = f.label :active, "Retired"
+    = f.radio_button :active, false
+  %p
+    = f.submit

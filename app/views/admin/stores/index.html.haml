@@ -2,7 +2,7 @@
 
 %table
   %tr
-    %th.left Admin Access
+    %th.left Store Name
     %th Administer
     %th Store URL
     %th Description
@@ -12,18 +12,18 @@
 
   - @stores.each do |store|
     %tr{:id => "#{store.id}"}
-      %td= link_to store.name, admin_store_path(store.id)
+      %td= store.name
       %td
         - admin = store.admins.first
         = button_to "Administer", administer_path(store, admin_id: admin.id), method: :put if admin
-      %td= link_to "link to #{store.path}", home_path(store)
+      %td= link_to "URL ID: #{store.path}", home_path(store)
       %td= "#{store.description.split('')[0..31].join}..."
       %td= store.status.titleize
       - if store.status == 'pending'
         %td
           = button_to 'Approve', change_store_status_path(store.id, status: 'active'), method: :put
 
-          = button_to 'Reject', change_store_status_path(store.id, status: 'declined'), method: :put
+          = button_to 'Decline', change_store_status_path(store.id, status: 'declined'), method: :put
 
       - if store.status == 'active'
         %td

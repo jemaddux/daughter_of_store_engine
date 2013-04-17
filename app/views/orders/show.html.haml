@@ -12,8 +12,7 @@
       %td= @order.created_at
       %td= @order.customer.email
       %td= @order.status
-      - @products.each do |product|
-        %td= product.name
+      %td= @products.join(' | ')
 
 = link_to 'Back', orders_path
 

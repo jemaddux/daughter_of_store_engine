@@ -1,5 +1,9 @@
 %h2 Thanks for shopping with us.
 %h3 Here are your order details:
+%hr
+%h4 You can view this order here 
+%a= link_to @order.url_token, url_token_path(current_store,@order.url_token)
+%hr
 %h4 
   Order Number:# 
   = @order.id.to_s.rjust(7,"0") 
