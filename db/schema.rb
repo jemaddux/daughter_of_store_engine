@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(:version => 20130414211356) do
   add_index "categories", ["store_id"], :name => "index_categories_on_store_id"
 
   create_table "customers", :force => true do |t|
-    t.string   "username",         :null => false
+    t.string   "username"
     t.string   "email"
     t.string   "crypted_password"
     t.string   "salt"

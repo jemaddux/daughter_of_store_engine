@@ -7,12 +7,11 @@ class ChargesController < ApplicationController
   end
 
   def create_guest
-    if params[:username] && params[:password]
-      username = params[:username]
+    if params[:email] && params[:password]
+      email = params[:email]
       password = params[:password]
-      login(username,password, remember_me = false)
+      login(email,password, remember_me = false)
     else
-      username = params[:email]
       email = params[:email]
       password = SecureRandom.hex(4)
       password_confirmation = password
@@ -20,7 +19,6 @@ class ChargesController < ApplicationController
       last_name = params[:last_name]
       
       if customer = Customer.create(
-        :username => username, 
         :email => email, 
         :first_name => first_name, 
         :last_name => last_name, 
@@ -74,6 +72,7 @@ class ChargesController < ApplicationController
       order.id)
 
     current_user.cart.destroy
+    session[:shopping_cart].clear
     redirect_to url_token_path(current_store, order.url_token)
  
   end
