@@ -1,0 +1,16 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    %p
+      Congratulations, you are now a Store Stocker with
+      = @store.name
+    %p
+      You can access your Admin page at
+      = link_to "http://mrbrown-sose.herokuapp.com/#{store_admin_path(@store)}"
+    %p
+      Thank you,
+    %p
+      = @store.name
+

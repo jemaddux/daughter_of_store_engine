@@ -31,9 +31,20 @@ class Mailer < ActionMailer::Base
     mail(to: @customer.email, subject:"You are now a Store Admin")
   end
 
+  def new_store_stocker(user, store)
+    @customer = user
+    @store = store
+    mail(to: @customer.email, subject:"You are now a Store Stocker")
+  end
+
   def sign_up(admin, email)
-    @admin = admin ##email here?
+    @admin = admin
     mail(to: email, subject:"#{@admin.email} has sent you an invitation")
   end
 
+  def remove_from_store(user, store)
+    @customer = user
+    @store = store
+    mail(to: @customer.email, subject:"You have been removed from a store")
+  end
 end

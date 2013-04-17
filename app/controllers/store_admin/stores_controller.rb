@@ -1,6 +1,6 @@
 class StoreAdmin::StoresController < ApplicationController
   layout 'admin/application'
-  skip_filter :scope_current_store 
+  skip_filter :scope_current_store
   before_filter :require_store_admin
 
   #def index
@@ -62,7 +62,40 @@ class StoreAdmin::StoresController < ApplicationController
   def remove_store_admin
     store = Store.find_by_path(params[:store_path])
     customer = Customer.find(params[:id])
-    StoreAdmin.find_by_customer_id_and_store_id(customer.id,store.id).destroy
-    redirect_to :back, notice: "User removed."
+    if customer == current_user
+      redirect_to :back, notice: "Cannot delete yo'self BIOTCH"
+    else
+      StoreAdmin.find_by_customer_id_and_store_id(customer.id,store.id).destroy
+      Resque.enqueue(RemoveFromStoreEmail, customer.id,store.id)
+      redirect_to :back, notice: "User removed. They have been notified."
+    end
   end
+
+  def add_store_stocker
+    new_stocker = Customer.find_by_email(params[:email])
+    if new_stocker.nil?
+      Resque.enqueue(SignUpEmail, current_user.id, params[:email])
+      redirect_to :back, notice: "User does not have an account, email invitation sent."
+    elsif new_stocker.store_stocker?(current_store)
+      redirect_to :back, notice: "User is already an stocker for your store"
+    else
+      Store.include_stocker(new_stocker.id, current_store.id)
+      Resque.enqueue(NewStorestockerEmail, new_stocker.id,current_store.id)
+
+      redirect_to :back, notice: "User assigned as an admin"
+    end
+  end
+
+  def remove_store_stocker
+    store = Store.find_by_path(params[:store_path])
+    customer = Customer.find(params[:id])
+    if customer == current_user
+      redirect_to :back, notice: "Cannot delete yo'self BIOTCH"
+    else
+      StoreStocker.find_by_customer_id_and_store_id(customer.id,store.id).destroy
+      Resque.enqueue(RemoveFromStoreEmail, customer.id,store.id)
+      redirect_to :back, notice: "User removed. They have been notified."
+    end
+  end
+
 end
