@@ -34,16 +34,21 @@ class StoreAdmin::StoresController < ApplicationController
   end
 
   def add_store_admin
-    fail
     new_admin = Customer.find_by_email(params[:email])
     if new_admin.nil?
-      #send fancy email that invites them to be an admin for the store
+      #send fancy email that invites them to create a new account for that particular store
+      Resque.enqueue(SignUpEmail, store.id, email)
+      Mailer.sign_up(store.id, email).deliver
+
       redirect_to :back, notice: "User does not have an account, email sent to sign up"
     elsif new_admin.store_admin?(current_store)
       redirect_to :back, notice: "User is already an admin"
-    else 
+    else
       Store.include_admin(new_admin.id, current_store.id)
       #send email
+      Resque.enqueue(NewStoreAdminEmail, store.id, email)
+      Mailer.new_store_admin(store.id, email).deliver
+
       redirect_to :back, notice: "User assigned as an admin"
     end
   end
