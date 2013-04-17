@@ -38,10 +38,10 @@
     :first_name => "Steve", 
     :last_name => "Klabnik" )
 
-store_names = [["Slick Bike Shop", "slick-bike-shop"], ["Cool Runnings", "cool-runnings"], ["Cool Sunglasses", "cool-sunglasses"], ["Hotty Threads", "hot-threads"], ["Obigear", "obigear"], ["ObiWear", "obiwear"], ["Panda Pants", "panda-pants"], ["Blairs HotDog Store", "blairs-hotdog-store"], ["UnGather", "ungather"], ["NotGather", "not-gather"]]
+store_names = [["Slick Bike Shop", "slick-bike-shop"], ["Cool Runnings", "cool-runnings"], ["Cool Sunglasses", "cool-sunglasses"], ["Hotty Threads", "hot-threads"], ["Obigear", "obigear"], ["ObiWear", "obiwear"], ["Panda Pants", "panda-pants"], ["Blairs HotDog Store", "blairs-hotdog-store"], ["Gather", "gather"], ["ToysRUs", "toysrus"]]
 
 store_names.each do |name,path|
-  store = Store.create!(name: name, path: path, description: Faker::Lorem.paragraph(1))
+  store = Store.create!(name: name, path: path, description: Faker::Lorem.paragraph(1), status:"active")
   if store.path == "slick-bike-shop"
     Store.include_admin(customer1.id, store.id)
   end

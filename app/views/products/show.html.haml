@@ -9,7 +9,7 @@
             = link_to "Home", home_path
           - @product.categories.each do |category|
             %li
-              = link_to category.name, categories_path(current_store,category)
+              = link_to category.name, category_path(current_store,category)
           %li.current
             %a{:href => "#"}
               = @product.name
