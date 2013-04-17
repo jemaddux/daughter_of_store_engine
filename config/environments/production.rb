@@ -2,14 +2,6 @@ StoreEngine::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
   ENV["REDISTOGO_URL"] = 'redis://redistogo:a32b86dc8c1e5cdad7e87101fd9ee5de@squawfish.redistogo.com:9313/'
 
-  config.paperclip_defaults = {
-    :storage => :s3,
-    :s3_credentials => {
-      :bucket => ENV['AWS_BUCKET'],
-      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
-    }
-  }
   # Code is not reloaded between requests
   config.cache_classes = true
 

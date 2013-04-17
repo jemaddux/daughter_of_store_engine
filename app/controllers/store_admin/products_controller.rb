@@ -22,6 +22,7 @@ class StoreAdmin::ProductsController < ApplicationController
     @store = Store.find(current_store.id)
     @product = Product.new(params[:product])
     if @product.save
+      @store.touch
       redirect_to store_admin_products_path(@store), notice: "Product was successfully created."
     else
       render action: "new"
@@ -36,8 +37,8 @@ class StoreAdmin::ProductsController < ApplicationController
   def update
     @store = Store.find(current_store.id)
     @product = Product.find(params[:id])
-
     if @product.update_attributes(params[:product])
+      @store.touch
       redirect_to store_admin_products_path, notice: 'Product was successfully updated.'
     else
       render :edit
@@ -45,9 +46,12 @@ class StoreAdmin::ProductsController < ApplicationController
   end
 
   def destroy
+    @store = Store.find(current_store.id)
     @product = Product.find(params[:id])
-    @product.destroy
+    if @product.destroy
+      @store.touch
+    end
 
-    redirect_to admin_products_path
+    redirect_to store_admin_products_path, notice: 'Product was successfully removed.'
   end
 end

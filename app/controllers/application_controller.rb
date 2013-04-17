@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_store_admin
-    unless current_user.store_admin?(current_store)
+    if !current_user || !current_user.store_admin?(current_store)
       redirect_to home_path(current_store), notice:"Only store administrators may access this page"
     end
   end

@@ -224,7 +224,7 @@
               %h1 You Have Customers.
               %p.lead#subheader We Make Stores.
               = form_tag customer_sessions_path(@customer), method: :post, class: "navbar-form pull-right" do
-                %input.span2{:placeholder => "Username", name:"username", :type => "text"}/
+                %input.span2{:placeholder => "Email", name:"email", :type => "text"}/
 
                 %input.span2{:placeholder => "Password", name:"password", :type => "password"}/
                 = submit_tag "Sign in", class: "btn"
