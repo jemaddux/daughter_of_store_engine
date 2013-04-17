@@ -9,8 +9,13 @@ class StoreAdmin::StoresController < ApplicationController
 
   def orders
     @store = Store.find_by_path(params[:store_path])
-    @all_orders = @store.orders
-    @orders = Order.unscoped.where(store_id: @store.id).all
+
+    if params[:status]
+      @orders = @store.orders.where(status: params[:status]).all
+    else
+      @orders = @store.orders
+    end
+
   end
 
   def show
