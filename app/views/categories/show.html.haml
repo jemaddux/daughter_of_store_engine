@@ -1,4 +1,4 @@
-- cache("#{current_store.path}_category_view_#{@category.id}") do 
+- cache("#{current_store.path}_category_view_#{@category.id}_#{current_store.updated_at}") do
   .row
     %h1.section-heading= @category.name.to_s
   .row
