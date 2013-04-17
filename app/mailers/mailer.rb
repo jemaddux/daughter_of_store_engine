@@ -31,10 +31,9 @@ class Mailer < ActionMailer::Base
     mail(to: @customer.email, subject:"You are now a Store Admin")
   end
 
-  def sign_up(store, email)
-    @store = store
-    @customer = user  ##email here?
-    mail(to: @customer.email, subject:"Please create an account")
+  def sign_up(admin, email)
+    @admin = admin ##email here?
+    mail(to: email, subject:"#{@admin.email} has sent you an invitation")
   end
 
 end

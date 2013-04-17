@@ -1,12 +1,9 @@
 class SignUpEmail
   @queue = :email
 
-  def self.perform(store.id, email)
-    #user = Customer.find(user_id)
-    #user not in DB, need to pass in "loose" email?
-    store = Store.find(store_id)
-    user = Customer.find(user_id)  #email
-    Mailer.sign_up(store.id, email).deliver
+  def self.perform(admin_id, email)
+    admin = Customer.find(admin_id)
+    Mailer.sign_up(admin,email).deliver
   end
 
 end

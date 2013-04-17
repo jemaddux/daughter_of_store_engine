@@ -3,15 +3,12 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
   %body
+    %h1
+      You've been invited to help manage a store.
     %p
-      In order to make you a Store Stocker or Admin with
-      = @store.name
+      In order to make you a Store Stocker or Admin, you must first create an account. Please sign up here:
+      = link_to "http://mrbrown-sose.herokuapp.com/customers/new", "http://mrbrown-sose.herokuapp.com/customers/new"
     %p
-      , you must first create an account. Please sign up here:
-      = link_to "http://mrbrown-sose.herokuapp.com/#{store_path(@store)}"
+      = "Once you have created your account, please notify #{@admin.first_name} #{@admin.last_name}."
     %p
-      Once you have created your account, please notify the person trying to add you.
-    %p
-      Thank you,
-    %p
-      = @store.name
+      Thank you!

@@ -20,7 +20,7 @@
 
   = stylesheet_link_tag "application"
   <link href='http://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
-  = javascript_include_tag "vendor/custom.modernizr"
+  = javascript_include_tag "application", "rails" "vendor/custom.modernizr"
   = csrf_meta_tag
 
 %body
@@ -45,9 +45,9 @@
               %ul.right
                 %li
                   %a{:href => "/admin/categories"} Categories
-                %li 
+                %li
                   %a{:href => "/admin/customers"} Customers
-                %li 
+                %li
                   %a{:href => "/admin/products"} Products
                 %li
                   %a{:href => "/admin/orders"} Orders
