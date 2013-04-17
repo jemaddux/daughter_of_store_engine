@@ -17,7 +17,7 @@ class CustomerSessionsController < ApplicationController
         end
       end
     else
-      flash.now.notice = 'Username or password invalid'
+      flash.now.notice = 'Email or password invalid'
       render action: 'new'
     end
   end

@@ -17,7 +17,7 @@
         - @orders.each do |order|
           %tr
           - if order.customer != nil
-            %td= order.customer.username
+            %td= order.customer.display_name
             %td= link_to order.status, admin_orders_path(status: order.status) 
             %td= number_to_currency(order.total)
             %td= order.created_at
