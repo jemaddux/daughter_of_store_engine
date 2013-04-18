@@ -1,4 +1,4 @@
-namespace :build do
+namespace :build do  
   desc "creating 1000 products per store"
   task :products => :environment do
     Store.all[0..10].each do |store|
@@ -8,4 +8,16 @@ namespace :build do
       end
     end
   end
+
+  desc "100 background tasks" 
+  task :product_tasks => :environment do
+    a = Time.now
+    1000.times do |i|
+      Resque.enqueue(BuildSeedProducts)
+      print "."
+    end
+    print "#{Time.now - a}"
+  end
+
 end
+
