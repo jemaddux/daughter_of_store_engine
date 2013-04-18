@@ -1,0 +1,25 @@
+%p
+  %b Customer:
+  = @address.customer.first_name
+  = @address.customer.last_name
+%p
+  %b Street:
+  = @address.street
+%p
+  %b City:
+  = @address.city
+%p
+  %b State:
+  = @address.state
+%p
+  %b Zipcode:
+  = @address.zipcode
+%p
+  %b Phone:
+  = @address.phone
+
+= link_to 'Edit', edit_address_path(@address)
+\|
+= link_to 'Back', customers_path
+-#to do: put this back in for users in stores but breaks users out of scope of a single store
+-#= link_to 'Continue to Cart', cart_path(:cart_id)

@@ -1,0 +1,23 @@
+%p
+  %b Customer:
+  = @credit_card.customer.first_name
+  = @credit_card.customer.last_name
+%p
+  %b Brand:
+  = @credit_card.brand
+%p
+  %b Name on Card:
+  = @credit_card.cardholder_name
+%p
+  %b CCN:
+  = @credit_card.number
+%p
+  %b Expiration Date:
+  = @credit_card.expiration_date
+%p
+  %b CVC:
+  = @credit_card.cvc
+
+= link_to 'Edit', edit_credit_card_path(@credit_card)
+\|
+= link_to 'Back', customers_path

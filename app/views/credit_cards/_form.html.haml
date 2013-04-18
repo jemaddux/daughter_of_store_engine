@@ -1,0 +1,26 @@
+- form_method = @credit_card.new_record? ? "POST" : "PUT"
+= form_for @credit_card, method: form_method do |f|
+  - if @credit_card.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@credit_card.errors.count, "error")} prohibited this credit card from being saved:"
+      %ul
+        - @credit_card.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :Brand
+    = f.text_field :brand
+  .field
+    = f.label 'Name on Card:'
+    = f.text_field :cardholder_name
+  .field
+    = f.label 'CCN:'
+    = f.text_field :number
+  .field
+    = f.label 'Expiration Date:'
+    = f.text_field :expiration_date
+  .field
+    = f.label 'CVC:'
+    = f.text_field :cvc
+  .actions
+    = f.submit 'Save', class:"button"
