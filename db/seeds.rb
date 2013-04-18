@@ -97,6 +97,39 @@ customer4 = Customer.create(
   puts "creating user #{i}"
 end
 
+product_images = [
+"https://s3-us-west-2.amazonaws.com/engineproducts/Split_board.jpg",
+"https://s3-us-west-2.amazonaws.com/engineproducts/arbor_board.jpg",
+"https://s3-us-west-2.amazonaws.com/engineproducts/avalanche_pack.jpg",
+"https://s3-us-west-2.amazonaws.com/engineproducts/black_long.jpg",
+"https://s3-us-west-2.amazonaws.com/engineproducts/black_pack.jpg",
+"https://s3-us-west-2.amazonaws.com/engineproducts/blacker_pack.jpg",
+"https://s3-us-west-2.amazonaws.com/engineproducts/blue_ball_pack.jpg",
+"https://s3-us-west-2.amazonaws.com/engineproducts/boat_water.jpg",
+"https://s3-us-west-2.amazonaws.com/engineproducts/camel_pack.jpg",
+"https://s3-us-west-2.amazonaws.com/engineproducts/camp_pack.jpg",
+"https://s3-us-west-2.amazonaws.com/engineproducts/flipper_kit.jpg",
+"https://s3-us-west-2.amazonaws.com/engineproducts/gloves.jpg",
+"https://s3-us-west-2.amazonaws.com/engineproducts/go_pro.jpg",
+"https://s3-us-west-2.amazonaws.com/engineproducts/green_boat.jpg",
+"https://s3-us-west-2.amazonaws.com/engineproducts/hammock_tent.jpg",
+"https://s3-us-west-2.amazonaws.com/engineproducts/king_tent.jpg",
+"https://s3-us-west-2.amazonaws.com/engineproducts/miller_paddle.jpg",
+"https://s3-us-west-2.amazonaws.com/engineproducts/my_tent.jpg",
+"https://s3-us-west-2.amazonaws.com/engineproducts/new_tent.jpg",
+"https://s3-us-west-2.amazonaws.com/engineproducts/north_tent.jpg",
+"https://s3-us-west-2.amazonaws.com/engineproducts/octi_long.jpg",
+"https://s3-us-west-2.amazonaws.com/engineproducts/octi_paddle.jpg",
+"https://s3-us-west-2.amazonaws.com/engineproducts/sharp_paddle.jpg",
+"https://s3-us-west-2.amazonaws.com/engineproducts/shelter_tent.jpg",
+"https://s3-us-west-2.amazonaws.com/engineproducts/sick_goggles.jpg",
+"https://s3-us-west-2.amazonaws.com/engineproducts/tech_goggles.jpg",
+"https://s3-us-west-2.amazonaws.com/engineproducts/venice_long.jpg",
+"https://s3-us-west-2.amazonaws.com/engineproducts/white_goggle.jpg",
+"https://s3-us-west-2.amazonaws.com/engineproducts/wood_board.jpg"
+]
+
+
 
 store_names = [["Slick Bike Shop", "slick-bike-shop"], ["Cool Runnings", "cool-runnings"], ["Cool Sunglasses", "cool-sunglasses"], ["Hotty Threads", "hot-threads"], ["Obigear", "obigear"], ["ObiWear", "obiwear"], ["Panda Pants", "panda-pants"], ["Blairs HotDog Store", "blairs-hotdog-store"], ["Gather", "gather"], ["ToysRUs", "toysrus"]]
 
@@ -111,7 +144,7 @@ store_names.each do |name,path|
   cats = %w(sunglasses goggles skis snowboards boots helmets gloves backpacks cameras luggage clothing)
 
   100.times do |i|
-    Product.create!(store_id: store.id, name: Faker::Name.name, description: Faker::Lorem.paragraph(3), price: "#{(1..500).to_a.sample}.0".to_f, quantity: "#{(1..500).to_a.sample}".to_i, featured: false, active: true, categories_list:cats.sample)
+    Product.create!(store_id: store.id, name: Faker::Name.name, description: Faker::Lorem.paragraph(3), price: "#{(1..500).to_a.sample}.0".to_f, quantity: "#{(1..500).to_a.sample}".to_i, image_url: product_images.sample, featured: false, active: true, categories_list:cats.sample)
     print "."
   end
 end

@@ -47,18 +47,24 @@ StoreEngine::Application.routes.draw do
 
     get '/admin/orders' => 'store_admin/stores#orders', as: "admin_orders"
 
-    namespace "admin" do
+    scope "/admin" do
       scope :module => "store_admin" do
-        resources :categories
+        resources :categories, as: "admin_categories"
       end
     end
 
-    get '/stock/products' => 'store_stocker/products#index', as: 'store_stocker_products'
-    get '/stock/products/new' => 'store_stocker/products#new', as: 'store_stocker_new_product'
-    post '/stock/products/new' => 'store_stocker/products#create', as: 'store_stocker_new_product'
-    get '/stock/products/:id' => 'store_stocker/products#show', as: 'store_stocker_product'
-    get '/stock/products/:id/edit' => 'store_stocker/products#edit', as: 'store_stocker_edit_product'
-    put '/stock/products/:id/edit' => 'store_stocker/products#update', as: 'store_stocker_edit_product'
+    scope "/stock" do
+      scope :module => "store_stocker" do
+        resources :products, as: "stocker_products"
+      end
+    end
+
+    # get '/stock/products' => 'store_stocker/products#index', as: 'store_stocker_products'
+    # get '/stock/products/new' => 'store_stocker/products#new', as: 'store_stocker_new_product'
+    # post '/stock/products/new' => 'store_stocker/products#create', as: 'store_stocker_new_product'
+    # get '/stock/products/:id' => 'store_stocker/products#show', as: 'store_stocker_product'
+    # get '/stock/products/:id/edit' => 'store_stocker/products#edit', as: 'store_stocker_edit_product'
+    # put '/stock/products/:id/edit' => 'store_stocker/products#update', as: 'store_stocker_edit_product'
 
     match '/' => 'stores#show', as: 'home'
     get '/orders/:url_token' => 'orders#unique_order_confirmation', as: 'url_token'

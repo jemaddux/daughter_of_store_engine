@@ -34,14 +34,9 @@ class Product < ActiveRecord::Base
   has_many  :order_products,     dependent: :destroy
   has_many  :orders,             through:   :order_products
 
-  has_attached_file :image,
-                    styles: { large: "454x627>", thumb: "182x304>" },
-                    default_url: "http://placehold.it/457/627"
-
   if Rails.env.production?
     has_attached_file :image,
                       styles: { large: "454x627>", thumb: "182x304>" },
-                      default_url: "http://placehold.it/457/627",
                       :storage => :s3,
                       :bucket => 'c3po_store_engine',
                       :path => ":attachment/:id/:style.:extension",
@@ -51,8 +46,7 @@ class Product < ActiveRecord::Base
                       }
   else
     has_attached_file :image,
-                      styles: { large: "454x627>", thumb: "182x304>" },
-                      default_url: "http://placehold.it/457/627"
+                      styles: { large: "454x627>", thumb: "182x304>" }
   end
 
   def categories_list

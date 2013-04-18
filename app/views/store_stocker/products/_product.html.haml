@@ -4,12 +4,12 @@
 
   .large-10.columns
     .left
-      %h2= link_to product.name, store_stocker_product_path(@store.path, product.id)
+      %h2= link_to product.name, stocker_product_path(@store.path, product.id)
       %p= product.description
       /%a= link_to Category.find(product.category_id), categories_path
     .right
       -#%h2= "#{number_to_currency(@store.path, product.price)}"
-      =link_to 'Edit', store_admin_edit_product_path(@store.path, product.id), class: "button right"
+      =link_to 'Edit', edit_stocker_product_path(@store.path, product.id), class: "button right"
     %br
 
 

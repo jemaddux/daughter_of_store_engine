@@ -32,7 +32,7 @@
               %p Store(s) I Stock:
               %ul
                 - @customer.stores_with_stocker_access.each do |store|
-                  %li=store.name
+                  %li= link_to store.name, home_path(store)
 
 
       = link_to 'Edit', edit_customers_path
