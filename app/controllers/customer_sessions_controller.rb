@@ -24,6 +24,7 @@ class CustomerSessionsController < ApplicationController
 
   def destroy
     logout
+    session[:return_to_url] = nil
     redirect_to :back, notice: "Logged out!"
   end
 end
