@@ -23,6 +23,7 @@ gem 'faker'
 gem 'resque', "~> 1.22.0"
 gem "redis-store", "~> 1.0.0"
 gem 'kaminari'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'fabrication'
@@ -35,7 +36,6 @@ group :development, :test do
   gem 'cane'
   gem 'reek'
   gem 'simplecov', :require => false
-  gem 'newrelic_rpm'
 end
 
 group :development do
