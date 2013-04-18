@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.unscoped.find(params[:id])
+    @order = Order.unscoped.find_all_by_customer_id(current_user.id)
     @products = @order.products.collect { |p| p.last.name }
   end
 

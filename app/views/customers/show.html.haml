@@ -44,7 +44,12 @@
       - else
         = link_to 'Shipping Address', new_shipping_address_path
       \|
-      - if @customer.shipping_address != nil
+      - if @customer.address != nil
         = link_to 'Billing Address', address_path(@customer)
       - else
         = link_to 'Billing Address', new_address_path
+      \|
+      - if @customer.credit_card != nil
+        = link_to 'Credit Card Info', credit_card_path(@customer)
+      - else
+        = link_to 'Credit Card Info', new_credit_card_path

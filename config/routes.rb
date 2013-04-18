@@ -1,10 +1,13 @@
 require 'resque/server'
 
 StoreEngine::Application.routes.draw do
+
+
   mount Resque::Server.new, at: "/resque"
-  resource :customers,          except: [:index]
-  resources :addresses
-  resources :shipping_addresses
+  resource :customers,           except: [:index]
+  resources :addresses,          except: [:index]
+  resources :shipping_addresses, except: [:index]
+  resources :credit_cards,       except: [:index]
   resources :orders,             only:   [:show, :index]
   resources :customer_sessions,  only:   [:new, :create, :destroy]
   resources :cart_products,      only:   [:destroy]

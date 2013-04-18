@@ -15,6 +15,7 @@ class Customer < ActiveRecord::Base
   has_one  :cart
   has_one  :shipping_address
   has_one  :address
+  has_one  :credit_card
   has_many :orders
 
   has_many :store_admins
@@ -26,8 +27,6 @@ class Customer < ActiveRecord::Base
 
   has_many :store_stockers
   has_many :stores_with_stocker_access, through: :store_stockers, source: :store
-
-  has_many :addresses
 
   def store_admin?(store)
     store.admins.include?(self)

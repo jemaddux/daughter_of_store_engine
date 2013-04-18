@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130417225507) do
+ActiveRecord::Schema.define(:version => 20130418015221) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "status"
@@ -57,6 +57,19 @@ ActiveRecord::Schema.define(:version => 20130417225507) do
 
   add_index "categories", ["store_id"], :name => "index_categories_on_store_id"
 
+  create_table "credit_cards", :force => true do |t|
+    t.integer  "customer_id"
+    t.string   "brand"
+    t.string   "cardholder_name"
+    t.integer  "number"
+    t.integer  "cvc"
+    t.integer  "expiration_date"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "credit_cards", ["customer_id"], :name => "index_credit_cards_on_customer_id"
+
   create_table "customers", :force => true do |t|
     t.string   "email"
     t.string   "crypted_password"
@@ -72,10 +85,10 @@ ActiveRecord::Schema.define(:version => 20130417225507) do
   create_table "order_products", :force => true do |t|
     t.integer  "order_id"
     t.integer  "product_id"
-    t.decimal  "price",      :precision => 8, :scale => 2
+    t.decimal  "price"
     t.integer  "quantity"
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "order_products", ["order_id"], :name => "index_order_products_on_order_id"
