@@ -16,6 +16,16 @@ class Customer < ActiveRecord::Base
   has_one  :shipping_address
   has_many :orders
 
+  has_many :store_admins
+  has_many :store_stockers
+
+
+  has_many :store_admins
+  has_many :stores_with_admin_access, through: :store_admins, source: :store
+
+  has_many :store_stockers
+  has_many :stores_with_stocker_access, through: :store_stockers, source: :store
+
   has_many :addresses
 
   def store_admin?(store)

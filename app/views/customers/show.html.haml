@@ -7,24 +7,39 @@
     .large-12.columns
       .row.admin-panel
         .large-12.columns
-          %p
-            %b Frist Name:
-            = @customer.first_name
-          %p
-            %b Last Name:
-            = @customer.last_name
-          %p
-            %b Display Name:
-            = @customer.display_name
-          %p
-            %b Email:
-            = @customer.email
+          .left
+            %p
+              %b Frist Name:
+              = @customer.first_name
+            %p
+              %b Last Name:
+              = @customer.last_name
+            %p
+              %b Display Name:
+              = @customer.display_name
+            %p
+              %b Email:
+              = @customer.email
+          .right
+            - if @customer.stores_with_admin_access.count > 0
+              %p Store(s) I Admin:
+              %ul
+                - @customer.stores_with_admin_access.each do |store|
+                  %li= link_to store.name, store_admin_path(store)
+            
+            - if @customer.stores_with_stocker_access.count > 0
+              %hr
+              %p Store(s) I Stock:
+              %ul
+                - @customer.stores_with_stocker_access.each do |store|
+                  %li=store.name
 
-          = link_to 'Edit', edit_customers_path
-          \|
-          = link_to 'Home', root_path
-          \|
-          - if @customer.shipping_address != nil
-            = link_to 'Shipping Address', shipping_address_path(@customer)
-          - else
-            = link_to 'Shipping Address', new_shipping_address_path
+
+      = link_to 'Edit', edit_customers_path
+      \|
+      = link_to 'Home', root_path
+      \|
+      - if @customer.shipping_address != nil
+        = link_to 'Shipping Address', shipping_address_path(@customer)
+      - else
+        = link_to 'Shipping Address', new_shipping_address_path

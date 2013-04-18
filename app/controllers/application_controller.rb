@@ -27,12 +27,18 @@ class ApplicationController < ActionController::Base
       redirect_to home_path(current_store), notice:"Only store administrators may access this page"
     end
   end
-    # admin_ids = Store.find(current_store.id).store_admins.collect { |s| s.id }
-    # if !current_user || !admin_ids.include?(current_user.id)
-    #   redirect_to home_path(params[:store_path]), :notice => "Only store administrators may access this page"
-    # else
-    #   true
-    # end
+  
+  def require_store_admin_or_stocker
+    if logged_in?
+      if current_user.store_stocker?(current_store) || current_user.store_admin?(current_store)
+        return true
+      else
+        redirect_to home_path(current_store), notice:"Only store administrators may access this page"
+      end
+    else
+      redirect_to home_path(current_store), notice: "You don't belong here"
+    end
+  end
 
   def request_login
     if logged_in?
