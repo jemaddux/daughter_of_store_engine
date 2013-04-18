@@ -1,4 +1,4 @@
-- cache("#{current_store.path}_category_view_#{@category.id}_#{current_store.updated_at}") do
+- cache("#{current_store.path}_category_view_page_#{params[:page]}_#{@category.id}_#{current_store.updated_at}") do
   .row
     %h1.section-heading= @category.name.to_s
   .row
@@ -18,5 +18,7 @@
               .panel
                 %h5= link_to product.name, product_path(current_store, product)
                 %h6.subheader= number_to_currency(product.price)
+  .text-center
+    = paginate @products
 
   = javascript_include_tag "application", "vendor/custom.modernizr", "http://code.jquery.com/jquery-1.9.1.min.js"
