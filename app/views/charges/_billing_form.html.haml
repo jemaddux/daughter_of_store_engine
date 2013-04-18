@@ -1,0 +1,18 @@
+= form_tag addresses_path, method: :post do |f|
+  .field
+    = label_tag :street
+    = text_field_tag "address[street]"
+  .field
+    = label_tag :city
+    = text_field_tag "address[city]"
+  .field
+    = label_tag :state
+    = text_field_tag "address[state]"
+  .field
+    = label_tag :zipcode
+    = text_field_tag "address[zipcode]"
+  .field
+    = label_tag :phone
+    = text_field_tag "address[phone]"
+  .action
+    = submit_tag 'Save', class:"button"

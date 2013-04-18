@@ -43,27 +43,26 @@
     = render 'shipping_form' 
 
 .large-6.columns
-  - if current_user.addresses.count > 0
+  - if current_user.address
     %h3 Billing Address:
-    - current_user.addresses.each do |billing|
-      %table
-        %th Status:
-        %th Street:
-        %th City:
-        %th State:
-        %th Zip:
-        %th Phone:
-        %tr
-          %td= billing.type
-          %td= billing.street
-          %td= billing.city
-          %td= billing.state
-          %td= billing.zipcode
-          %td= billing.phone
-
+    - billing = current_user.address
+    %table
+      %th Status:
+      %th Street:
+      %th City:
+      %th State:
+      %th Zip:
+      %th Phone:
+      %tr
+        %td Billing
+        %td= billing.street
+        %td= billing.city
+        %td= billing.state
+        %td= billing.zipcode
+        %td= billing.phone
   - else
     %h3 Billing Address:
-    = render 'addresses/billing_form' 
+    = render 'billing_form'
 .large-2.columns.left
   = form_tag charges_path do 
     %script.stripe-button{"data-amount" => @order.total*100, "data-description" => "#{current_store.name}", "data-key" => Rails.configuration.stripe[:publishable_key], :src => "https://checkout.stripe.com/v2/checkout.js"}

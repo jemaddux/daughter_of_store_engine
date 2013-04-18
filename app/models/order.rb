@@ -18,7 +18,7 @@ class Order < ActiveRecord::Base
 
   def include_addresses(user)
     self.shipping_id = user.shipping_address.id 
-    self.billing_id = user.addresses.first.id
+    self.billing_id = user.address.id
     self.save
   end
 

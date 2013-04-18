@@ -1,7 +1,6 @@
 class CategoriesController < ApplicationController
   def index
-    @categories = Category.all
-    @active_products = Product.find_all_by_active(true)
+    redirect_to home_path(current_store)
   end
 
   def show
