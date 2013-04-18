@@ -14,6 +14,7 @@ class Customer < ActiveRecord::Base
 
   has_one  :cart
   has_one  :shipping_address
+  has_one  :address
   has_many :orders
 
   has_many :store_admins

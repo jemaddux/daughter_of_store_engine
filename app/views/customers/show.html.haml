@@ -9,7 +9,7 @@
         .large-12.columns
           .left
             %p
-              %b Frist Name:
+              %b First Name:
               = @customer.first_name
             %p
               %b Last Name:
@@ -43,3 +43,8 @@
         = link_to 'Shipping Address', shipping_address_path(@customer)
       - else
         = link_to 'Shipping Address', new_shipping_address_path
+      \|
+      - if @customer.shipping_address != nil
+        = link_to 'Billing Address', address_path(@customer)
+      - else
+        = link_to 'Billing Address', new_address_path

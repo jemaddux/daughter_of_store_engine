@@ -1,10 +1,10 @@
-- form_method = @billing_address.new_record? ? "POST" : "PUT"
-= form_for @billing_address, method: form_method do |f|
-  - if @billing_address.errors.any?
+- form_method = @address.new_record? ? "POST" : "PUT"
+= form_for @address, method: form_method do |f|
+  - if @address.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@billing_address.errors.count, "error")} prohibited this billing_address from being saved:"
+      %h2= "#{pluralize(@address.errors.count, "error")} prohibited this billing_address from being saved:"
       %ul
-        - @billing_address.errors.full_messages.each do |msg|
+        - @address.errors.full_messages.each do |msg|
           %li= msg
 
   .field
