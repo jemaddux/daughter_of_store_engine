@@ -17,7 +17,10 @@ class CartsController < ApplicationController
       session[:shopping_cart][current_store.id][product.id] += 1 
     end
     if params[:subtract] == "1"
-      session[:shopping_cart][current_store.id][product.id] -= 1 
+      session[:shopping_cart][current_store.id][product.id] -= 1
+      if session[:shopping_cart][current_store.id][product.id] < 1
+        session[:shopping_cart][current_store.id].delete(product.id)
+      end
     end
     if params[:add] == "1"
       session[:shopping_cart][current_store.id][product.id] += 1 

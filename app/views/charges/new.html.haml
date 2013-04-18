@@ -1,68 +1,73 @@
-
-.large-8.columns.left
-  %h2 Please Review Order Details
-  %table
-    %th
-    %th Item
-    %th Quantity
-    %th Price
-    %th Description
-    %th Subtotal
-    - @products.each do |line_item, product|
-      %tr
-        %td= image_tag product.image.url, class: "product-feature"
-        %td= product.name
-        %td= line_item.quantity
-        %td= number_to_currency(product.price)
-        %td= product.description
-        %td= number_to_currency(line_item.subtotal)       
-  %h4
-    Order Total:
-    = number_to_currency(@order.total)
-
-.large-6.columns
-  - if current_user.shipping_address
-    %h3 Shipping Address:
-    - shipping = current_user.shipping_address
+.row
+  .large-8.columns.left
+    %h2 Please Review Order Details
     %table
-      %th Status:
-      %th Street:
-      %th City:
-      %th State:
-      %th Zip:
-      %th Phone:
-      %tr
-        %td Shipping
-        %td= shipping.street
-        %td= shipping.city
-        %td= shipping.state
-        %td= shipping.zipcode
-        %td= shipping.phone
-  - else
-    %h3 Shipping Address:
-    = render 'shipping_form' 
+      %th
+      %th Item
+      %th Quantity
+      %th Price
+      %th Description
+      %th Subtotal
+      - @products.each do |line_item, product|
+        %tr
+          %td= image_tag product.image.url, class: "product-feature"
+          %td= product.name
+          %td= line_item.quantity
+          %td= number_to_currency(product.price)
+          %td= product.description
+          %td= number_to_currency(line_item.subtotal)       
+    %h4
+      Order Total:
+      = number_to_currency(@order.total)
+.row
+  .large-3.columns
+    - if current_user.address && current_user.shipping_address
+      = form_tag charges_path do 
+        %script.stripe-button{"data-amount" => @order.total*100, "data-description" => "#{current_store.name}", "data-key" => Rails.configuration.stripe[:publishable_key], :src => "https://checkout.stripe.com/v2/checkout.js"}
 
-.large-6.columns
-  - if current_user.address
-    %h3 Billing Address:
-    - billing = current_user.address
-    %table
-      %th Status:
-      %th Street:
-      %th City:
-      %th State:
-      %th Zip:
-      %th Phone:
-      %tr
-        %td Billing
-        %td= billing.street
-        %td= billing.city
-        %td= billing.state
-        %td= billing.zipcode
-        %td= billing.phone
-  - else
-    %h3 Billing Address:
-    = render 'billing_form'
-.large-2.columns.left
-  = form_tag charges_path do 
-    %script.stripe-button{"data-amount" => @order.total*100, "data-description" => "#{current_store.name}", "data-key" => Rails.configuration.stripe[:publishable_key], :src => "https://checkout.stripe.com/v2/checkout.js"}
+.row
+  .large-6.columns
+    - if current_user.shipping_address
+      %h3 Shipping Address:
+      - shipping = current_user.shipping_address
+      %table
+        %th Status:
+        %th Street:
+        %th City:
+        %th State:
+        %th Zip:
+        %th Phone:
+        %tr
+          %td Shipping
+          %td= shipping.street
+          %td= shipping.city
+          %td= shipping.state
+          %td= shipping.zipcode
+          %td= shipping.phone
+    - else
+      %h3 Shipping Address:
+      = render 'shipping_form' 
+
+  .large-6.columns
+    - if current_user.address
+      %h3 Billing Address:
+      - billing = current_user.address
+      %table
+        %th Status:
+        %th Street:
+        %th City:
+        %th State:
+        %th Zip:
+        %th Phone:
+        %tr
+          %td Billing
+          %td= billing.street
+          %td= billing.city
+          %td= billing.state
+          %td= billing.zipcode
+          %td= billing.phone
+
+    - else
+      %h3 Billing Address:
+      = render 'billing_form'
+
