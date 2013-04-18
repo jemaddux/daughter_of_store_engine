@@ -22,6 +22,7 @@ gem 'asset_sync'
 gem 'faker'
 gem 'resque', "~> 1.22.0"
 gem "redis-store", "~> 1.0.0"
+gem 'kaminari'
 
 group :development, :test do
   gem 'fabrication'
