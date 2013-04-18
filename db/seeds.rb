@@ -122,11 +122,6 @@ store_names.each do |name,path|
     print "."
     file.close
   end
-
-  9982.times do |i|
-    Product.create!(store_id: store.id, name: Faker::Name.name, description: Faker::Lorem.paragraph(3), price: "#{(1..500).to_a.sample}.0".to_f, quantity: "#{(1..500).to_a.sample}".to_i, featured: false, active: true, categories_list:cats.sample)
-    print "."
-  end
 end
 
 cart = {1=>1}

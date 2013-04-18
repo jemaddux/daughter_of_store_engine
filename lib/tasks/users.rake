@@ -1,7 +1,7 @@
 namespace :create do
-  desc "creating 10000 users"
+  desc "creating 1000 users"
   task :users => :environment do
-    10000.times do |i|
+    1000.times do |i|
       Customer.create(
           :display_name => "random_user#{i}",
           :email => "demoXX+random#{i}@jumpstartlab.com",
