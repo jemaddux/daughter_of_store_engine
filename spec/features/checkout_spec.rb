@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe 'Checkout Flow:' do
 
-  let!(:store) {Store.create(name: 'Cool Sunglasses', path: 'cool-sunglasses', description: 'We have cool sunglasses', status: 'active')}
-  let!(:product) {Product.create(name: 'Sunglasses', description: 'No more squinting!', price: 9.99, quantity: 10, featured: false, active: true, photo_url: 'http://placekitten.com/500/500', store_id: 1)}
-  let!(:user) {Customer.create(email: 'test@test.com', password: 'password', first_name: 'test', last_name: 'user', admin: false)}
-  let(:shipping_address) {ShippingAddress.create(customer_id: 1, street: '3181 W Avondale Dr.', city: 'Denver', state: 'CO', zipcode: '80204', phone: '8155207020')}
+  let!(:store) {Store.create!(name: 'Cool Sunglasses', path: 'cool-sunglasses', description: 'We have cool sunglasses', status: 'active')}
+  let!(:product) {Product.create!(name: 'Sunglasses', description: 'No more squinting!', price: 9.99, quantity: 10, featured: false, active: true, photo_url: 'http://placekitten.com/500/500', store_id: 1)}
+  let!(:user) {Customer.create!(email: 'test@test.com', password: 'password', first_name: 'test', last_name: 'user', admin: false)}
+  let(:shipping_address) {ShippingAddress.create!(customer_id: 1, street: '3181 W Avondale Dr.', city: 'Denver', state: 'CO', zipcode: '80204', phone: '8155207020')}
 
   context 'when the customer is anonymous' do
     it 'it prompts the customer to login, signup, or checkout as guest' do
@@ -21,7 +21,7 @@ describe 'Checkout Flow:' do
     end
 
     context 'and the customer chooses to login' do
-      it 'it logs the customer in and redirects back to the order confirmation page' do
+      it 'login and redirect to the order confirmation page' do
         visit '/cool-sunglasses'
         click_link 'Products'
         click_link 'product-0'
@@ -31,8 +31,8 @@ describe 'Checkout Flow:' do
         within("#login-form") do 
           fill_in 'email', with: 'test@test.com'
           fill_in 'password', with: 'password'
+          click_button 'Login'
         end
-        click_button 'Login'
         page.should have_content 'Review Order Details'
       end
     end
