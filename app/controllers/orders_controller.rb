@@ -11,8 +11,13 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.unscoped.find_by_customer_id(current_user.id)
-    @products = @order.products.collect { |p| p.last.name }
+    order = Order.unscoped.find(params[:id])
+    if order.customer_id == current_user.id
+      @order = order 
+      @products = @order.products
+    else
+      redirect_to orders_path, notice:"Thats not your order"
+    end
   end
 
   def unique_order_confirmation
