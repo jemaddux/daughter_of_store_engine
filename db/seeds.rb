@@ -12,32 +12,32 @@ blair = Customer.create(
   :first_name => "Blair",
   :last_name => "Anderson" )
 
-logan = Customer.create(
-  :display_name => "Logan",
-  :email => "lsears322@gmail.com",
+paul = Customer.create(
+  :display_name => "paul",
+  :email => "pnblackwell@gmail.com",
   :password => "password",
   :password_confirmation => "password",
   :admin => false,
-  :first_name => "Logan",
-  :last_name => "Sears" )
+  :first_name => "Paul",
+  :last_name => "Blackwell" )
 
-chris = Customer.create(
-  :display_name => "Chris",
-  :email => "rehpotsirhc46@gmail.com",
+phil = Customer.create(
+  :display_name => "phil",
+  :email => "philbattos@gmail.com",
   :password => "password",
   :password_confirmation => "password",
   :admin => false,
-  :first_name => "Chris",
-  :last_name => "Knight" )
+  :first_name => "Phil",
+  :last_name => "Battos" )
 
-jen = Customer.create(
-  :display_name => "jen",
-  :email => "jen7maples@gmail.com",
+john = Customer.create(
+  :display_name => "john",
+  :email => "jemaddux@gmail.com",
   :password => "password",
   :password_confirmation => "password",
-  :admin => false,
-  :first_name => "jen",
-  :last_name => "eliuk" )
+  :admin => true,
+  :first_name => "John",
+  :last_name => "Maddux" )
 
 frank = Customer.create(
   :display_name => "Franklin",
@@ -105,8 +105,8 @@ store_names.each do |name,path|
   store = Store.create!(name: name, path: path, description: Faker::Lorem.paragraph(1), status:"active")
   Store.include_admin(frank.id, store.id)
   Store.include_admin(blair.id, store.id)
-  Store.include_stocker(logan.id, store.id)
-  Store.include_stocker(chris.id, store.id)
+  Store.include_stocker(paul.id, store.id)
+  Store.include_stocker(phil.id, store.id)
 
   print "\ncreating #{store.name}..."
   cats = %w(sunglasses goggles skis snowboards boots helmets gloves backpacks cameras luggage clothing)
