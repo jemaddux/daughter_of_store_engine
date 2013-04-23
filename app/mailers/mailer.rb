@@ -1,7 +1,7 @@
 class Mailer < ActionMailer::Base
   include SendGrid
 
-  default from: "customerservice@sonofsam.com"
+  default from: "customerservice@DaughterOfStoreEngine.com"
 
   def welcome_email(user)
     @customer = user
