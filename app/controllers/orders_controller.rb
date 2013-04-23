@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_filter :require_login, except: [:show]
+  before_filter :require_login, except: [:unique_order_confirmation]
   skip_filter :scope_current_store
 
   def index
