@@ -21,6 +21,9 @@
 
 = form_tag add_store_admin_path(@store), method: :put, class: "navbar-form" do
   %input.large-3.columns{:placeholder => "Email", name:"email", :type => "email"}/
+  %br
+  %br
+  %br
   = submit_tag "Add New Admin", class: "button"
 
 
@@ -35,4 +38,7 @@
 
 = form_tag add_store_stocker_path(@store), method: :put, class: "navbar-form" do
   %input.large-3.columns{:placeholder => "Email", name:"email", :type => "email"}/
+  %br
+  %br
+  %br
   = submit_tag "Add New Stocker", class: "button"

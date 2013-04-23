@@ -11,5 +11,8 @@
   .field
     = f.label 'Store URL Id:'
     = f.text_field :path
+  .field
+    = f.label 'Store Description:'
+    = f.text_field :description
   .actions
     = f.submit 'Update', confirm: "Are you sure you want to make these changes? Changing your store's name or URL Id may result in broken links or customer confusion."
