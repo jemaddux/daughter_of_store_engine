@@ -2,7 +2,9 @@ class CustomerSessionsController < ApplicationController
   skip_filter :scope_current_store
 
   def new
-    session[:redirect_after_create] = params[:path]
+    if params[:path]
+      session[:redirect_after_create] = params[:path]
+    end
   end
 
   def create
@@ -17,6 +19,7 @@ class CustomerSessionsController < ApplicationController
         end
       end
     else
+      session[:redirect_after_create] = nil
       flash.now.notice = 'Email or password invalid'
       render action: 'new'
     end
