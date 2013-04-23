@@ -26,11 +26,11 @@
         %script.stripe-button{"data-amount" => @order.total*100, "data-description" => "#{current_store.name}", "data-key" => Rails.configuration.stripe[:publishable_key], :src => "https://checkout.stripe.com/v2/checkout.js"}
 
 .row
-  .large-6.columns
-    - if current_user.shipping_address
+  - if current_user.shipping_address
+    .large-6.columns
       %h3 Shipping Address:
       - shipping = current_user.shipping_address
-      %table
+      %table#shipping
         %th Status:
         %th Street:
         %th City:
@@ -44,15 +44,16 @@
           %td= shipping.state
           %td= shipping.zipcode
           %td= shipping.phone
-    - else
+  - else
+    .large-4.columns
       %h3 Shipping Address:
       = render 'shipping_form' 
 
-  .large-6.columns
-    - if current_user.address
+  - if current_user.address
+    .large-6.columns
       %h3 Billing Address:
       - billing = current_user.address
-      %table
+      %table#billing
         %th Status:
         %th Street:
         %th City:
@@ -67,7 +68,7 @@
           %td= billing.zipcode
           %td= billing.phone
 
-    - else
+  - else
+    .large-4.columns
       %h3 Billing Address:
       = render 'billing_form'
-
