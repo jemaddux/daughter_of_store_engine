@@ -22,12 +22,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def require_store_admin
-    if !current_user || !current_user.store_admin?(current_store)
+  def require_store_admin_or_admin
+    if !current_user
+      redirect_to home_path(current_store)
+      return
+    end
+    unless current_user.store_admin?(current_store) || current_user.admin?
       redirect_to home_path(current_store), notice:"Only store administrators may access this page"
     end
   end
-  
+
   def require_store_admin_or_stocker
     if logged_in?
       if current_user.store_stocker?(current_store) || current_user.store_admin?(current_store)
@@ -79,12 +83,12 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-  
+
   def shopping_cart_for_store
     if current_store
       session[:shopping_cart][current_store.id] ||= Hash.new(0)
     end
-  end 
+  end
 
 end
 

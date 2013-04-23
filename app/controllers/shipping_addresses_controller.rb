@@ -16,7 +16,7 @@ class ShippingAddressesController < ApplicationController
 
   def create
     @shipping_address = ShippingAddress.new(city: params[:shipping_address][:city],
-                                            phone: params[:shipping_address][:phone],
+                                            phone: shorten_phone(params[:shipping_address][:phone]),
                                             state: params[:shipping_address][:state],
                                             street: params[:shipping_address][:street],
                                             zipcode: params[:shipping_address][:zipcode],
@@ -34,7 +34,7 @@ class ShippingAddressesController < ApplicationController
     @shipping_address = ShippingAddress.find_by_customer_id(current_user.id)
 
     if @shipping_address.update_attributes(city: params[:shipping_address][:city],
-                                           phone: params[:shipping_address][:phone],
+                                           phone: shorten_phone(params[:shipping_address][:phone]),
                                            state: params[:shipping_address][:state],
                                            street: params[:shipping_address][:street],
                                            zipcode: params[:shipping_address][:zipcode],
@@ -51,5 +51,11 @@ class ShippingAddressesController < ApplicationController
     @shipping_address = ShippingAddress.find_by_customer_id(current_user.id)
 
     redirect_to customer_path(current_user.id)
+  end
+
+  private
+
+  def shorten_phone(number)
+    return number.gsub("(","").gsub(")","").gsub("-","")
   end
 end
