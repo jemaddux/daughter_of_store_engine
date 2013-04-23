@@ -15,7 +15,7 @@
 %ul
   - @store.admins.each do |admin|
     %li
-      =admin.email
+      = admin.email
 
       = button_to "remove admin", remove_store_admin_path(@store, :id => admin.id), :method => :put, confirm: "Are you sure you want to remove this Admin?"
 
