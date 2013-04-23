@@ -34,17 +34,21 @@ class Order < ActiveRecord::Base
     order = customer.orders.create(status: "pending", store_id: store_id)
     order.create_order_products(cart)
     order.calculate_total
+
+    Store.find(store_id).touch
+    
     order.save
     return order
   end
 
 
   def create_order_products(cart)
-    cart.each do |id,quantity|
+    cart.each do |id,unit_quantity|
       product = Product.unscoped.find(id)
+      product.decrement(:quantity, unit_quantity).save
       self.order_products.create(
         :product_id       => product.id,
-        :quantity         => quantity, 
+        :quantity         => unit_quantity, 
         :price => product.price)
     end
   end

@@ -1,4 +1,5 @@
 module ApplicationHelper
+
   def flash_class(level)
     case level
       when :notice then "info"
@@ -6,4 +7,6 @@ module ApplicationHelper
       when :alert then "warning"
     end
   end
+
+  
 end
