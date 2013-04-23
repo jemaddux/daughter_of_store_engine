@@ -1,7 +1,7 @@
 .large-4.columns
   %p
     Already have an account? Sign in
-  = form_tag create_guest_path(current_store), method: :post do
+  = form_tag create_guest_path(current_store), method: :post, id:"login-form" do
     .field
       = label_tag :email
       = text_field_tag :email
@@ -13,7 +13,7 @@
 .large-4.columns
   %p
     Check Out as a Guest, without Creating an Account
-  = form_tag create_guest_path(current_store), method: :post do
+  = form_tag create_guest_path(current_store), method: :post, id:"guest-checkout-form" do
     .field
       = label_tag :first_name
       = text_field_tag :first_name

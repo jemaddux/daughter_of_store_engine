@@ -4,7 +4,7 @@ describe 'Checkout Flow:' do
 
   let!(:store) {Store.create(name: 'Cool Sunglasses', path: 'cool-sunglasses', description: 'We have cool sunglasses', status: 'active')}
   let!(:product) {Product.create(name: 'Sunglasses', description: 'No more squinting!', price: 9.99, quantity: 10, featured: false, active: true, photo_url: 'http://placekitten.com/500/500', store_id: 1)}
-  let!(:user) {Customer.create(username: 'test', email: 'test@test.com', password: 'password', first_name: 'test', last_name: 'user', admin: false)}
+  let!(:user) {Customer.create(email: 'test@test.com', password: 'password', first_name: 'test', last_name: 'user', admin: false)}
   let(:shipping_address) {ShippingAddress.create(customer_id: 1, street: '3181 W Avondale Dr.', city: 'Denver', state: 'CO', zipcode: '80204', phone: '8155207020')}
 
   context 'when the customer is anonymous' do
@@ -28,8 +28,10 @@ describe 'Checkout Flow:' do
         click_button 'Add to Cart'
         click_link 'Cart'
         click_link 'Checkout'
-        fill_in 'username', with: 'test'
-        fill_in 'password', with: 'password'
+        within("#login-form") do 
+          fill_in 'email', with: 'test@test.com'
+          fill_in 'password', with: 'password'
+        end
         click_button 'Login'
         page.should have_content 'Review Order Details'
       end
@@ -45,14 +47,11 @@ describe 'Checkout Flow:' do
         click_link 'Checkout'
         fill_in 'customer_first_name', with: 'test2'
         fill_in 'customer_last_name', with: 'user2'
-        fill_in 'customer_username', with: 'test2'
         fill_in 'customer_email', with: 'test2@test2.com'
         fill_in 'customer_password', with: 'password'
         fill_in 'customer_password_confirmation', with: 'password'
-        fill_in 'password', with: 'password'
-        click_button 'Save'
+        click_button 'Create Account'
         page.should have_content 'Review Order Details'
-        page.should have_content 'Shipping Information is Required'
       end
     end
 
@@ -64,9 +63,11 @@ describe 'Checkout Flow:' do
         click_button 'Add to Cart'
         click_link 'Cart'
         click_link 'Checkout'
-        fill_in 'first_name', with: 'Logan'
-        fill_in 'last_name', with: 'Sears'
-        fill_in 'email', with: 'lsears@test.com'
+        within("#guest-checkout-form") do 
+          fill_in 'first_name', with: 'Logan'
+          fill_in 'last_name', with: 'Sears'
+          fill_in 'email', with: 'lsears@test.com'
+        end
         click_button 'Checkout as Guest'
         page.should have_content 'Review Order Details'
       end
@@ -78,7 +79,7 @@ describe 'Checkout Flow:' do
       it 'it takes the user to his/her order confirmation page and requires them to enter shipping details' do
         visit '/cool-sunglasses'
         click_link 'Login / Signup'
-        fill_in 'username', with: 'test'
+        fill_in 'email', with: 'test@test.com'
         fill_in 'password', with: 'password'
         click_button 'Login'
         click_link 'Products'
@@ -95,7 +96,7 @@ describe 'Checkout Flow:' do
         shipping_address
         visit '/cool-sunglasses'
         click_link 'Login / Signup'
-        fill_in 'username', with: 'test'
+        fill_in 'email', with: 'test@test.com'
         fill_in 'password', with: 'password'
         click_button 'Login'
         click_link 'Products'

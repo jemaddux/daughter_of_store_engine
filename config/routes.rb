@@ -28,7 +28,7 @@ StoreEngine::Application.routes.draw do
 
   match 'login'  => 'customer_sessions#new'
   match 'logout' => 'customer_sessions#destroy'
-  match '/code'   => redirect('https://github.com/blairand/sonofstore_engine')
+  match '/code'   => redirect('https://github.com/philbattos/daughter_of_store_engine')
 
   scope '/:store_path' do
     put '/remove_store_admin' => 'store_admin/stores#remove_store_admin', :as => 'remove_store_admin'

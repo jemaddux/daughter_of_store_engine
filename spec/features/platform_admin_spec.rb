@@ -2,31 +2,27 @@ require 'spec_helper'
 
 describe 'Platform Admin:' do
 
-  let!(:store) {Store.create(name: 'Cool Sunglasses', path: 'cool-sunglasses', description: 'We have cool sunglasses')}
-  let!(:admin) {Customer.create(username: 'admin', email: 'test@test.com', password: 'password', first_name: 'admin', last_name: 'user', admin: true)}
-  let!(:user) {Customer.create(username: 'user', email: 'test2@test2.com', password: 'password', first_name: 'test', last_name: 'user', admin: false)}
+  let!(:store) {Store.create!(name: 'Cool Sunglasses', path: 'cool-sunglasses', description: 'We have cool sunglasses')}
+  let!(:admin) {Customer.create!(email: 'admin@admin.com', password: 'password', first_name: 'admin', last_name: 'admin', admin: true)}
+  let!(:user) {Customer.create!(email: 'test@test.com', password: 'password', first_name: 'user', last_name: 'user', admin: false)}
+
+  def login_admin
+    visit root_path
+    fill_in "email", with: "admin@admin.com"
+    fill_in 'password', with: 'password'
+    click_button 'Sign in'
+    visit admin_stores_path
+  end
 
   context 'when the current user is a platform admin' do
     it 'they can view an index of all current stores with their details' do
-      visit '/'
-      fill_in 'username', with: 'admin'
-      fill_in 'password', with: 'password'
-      click_button 'Sign in'
-      click_link 'Admin'
-      page.should have_content 'Stores Dashboard'
-      page.should have_content 'Admin Access'
-      page.should have_content 'Store URL'
-      page.should have_content 'Description'
-      page.should have_content 'Status'
+      login_admin
+      expect(current_path).to eq admin_stores_path
     end
 
-    context 'and there is a pending store' do
+    context 'When a store is pending' do
       it 'they can approve the store' do
-        visit '/'
-        fill_in 'username', with: 'admin'
-        fill_in 'password', with: 'password'
-        click_button 'Sign in'
-        click_link 'Admin'
+        login_admin
         within('tr#1') do
           page.should have_content 'Pending'
           click_button 'Approve'
@@ -38,31 +34,20 @@ describe 'Platform Admin:' do
         end
       end
 
-      it 'they can reject the store' do
-        visit '/'
-        fill_in 'username', with: 'admin'
-        fill_in 'password', with: 'password'
-        click_button 'Sign in'
-        click_link 'Admin'
+      it 'they can decline the store' do
+        login_admin
         within('tr#1') do
           page.should have_content 'Pending'
-          click_button 'Reject'
+          click_button 'Decline'
         end
         page.should have_content 'Store updated successfully.'
-        within('tr#1') do
-          page.should have_content 'Declined'
-          page.should have_button 'Approve'
-        end
+        expect( page ).to_not have_content 'tr#1'
       end
     end
 
     context 'and there is an approved store' do
       it 'they can disable the store' do
-        visit '/'
-        fill_in 'username', with: 'admin'
-        fill_in 'password', with: 'password'
-        click_button 'Sign in'
-        click_link 'Admin'
+        login_admin
         within('tr#1') do
           click_button 'Approve'
         end
@@ -77,34 +62,9 @@ describe 'Platform Admin:' do
       end
     end
 
-    context 'and there is a declined store' do
-      it 'they can still approve the store' do
-        visit '/'
-        fill_in 'username', with: 'admin'
-        fill_in 'password', with: 'password'
-        click_button 'Sign in'
-        click_link 'Admin'
-        within('tr#1') do
-          click_button 'Reject'
-        end
-        within('tr#1') do
-          page.should have_button 'Approve'
-          click_button 'Approve'
-        end
-        page.should have_content 'Store updated successfully.'
-        within('tr#1') do
-          page.should have_content 'Active'
-        end
-      end
-    end
-
     context 'and there is an inactive store' do
       it 'they can enable the store' do
-        visit '/'
-        fill_in 'username', with: 'admin'
-        fill_in 'password', with: 'password'
-        click_button 'Sign in'
-        click_link 'Admin'
+        login_admin
         within('tr#1') do
           click_button 'Approve'
         end
@@ -124,15 +84,15 @@ describe 'Platform Admin:' do
     end
   end
 
-  context 'when the current user is not a platform admin' do
+  context 'when the user is not a platform admin' do
     it 'they cannot view the platform admin page' do
       visit '/'
-      fill_in 'username', with: 'user'
+      fill_in 'email', with: 'test@test.com'
       fill_in 'password', with: 'password'
       click_button 'Sign in'
       page.should_not have_content 'Admin'
-      visit '/admin/stores'
-      page.should have_content 'Only system administrators may access this page'
+      visit admin_stores_path
+      expect(current_path).to eq "/stores"
     end
   end
 end
