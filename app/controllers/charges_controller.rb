@@ -3,6 +3,7 @@ class ChargesController < ApplicationController
   before_filter :request_login, only: [:new]
 
   def checkout_options
+    session[:redirect_after_create] = "/"+params[:store_path]+"/charges/new"
     @customer = Customer.new
   end
 
