@@ -13,14 +13,14 @@ class StoresController < ApplicationController
   def index
     @stores = Store.unscoped.all
   end
-  
+
   def show
     store ||= current_store
     if store.status == "pending"
-      render :inline => "Store Not Found",:layout => "dead_store"
+      render :inline => "Store is Pending Approval by Site Admin",:layout => "dead_store"
     elsif store.status == "disabled"
       render :inline => "This store is down for maintenance",:layout => "dead_store"
-    elsif store.status == "rejected"
+    elsif store.status == "declined"
       render :inline => "This store has been rejected. Please email the administrator",:layout => "dead_store"
     else
       @store = store
@@ -35,7 +35,6 @@ class StoresController < ApplicationController
     @store = Store.new(params[:store])
 
     if @store.save
-      StoreAdmin.create(customer_id: current_user.id, store_id: @store.id)
       Store.include_admin(current_user.id, @store.id)
       redirect_to store_admin_path(Store.find(@store.id).path), notice: 'Thank you. Your store is currently pending acceptance'
     else
@@ -45,9 +44,9 @@ class StoresController < ApplicationController
 
   def change_status
     store = Store.find(params[:id])
-    
+
     store.update_attribute(:status, params[:status])
-    
+
     Resque.enqueue(SendStatusEmail, store.id)
 
     redirect_to admin_stores_path, notice: 'Store updated successfully.'

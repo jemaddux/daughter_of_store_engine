@@ -12,9 +12,11 @@
       .container
         %ul.nav
           %li
-          %li 
+          %li
       .container
-        %h1 
+        %h1
           = yield
+        %h4
+          = link_to "Store Directory", stores_path
       .container
         = render partial: "layouts/footer"
