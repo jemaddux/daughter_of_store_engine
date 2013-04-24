@@ -42,11 +42,11 @@ class Product < ActiveRecord::Base
                       styles: { large: '454x627>', thumb: '182x304>' },
                       default_url: 'http://placehold.it/600/600',
                       :storage => :s3,
-                      :bucket => 'c3po_store_engine',
                       :path => ':attachment/:id/:style.:extension',
                       :s3_credentials => {
-                          :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-                          :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+                          :bucket => ENV['S3_BUCKET_NAME'],
+                          :access_key_id => ENV['S3_ACCESS_KEY'],
+                          :secret_access_key => ENV['S3_SECRET_KEY']
                       }
   else
     has_attached_file :image,
