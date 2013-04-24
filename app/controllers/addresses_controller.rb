@@ -12,7 +12,7 @@ class AddressesController < ApplicationController
 
   def create
     @address = Address.new(city: params[:address][:city],
-                           phone: params[:address][:phone],
+                           phone: shorten_phone(params[:address][:phone]),
                            state: params[:address][:state],
                            street: params[:address][:street],
                            zipcode: params[:address][:zipcode],
@@ -35,7 +35,7 @@ class AddressesController < ApplicationController
     @address = Address.find_by_customer_id(current_user.id)
 
     if @address.update_attributes(city: params[:address][:city],
-                                  phone: params[:address][:phone],
+                                  phone: shorten_phone(params[:address][:phone]),
                                   state: params[:address][:state],
                                   street: params[:address][:street],
                                   zipcode: params[:address][:zipcode],
@@ -47,5 +47,11 @@ class AddressesController < ApplicationController
     else
       render action: 'edit'
     end
+  end
+
+  private
+
+  def shorten_phone(number)
+    return number.gsub("(","").gsub(")","").gsub("-","")
   end
 end

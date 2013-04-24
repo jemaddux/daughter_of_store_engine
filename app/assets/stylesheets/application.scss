@@ -29,6 +29,9 @@ table {
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
 }
+.wide{
+  width: 300px;
+}
 .panel a {
   color: #2ba6cb !important;
   font-size:1.1em;
@@ -97,7 +100,7 @@ ul.home-list {
   margin-top:5em;
   list-style-type: none;
   margin-left:1em;
-  margin-bottom:30%;
+  margin-bottom:0%;
 }
 ul.home-list li {
   padding: .5em 0em .5em 0em;
@@ -115,11 +118,11 @@ Full Screen Slideshow
   Supersized - Fullscreen Slideshow jQuery Plugin
   Version : 3.2.7
   Site  : www.buildinternet.com/project/supersized
-  
+
   Author  : Sam Dunn
   Company : One Mighty Roar (www.onemightyroar.com)
   License : MIT License / GPL License
-  
+
 */
 img { border:none; }
 

@@ -1,11 +1,7 @@
 class StoreAdmin::StoresController < ApplicationController
   layout 'admin/application'
   skip_filter :scope_current_store
-  before_filter :require_store_admin
-
-  #def index
-  #  @store = Store.all
-  #end
+  before_filter :require_store_admin_or_admin
 
   def orders
     @store = Store.find_by_path(params[:store_path])

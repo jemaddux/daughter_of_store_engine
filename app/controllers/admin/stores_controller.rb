@@ -8,15 +8,6 @@ class Admin::StoresController < ApplicationController
   end
 
   def administer
-    platform_admin = current_user
-    store_admin = Customer.find(params[:admin_id])
-    logout
-
-    session[:platform_admin] = "true"
-    session[:platform_admin_id] = platform_admin.id
-    
-    auto_login(store_admin)
-    
     redirect_to store_admin_path(current_store.path)
   end
 

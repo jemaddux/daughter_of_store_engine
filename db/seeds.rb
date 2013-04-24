@@ -137,7 +137,7 @@ end
 end
 
 2.times do |i|
-  order = Order.for_customer(jen,cart,store_id)
+  order = Order.for_customer(john,cart,store_id)
   order.status = "shipped"
   order.save
 end

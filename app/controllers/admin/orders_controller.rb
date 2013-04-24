@@ -1,4 +1,4 @@
-class Admin::OrdersController < ApplicationController  # GET /orders
+class Admin::OrdersController < ApplicationController
   layout 'admin/application'
 
   before_filter :require_admin
