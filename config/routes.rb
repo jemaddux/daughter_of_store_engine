@@ -8,7 +8,9 @@ StoreEngine::Application.routes.draw do
   resources :addresses,          except: [:index]
   resources :shipping_addresses, except: [:index]
   resources :credit_cards,       except: [:index]
+  get '/order_token/:url_token' => 'orders#unique_order_confirmation', as: 'url_token'
   resources :orders,             only:   [:show, :index]
+
   resources :customer_sessions,  only:   [:new, :create, :destroy]
   resources :cart_products,      only:   [:destroy]
   resources :shipping_addresses, except: [:index]
@@ -62,15 +64,8 @@ StoreEngine::Application.routes.draw do
       end
     end
 
-    # get '/stock/products' => 'store_stocker/products#index', as: 'store_stocker_products'
-    # get '/stock/products/new' => 'store_stocker/products#new', as: 'store_stocker_new_product'
-    # post '/stock/products/new' => 'store_stocker/products#create', as: 'store_stocker_new_product'
-    # get '/stock/products/:id' => 'store_stocker/products#show', as: 'store_stocker_product'
-    # get '/stock/products/:id/edit' => 'store_stocker/products#edit', as: 'store_stocker_edit_product'
-    # put '/stock/products/:id/edit' => 'store_stocker/products#update', as: 'store_stocker_edit_product'
-
     match '/' => 'stores#show', as: 'home'
-    get '/orders/:url_token' => 'orders#unique_order_confirmation', as: 'url_token'
+    get '/orders/:url_token' => 'orders#unique_order_confirmation', as: 'another_url_token'
     resource :carts
     resources :categories,         only:   [:show, :index]
     resources :charges,            only:   [:new, :create]
