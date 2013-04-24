@@ -16,11 +16,11 @@ class ShippingAddressesController < ApplicationController
 
   def create
     @shipping_address = ShippingAddress.new(city: params[:shipping_address][:city],
-                                            phone: shorten_phone(params[:shipping_address][:phone]),
-                                            state: params[:shipping_address][:state],
-                                            street: params[:shipping_address][:street],
-                                            zipcode: params[:shipping_address][:zipcode],
-                                            customer_id: current_user.id)
+          phone: shorten_phone(params[:shipping_address][:phone]),
+          state: params[:shipping_address][:state],
+          street: params[:shipping_address][:street],
+          zipcode: params[:shipping_address][:zipcode],
+          customer_id: current_user.id)
 
     if @shipping_address.save
       redirect_back_or_to @shipping_address,
