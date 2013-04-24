@@ -9,18 +9,27 @@ describe Order do
   let(:order2) {Order.for_customer(not_user,{1=>1},store.id)}
 
   context "given an order has been created" do 
-    it "should be valid" do 
-      expect(order1).to be_kind_of Order
-      expect(Order.unscoped.count).to eq 1
-    end
 
     it "should be visible to anyone through the unique URL token path" do 
       visit url_token_path(order1.url_token)
       expect( current_path ).to eq url_token_path(order1.url_token)
     end
 
-    it "should be visible through the show when authenticated"
+    def login_the_1st_user
+      visit login_path
+      fill_in 'email', with: 'test@test.com'
+      fill_in 'password', with: 'password'
+      click_button 'Login'
+    end
 
+    it "should be visible through the show when authenticated" do
+      login_the_1st_user
+      visit order_path(order1)
+      expect(page).to have_content "Order Number:#"
+
+      visit order_path(order2)
+      expect(page).to have_content "Thats not your order"
+    end
   end
 
 end
