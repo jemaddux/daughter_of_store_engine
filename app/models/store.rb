@@ -5,6 +5,8 @@ class Store < ActiveRecord::Base
 
   has_many :orders
 
+  has_many :background_images
+
   has_many :store_admins
   has_many :admins, through: :store_admins, source: :customer
 

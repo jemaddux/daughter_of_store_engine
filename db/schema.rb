@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130424202828) do
+ActiveRecord::Schema.define(:version => 20130424215216) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "status"
@@ -24,6 +24,18 @@ ActiveRecord::Schema.define(:version => 20130424202828) do
     t.datetime "updated_at",  :null => false
     t.integer  "customer_id"
   end
+
+  create_table "background_images", :force => true do |t|
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.integer  "store_id"
+  end
+
+  add_index "background_images", ["store_id"], :name => "index_background_images_on_store_id"
 
   create_table "cart_products", :force => true do |t|
     t.integer  "cart_id"

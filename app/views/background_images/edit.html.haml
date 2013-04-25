@@ -1,0 +1,6 @@
+= form_for @background_image, :url => background_image_path, :html => { :multipart => true } do |form|
+  = form.label :photo
+  = form.file_field :photo
+  = form.submit
+
+= image_tag @background_image.photo.url
