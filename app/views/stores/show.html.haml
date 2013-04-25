@@ -4,7 +4,7 @@
   %h2.sub-tagline= @store.description
 
 %ul.home-list
-  - category_list.each do |category|
+  - @store.categories.each do |category|
     %li= link_to category.name, category_path(@store, category), class: "home-link"
 
 = javascript_include_tag "application", "vendor/custom.modernizr", "http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js", "supersized.3.2.7.min", "supersized.shutter.min"

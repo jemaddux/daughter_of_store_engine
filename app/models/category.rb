@@ -8,7 +8,7 @@ class Category < ActiveRecord::Base
   validates :name, presence: true
   validates_uniqueness_of :name, scope: :store_id
 
-  default_scope { where(store_id: Store.current_id) }
+  #default_scope { where(store_id: Store.current_id) }
 
   def to_s
     name
