@@ -38,14 +38,14 @@ StoreEngine::Application.configure do
   config.assets.debug = true
 
   config.after_initialize do
-  Bullet.enable = true
-  Bullet.alert = true
-  Bullet.bullet_logger = false
-  Bullet.console = false
-  Bullet.growl = true
-  Bullet.rails_logger = true
-  Bullet.airbrake = false
-end
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.bullet_logger = false
+    Bullet.console = false
+    Bullet.growl = false
+    Bullet.rails_logger = true
+    Bullet.airbrake = false
+  end
 
 
 end

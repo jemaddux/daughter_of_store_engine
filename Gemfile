@@ -30,7 +30,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'bullet'
-  gem 'ruby-growl'
   gem 'launchy'
   gem 'sqlite3'
   gem 'guard-rspec'
