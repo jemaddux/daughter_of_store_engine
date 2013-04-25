@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130418015221) do
+ActiveRecord::Schema.define(:version => 20130425023802) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "status"
@@ -24,18 +24,6 @@ ActiveRecord::Schema.define(:version => 20130418015221) do
     t.datetime "updated_at",  :null => false
     t.integer  "customer_id"
   end
-
-  create_table "cart_products", :force => true do |t|
-    t.integer  "cart_id"
-    t.integer  "product_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.decimal  "price"
-    t.integer  "quantity"
-  end
-
-  add_index "cart_products", ["cart_id"], :name => "index_cart_products_on_cart_id"
-  add_index "cart_products", ["product_id"], :name => "index_cart_products_on_product_id"
 
   create_table "carts", :force => true do |t|
     t.integer  "customer_id"
@@ -110,6 +98,14 @@ ActiveRecord::Schema.define(:version => 20130418015221) do
   add_index "orders", ["customer_id"], :name => "index_orders_on_customer_id"
   add_index "orders", ["shipping_id"], :name => "index_orders_on_shipping_id"
   add_index "orders", ["store_id"], :name => "index_orders_on_store_id"
+
+  create_table "pages", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "store_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "product_categories", :force => true do |t|
     t.integer  "product_id"
