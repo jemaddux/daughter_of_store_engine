@@ -1,0 +1,24 @@
+<style>
+  <% if @current_store && @current_store.button_color != nil %>
+    .button{
+      background-color: <%= @current_store.button_color %>;
+    }
+  <% end %>
+  <% if @current_store && @current_store.button_color_hover != nil %>
+    .button:hover{
+      background-color: <%= @current_store.button_color_hover %>;
+    }
+  <% end %>
+  <% if @current_store && @current_store.background_color != nil %>
+    body{
+      background-color: <%= @current_store.background_color %>;
+    }
+  <% end %>
+  <% if @current_store && @current_store.text_color != nil %>
+    body, a, h2, h4, .breadcrumbs li a, .breadcrumbs li.current a, input.button, input.button:hover, .top-bar .name h1 a, .top-bar-section li a:not(.button), .left, .panel h6, .sub-tagline, .tagline, .section-heading, input.button.small, .panel a, a:focus, a.home-link {
+      color: <%= @current_store.text_color %>;
+    }
+
+  <% end %>
+
+</style>

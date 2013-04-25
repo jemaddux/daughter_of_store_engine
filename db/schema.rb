@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130418015221) do
+ActiveRecord::Schema.define(:version => 20130424202828) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "status"
@@ -176,10 +176,14 @@ ActiveRecord::Schema.define(:version => 20130418015221) do
   create_table "stores", :force => true do |t|
     t.string   "name"
     t.string   "path"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.string   "description"
-    t.string   "status",      :default => "pending"
+    t.string   "status",             :default => "pending"
+    t.string   "button_color"
+    t.string   "button_color_hover"
+    t.string   "background_color"
+    t.string   "text_color"
   end
 
 end
