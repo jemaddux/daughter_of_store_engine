@@ -21,7 +21,7 @@ describe 'Page' do
         visit new_page_path(store)
         fill_in 'Title', with: 'About'
         fill_in 'Body', with: 'Our store is great, we have the best sunglasses' 
-        click_button 'Save'
+        click_button 'Create'
         expect(page).to have_content('Our store is great')
       end
 
@@ -32,21 +32,24 @@ describe 'Page' do
         expect(current_path).to eq edit_page_path(store,page)
         fill_in 'Title', with: 'History'
         fill_in 'Body', with: 'Our store is great, we have the best sunglasses' 
-        click_button 'Save'
+        click_button 'Update Page'
         expect(page).to have_content "History"
       end
 
       it "should be able to delete" do 
         page = Page.create!(title:"About", body:"this is about our store", store_id: store.id)
-        login
+        login_the_admin
+        visit page_path(store, page)
+        click_button 'Delete'
       end
 
       it "should only edit their own pages"
+      it "should be able to edit from the store's admin edit page"
     end
   end
 
   describe 'unauthenticated user' do
-    it "should see pages"
+    it "should see new pages path"
     it "should not be able to edit"
   end
   
