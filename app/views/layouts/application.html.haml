@@ -43,6 +43,7 @@
             %section.top-bar-section
               / Right Nav Section
               %ul.right
+                = render 'layouts/pages'
                 -if @current_store
                   = render partial: "layouts/products_categories"
                 - if logged_in?

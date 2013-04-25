@@ -1,0 +1,5 @@
+%h1
+  =@page.title
+%br
+%h2
+  =@page.body.gsub(/\n/, '<br/>').html_safe

@@ -4,6 +4,7 @@ class Store < ActiveRecord::Base
   cattr_accessor :current_id
 
   has_many :orders
+  has_many :pages
 
   has_many :background_images
 
