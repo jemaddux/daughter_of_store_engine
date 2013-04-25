@@ -40,10 +40,3 @@
     = f.radio_button :active, false
   %p
     = f.submit
-  / %p
-  /   - if @product.image.exists?
-  /     = image_tag @product.image.url
-  /     %br/
-  /   = f.label :image, "Attach a New Image"
-  /   %br/
-  /   = f.file_field :image
