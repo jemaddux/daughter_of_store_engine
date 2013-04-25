@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.find(params[:id])
+    @category = current_store.categories.find(params[:id])
     @products = @category.products.where(active: true).page params[:page]
   end
 end
