@@ -1,7 +1,7 @@
 require 'resque/server'
 
 StoreEngine::Application.routes.draw do
-
+  
   mount Resque::Server.new, at: "/resque"
 
   resource :customers,           except: [:index]
@@ -33,6 +33,7 @@ StoreEngine::Application.routes.draw do
   match '/code'   => redirect('https://github.com/philbattos/daughter_of_store_engine')
 
   scope '/:store_path' do
+    resources :background_images
     put '/remove_store_admin' => 'store_admin/stores#remove_store_admin', :as => 'remove_store_admin'
     put '/add_store_admin' => 'store_admin/stores#add_store_admin', :as => 'add_store_admin'
     put '/remove_store_stocker' => 'store_admin/stores#remove_store_stocker', :as => 'remove_store_stocker'
