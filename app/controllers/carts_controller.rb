@@ -13,7 +13,7 @@ class CartsController < ApplicationController
     session[:order_id] = nil
     product = Product.find(params[:product])
     
-    if params[:quantity] == "1"  
+    if params[:quantity] == "1"
       session[:shopping_cart][current_store.id][product.id] += 1 
     end
     if params[:subtract] == "1"
