@@ -14,9 +14,7 @@
     = f.label :body
     = f.text_area :body
   .actions
-    = f.submit
+    = f.submit :update, class: "button"
 
-
-= link_to 'Show', @page
-\|
-= link_to 'Back', pages_path
+    = link_to 'Cancel', page_path(current_store, @page), class: "button"
+    = link_to 'Back to Admin', store_admin_path, class: "button"

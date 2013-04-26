@@ -5,7 +5,12 @@ class PagesController < ApplicationController
   end
 
   def show
-    @page = Page.find(params[:id])
+    page = Page.find(params[:id])
+    if page.store_id == current_store.id
+      @page = page
+    else
+      redirect_to home_path(current_store), notice:"invalid page"
+    end
   end
 
   def new
@@ -13,7 +18,12 @@ class PagesController < ApplicationController
   end
 
   def edit
-    @page = Page.find(params[:id])
+    page = Page.find(params[:id])
+    if page.store_id == current_store.id
+      @page = page
+    else
+      redirect_to store_admin_path(current_store), notice:"invalid page"
+    end
   end
 
  
@@ -41,9 +51,12 @@ class PagesController < ApplicationController
   end
 
   def destroy
-    @page = Page.find(params[:id])
-    @page.destroy
-
+    page = Page.find(params[:id])
+    if page.store_id == current_store.id
+      page.destroy
+    else
+      redirect_to store_admin_path(current_store), notice: "cannot delete that page"
+    end
     redirect_to store_admin_path(current_store) 
   end
 end
