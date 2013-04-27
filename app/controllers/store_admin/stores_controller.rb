@@ -19,6 +19,7 @@ class StoreAdmin::StoresController < ApplicationController
   end
 
   def edit
+    @background_image = BackgroundImage.new
     @store = Store.find_by_path(params[:store_path])
   end
 

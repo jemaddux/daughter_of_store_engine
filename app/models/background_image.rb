@@ -16,4 +16,8 @@ class BackgroundImage < ActiveRecord::Base
     has_attached_file :photo
   end
 
+  def photo_from_url(url)
+    self.photo = open(url)
+  end
+
 end
