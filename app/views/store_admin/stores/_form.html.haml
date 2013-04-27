@@ -31,3 +31,23 @@
     = f.text_field :text_color
   .actions
     = f.submit 'Update', confirm: "Are you sure you want to make these changes? Changing your store's name or URL Id may result in broken links or customer confusion.", class: "button small"
+
+%hr
+
+%p
+  Current Background Images
+%ul.small-block-grid-2.large-block-grid-4#background-images
+  - @store.background_images.each_with_index do |image, index|
+    %li
+      = link_to image_tag(image.photo.url, size: "100x100"),background_image_path(current_store,image), id: "background-image-#{index}"
+      %br/
+      = link_to "Delete", background_image_path(current_store,image), class: "button", method: :delete, confirm:"are you sure you want to delete this image? It will change your store's home page"
+
+%br/
+= form_for @background_image, :url => background_images_path, :html => { :multipart => true } do |form|
+  .file-inputs
+    = form.file_field :photo
+  %br/
+  = form.submit "Upload Background Image", class: "button"
+%hr/
+

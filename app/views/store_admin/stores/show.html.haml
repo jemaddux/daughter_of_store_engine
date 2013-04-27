@@ -21,23 +21,7 @@
       =link_to "Delete", page_path(current_store,page), method: :delete
 
 
-
 %hr
-= link_to "New Background Image", new_background_image_path(current_store), class: "button"
-%br/
-
-%ul.small-block-grid-2.large-block-grid-4#background-images
-  - @store.background_images.each do |i|
-    %li
-      = link_to image_tag(i.photo.url, size: "100x100"),background_image_path(current_store,i)
-      %br/
-      = link_to "View: #{i.photo_file_name}", background_image_path(current_store,i)
-      %br/
-      = link_to "Edit", edit_background_image_path(current_store,i)
-      |
-      = link_to "Delete", background_image_path(current_store,i),method: :delete, confirm:"are you sure you want to delete this image? It will change your store's home page"
-
-%hr/
 
 %h4 Current Store Admins
 %ul
