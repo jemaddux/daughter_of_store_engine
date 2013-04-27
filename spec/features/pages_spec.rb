@@ -3,12 +3,11 @@ require 'spec_helper'
 describe 'Page' do
   
   
-  describe 'authenticated user' do
+  describe 'authenticated store_admin user' do
     let!(:admin) {Customer.create!(email: 'admin@admin.com', password: 'password', first_name: 'admin', last_name: 'user', admin: true)}
     let!(:user) {Customer.create!(email: 'user@user.com', password: 'password', first_name: 'user', last_name: 'user', admin: false)}
     let!(:store) {Store.create!(name: 'Cool Sunglasses', path: 'cool-sunglasses', description: 'We have cool sunglasses', status: 'active')}
 
-    context 'store admin' do
       def login_the_admin
         visit login_path
         fill_in 'email', with: 'admin@admin.com'
@@ -59,22 +58,23 @@ describe 'Page' do
           expect(page).to_not have_content 'Delete'
         end
       end
-
-    end
   end
 
   describe 'unauthenticated user' do
     it "should see pages" do 
       store = Store.create!(name: 'Cool Sunglasses', path: 'cool-sunglasses', description: 'We have cool sunglasses', status: 'active')
-      page = Page.create!(title:"About", body:"this is about our store", store_id: store.id)
-      visit page_path(store,page)
-      expect(current_path).to eq page_path(store,page)
-      expect( page ).to have_content "this is about our store"
+      about = Page.create!(title:"About", body:"this is about our store", store_id: store.id)
+      visit page_path(store,about)
+      expect(current_path).to eq page_path(store,about)
+      expect(page).to have_content "About"
     end
 
 
     it "should not be able to edit" do 
-
+      store = Store.create!(name: 'Cool Sunglasses', path: 'cool-sunglasses', description: 'We have cool sunglasses', status: 'active')
+      about = Page.create!(title:"About", body:"this is about our store", store_id: store.id)
+      visit edit_page_path(store,about)
+      expect(current_path).to eq home_path(store)
     end
   end
   

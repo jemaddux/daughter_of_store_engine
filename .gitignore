@@ -20,5 +20,9 @@ coverage/
 
 # Ignore ProductImages
 public/system/products/images/
+
+# Ignore BackGroundImages
+public/system/background_images/photos/
+
 # Ignore application configuration
 /config/application.yml
