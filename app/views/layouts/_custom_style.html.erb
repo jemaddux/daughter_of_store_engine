@@ -15,5 +15,6 @@
     body, a, h2, h4, .breadcrumbs li a, .breadcrumbs li.current a, input.button, input.button:hover, .top-bar .name h1 a, .top-bar-section li a:not(.button), .left, .panel h6, .sub-tagline, .tagline, .section-heading, input.button.small, .panel a, a:focus, a.home-link {
       font-family: <%= @current_store.text_font %>;
     }
+    <%= @current_store.custom_css %>
   <% end %>
 </style>
