@@ -10,7 +10,7 @@ class BackgroundImagesController < ApplicationController
       @background_image.save
 
       #redirect to store/admin/edit path
-      redirect_to background_image_path(current_store, @background_image)
+      redirect_to :back
     else
       render :new
     end
