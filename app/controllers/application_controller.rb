@@ -4,8 +4,6 @@ class ApplicationController < ActionController::Base
   around_filter :scope_current_store, except: [:request_login]
   helper_method :category_list
 
-
-
   def category_list
     Category.all
   end

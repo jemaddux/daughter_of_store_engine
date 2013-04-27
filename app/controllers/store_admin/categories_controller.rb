@@ -3,11 +3,11 @@ class StoreAdmin::CategoriesController < ApplicationController
   before_filter :require_store_admin_or_admin
 
   def index
-    @categories = Category.all
+    @categories = current_store.categories.all
   end
 
   def show
-    @category = Category.find(params[:id])
+    @category = current_store.categories.find(params[:id])
   end
 
   def new
@@ -17,7 +17,7 @@ class StoreAdmin::CategoriesController < ApplicationController
 
   def edit
     @store = Store.find(current_store.id)
-    @category = Category.find(params[:id])
+    @category = current_store.categories.find(params[:id])
   end
 
   def create
@@ -31,7 +31,7 @@ class StoreAdmin::CategoriesController < ApplicationController
   end
 
   def update
-    @category = Category.find(params[:id])
+    @category = current_store.categories.find(params[:id])
 
     if @category.update_attributes(params[:category])
       redirect_to @category, notice: 'Category was successfully updated.'
@@ -42,7 +42,7 @@ class StoreAdmin::CategoriesController < ApplicationController
   end
 
   def destroy
-    @category = Category.find(params[:id])
+    @category = current_store.categories.find(params[:id])
     @category.destroy
   end
 end

@@ -4,12 +4,12 @@ class StoreStocker::ProductsController < ApplicationController
 
   def index
     @store = Store.find(current_store.id)
-    @products = Product.all
+    @products = current_store.products.all
   end
 
   def show
     @store = Store.find(current_store.id)
-    @product = Product.find(params[:id])
+    @product = current_store.products.find(params[:id])
   end
 
   def new
@@ -30,12 +30,12 @@ class StoreStocker::ProductsController < ApplicationController
 
   def edit
     @store = Store.find(current_store.id)
-    @product = Product.find(params[:id])
+    @product = current_store.products.find(params[:id])
   end
 
   def update
     @store = Store.find(current_store.id)
-    @product = Product.find(params[:id])
+    @product = current_store.products.find(params[:id])
     if @product.update_attributes(params[:product])
       @store.touch
       redirect_to store_admin_products_path, notice: 'Product was successfully updated.'
@@ -46,7 +46,7 @@ class StoreStocker::ProductsController < ApplicationController
 
   def destroy
     @store = Store.find(current_store.id)
-    @product = Product.find(params[:id])
+    @product = current_store.products.find(params[:id])
     if @product.destroy
       @store.touch
     end

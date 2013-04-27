@@ -9,7 +9,7 @@ class Order < ActiveRecord::Base
 
 
 
-  default_scope { where(store_id: Store.current_id)  }
+  #default_scope { where(store_id: Store.current_id)  }
 
   belongs_to  :customer
   belongs_to  :store
@@ -17,7 +17,7 @@ class Order < ActiveRecord::Base
 
 
   def include_addresses(user)
-    self.shipping_id = user.shipping_address.id 
+    self.shipping_id = user.shipping_address.id
     self.billing_id = user.address.id
     self.save
   end
@@ -36,7 +36,7 @@ class Order < ActiveRecord::Base
     order.calculate_total
 
     Store.find(store_id).touch
-    
+
     order.save
     return order
   end
@@ -48,7 +48,7 @@ class Order < ActiveRecord::Base
       product.decrement(:quantity, unit_quantity).save
       self.order_products.create(
         :product_id       => product.id,
-        :quantity         => unit_quantity, 
+        :quantity         => unit_quantity,
         :price => product.price)
     end
   end
