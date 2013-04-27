@@ -29,5 +29,9 @@
   .field
     = f.label 'Text Color: (enter either a color or hex code)'
     = f.text_field :text_color
+  %h3= "Fonts"
+  .field
+    = f.label 'Text Font'
+    = f.text_field :text_font
   .actions
     = f.submit 'Update', confirm: "Are you sure you want to make these changes? Changing your store's name or URL Id may result in broken links or customer confusion.", class: "button small"
