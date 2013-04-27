@@ -23,7 +23,7 @@ class StoresController < ApplicationController
     elsif store.status == "declined"
       render :inline => "This store has been rejected. Please email the administrator",:layout => "dead_store"
     else
-      @store = store
+      @store = current_store
     end
   end
 

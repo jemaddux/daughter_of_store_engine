@@ -5,8 +5,8 @@ http://tutorials.jumpstartlab.com/projects/son_of_store_engine.html
 
 -[Blair](https://github.com/blairand)
 
--John
+-[John](https://github.com/jemaddux)
 
--Paul
+-[Paul](https://github.com/pnblackwell)
 
--Phil
+-[Phil](https://github.com/philbattos)

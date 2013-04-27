@@ -1,5 +1,5 @@
 %h1= "Edit Store Information: #{@store.name}"
+.large-4.columns
+  = render 'form'
 
-= render 'form'
-
-= link_to 'Cancel', store_admin_path(@store.path), class: 'button small'
+  = link_to 'Cancel', store_admin_path(@store.path), class: 'button small'

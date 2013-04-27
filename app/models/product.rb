@@ -10,11 +10,11 @@ class Product < ActiveRecord::Base
                   :store_id,
                   :photo_url
 
-  default_scope { where(store_id: Store.current_id)  }
+  #default_scope { where(store_id: Store.current_id)  }
 
   paginates_per 9
   max_paginates_per 9
-  
+
   validates :name,        presence: true
   validates :description, presence: true
 
@@ -60,7 +60,7 @@ class Product < ActiveRecord::Base
 
   def categories_list=(cats_string)
     cat_names = cats_string.split(",").collect{|s| s.strip.downcase}.uniq
-    new_or_found_cats = cat_names.map do  |name| 
+    new_or_found_cats = cat_names.map do  |name|
       Category.find_or_create_by_name_and_store_id(name, self.store_id)
     end
     self.categories = new_or_found_cats
