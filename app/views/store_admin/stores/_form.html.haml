@@ -5,30 +5,28 @@
       %ul
         - @store.errors.full_messages.each do |msg|
           %li= msg
-  .left
-    %h3= "Required Info"
-    .field
-      = f.label 'Store Name:'
-      = f.text_field :name
-    .field
-      = f.label 'Store URL Id:'
-      = f.text_field :path
-    .field
-      = f.label 'Store Description:'
-      = f.text_field :description
-  .right
-    %h3= "Colors (Optional)"
-    .field
-      = f.label 'Button Color: (enter either a color or hex code)'
-      = f.text_field :button_color
-    .field
-      = f.label 'Button Color on Hover: (enter either a color or hex code)'
-      = f.text_field :button_color_hover
-    .field
-      = f.label 'Background Color: (enter either a color or hex code)'
-      = f.text_field :background_color
-    .field
-      = f.label 'Text Color: (enter either a color or hex code)'
-      = f.text_field :text_color
-    .actions
-      = f.submit 'Update', confirm: "Are you sure you want to make these changes? Changing your store's name or URL Id may result in broken links or customer confusion.", class: "button small"
+  %h3= "Required Info"
+  .field
+    = f.label 'Store Name:'
+    = f.text_field :name
+  .field
+    = f.label 'Store URL Id:'
+    = f.text_field :path
+  .field
+    = f.label 'Store Description:'
+    = f.text_field :description
+  %h3= "Colors (Optional)"
+  .field
+    = f.label 'Button Color: (enter either a color or hex code)'
+    = f.text_field :button_color
+  .field
+    = f.label 'Button Color on Hover: (enter either a color or hex code)'
+    = f.text_field :button_color_hover
+  .field
+    = f.label 'Background Color: (enter either a color or hex code)'
+    = f.text_field :background_color
+  .field
+    = f.label 'Text Color: (enter either a color or hex code)'
+    = f.text_field :text_color
+  .actions
+    = f.submit 'Update', confirm: "Are you sure you want to make these changes? Changing your store's name or URL Id may result in broken links or customer confusion.", class: "button small"
