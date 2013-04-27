@@ -10,6 +10,9 @@ class Store < ActiveRecord::Base
   has_many :store_admins
   has_many :admins, through: :store_admins, source: :customer
 
+  has_many :products
+  has_many :categories
+
   has_many :store_stockers
   has_many :stockers, through: :store_stockers, source: :customer
 
