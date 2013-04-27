@@ -52,5 +52,33 @@ describe 'Admin/Store' do
     it "should be able to change font color"
     it "should be able to change font button color"
 
+    it "should be able to change the product layout style" do 
+      login_the_admin
+      visit store_admin_edit_store_path(store)
+      expect(page).to have_content  "Choose your product layout"
+    end
+
+    context "layouts" do 
+      it "#default, should be able to add product to cart" do
+        store = Store.create!(name: 'UnCool Sunglasses', path: 'uncool-sunglasses', description: 'We have uncool sunglasses', status: 'active', layout:"default")
+        product = store.products.create!(name: 'Ipsum Hopesum', description: 'sldkfja', price: 33.24, quantity: 2, active: true)
+        visit products_path(store)
+        expect(page).to have_content('Ipsum Hopesum')
+      end
+
+      it "#portrait, should be able to add product to cart" do 
+        store = Store.create!(name: 'UnCool Sunglasses', path: 'uncool-sunglasses', description: 'We have uncool sunglasses', status: 'active', layout:"portrait")
+        product = store.products.create!(name: 'Ipsum Hopesum', description: 'sldkfja', price: 33.24, quantity: 2, active: true)
+        visit products_path(store)
+        expect(page).to have_content('Ipsum Hopesum')
+      end
+
+      it "#list, should be able to add product to cart" do 
+        store = Store.create!(name: 'UnCool Sunglasses', path: 'uncool-sunglasses', description: 'We have uncool sunglasses', status: 'active', layout:"list")
+        product = store.products.create!(name: 'Ipsum Hopesum', description: 'sldkfja', price: 33.24, quantity: 2, active: true)
+        visit products_path(store)
+        expect(page).to have_content('Ipsum Hopesum')
+      end
+    end
   end
 end

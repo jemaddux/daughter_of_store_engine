@@ -65,4 +65,5 @@ class Product < ActiveRecord::Base
     end
     self.categories = new_or_found_cats
   end
+
 end

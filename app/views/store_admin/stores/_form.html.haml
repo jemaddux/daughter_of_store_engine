@@ -16,6 +16,11 @@
   .field
     = f.label 'Store Description:'
     = f.text_field :description
+  %h3= "Product Layout"
+  .field
+    = label_tag "Choose Your Product Layout"
+    = f.select :layout, options_for_select(layout_options, :selected => @store.layout)
+    
   %h3= "Colors (Optional)"
   .field
     = f.label 'Button Color: (enter either a color or hex code)'
@@ -49,4 +54,3 @@
   %br/
   = form.submit "Upload Background Image", class: "button"
 %hr/
-

@@ -1,5 +1,13 @@
 module StoreHelper
 
+  def layout_options
+    [
+      ['Default', 'default'],
+      ['Portrait', 'portrait'],
+      ['List', 'list']
+    ]
+  end
+
   def background_photos
     if current_store.background_images.count > 0
       current_store.background_images.collect{|i|{image: i.photo.url}}.to_json.html_safe
