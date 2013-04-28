@@ -40,7 +40,7 @@ private
     end
   end
 
-  def add_to_cart(id,quantity="1")
+  def add_to_cart(id, quantity="1")
     session[:shopping_cart][current_store.id][id] += quantity.to_i
   end
 
