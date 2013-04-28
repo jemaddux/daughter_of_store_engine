@@ -12,19 +12,9 @@ class CartsController < ApplicationController
   def update
     session[:order_id] = nil
     product = Product.find(params[:product])
-    
-    if params[:quantity] == "1"
-      session[:shopping_cart][current_store.id][product.id] += 1 
-    end
-    if params[:subtract] == "1"
-      session[:shopping_cart][current_store.id][product.id] -= 1
-      if session[:shopping_cart][current_store.id][product.id] < 1
-        session[:shopping_cart][current_store.id].delete(product.id)
-      end
-    end
-    if params[:add] == "1"
-      session[:shopping_cart][current_store.id][product.id] += 1 
-    end
+    add_to_cart(product.id, params[:quantity]) if params[:quantity]
+    subtract_from_cart(product.id) if params[:subtract] == "1"
+    add_to_cart(product.id) if params[:add] == "1"
 
     redirect_to :back, notice: "Cart Updated"
   end
@@ -39,4 +29,20 @@ class CartsController < ApplicationController
       redirect_to carts_path, notice: "Cart has been cleared."
     end
   end
+
+
+private
+
+  def subtract_from_cart(id)
+    session[:shopping_cart][current_store.id][id] -= 1
+    if session[:shopping_cart][current_store.id][id] < 1
+      session[:shopping_cart][current_store.id].delete(id)
+    end
+  end
+
+  def add_to_cart(id, quantity="1")
+    session[:shopping_cart][current_store.id][id] += quantity.to_i
+  end
+
+
 end

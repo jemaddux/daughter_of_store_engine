@@ -74,7 +74,7 @@ class ChargesController < ApplicationController
 
     current_user.cart.destroy
     session[:shopping_cart].clear
-    redirect_to url_token_path(current_store, order.url_token)
+    redirect_to url_token_path(order.url_token)
  
   end
 end

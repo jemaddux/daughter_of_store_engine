@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130427214126) do
+ActiveRecord::Schema.define(:version => 20130427215312) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "status"
@@ -204,6 +204,7 @@ ActiveRecord::Schema.define(:version => 20130427214126) do
     t.string   "button_color_hover"
     t.string   "background_color"
     t.string   "text_color"
+    t.string   "layout",             :default => "default"
     t.string   "text_font"
     t.string   "custom_css"
   end
