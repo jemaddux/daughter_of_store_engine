@@ -24,6 +24,7 @@ gem 'resque', "~> 1.22.0"
 gem "redis-store", "~> 1.0.0"
 gem 'kaminari'
 gem 'newrelic_rpm'
+gem 'simple_form'
 
 group :development, :test do
   gem 'fabrication'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130427215312) do
+ActiveRecord::Schema.define(:version => 20130428211138) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "status"
@@ -25,6 +25,19 @@ ActiveRecord::Schema.define(:version => 20130427215312) do
     t.integer  "customer_id"
   end
 
+  create_table "articles", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "store_id"
+    t.integer  "customer_id"
+    t.integer  "view_count"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "articles", ["customer_id"], :name => "index_articles_on_customer_id"
+  add_index "articles", ["store_id"], :name => "index_articles_on_store_id"
+
   create_table "background_images", :force => true do |t|
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
@@ -36,18 +49,6 @@ ActiveRecord::Schema.define(:version => 20130427215312) do
   end
 
   add_index "background_images", ["store_id"], :name => "index_background_images_on_store_id"
-
-  create_table "cart_products", :force => true do |t|
-    t.integer  "cart_id"
-    t.integer  "product_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.decimal  "price"
-    t.integer  "quantity"
-  end
-
-  add_index "cart_products", ["cart_id"], :name => "index_cart_products_on_cart_id"
-  add_index "cart_products", ["product_id"], :name => "index_cart_products_on_product_id"
 
   create_table "carts", :force => true do |t|
     t.integer  "customer_id"
@@ -204,9 +205,9 @@ ActiveRecord::Schema.define(:version => 20130427215312) do
     t.string   "button_color_hover"
     t.string   "background_color"
     t.string   "text_color"
-    t.string   "layout",             :default => "default"
     t.string   "text_font"
     t.string   "custom_css"
+    t.string   "layout",             :default => "default"
   end
 
 end

@@ -35,6 +35,7 @@ StoreEngine::Application.routes.draw do
   scope '/:store_path' do
     resources :background_images
     resources :pages
+    resources :articles
 
     put '/remove_store_admin' => 'store_admin/stores#remove_store_admin', :as => 'remove_store_admin'
     put '/add_store_admin' => 'store_admin/stores#add_store_admin', :as => 'add_store_admin'

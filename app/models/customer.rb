@@ -17,10 +17,7 @@ class Customer < ActiveRecord::Base
   has_one  :address
   has_one  :credit_card
   has_many :orders
-
-  has_many :store_admins
-  has_many :store_stockers
-
+  has_many :articles
 
   has_many :store_admins
   has_many :stores_with_admin_access, through: :store_admins, source: :store

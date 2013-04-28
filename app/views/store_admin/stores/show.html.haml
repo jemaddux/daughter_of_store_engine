@@ -8,6 +8,11 @@
 = link_to 'Products', store_admin_products_path(@store.path)
 \|
 = link_to 'Back to Store', home_path(@store.path)
+
+%hr
+= link_to "New Blog Post", new_article_path(current_store), class: "button"
+
+
 %hr
 = link_to "New Page", new_page_path(current_store), class:"button"
 %ul#store-pages

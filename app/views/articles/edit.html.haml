@@ -1,0 +1,22 @@
+%h1 Editing page
+
+= form_for @article, :url => article_path(current_store, @article) do |f|
+  - if @article.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@article.errors.count, "error")} prohibited this article from being saved:"
+      %ul
+        - @article.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :bodyexi
+    = f.text_area :body
+  .actions
+    = f.submit :update, class: "button"
+
+    = link_to 'Delete', article_path(current_store, @article), method: :delete, class: "button"
+
+    = link_to 'Cancel', article_path(current_store, @article), class: "button"
+    = link_to 'Back to Admin', store_admin_path, class: "button"

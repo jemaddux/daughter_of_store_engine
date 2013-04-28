@@ -20,6 +20,7 @@ class Store < ActiveRecord::Base
   has_many :stockers, through: :store_stockers, source: :customer
   has_many :products
   has_many :categories
+  has_many :articles
 
   validates :name, presence: true
   validates :path, presence: true
