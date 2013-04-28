@@ -3,8 +3,12 @@ class ChargesController < ApplicationController
   before_filter :request_login, only: [:new]
 
   def checkout_options
-    session[:redirect_after_create] = "/"+params[:store_path]+"/charges/new"
-    @customer = Customer.new
+    if logged_in?
+      redirect_to new_charge_path(current_store)
+    else
+      session[:redirect_after_create] = new_charge_path(current_store)
+      @customer = Customer.new
+    end
   end
 
   def create_guest
@@ -37,25 +41,15 @@ class ChargesController < ApplicationController
     session[:return_to_url] = request.url
     @shipping_address = ShippingAddress.new
     @billing_address = Address.new
-    cart_products = session[:shopping_cart][current_store.id]
-    
-    if session[:order_id]
-      @order = Order.unscoped.find(session[:order_id])
-    else
-      @order = Order.for_customer(
-        current_user, 
-        cart_products, 
-        current_store.id)
-      session[:order_id] = @order.id
-    end
-
-    @products = @order.products
+    @products = current_cart_products.map{|id,quantity| [Product.find(id), quantity]}
+    @order_total = @products.reduce(0){|memo,(p,q)|memo+=(p.price*q)}
   end
 
   def create
-    session[:return_to_url] = nil
-    order = Order.unscoped.find(session[:order_id])
-    order.include_addresses(current_user)
+    order = Order.for_customer(
+      current_user, 
+      current_cart_products, 
+      current_store.id)
 
     Resque.enqueue(
       ProcessStripeCharge,
@@ -63,8 +57,6 @@ class ChargesController < ApplicationController
       params[:stripeToken],
       (order.total*100)
       )
-
-    order.update_attributes(status: "processed")
 
     Resque.enqueue(
       OrderConfirmationEmail, 
@@ -74,7 +66,7 @@ class ChargesController < ApplicationController
 
     current_user.cart.destroy
     session[:shopping_cart].clear
-    redirect_to url_token_path(order.url_token)
- 
+    session[:return_to_url] = nil
+    redirect_to orders_path, notice: "Your Order Has Been Received. You Will Receive a Confirmation After It is Processed"
   end
 end

@@ -8,22 +8,22 @@
       %th Price
       %th Description
       %th Subtotal
-      - @products.each do |line_item, product|
+      - @products.each do |product, quantity|
         %tr
           %td= image_tag product.image.url, class: "product-feature"
           %td= product.name
-          %td= line_item.quantity
+          %td= quantity
           %td= number_to_currency(product.price)
           %td= product.description
-          %td= number_to_currency(line_item.subtotal)       
+          %td= number_to_currency(product.price*quantity)       
     %h4
       Order Total:
-      = number_to_currency(@order.total)
+      = number_to_currency(@order_total)
 .row
   .large-3.columns
     - if current_user.address && current_user.shipping_address
       = form_tag charges_path do 
-        %script.stripe-button{"data-amount" => @order.total*100, "data-description" => "#{current_store.name}", "data-key" => Rails.configuration.stripe[:publishable_key], :src => "https://checkout.stripe.com/v2/checkout.js"}
+        %script.stripe-button{"data-amount" => @order_total*100, "data-description" => "#{current_store.name}", "data-key" => Rails.configuration.stripe[:publishable_key], :src => "https://checkout.stripe.com/v2/checkout.js"}
 
 .row
   - if current_user.shipping_address

@@ -5,6 +5,8 @@ class OrderConfirmationEmail
     store = Store.find(store_id)
     user = Customer.find(user_id)
     order = Order.unscoped.find(order_id)
+    order.include_addresses(user)
+    order.update_attributes(status: "Processed")
     Mailer.order_confirmation(store, user, order).deliver
   end
 end

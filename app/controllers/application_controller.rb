@@ -2,10 +2,22 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :shopping_cart
   around_filter :scope_current_store, except: [:request_login]
-  helper_method :category_list
+  helper_method :category_list, :current_cart, :current_store
 
   def category_list
     Category.all
+  end
+
+  def current_store
+    @current_store ||= Store.find_by_path(params[:store_path])
+  end
+
+  def current_cart_products
+    if logged_in?
+      @current_cart ||= current_user.cart.data[current_store.id]
+    else
+      @current_cart ||= session[:shopping_cart][current_store.id]
+    end
   end
 
   def not_authenticated
@@ -52,11 +64,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def current_store
-    @current_store ||= Store.find_by_path(params[:store_path])
-  end
 
-  helper_method :current_store
 
   private
 
