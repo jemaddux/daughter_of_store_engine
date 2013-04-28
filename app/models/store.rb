@@ -1,6 +1,8 @@
 class Store < ActiveRecord::Base
   attr_accessible :name, :path, :description, :status, :button_color,
-    :button_color_hover, :background_color, :text_color, :layout
+    :button_color_hover, :background_color, :text_color, :text_font,
+    :custom_css, :layout
+
   cattr_accessor :current_id
 
   has_many :orders

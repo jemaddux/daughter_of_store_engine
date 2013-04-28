@@ -16,11 +16,12 @@
   .field
     = f.label 'Store Description:'
     = f.text_field :description
+
   %h3= "Product Layout"
   .field
     = label_tag "Choose Your Product Layout"
     = f.select :layout, options_for_select(layout_options, :selected => @store.layout)
-    
+
   %h3= "Colors (Optional)"
   .field
     = f.label 'Button Color: (enter either a color or hex code)'
@@ -34,6 +35,14 @@
   .field
     = f.label 'Text Color: (enter either a color or hex code)'
     = f.text_field :text_color
+  %h3= "Fonts (Optional)"
+  .field
+    = f.label 'Text Font'
+    = f.text_field :text_font
+  %h3= "Custom CSS (Optional)"
+  .field
+    = f.label "Custom Css"
+    = f.text_area :custom_css
   .actions
     = f.submit 'Update', confirm: "Are you sure you want to make these changes? Changing your store's name or URL Id may result in broken links or customer confusion.", class: "button small"
 
