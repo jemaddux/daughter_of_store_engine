@@ -7,8 +7,6 @@ class Order < ActiveRecord::Base
 
   before_save :generate_token
 
-
-
   #default_scope { where(store_id: Store.current_id)  }
 
   belongs_to  :customer
@@ -34,9 +32,6 @@ class Order < ActiveRecord::Base
     order = customer.orders.create(status: "pending", store_id: store_id)
     order.create_order_products(cart)
     order.calculate_total
-
-    Store.find(store_id).touch
-
     order.save
     return order
   end
@@ -60,6 +55,7 @@ class Order < ActiveRecord::Base
   protected
 
   def generate_token
+    Store.find(self.store_id).touch
     self.url_token = loop do
       random_token = SecureRandom.urlsafe_base64
       break random_token unless Order.unscoped.where(url_token: random_token).exists?
