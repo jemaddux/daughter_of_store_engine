@@ -1,0 +1,10 @@
+.row
+  .large-12.columns
+    %h3#store-pages
+      Current Pages:
+    - @store.pages.each do |page|
+      =link_to page.title, page_path(current_store,page)
+      |
+      =link_to "Edit", edit_page_path(current_store,page)
+      |
+      =link_to "Delete", page_path(current_store,page), method: :delete

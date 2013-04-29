@@ -1,10 +1,13 @@
 class ArticlesController < ApplicationController
   before_filter :require_store_admin_or_admin, except: [:show, :index]
 
+  def index
+    @articles = current_store.articles
+  end
+
   def new
     @article = Article.new
   end
-
 
   def edit
     @article = Article.find(params[:id])

@@ -5,7 +5,7 @@ class CreateArticles < ActiveRecord::Migration
       t.text :body
       t.integer :store_id
       t.integer :customer_id
-      t.integer :view_count
+      t.integer :view_count, default: 0
 
       t.timestamps
     end

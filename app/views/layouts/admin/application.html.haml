@@ -20,7 +20,7 @@
 
   = stylesheet_link_tag "application"
   <link href='http://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
-  = javascript_include_tag "application", "vendor/custom.modernizr"
+  = javascript_include_tag "application", "foundation","foundation.section", "custom.modernizr"
   = csrf_meta_tag
 
 %body
@@ -58,5 +58,3 @@
   = render partial: "layouts/messages"
   = yield
   = render partial: "layouts/footer"
-
-

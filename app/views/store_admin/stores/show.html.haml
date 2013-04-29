@@ -1,61 +1,47 @@
-%h4= "Store Name: #{@store.name}"
-%h6= "Description: #{@store.description}"
-%h6= "Path: #{@store.path}"
-%h6= "Status: #{@store.status}"
+.row
+  / Main Content Section
+  / This has been source ordered to come first in the markup (and on small devices) but to be to the right of the nav on larger screens
+  .large-9.push-3.columns
+    %h3
+      = "Store Name: #{link_to @store.name, home_path(@store)}".html_safe
+    %h6= "Status: #{@store.status}"
+    %p 
+      Description: 
+    %p
+      = @store.description
+    
+  / This is source ordered to be pulled to the left on larger screens
+  .large-3.pull-9.columns
+    .section-container.accordion{"data-section" => "accordion"}
+      %section
+        %p.title.button{"data-section-title" => ""}
+          = link_to 'Edit Store Details', store_admin_edit_store_path(@store.path)
+        .content{"data-section-content" => ""}
+          %p Content of section 1.
+      %section
+        %p.title.button{"data-section-title" => ""}
+          = link_to 'Products', store_admin_products_path(@store.path)
+        .content{"data-section-content" => ""}
+          %p Content of section 2.
+      %section
+        %p.title.button{"data-section-title" => ""}
+          = link_to 'Back to Store', home_path(@store.path)
+        .content{"data-section-content" => ""}
+          %p Content of section 2.
+      %section
+        %p.title.button{"data-section-title" => ""}
+          = link_to "New Blog Post", new_article_path(current_store)
+        .content{"data-section-content" => ""}
+          %p Content of section 2.
+      %section
+        %p.title.button{"data-section-title" => ""}
+          = link_to "New Page", new_page_path(current_store)
+          = render partial: "store_admin/stores/show_partials/pages"
+      %section
+        %p.title.button{"data-section-title" => ""}
+          = render partial: "store_admin/stores/show_partials/store_admins"
+      %section
+        %p.title.button{"data-section-title" => ""}
+        
+        = render partial: "store_admin/stores/show_partials/store_stockers"
 
-= link_to 'Edit Store Details', store_admin_edit_store_path(@store.path)
-\|
-= link_to 'Products', store_admin_products_path(@store.path)
-\|
-= link_to 'Back to Store', home_path(@store.path)
-
-%hr
-= link_to "New Blog Post", new_article_path(current_store), class: "button"
-
-
-%hr
-= link_to "New Page", new_page_path(current_store), class:"button"
-%ul#store-pages
-  Current Pages:
-  - @store.pages.each do |page|
-    %li
-      =link_to "Preview: '#{page.title}'", page_path(current_store,page)
-      |
-      =link_to "Edit", edit_page_path(current_store,page)
-      |
-      =link_to "Delete", page_path(current_store,page), method: :delete
-
-
-%hr
-
-%h4 Current Store Admins
-%ul
-  - @store.admins.each do |admin|
-    %li
-      = admin.email
-
-      = button_to "remove admin", remove_store_admin_path(@store, :id => admin.id), :method => :put, confirm: "Are you sure you want to remove this Admin?"
-
-= form_tag add_store_admin_path(@store), method: :put, class: "navbar-form" do
-  %input.large-3.columns{:placeholder => "Email", name:"email", :type => "email"}/
-  %br
-  %br
-  %br
-  = submit_tag "Add New Admin", class: "button"
-
-
-%hr/
-
-%h4 Current Store Stockers
-%ul
-  - @store.stockers.each do |stocker|
-    %li
-      =stocker.email
-      = button_to "remove stocker", remove_store_stocker_path(@store, :id => stocker.id), :method => :put, confirm: "Are you sure you want to remove this stocker?"
-
-= form_tag add_store_stocker_path(@store), method: :put, class: "navbar-form" do
-  %input.large-3.columns{:placeholder => "Email", name:"email", :type => "email"}/
-  %br
-  %br
-  %br
-  = submit_tag "Add New Stocker", class: "button"

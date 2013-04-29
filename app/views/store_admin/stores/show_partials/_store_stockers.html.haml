@@ -1,0 +1,9 @@
+.row
+  .large-12.columns
+    %h4 Current Store Stockers
+    - @store.stockers.each do |stocker|
+      = button_to "Remove: #{stocker.email}", remove_store_stocker_path(@store, :id => stocker.id), :method => :put, confirm: "Are you sure you want to remove this stocker?", class: "large-12 columns"
+    = form_tag add_store_stocker_path(@store), method: :put, class: "navbar-form" do
+      %input.large-12.columns{:placeholder => "Email", name:"email", :type => "email"}/
+      %br
+      = submit_tag "Add New Stocker", class: "large-12 columns button"

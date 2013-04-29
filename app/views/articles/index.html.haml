@@ -1,0 +1,8 @@
+%h1
+  ="Blog Posts from #{current_store.name}"
+.row
+  .large-12.columns
+    - @articles.each do |article|
+      .large-6.columns
+        %h2=article.title
+        %h3=article.body

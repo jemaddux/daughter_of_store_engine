@@ -21,76 +21,77 @@
   = stylesheet_link_tag "application"
   <link href='http://fonts.googleapis.com/css?family=Questrial|Amatic+SC:700' rel='stylesheet' type='text/css'>
   = csrf_meta_tag
-  = render partial: "layouts/custom_style"
+  %body
+    = render partial: "layouts/custom_style"
 
 
-.row
-  .large-12.columns
-    / Navigation
-    .row
-      .large-12.columns
-        .fixed
-          %nav.top-bar
-            %ul.title-area
-              / Title Area
-              %li.name
-                -if @current_store
-                  %h1
-                    = link_to @current_store.name, home_path
-                -else
-                  %h1
-                    = link_to "Daughter of Store Engine", root_path
-            %section.top-bar-section
-              / Right Nav Section
-              %ul.right
-                = render 'layouts/pages'
-                -if @current_store
-                  = render partial: "layouts/products_categories"
-                - if logged_in?
-                  %li.has-dropdown
-                    =link_to "<i class='icon-user'></i> #{current_user.first_name} <i class='icon-angle-down'></i>".html_safe, account_path
-                    %ul.dropdown
-                      - if current_user.admin
-                        %li= link_to "Admin", admin_stores_path
-                      %li= link_to "Account", account_path
-                      %li= link_to "Orders", orders_path
-                      %li.divider
-                      %li= link_to "Logout", logout_path
-                - else
+  .row
+    .large-12.columns
+      / Navigation
+      .row
+        .large-12.columns
+          .fixed
+            %nav.top-bar
+              %ul.title-area
+                / Title Area
+                %li.name
                   -if @current_store
-                    %li.has-dropdown
-                      = link_to "Login / Signup <i class='icon-angle-down'></i>".html_safe, login_path(path: request.path)
-                      %ul.dropdown
-                        %li= link_to "Login", login_path(path: request.path)
-                        %li= link_to "Signup", new_customers_path(path: request.path)
+                    %h1
+                      = link_to @current_store.name, home_path
                   -else
+                    %h1
+                      = link_to "Daughter of Store Engine", root_path
+              %section.top-bar-section
+                / Right Nav Section
+                %ul.right
+                  = render 'layouts/pages'
+                  -if @current_store
+                    = render partial: "layouts/products_categories"
+                  - if logged_in?
                     %li.has-dropdown
-                      = link_to "Login / Signup <i class='icon-angle-down'></i>".html_safe, login_path
+                      =link_to "<i class='icon-user'></i> #{current_user.first_name} <i class='icon-angle-down'></i>".html_safe, account_path
                       %ul.dropdown
-                        %li= link_to "Login", login_path
-                        %li= link_to "Signup", new_customers_path
-              / End Top Bar
-          / End Navigation
-  = render partial: "layouts/messages"
+                        - if current_user.admin
+                          %li= link_to "Admin", admin_stores_path
+                        %li= link_to "Account", account_path
+                        %li= link_to "Orders", orders_path
+                        %li.divider
+                        %li= link_to "Logout", logout_path
+                  - else
+                    -if @current_store
+                      %li.has-dropdown
+                        = link_to "Login / Signup <i class='icon-angle-down'></i>".html_safe, login_path(path: request.path)
+                        %ul.dropdown
+                          %li= link_to "Login", login_path(path: request.path)
+                          %li= link_to "Signup", new_customers_path(path: request.path)
+                    -else
+                      %li.has-dropdown
+                        = link_to "Login / Signup <i class='icon-angle-down'></i>".html_safe, login_path
+                        %ul.dropdown
+                          %li= link_to "Login", login_path
+                          %li= link_to "Signup", new_customers_path
+                / End Top Bar
+            / End Navigation
+    = render partial: "layouts/messages"
 
-  = yield
+    = yield
 
-  = render partial: "layouts/footer"
+    = render partial: "layouts/footer"
 
 
-  :javascript
-    $(document).ready(function(){
-      $('[id^="product-wrapper"]').hover(function(){
-        var className = $(this).children('[class^="cart-hidden"]').attr('class');
-        var classIndex = className.match(/\d+/);
-        $('.cart-hidden-'+classIndex).addClass("cart-visible");
-        },
-        function() {
-        var className = $(this).children('[class^="cart-hidden"]').attr('class');
-        var classIndex = className.match(/\d+/);
-        $('.cart-hidden-'+classIndex).removeClass("cart-visible");
-      });
-      $('#category-dropdown').click(function() {
-        return false;
-      });
-      });
+    :javascript
+      $(document).ready(function(){
+        $('[id^="product-wrapper"]').hover(function(){
+          var className = $(this).children('[class^="cart-hidden"]').attr('class');
+          var classIndex = className.match(/\d+/);
+          $('.cart-hidden-'+classIndex).addClass("cart-visible");
+          },
+          function() {
+          var className = $(this).children('[class^="cart-hidden"]').attr('class');
+          var classIndex = className.match(/\d+/);
+          $('.cart-hidden-'+classIndex).removeClass("cart-visible");
+        });
+        $('#category-dropdown').click(function() {
+          return false;
+        });
+        });

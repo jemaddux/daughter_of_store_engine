@@ -1,0 +1,10 @@
+.row
+  .large-12.columns
+    %h4 Current Store Admins
+    - @store.admins.each do |admin|
+      = button_to "Remove: #{admin.email}", remove_store_admin_path(@store, :id => admin.id), :method => :put, confirm: "Are you sure you want to remove this Admin?", class:"large-12 columns"
+
+    = form_tag add_store_admin_path(@store), method: :put, class: "navbar-form" do
+      %input.large-12.columns{:placeholder => "Email", name:"email", :type => "email"}/
+      %br
+      = submit_tag "Add New Admin", class: "button large-12 columns"
