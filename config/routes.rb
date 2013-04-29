@@ -36,6 +36,7 @@ StoreEngine::Application.routes.draw do
     resources :background_images
     resources :pages
 
+
     put '/remove_store_admin' => 'store_admin/stores#remove_store_admin', :as => 'remove_store_admin'
     put '/add_store_admin' => 'store_admin/stores#add_store_admin', :as => 'add_store_admin'
     put '/remove_store_stocker' => 'store_admin/stores#remove_store_stocker', :as => 'remove_store_stocker'
