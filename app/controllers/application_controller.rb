@@ -26,7 +26,8 @@ class ApplicationController < ActionController::Base
 
   def require_admin
     if !current_user || current_user.admin != true
-      redirect_to root_path, :notice => "Only system administrators may access this page"
+      redirect_to root_path,
+            :notice => "Only system administrators may access this page"
     else
       true
     end
@@ -38,7 +39,8 @@ class ApplicationController < ActionController::Base
       return
     end
     unless current_user.store_admin?(current_store) || current_user.admin?
-      redirect_to home_path(current_store), notice:"Only store administrators may access this page"
+      redirect_to home_path(current_store),
+              notice:"Only store administrators may access this page"
     end
   end
 
@@ -47,7 +49,8 @@ class ApplicationController < ActionController::Base
       if current_user.store_stocker?(current_store) || current_user.store_admin?(current_store)
         return true
       else
-        redirect_to home_path(current_store), notice:"Only store administrators may access this page"
+        redirect_to home_path(current_store),
+              notice:"Only store administrators may access this page"
       end
     else
       redirect_to home_path(current_store), notice: "You don't belong here"
@@ -81,7 +84,8 @@ class ApplicationController < ActionController::Base
     if logged_in?
       if current_user.cart
         unless session[:shopping_cart] == current_user.cart.data
-          session[:shopping_cart] = current_user.cart.data.merge(session[:shopping_cart])
+          session[:shopping_cart] = current_user.cart.data.merge(session[
+                                                          :shopping_cart])
           current_user.cart.update_attributes(data: session[:shopping_cart])
         end
       else

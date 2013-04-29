@@ -5,7 +5,8 @@ class CartsController < ApplicationController
     if cart_products.empty?
       @shopping_cart = []
     else
-      @shopping_cart = cart_products.collect{|k,v| [Product.unscoped.find(k), v]}
+      @shopping_cart = cart_products.collect{|k,v|
+                                            [Product.unscoped.find(k), v]}
       @order_total = @shopping_cart.reduce(0){|memo,(p,q)|memo+=(p.price*q)}
     end
   end

@@ -204,9 +204,9 @@ ActiveRecord::Schema.define(:version => 20130427215312) do
     t.string   "button_color_hover"
     t.string   "background_color"
     t.string   "text_color"
-    t.string   "layout",             :default => "default"
     t.string   "text_font"
     t.string   "custom_css"
+    t.string   "layout",             :default => "default"
   end
 
 end

@@ -58,7 +58,8 @@ class Order < ActiveRecord::Base
     Store.find(self.store_id).touch
     self.url_token = loop do
       random_token = SecureRandom.urlsafe_base64
-      break random_token unless Order.unscoped.where(url_token: random_token).exists?
+      break random_token unless Order.unscoped.where(url_token:
+                                                  random_token).exists?
     end
   end
 end
