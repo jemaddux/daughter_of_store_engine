@@ -41,7 +41,8 @@ class ChargesController < ApplicationController
     session[:return_to_url] = request.url
     @shipping_address = ShippingAddress.new
     @billing_address = Address.new
-    @products = current_cart_products.map{|id,quantity| [Product.find(id), quantity]}
+    @products = current_cart_products.map{|id,quantity|
+                                          [Product.find(id), quantity]}
     @order_total = @products.reduce(0){|memo,(p,q)|memo+=(p.price*q)}
   end
 
@@ -67,6 +68,7 @@ class ChargesController < ApplicationController
     current_user.cart.destroy
     session[:shopping_cart].clear
     session[:return_to_url] = nil
-    redirect_to orders_path, notice: "Your Order Has Been Received. You Will Receive a Confirmation After It is Processed"
+    redirect_to orders_path,
+      notice: "Order Received. You will receive confirmation processing."
   end
 end

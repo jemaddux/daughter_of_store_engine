@@ -1,5 +1,5 @@
 class StoresController < ApplicationController
-  skip_filter :scope_current_store, only: [:landing, :index, :new, :create, :update, :change_status]
+  skip_filter :scope_current_store, except: [:show]
   before_filter :require_login, only: [:new]
 
   def landing

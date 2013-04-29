@@ -61,7 +61,9 @@ class ApplicationController < ActionController::Base
     if logged_in?
       true
     else
-      session[:return_to_url] = request.url if Config.save_return_to_url && request.get?
+      if Config.save_return_to_url && request.get?
+        session[:return_to_url] = request.url
+      end
       redirect_to login_path, notice: "Please log in to your account. "
       return
     end

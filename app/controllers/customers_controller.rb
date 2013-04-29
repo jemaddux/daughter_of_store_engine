@@ -21,7 +21,8 @@ class CustomersController < ApplicationController
     if @customer.save
       auto_login(@customer)
       if session[:redirect_after_create]
-        redirect_to session[:redirect_after_create], notice: "Thanks for Signing up, <a href='/account'>click here to edit your details</a>".html_safe
+        redirect_to session[:redirect_after_create],
+          notice: "<a href='/account'>Edit your details</a>".html_safe
       else
         redirect_back_or_to account_path, notice: 'Thanks for signing up.'
       end
