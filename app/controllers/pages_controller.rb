@@ -32,7 +32,8 @@ class PagesController < ApplicationController
     @page.store_id = current_store.id
 
     if @page.save
-      redirect_to page_path(current_store, @page), notice: 'Page was successfully created.'
+      redirect_to page_path(current_store, @page),
+              notice: 'Page was successfully created.'
     else
       render action: "new"
     end
@@ -44,7 +45,8 @@ class PagesController < ApplicationController
     if @page.update_attributes(params[:page])
       @page.store_id = current_store.id
       @page.save
-      redirect_to page_path(current_store, @page), notice: 'Page was successfully updated.'
+      redirect_to page_path(current_store, @page),
+              notice: 'Page was successfully updated.'
     else
      render action: "edit"
     end
@@ -55,7 +57,8 @@ class PagesController < ApplicationController
     if page.store_id == current_store.id
       page.destroy
     else
-      redirect_to store_admin_path(current_store), notice: "cannot delete that page"
+      redirect_to store_admin_path(current_store),
+              notice: "cannot delete that page"
     end
     redirect_to store_admin_path(current_store)
   end

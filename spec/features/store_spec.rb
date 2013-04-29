@@ -36,7 +36,7 @@ describe Store do
     let!(:store) {Store.create!(name: 'Cool Sunglasses', path: 'cool-sunglasses', description: 'We have cool sunglasses', status: 'declined')}
     it 'displays a message that the store has been rejected' do
       visit '/cool-sunglasses'
-      page.should have_content('This store has been rejected')
+      page.should have_content('Store has been rejected')
     end
   end
 

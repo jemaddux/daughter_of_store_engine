@@ -12,11 +12,11 @@ class CreditCardsController < ApplicationController
 
   def create
     @credit_card = CreditCard.new(brand: params[:credit_card][:brand],
-                                  cardholder_name: params[:credit_card][:cardholder_name],
-                                  number: params[:credit_card][:number],
-                                  expiration_date: params[:credit_card][:expiration_date],
-                                  cvc: params[:credit_card][:cvc],
-                                  customer_id: current_user.id)
+        cardholder_name: params[:credit_card][:cardholder_name],
+        number: params[:credit_card][:number],
+        expiration_date: params[:credit_card][:expiration_date],
+        cvc: params[:credit_card][:cvc],
+        customer_id: current_user.id)
 
     if @credit_card.save
       redirect_back_or_to credit_card_path(@credit_card),
@@ -34,11 +34,11 @@ class CreditCardsController < ApplicationController
     @credit_card = CreditCard.find_by_customer_id(current_user.id)
 
     if @credit_card.update_attributes(brand: params[:credit_card][:brand],
-                                      cardholder_name: params[:credit_card][:cardholder_name],
-                                      number: params[:credit_card][:number],
-                                      expiration_date: params[:credit_card][:expiration_date],
-                                      cvc: params[:credit_card][:cvc],
-                                      customer_id: current_user.id)
+          cardholder_name: params[:credit_card][:cardholder_name],
+          number: params[:credit_card][:number],
+          expiration_date: params[:credit_card][:expiration_date],
+          cvc: params[:credit_card][:cvc],
+          customer_id: current_user.id)
       redirect_back_or_to credit_card_path(@credit_card),
                           notice: 'Credit Card was successfully updated.'
     else
