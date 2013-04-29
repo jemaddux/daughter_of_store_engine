@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
   def show
     order = Order.unscoped.find(params[:id])
     if order.customer_id == current_user.id
-      @order = order 
+      @order = order
       @products = @order.products
     else
       redirect_to orders_path, notice:"Thats not your order"

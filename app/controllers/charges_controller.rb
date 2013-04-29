@@ -18,12 +18,12 @@ class ChargesController < ApplicationController
       password_confirmation = password
       first_name = params[:first_name]
       last_name = params[:last_name]
-      
+
       if customer = Customer.create(
-        :email => email, 
-        :first_name => first_name, 
-        :last_name => last_name, 
-        :password => password, 
+        :email => email,
+        :first_name => first_name,
+        :last_name => last_name,
+        :password => password,
         :password_confirmation => password_confirmation)
       else
         redirect_to :back, notice:"Sorry, that email has already been taken."
@@ -38,13 +38,13 @@ class ChargesController < ApplicationController
     @shipping_address = ShippingAddress.new
     @billing_address = Address.new
     cart_products = session[:shopping_cart][current_store.id]
-    
+
     if session[:order_id]
       @order = Order.unscoped.find(session[:order_id])
     else
       @order = Order.for_customer(
-        current_user, 
-        cart_products, 
+        current_user,
+        cart_products,
         current_store.id)
       session[:order_id] = @order.id
     end
@@ -67,14 +67,14 @@ class ChargesController < ApplicationController
     order.update_attributes(status: "processed")
 
     Resque.enqueue(
-      OrderConfirmationEmail, 
-      current_store.id, 
-      current_user.id, 
+      OrderConfirmationEmail,
+      current_store.id,
+      current_user.id,
       order.id)
 
     current_user.cart.destroy
     session[:shopping_cart].clear
     redirect_to url_token_path(order.url_token)
- 
+
   end
 end

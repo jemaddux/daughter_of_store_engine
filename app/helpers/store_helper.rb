@@ -13,7 +13,7 @@ module StoreHelper
       current_store.background_images.collect{|i|{image: i.photo.url}}.to_json.html_safe
     else
       default_images
-    end 
+    end
   end
 
 private

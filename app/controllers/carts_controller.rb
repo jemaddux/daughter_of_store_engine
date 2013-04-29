@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
 
-  def show 
+  def show
     cart_products = session[:shopping_cart][current_store.id]
     if cart_products.empty?
       @shopping_cart = []

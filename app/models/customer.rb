@@ -2,7 +2,7 @@ class Customer < ActiveRecord::Base
   authenticates_with_sorcery!
 
   after_create :welcome_email
-  
+
   validates_confirmation_of :password,
                             message: "Password should match confirmation.",
                             if: :password
@@ -10,7 +10,7 @@ class Customer < ActiveRecord::Base
   validates :email,         presence: true, uniqueness: true
   validates :first_name,    presence: true
   validates :last_name,     presence: true
-  
+
 
   has_one  :cart
   has_one  :shipping_address
@@ -33,7 +33,7 @@ class Customer < ActiveRecord::Base
   end
 
   def store_stocker?(store)
-    store.stockers.include?(self)    
+    store.stockers.include?(self)
   end
 
   def welcome_email
