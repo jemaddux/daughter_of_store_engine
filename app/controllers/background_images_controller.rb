@@ -19,7 +19,8 @@ class BackgroundImagesController < ApplicationController
   def destroy
     @background_image = BackgroundImage.find(params[:id])
     @background_image.destroy
-    redirect_to store_admin_edit_store_path(current_store), notice:"Image has Been Marked for Deletion. Please give us a few moments a"
+    redirect_to store_admin_edit_store_path(current_store),
+      notice:"Image has been marked for deletion. Give us a few moments."
   end
 
   def index

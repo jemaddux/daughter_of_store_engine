@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
 
   def require_store_admin_or_stocker
     if logged_in?
-      if current_user.store_stocker?(current_store) || current_user.store_admin?(current_store)
+      if current_stocker? || current_admin?
         return true
       else
         redirect_to home_path(current_store),
@@ -69,9 +69,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
-
   private
+
+  def current_stocker?
+    current_user.store_stocker?(current_store)
+  end
+
+  def current_admin?
+    current_user.store_admin?(current_store)
+  end
 
   def scope_current_store
     Store.current_id = current_store.id
