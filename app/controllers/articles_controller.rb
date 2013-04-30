@@ -36,7 +36,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
-    @article.increase_view_count  
+    @article.increase_view_count
   end
 
   def increase_view_count
