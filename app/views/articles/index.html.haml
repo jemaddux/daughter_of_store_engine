@@ -1,12 +1,16 @@
 %h1
-  ="Blog Posts from #{current_store.name}"
+  ="#{current_store.name} Blog Archive"
 .row
-  .large-9.columns
-    - @articles.reverse.each do |article|
+  .large-2.columns
+    %h3 Article List
+    %ul
+    - @articles.each do |article|
+      %li= link_to article.title, article_path(current_store, article)
+  .large-10.columns
+    - @articles.each do |article|
       %article.panel
         %h2= link_to article.title, article_path(current_store, article)
-        %h4= "Written by: #{article.customer.first_name}"
-        %h5= "Created #{time_ago_in_words article.created_at} ago..."
+        %h3= "Written by: #{article.customer.first_name} #{time_ago_in_words article.created_at} ago..."
         .row
           .large-12.columns
             %h3

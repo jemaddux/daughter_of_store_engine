@@ -11,8 +11,8 @@
     = f.label :title
     = f.text_field :title
   .field
-    = f.label :body
-    = f.text_area :body
+    = f.label "Body: (you can input HTML)"
+    = f.text_area :body, {"ace-editor" => "", "ace-mode" => "text", "ace-theme" => "github", style: "height: 300px;"}
   .actions
     = f.submit :update, class: "button"
 

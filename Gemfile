@@ -25,7 +25,7 @@ gem "redis-store", "~> 1.0.0"
 gem 'kaminari'
 gem 'newrelic_rpm'
 gem 'simple_form'
-gem 'ace-rails'
+gem 'aced_rails'
 
 group :development, :test do
   gem 'fabrication'
