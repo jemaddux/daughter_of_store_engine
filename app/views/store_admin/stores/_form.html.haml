@@ -35,16 +35,14 @@
   .field
     = f.label 'Text Color: (enter either a color or hex code)'
     = f.text_field :text_color
-  %h3= "Fonts (Optional)"
   .field
-    = f.label 'Text Font'
+    %h3= "Fonts (Optional):"
     = f.text_field :text_font
-  %h3= "Custom CSS (Optional)"
   .field
-    = f.label "Custom Css"
-    = f.text_area :custom_css
+    %h3= "Custom CSS (Optional):"
+    = f.text_area :custom_css, {"ace-editor" => "", "ace-mode" => "css", "ace-theme" => "github", style: "height: 200px;"}
   .actions
-    = f.submit 'Update', confirm: "Are you sure you want to make these changes? Changing your store's name or URL Id may result in broken links or customer confusion.", class: "button small"
+    = f.submit 'Update', confirm: "Are you sure you want to make these changes? Changing your store's name or URL Id may result in broken links or customer confusion.", class: "button"
 
 %hr
 %p
