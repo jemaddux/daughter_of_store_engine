@@ -14,8 +14,14 @@
 @import "foundation";
 @import "font-awesome";
 
- // *= require foundation_and_overrides
- //= require foundation_and_overrides
+// *= require foundation_and_overrides
+//= require foundation_and_overrides
+
+/*
+*= require jquery-minicolors
+*/
+
+
 body {
   margin-top: 4.5em !important;
 }
