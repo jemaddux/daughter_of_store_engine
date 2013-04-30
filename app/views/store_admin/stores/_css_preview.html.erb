@@ -78,7 +78,7 @@
                       <input id="product" name="product" type="hidden" value="164" />
                       <input id="quantity" name="quantity" type="hidden" value="1" />
                       <input id="store_id" name="store_id" type="hidden" value="10" />
-                      <input class="button right" name="commit" type="submit" value="Add to Cart" />
+                      <input class="button right hover" name="commit" type="submit" value="Add to Cart" />
             </form>
           </div>
           <a href="#" class="product-image-1" id="product-1"><img alt="Hammock_tent" src="/system/products/images/000/000/164/original/hammock_tent.jpg?1367274163" /></a>
@@ -94,7 +94,7 @@
                       <input id="product" name="product" type="hidden" value="165" />
                       <input id="quantity" name="quantity" type="hidden" value="1" />
                       <input id="store_id" name="store_id" type="hidden" value="10" />
-                      <input class="button right" name="commit" type="submit" value="Add to Cart" />
+                      <input class="button right hover" name="commit" type="submit" value="Add to Cart" />
             </form>
           </div>
           <a href="#" class="product-image-2" id="product-2"><img alt="Blue_ball_pack" src="/system/products/images/000/000/165/original/blue_ball_pack.jpg?1367274163" /></a>
@@ -110,7 +110,7 @@
                       <input id="product" name="product" type="hidden" value="166" />
                       <input id="quantity" name="quantity" type="hidden" value="1" />
                       <input id="store_id" name="store_id" type="hidden" value="10" />
-                      <input class="button right" name="commit" type="submit" value="Add to Cart" />
+                      <input class="button right hover" name="commit" type="submit" value="Add to Cart" />
             </form>
           </div>
           <a href="#" class="product-image-3" id="product-3"><img alt="Blacker_pack" src="/system/products/images/000/000/166/original/blacker_pack.jpg?1367274164" /></a>
@@ -126,7 +126,7 @@
                       <input id="product" name="product" type="hidden" value="167" />
                       <input id="quantity" name="quantity" type="hidden" value="1" />
                       <input id="store_id" name="store_id" type="hidden" value="10" />
-                      <input class="button right" name="commit" type="submit" value="Add to Cart" />
+                      <input class="button right hover" name="commit" type="submit" value="Add to Cart" />
             </form>
           </div>
           <a href="#" class="product-image-4" id="product-4"><img alt="Flipper_kit" src="/system/products/images/000/000/167/original/flipper_kit.jpg?1367274164" /></a>
@@ -142,7 +142,7 @@
                       <input id="product" name="product" type="hidden" value="168" />
                       <input id="quantity" name="quantity" type="hidden" value="1" />
                       <input id="store_id" name="store_id" type="hidden" value="10" />
-                      <input class="button right" name="commit" type="submit" value="Add to Cart" />
+                      <input class="button right hover" name="commit" type="submit" value="Add to Cart" />
             </form>
           </div>
           <a href="#" class="product-image-5" id="product-5"><img alt="Camel_pack" src="/system/products/images/000/000/168/original/camel_pack.jpg?1367274164" /></a>
@@ -158,22 +158,36 @@
   <!-- CSS Changer JS -->
   <script>
     $(document).ready(function(){
+      var button_hover_color = "#2284a1";
+      var button_color = "rgb(43, 166, 203)";
       $("#store_button_color").focusout(function(){
-        $(".button").css({"background-color":this.value});
+        if(this.value == ""){
+          button_color = "rgb(43, 166, 203)";
+        }else{
+          $(".hover").css({"background-color":this.value});
+          button_color = this.value;
+        }
       })
+      $("#store_button_color_hover").focusout(function(){
+        if(this.value == ""){
+          button_hover_color = "#2284a1";
+        }else{
+          button_hover_color = this.value;
+        }
+      })
+      $('.hover').hover(
+        function() {
+          $(this).css({"background-color":button_hover_color});
+        },
+        function() {
+          $(this).css({"background-color":button_color});
+        }
+      );
+
+
       $("#store_background_color").focusout(function(){
         $("body").css({"background-color":this.value});
       })
-      var hover_color = "darkblue";
-      $("#store_button_color_hover").focusout(function(){
-        hover_color = this.value;
-      })
-      $('.hover').hover(function() {
-        $(this).css({"background-color":hover_color});
-      });
-
-
-
       $("#store_text_color").focusout(function(){
         $("body, a, h2, h4, .breadcrumbs li a, .breadcrumbs li.current a, input.button, input.button:hover, .top-bar .name h1 a, .top-bar-section li a:not(.button), .left, .panel h6, .sub-tagline, .tagline, .section-heading, input.button.small, .panel a, a:focus, a.home-link").css({"color":this.value});
       })
