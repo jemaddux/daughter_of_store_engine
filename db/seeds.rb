@@ -99,7 +99,18 @@ end
 
 
 
-store_names = [["Slick Bike Shop", "slick-bike-shop"], ["Cool Runnings", "cool-runnings"], ["Cool Sunglasses", "cool-sunglasses"], ["Hotty Threads", "hot-threads"], ["Obigear", "obigear"], ["ObiWear", "obiwear"], ["Panda Pants", "panda-pants"], ["Blairs HotDog Store", "blairs-hotdog-store"], ["Gather", "gather"], ["ToysRUs", "toysrus"]]
+store_names = [
+  ["Glamping", "glamping"], 
+  ["Honey-Can-Too", "honey-can-too"], 
+  ["Phil's Power Tools", "phils-power-tools"], 
+  ["Whale Store", "whales"], 
+  ["Slick-Bike-Shop", "slick-bike-shop"],
+  ["Franks Sticker Store", "frank-sticks"], 
+  ["Jeff's House of Pain", "youreabadbrogrammer"], 
+  ["Blairs HotDog Store", "blairs-hotdog-store"], 
+  ["Gather", "gather"], 
+  ["ToysRus", "toysrus"]
+]
 
 store_names.each do |name,path|
   store = Store.create!(name: name, path: path, description: Faker::Lorem.paragraph(1), status:"active")
@@ -111,14 +122,31 @@ store_names.each do |name,path|
   print "\ncreating #{store.name}..."
   cats = %w(sunglasses goggles skis snowboards boots helmets gloves backpacks cameras luggage clothing)
 
-  product_images = ['avalanche_pack.jpg', 'black_long.jpg', 'black_pack.jpg', 'blacker_pack.jpg', 'blue_ball_pack.jpg',
-                    'boat_water.jpg', 'camel_pack.jpg', 'camp_pack.jpg', 'flipper_kit.jpg', 'gloves.jpg', 'go_pro.jpg',
-                    'green_boat.jpg', 'hammock_tent.jpg', 'king_tent.jpg', 'miller_paddle.jpg', 'my_tent.jpg', 'new_tent.jpg',
-                    'north_tent.jpg', 'Split_board.jpg', 'arbor_board.jpg']
+  product_images = [
+    'avalanche_pack.jpg', 
+    'black_long.jpg', 
+    'black_pack.jpg', 
+    'blacker_pack.jpg', 
+    'blue_ball_pack.jpg',
+    'boat_water.jpg', 
+    'camel_pack.jpg', 
+    'camp_pack.jpg',
+    'flipper_kit.jpg',
+    'gloves.jpg',
+    'go_pro.jpg',
+    'green_boat.jpg',
+    'hammock_tent.jpg',
+    'king_tent.jpg',
+    'miller_paddle.jpg',
+    'my_tent.jpg',
+    'new_tent.jpg',
+    'north_tent.jpg',
+    'Split_board.jpg',
+    'arbor_board.jpg']
 
   18.times do |i|
-    file = File.open("./app/assets/images/products/#{product_images.shuffle.pop}")
-    Product.create!(store_id: store.id, name: Faker::Name.name, description: Faker::Lorem.paragraph(3), price: "#{(1..500).to_a.sample}.0".to_f, quantity: "#{(1..500).to_a.sample}".to_i, image: file, featured: false, active: true, categories_list:cats.sample)
+    file = File.open("./app/assets/images/products/#{product_images[i]}")
+    Product.create!(store_id: store.id, name: product_images[i].gsub(".jpg","").titleize, description: Faker::Lorem.paragraph(6), price: "#{(1..500).to_a.sample}.0".to_f, quantity: "#{(1..500).to_a.sample}".to_i, image: file, featured: false, active: true, categories_list:cats.sample)
     print "."
     file.close
   end
