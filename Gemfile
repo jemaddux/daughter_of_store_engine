@@ -18,7 +18,7 @@ gem 'zurb-foundation', '~> 4.0.0'
 gem 'font-awesome-rails'
 gem 'seed_dump'
 gem 'aws-sdk'
-gem 'asset_sync'
+# gem 'asset_sync'
 gem 'faker'
 gem 'resque', "~> 1.22.0"
 gem "redis-store", "~> 1.0.0"
