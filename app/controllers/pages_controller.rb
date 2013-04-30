@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  layout 'admin/application', except: [:show]
   before_filter :require_store_admin_or_admin, except: :show
   def index
     redirect_to home_path(current_store)
