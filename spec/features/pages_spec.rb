@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe Page do
-  
-  
+
+
   describe 'authenticated store_admin user' do
     let!(:admin) {Customer.create!(email: 'admin@admin.com', password: 'password', first_name: 'admin', last_name: 'user', admin: true)}
     let!(:user) {Customer.create!(email: 'user@user.com', password: 'password', first_name: 'user', last_name: 'user', admin: false)}
@@ -21,63 +21,52 @@ describe Page do
         login_the_admin
         visit new_page_path(store)
         fill_in 'page_title', with: title
-        fill_in 'page_body', with: body 
+        fill_in 'page_body', with: body
         click_on 'save'
         expect(page).to have_content title
         expect(page).to have_content body
       end
 
-      it "should be able to edit" do 
+      it "should be able to edit" do
         login_the_admin
         visit new_page_path(store)
         fill_in 'page_title', with: title
-        fill_in 'page_body', with: body 
+        fill_in 'page_body', with: body
         click_on 'save'
         post = Page.first
         expect(current_path).to eq page_path(store, post)
         visit edit_page_path(store, post)
         fill_in 'page_title', with: 'History'
-        fill_in 'page_body', with: body 
+        fill_in 'page_body', with: body
         click_button 'update'
         expect(page).to have_content "History"
         expect(current_path).to have_content "history"
       end
 
-      xit "should be able to delete" do 
-        post = Page.create!(title: title, slug: slug, body: body, store_id: store.id)
-        login_the_admin
-        visit store_admin_path(store)
-        expect( current_path ).to eq store_admin_path(store)
-        within("#store-pages") do 
-          click_on '#delete'
-        end
-        expect(Page.count).to eq 0
-      end
-
-      it "should only edit their own pages" do 
+      it "should only edit their own pages" do
         page = Page.create!(title:title, body: body, slug: slug, store_id: 5)
         login_the_admin
         visit store_admin_path(store)
-        within("#store-pages") do 
+        within("#store-pages") do
           expect(page).to_not have_content 'Delete'
         end
       end
   end
 
   describe 'unauthenticated user' do
-    
+
     title = "About"
     slug = title.parameterize
     body = "Our store is great, we have the best sunglasses"
 
-    it "should see pages" do 
+    it "should see pages" do
       store = Store.create!(name: 'Cool Sunglasses', path: 'cool-sunglasses', description: 'We have cool sunglasses', status: 'active')
       about = Page.create!(
-        title: title, 
-        slug: slug, 
-        body: body, 
+        title: title,
+        slug: slug,
+        body: body,
         store_id: store.id)
-      
+
       visit page_path(store,about)
       expect(current_path).to eq page_path(store,about)
       expect(page).to have_content title
@@ -85,14 +74,14 @@ describe Page do
     end
 
 
-    it "should not be able to edit" do 
+    it "should not be able to edit" do
       store = Store.create!(name: 'Cool Sunglasses', path: 'cool-sunglasses', description: 'We have cool sunglasses', status: 'active')
       about = Page.create!(title: title, slug: slug, body: body, store_id: store.id)
       visit edit_page_path(store,about)
       expect(current_path).to eq home_path(store)
     end
   end
-  
+
 
 
 end
