@@ -44,5 +44,6 @@ class StoreAdmin::CategoriesController < ApplicationController
   def destroy
     @category = current_store.categories.find(params[:id])
     @category.destroy
+    redirect_to admin_categories_path, notice: 'Category was successfully deleted.'
   end
 end
