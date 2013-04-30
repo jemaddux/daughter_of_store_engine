@@ -6,8 +6,6 @@
         - @store.errors.full_messages.each do |msg|
           %li= msg
 
-  .right.large-7
-    = render 'css_preview'
   .large-5.columns
     %h3= "Required Info"
     .field
@@ -48,7 +46,8 @@
       = f.text_area :custom_css
     .actions
       = f.submit 'Update', confirm: "Are you sure you want to make these changes? Changing your store's name or URL Id may result in broken links or customer confusion.", class: "button small"
-
+  .right.large-7
+    = render 'css_preview'
 %hr
 %p
   Current Background Images
