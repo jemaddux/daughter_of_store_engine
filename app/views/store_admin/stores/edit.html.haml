@@ -1,6 +1,7 @@
 %h1= "Edit Store Information: #{@store.name}"
 
-.large-5.columns
-  = render 'form'
+= render partial: "layouts/custom_style"
+= render 'form'
 
-  = link_to 'Cancel', store_admin_path(@store.path), class: 'button'
+= link_to 'Cancel', store_admin_path(@store.path), class: 'button small'
+
