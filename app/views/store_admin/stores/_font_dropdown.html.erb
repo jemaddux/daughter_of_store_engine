@@ -22,9 +22,14 @@
 
 <script type="text/javascript">
   $(function() {
+    var initialVal = $('#store_text_font').val();
+    if(initialVal === '') {
+      initialVal = 'Courier New,Courier New,Courier,monospace';
+    }
+
     $('#fontSelect').fontSelector({
       'hide_fallbacks' : true,
-      'initial' : 'Courier New,Courier New,Courier,monospace', 
+      'initial' : initialVal,
       'selected' : function(style){
         console.log(style);
         $('#store_text_font').val(style);
