@@ -26,6 +26,7 @@ gem 'kaminari'
 gem 'newrelic_rpm'
 gem 'simple_form'
 gem 'aced_rails'
+gem 'jquery-minicolors-rails'
 
 group :development, :test do
   gem 'fabrication'
