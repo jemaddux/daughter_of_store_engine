@@ -1,9 +1,9 @@
 class Address < ActiveRecord::Base
   attr_accessible :city,
-                  :phone, 
-                  :state, 
-                  :status, 
-                  :street, 
+                  :phone,
+                  :state,
+                  :status,
+                  :street,
                   :zipcode,
                   :customer_id
 
@@ -38,7 +38,7 @@ class Address < ActiveRecord::Base
   end
 
   def type
-    key[status]  
+    key[status]
   end
 
 end

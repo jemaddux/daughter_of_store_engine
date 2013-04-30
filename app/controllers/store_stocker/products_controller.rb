@@ -22,7 +22,8 @@ class StoreStocker::ProductsController < ApplicationController
     @product = Product.new(params[:product])
     if @product.save
       @store.touch
-      redirect_to store_admin_products_path(@store), notice: "Product was successfully created."
+      redirect_to store_admin_products_path(@store),
+                  notice: "Product was successfully created."
     else
       render action: "new"
     end
@@ -38,7 +39,8 @@ class StoreStocker::ProductsController < ApplicationController
     @product = current_store.products.find(params[:id])
     if @product.update_attributes(params[:product])
       @store.touch
-      redirect_to store_admin_products_path, notice: 'Product was successfully updated.'
+      redirect_to store_admin_products_path,
+                notice: 'Product was successfully updated.'
     else
       render :edit
     end
@@ -51,6 +53,7 @@ class StoreStocker::ProductsController < ApplicationController
       @store.touch
     end
 
-    redirect_to store_admin_products_path, notice: 'Product was successfully removed.'
+    redirect_to store_admin_products_path,
+                  notice: 'Product was successfully removed.'
   end
 end

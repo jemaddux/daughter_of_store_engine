@@ -28,7 +28,8 @@ class StoreAdmin::StoresController < ApplicationController
     @store = Store.find_by_path(params[:store_path])
 
     if @store.update_attributes(params[:store])
-      redirect_to store_admin_path(@store.path), notice: 'Store was successfully updated.'
+      redirect_to store_admin_path(@store.path),
+                    notice: 'Store was successfully updated.'
     else
       render action: 'edit'
     end
@@ -90,7 +91,8 @@ class StoreAdmin::StoresController < ApplicationController
     if customer == current_user
       redirect_to :back, notice: "Cannot delete yo'self BIOTCH"
     else
-      StoreStocker.find_by_customer_id_and_store_id(customer.id,store.id).destroy
+      StoreStocker.find_by_customer_id_and_store_id(customer.id,
+                                                    store.id).destroy
       Resque.enqueue(RemoveFromStoreEmail, customer.id,store.id)
       redirect_to :back, notice: "User removed. They have been notified."
     end

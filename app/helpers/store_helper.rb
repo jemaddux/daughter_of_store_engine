@@ -10,10 +10,11 @@ module StoreHelper
 
   def background_photos
     if current_store.background_images.count > 0
-      current_store.background_images.collect{|i|{image: i.photo.url}}.to_json.html_safe
+      current_store.background_images.collect{|i|{image:
+                                          i.photo.url}}.to_json.html_safe
     else
       default_images
-    end 
+    end
   end
 
 private

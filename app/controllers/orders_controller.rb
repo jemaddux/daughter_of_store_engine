@@ -4,7 +4,8 @@ class OrdersController < ApplicationController
 
   def index
     if params[:status]
-      @orders = Order.unscoped.where(status: params[:status]).find_all_by_customer_id(current_user.id)
+      @orders = Order.unscoped.where(status:
+              params[:status]).find_all_by_customer_id(current_user.id)
     else
       @orders = Order.unscoped.find_all_by_customer_id(current_user.id)
     end
@@ -13,7 +14,7 @@ class OrdersController < ApplicationController
   def show
     order = Order.unscoped.find(params[:id])
     if order.customer_id == current_user.id
-      @order = order 
+      @order = order
       @products = @order.products
     else
       redirect_to orders_path, notice:"Thats not your order"

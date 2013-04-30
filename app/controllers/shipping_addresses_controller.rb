@@ -15,12 +15,13 @@ class ShippingAddressesController < ApplicationController
   end
 
   def create
-    @shipping_address = ShippingAddress.new(city: params[:shipping_address][:city],
-          phone: shorten_phone(params[:shipping_address][:phone]),
-          state: params[:shipping_address][:state],
-          street: params[:shipping_address][:street],
-          zipcode: params[:shipping_address][:zipcode],
-          customer_id: current_user.id)
+    @shipping_address = ShippingAddress.new(
+        city: params[:shipping_address][:city],
+        phone: shorten_phone(params[:shipping_address][:phone]),
+        state: params[:shipping_address][:state],
+        street: params[:shipping_address][:street],
+        zipcode: params[:shipping_address][:zipcode],
+        customer_id: current_user.id)
 
     if @shipping_address.save
       redirect_back_or_to @shipping_address,
@@ -33,12 +34,13 @@ class ShippingAddressesController < ApplicationController
   def update
     @shipping_address = ShippingAddress.find_by_customer_id(current_user.id)
 
-    if @shipping_address.update_attributes(city: params[:shipping_address][:city],
-                                           phone: shorten_phone(params[:shipping_address][:phone]),
-                                           state: params[:shipping_address][:state],
-                                           street: params[:shipping_address][:street],
-                                           zipcode: params[:shipping_address][:zipcode],
-                                           customer_id: current_user.id)
+    if @shipping_address.update_attributes(
+        city: params[:shipping_address][:city],
+        phone: shorten_phone(params[:shipping_address][:phone]),
+        state: params[:shipping_address][:state],
+        street: params[:shipping_address][:street],
+        zipcode: params[:shipping_address][:zipcode],
+        customer_id: current_user.id)
 
       redirect_back_or_to shipping_address_path(@shipping_address),
       notice: 'Shipping address was successfully updated.'

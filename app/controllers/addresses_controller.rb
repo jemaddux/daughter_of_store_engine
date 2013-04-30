@@ -35,12 +35,12 @@ class AddressesController < ApplicationController
     @address = Address.find_by_customer_id(current_user.id)
 
     if @address.update_attributes(city: params[:address][:city],
-                                  phone: shorten_phone(params[:address][:phone]),
-                                  state: params[:address][:state],
-                                  street: params[:address][:street],
-                                  zipcode: params[:address][:zipcode],
-                                  status: 1,
-                                  customer_id: current_user.id)
+        phone: shorten_phone(params[:address][:phone]),
+        state: params[:address][:state],
+        street: params[:address][:street],
+        zipcode: params[:address][:zipcode],
+        status: 1,
+        customer_id: current_user.id)
 
       redirect_back_or_to shipping_address_path(@address),
                           notice: 'Billing address was successfully updated.'

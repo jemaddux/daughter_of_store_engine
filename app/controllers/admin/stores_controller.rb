@@ -4,7 +4,8 @@ class Admin::StoresController < ApplicationController
 
 
   def index
-    @stores = Store.unscoped.where('status != ?', 'declined').all( :order => "created_at DESC")
+    @stores = Store.unscoped.where('status != ?', 'declined').all(
+                                      :order => "created_at DESC")
   end
 
   def administer

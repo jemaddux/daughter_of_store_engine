@@ -18,6 +18,6 @@
       .row
         = form_tag(carts_path, method: :put) do
           = hidden_field_tag 'product', product.id
-          = number_field_tag 'quantity', nil, min: 1
+          = number_field_tag 'quantity', 1, :min => 1
           = submit_tag 'Add to Cart', class: 'button'
   %hr
