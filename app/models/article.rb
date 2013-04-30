@@ -8,4 +8,8 @@ class Article < ActiveRecord::Base
 
   belongs_to :store
   belongs_to :customer
+
+  def increase_view_count
+    self.view_count += 1
+  end
 end

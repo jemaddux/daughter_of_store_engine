@@ -1,8 +1,13 @@
 %h1
   ="Blog Posts from #{current_store.name}"
 .row
-  .large-12.columns
-    - @articles.each do |article|
-      .large-6.columns
-        %h2=article.title
-        %h3=article.body
+  .large-9.columns
+    - @articles.reverse.each do |article|
+      %article.panel
+        %h2= link_to article.title, article_path(current_store, article)
+        %h4= "Written by: #{article.customer.first_name}"
+        %h5= "Created #{time_ago_in_words article.created_at} ago..."
+        .row
+          .large-12.columns
+            %h3
+              =article.body.gsub(/\n/, '<br/>').html_safe

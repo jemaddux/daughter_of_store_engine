@@ -1,5 +1,36 @@
+
 %h1
   =@article.title
-%br
+  %h5
+    = "created by #{@article.customer.first_name} on #{@article.created_at.month} / #{@article.created_at.day}"
+  %br
 %h2
-  =@article.body.gsub(/\n/, '<br/>').html_safe
+  %p #{@article.body.gsub(/\n/, '<br/>').html_safe}
+  %p View count: #{@article.view_count}
+
+-if @article.customer.admin == true
+  = link_to 'Edit', edit_article_path(current_store, @article)
+
+/ %html{:lang => "en"}
+/   %head
+/     %title ACE in Action
+/     %style{:media => "screen", :type => "text/css"}
+/       \#editor {
+/       position: absolute;
+/       top: 0;
+/       right: 0;
+/       bottom: 0;
+/       left: 0;
+/       }
+/   %body
+/     #editor
+/       function foo(items) {
+/       var x = "All this is syntax highlighted";
+/       return x;
+/       }
+/     %script{:charset => "utf-8", :src => "http://rawgithub.com/ajaxorg/ace-builds/master/src-noconflict/ace.js", :type => "text/javascript"}
+/     :javascript
+/       var editor = ace.edit("editor");
+/       editor.setTheme("ace/theme/monokai");
+/       editor.getSession().setMode("ace/mode/javascript");
+

@@ -23,8 +23,23 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def update
+    article = Article.find(params[:id])
+    article.update_attributes(params[:article])
+    if article.save
+      redirect_to article_path(current_store, article)
+    else
+      render :new
+    end
+  end
+
   def show
     @article = Article.find(params[:id])
+    @article.increase_view_count  
+  end
+
+  def increase_view_count
+    
   end
 
   def destroy

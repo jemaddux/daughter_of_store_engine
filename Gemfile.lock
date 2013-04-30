@@ -9,6 +9,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    ace-rails (0.0.2)
     actionmailer (3.2.13)
       actionpack (= 3.2.13)
       mail (~> 2.5.3)
@@ -300,6 +301,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ace-rails
   asset_sync
   aws-sdk
   better_errors
