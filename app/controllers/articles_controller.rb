@@ -1,6 +1,5 @@
 class ArticlesController < ApplicationController
   layout 'admin/application', except: [:show, :index]
-
   before_filter :require_store_admin_or_admin, except: [:show, :index]
 
   def index
