@@ -5,6 +5,8 @@ In less than a few weeks we created a scalable multi-tentant Ecommerce platform.
 
 to view our work, clone the repo, bundle, start a redis-server, rake db:migrate, rake db:test:prepare, unicorn
 
+good luck
+
 http://tutorials.jumpstartlab.com/projects/son_of_store_engine.html
 
 -[Blair](https://github.com/blairand)
