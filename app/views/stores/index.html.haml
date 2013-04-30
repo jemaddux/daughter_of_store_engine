@@ -1,15 +1,12 @@
 %h1 Store Directory
 
-%table
-  %tr
-    %th.left Store Name
-    %th
-
+.row
   - @stores.each do |store|
-    %tr
-      %td= link_to store.name, home_path(store)
-      %td= image_tag('http://placehold.it/50/50')
-
-%br
-
-= link_to 'New Store', new_store_path, class: "button round"
+    .large-4.small-6.columns
+      - if store.background_images.count > 0
+        =link_to image_tag(store.background_images.first.photo.url, style: "height:400px;"), home_path(store)
+      - else
+        =link_to image_tag("http://i.imgur.com/Fgs1WK4.jpg", style: "height:400px;"), home_path(store)
+      .panel.large-12.small-12{style:"overflow:hidden;height:70px;text-align:center"}
+        %h1= link_to store.name, home_path(store)
+    
