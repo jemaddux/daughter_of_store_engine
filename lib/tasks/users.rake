@@ -4,7 +4,7 @@ namespace :build do
     1000.times do |i|
       Customer.create(
           :display_name => "random_user#{i}",
-          :email => "demoXX+random#{i}@jumpstartlab.com",
+          :email => "demoxx+random#{i}@jumpstartlab.com",
           :password => "password",
           :password_confirmation => "password",
           :admin => false,

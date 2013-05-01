@@ -3,9 +3,10 @@ class BuildSeedUsers
 
   def self.perform
     100.times do |i|
+      t = SecureRandom.hex(3)
     Customer.create(
-      :display_name => "random_user#{i}",
-      :email => "demoXX+random#{i}@jumpstartlab.com",
+      :display_name => "random_user#{t}",
+      :email => "demoxx+random#{t}@jumpstartlab.com",
       :password => "password",
       :password_confirmation => "password",
       :admin => false,

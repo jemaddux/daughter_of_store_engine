@@ -20,6 +20,7 @@ class CustomersController < ApplicationController
 
     if @customer.save
       auto_login(@customer)
+      @customer.welcome_email
       if session[:redirect_after_create]
         redirect_to session[:redirect_after_create],
           notice: "<a href='/account'>Edit your details</a>".html_safe

@@ -1,8 +1,6 @@
 class Customer < ActiveRecord::Base
   authenticates_with_sorcery!
 
-  after_create :welcome_email
-
   validates_confirmation_of :password,
                             message: "Password should match confirmation.",
                             if: :password
