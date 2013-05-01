@@ -3,7 +3,8 @@ class ArticlesController < ApplicationController
   before_filter :require_store_admin_or_admin, except: [:show, :index]
 
   def index
-    @articles = current_store.articles.order("created_at DESC").includes(:customer)
+    @articles = current_store.articles.order("created_at DESC").includes(
+                                                                :customer)
   end
 
   def new

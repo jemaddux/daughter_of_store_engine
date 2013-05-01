@@ -23,7 +23,9 @@ class Store < ActiveRecord::Base
   has_many :articles
 
   validates :name, presence: true
-  validates :path, presence: true, :format => { :with => /\A[-a-z]+\z/, :message => "Only Lowercase Letters and Hyphens Allowed" }
+  validates :path, presence: true,
+            :format => { :with => /\A[-a-z]+\z/,
+            :message => "Only Lowercase Letters and Hyphens Allowed" }
   validates_uniqueness_of :name
   validates_uniqueness_of :path
 
