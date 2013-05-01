@@ -10,13 +10,12 @@ class Product < ActiveRecord::Base
                   :store_id,
                   :photo_url
 
-  #default_scope { where(store_id: Store.current_id)  }
-
   paginates_per 9
   max_paginates_per 9
 
   validates :name,        presence: true
   validates :description, presence: true
+  validates :store_id, presence: true
 
   validates :price,
             presence: true,

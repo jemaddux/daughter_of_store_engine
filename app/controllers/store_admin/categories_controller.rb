@@ -11,17 +11,17 @@ class StoreAdmin::CategoriesController < ApplicationController
   end
 
   def new
-    @store = Store.find(current_store.id)
+    @store = current_store
     @category = Category.new
   end
 
   def edit
-    @store = Store.find(current_store.id)
+    @store = current_store
     @category = current_store.categories.find(params[:id])
   end
 
   def create
-    @category = Category.new(params[:category])
+    @category = current_store.categories.new(params[:category])
 
     if @category.save
       redirect_to @category, notice: 'Category was successfully created.'
@@ -44,5 +44,6 @@ class StoreAdmin::CategoriesController < ApplicationController
   def destroy
     @category = current_store.categories.find(params[:id])
     @category.destroy
+    redirect_to admin_categories_path, notice: 'Category was successfully deleted.'
   end
 end
