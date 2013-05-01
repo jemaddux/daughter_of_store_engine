@@ -1,3 +1,6 @@
+.text-center
+  = paginate @products
+  
 - @products.each_with_index do |product, index|
   .row
     .large-6.columns

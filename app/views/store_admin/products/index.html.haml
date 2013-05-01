@@ -1,4 +1,4 @@
-%h1= "#{@store.name} Product Listing:"
+%h1= "#{current_store.name} Product Listing:"
 
 .large-12.columns
   .row
@@ -7,4 +7,6 @@
       %h1.admin-heading Products
 .row
   .large-12.columns
+    .text-center
+      = paginate @products
     = render @products
