@@ -36,7 +36,7 @@ class StoreAdmin::ProductsController < ApplicationController
   def update
     categories = params[:product].delete(:categories_list)
     product = current_store.products.find(params[:id])
-    
+
     if product.update_attributes(params[:product])
       product.categories_list = categories
       current_store.touch

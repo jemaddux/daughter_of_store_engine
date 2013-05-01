@@ -1,14 +1,6 @@
 class Product < ActiveRecord::Base
-  attr_accessible :name,
-                  :description,
-                  :price,
-                  :quantity,
-                  :featured,
-                  :image,
-                  :active,
-                  :categories_list,
-                  :store_id,
-                  :photo_url
+  attr_accessible :name, :description, :price, :quantity, :featured, :image,
+                  :active, :categories_list, :store_id, :photo_url
 
   paginates_per 9
   max_paginates_per 9
