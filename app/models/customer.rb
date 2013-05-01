@@ -7,10 +7,9 @@ class Customer < ActiveRecord::Base
                             message: "Password should match confirmation.",
                             if: :password
 
-  validates :email,         presence: true, :uniqueness => { :case_sensitive => false }
+  validates :email, presence: true, :uniqueness => { :case_sensitive => false }
   validates :first_name,    presence: true
   validates :last_name,     presence: true
-
 
   has_one  :cart
   has_one  :shipping_address

@@ -46,6 +46,6 @@ class PagesController < ApplicationController
   def destroy
     page = current_store.pages.find_by_slug(params[:id])
     page.destroy
-    redirect_to store_admin_path(current_store) 
+    redirect_to store_admin_path(current_store)
   end
 end

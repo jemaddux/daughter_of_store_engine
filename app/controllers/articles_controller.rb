@@ -15,7 +15,8 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    article = Article.new(store_id:current_store.id, customer_id: current_user.id)
+    article = Article.new(store_id:current_store.id,
+                          customer_id: current_user.id)
     article.update_attributes(params[:article])
     if article.save
       redirect_to article_path(current_store, article)
@@ -36,16 +37,16 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
-    @article.increase_view_count  
+    @article.increase_view_count
   end
 
   def increase_view_count
-    
+
   end
 
   def destroy
     article = Article.find(params[:id])
     article.destroy
-    redirect_to store_admin_path(current_store) 
+    redirect_to store_admin_path(current_store)
   end
 end
