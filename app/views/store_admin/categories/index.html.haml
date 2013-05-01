@@ -1,17 +1,9 @@
 %h1 Listing Categories
 
-%table
-  %tr
-    %th.left Name
-    %th
-    %th
-
-  - @categories.each do |category|
-    %tr
-      %td= category.name
-      %td= link_to 'Edit', edit_admin_category_path(current_store,category.id)
-      %td= link_to 'Destroy', admin_category_path(current_store,category.id), :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Category', new_admin_category_path(current_store)
+- @categories.each do |category|
+  .large-2.columns.panel.radius{style: "margin-right:10px;"}
+    %h2= category.name
+    %p
+      %strong
+        = link_to "(Preview)", admin_category_path(current_store, category), class: "tiny"
+        = link_to '(Destroy)', admin_category_path(current_store, category), :method => :delete, :data => { :confirm => 'Are you sure?' }

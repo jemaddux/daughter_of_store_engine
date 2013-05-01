@@ -11,13 +11,11 @@ class StoreAdmin::CategoriesController < ApplicationController
   end
 
   def new
-    @store = current_store
-    @category = Category.new
+    send_people_back_with_notice
   end
 
   def edit
-    @store = current_store
-    @category = current_store.categories.find(params[:id])
+    send_people_back_with_notice
   end
 
   def create
@@ -46,5 +44,10 @@ class StoreAdmin::CategoriesController < ApplicationController
     @category.destroy
     redirect_to admin_categories_path,
           notice: 'Category was successfully deleted.'
+  end
+
+private
+  def send_people_back_with_notice
+    redirect_to admin_categories_path(current_store), notice: "Please add and remove products from categories when you are building products"
   end
 end
