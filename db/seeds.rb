@@ -100,20 +100,20 @@ end
 
 
 store_names = [
-  ["Glamping", "glamping"], 
-  ["Honey-Can-Too", "honey-can-too"], 
-  ["Phil's Power Tools", "phils-power-tools"], 
-  ["Whale Store", "whales"], 
-  ["Slick-Bike-Shop", "slick-bike-shop"],
-  ["Franks Sticker Store", "frank-sticks"], 
-  ["Jeff's House of Pain", "youreabadbrogrammer"], 
-  ["Blairs HotDog Store", "blairs-hotdog-store"], 
-  ["Gather", "gather"], 
-  ["ToysRus", "toysrus"]
+  ["Glamping", "glamping", "GLAMPING (GLAMOROUS CAMPING) IS A GROWING GLOBAL PHENOMENON THAT COMBINES CAMPING WITH THE LUXURY AND AMENITIES OF A HOME OR HOTEL..."], 
+  ["Honey-Can-Too", "honey-can-too", "Your Source for Storage, Organization, and Style"], 
+  ["Phil's Power Tools", "phils-power-tools", "POWER TOOLS HELPED BUILD AMERICA, WE'RE SUPER AMERICAN. RAWRRR."], 
+  ["Whale Store", "whales", "SeaFood and Plankton" ], 
+  ["Slick-Bike-Shop", "slick-bike-shop", "We Sell the Slickest Bikes Ever, Bro."],
+  ["Franks Sticker Store", "frank-sticks", "A Sticker is a sticker is a sticker is a sticker"], 
+  ["JumpstartLab", "jumpstartlab", "JumpstartLab offers the best web development training anywhere. We’re known for our expertise in Ruby on Rails, but also instruct courses in jQuery, JavaScript, ExtJS, and Git."], 
+  ["Blairs HotDog Store", "blairs-hotdog-store", "We Sell HotDogs"], 
+  ["Gather", "gather", "Gather is a contemporary café and lounge, located in the historic Rocky Mountain Bank Note building at 1062 Delaware Street."], 
+  ["ToysRus", "toysrus", "We sell a crapload of toys"]
 ]
 
-store_names.each do |name,path|
-  store = Store.create!(name: name, path: path, description: Faker::Lorem.paragraph(1), status:"active")
+store_names.each do |name,path,description|
+  store = Store.create!(name: name, path: path, description: description, status:"active")
   Store.include_admin(frank.id, store.id)
   Store.include_admin(blair.id, store.id)
   Store.include_stocker(paul.id, store.id)
