@@ -47,23 +47,10 @@ class ChargesController < ApplicationController
   end
 
   def create
-    order = Order.for_customer(
-      current_user,
-      current_cart_products,
-      current_store.id)
-
-    Resque.enqueue(
-      ProcessStripeCharge,
-      current_user.email,
-      params[:stripeToken],
-      (order.total*100)
-      )
-
-    Resque.enqueue(
-      OrderConfirmationEmail,
-      current_store.id,
-      current_user.id,
-      order.id)
+    order = Order.for_customer(current_user, current_cart_products,
+                               current_store.id)
+    resque_process_stripe_charge(params, order)
+    resque_order_confirmation_email(order)
 
     current_user.cart.destroy
     session[:shopping_cart].clear
@@ -71,4 +58,24 @@ class ChargesController < ApplicationController
     redirect_to orders_path,
       notice: "Order Received. You will receive confirmation processing."
   end
+
+  private
+
+  def resque_process_stripe_charge(params, order)
+    Resque.enqueue(
+      ProcessStripeCharge,
+      current_user.email,
+      params[:stripeToken],
+      (order.total*100)
+      )
+  end
+
+  def resque_order_confirmation_email(order)
+    Resque.enqueue(
+      OrderConfirmationEmail,
+      current_store.id,
+      current_user.id,
+      order.id)
+  end
+
 end
