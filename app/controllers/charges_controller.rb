@@ -13,22 +13,12 @@ class ChargesController < ApplicationController
 
   def create_guest
     if params[:email] && params[:password]
-      email = params[:email]
-      password = params[:password]
-      login(email,password, remember_me = false)
+      login(params[:email], params[:password], remember_me = false)
     else
-      email = params[:email]
       password = SecureRandom.hex(4)
-      password_confirmation = password
-      first_name = params[:first_name]
-      last_name = params[:last_name]
-
-      if customer = Customer.create(
-        :email => email,
-        :first_name => first_name,
-        :last_name => last_name,
-        :password => password,
-        :password_confirmation => password_confirmation)
+      if customer = Customer.create(:email => params[:email],
+        :first_name => params[:first_name], :last_name => params[:last_name],
+        :password => password, :password_confirmation => password)
       else
         redirect_to :back, notice:"Sorry, that email has already been taken."
       end
