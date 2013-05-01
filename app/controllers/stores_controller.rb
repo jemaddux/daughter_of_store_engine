@@ -11,7 +11,7 @@ class StoresController < ApplicationController
   end
 
   def index
-    @stores = Store.unscoped.all
+    @stores = Store.unscoped.where(status: "active")
   end
 
   def show
