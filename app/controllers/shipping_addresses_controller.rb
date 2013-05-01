@@ -58,6 +58,6 @@ class ShippingAddressesController < ApplicationController
   private
 
   def shorten_phone(number)
-    return number.gsub("(","").gsub(")","").gsub("-","")
+    return number.gsub("(","").gsub(")","").gsub("-","").gsub(" ","")
   end
 end
