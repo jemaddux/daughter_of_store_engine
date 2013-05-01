@@ -22,7 +22,7 @@ class StoreAdmin::ProductsController < ApplicationController
 
     if product.save
       store.touch
-      redirect_to admin_products_path(store),
+      redirect_to admin_products_path(current_store),
                 notice: "Product was successfully created."
     else
       render action: "new"
@@ -40,7 +40,7 @@ class StoreAdmin::ProductsController < ApplicationController
     if product.update_attributes(params[:product])
       product.categories_list = categories
       current_store.touch
-      redirect_to admin_products_path, notice: 'Product Updated.'
+      redirect_to admin_products_path(current_store), notice: 'Product Updated.'
     else
       render :edit
     end
@@ -50,6 +50,6 @@ class StoreAdmin::ProductsController < ApplicationController
     product = current_store.products.find(params[:id])
     product.destroy
     current_store.touch
-    redirect_to admin_products_path, notice: 'Product Removed.'
+    redirect_to admin_products_path(current_store), notice: 'Product Removed.'
   end
 end
