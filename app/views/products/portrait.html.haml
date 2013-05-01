@@ -1,6 +1,3 @@
-.text-center
-  = paginate @products
-  
 - @products.each_with_index do |product, index|
   .row
     .large-6.columns
@@ -24,3 +21,6 @@
           = number_field_tag 'quantity', 1, :min => 1
           = submit_tag 'Add to Cart', class: 'button'
   %hr
+.text-center
+  = paginate @products
+  

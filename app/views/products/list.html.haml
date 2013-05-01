@@ -1,5 +1,3 @@
-.text-center
-  = paginate @products
 - @products.each_with_index do |product, index|
   .row
     .large-2.columns.small-3
@@ -13,3 +11,5 @@
       %h4.subheader= number_to_currency(product.price)
       %h6=product.description
       %p.product-stock.left= "#{product.quantity} in stock"
+.text-center
+  = paginate @products
