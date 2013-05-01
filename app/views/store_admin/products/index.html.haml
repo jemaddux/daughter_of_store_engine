@@ -3,7 +3,7 @@
 .large-12.columns
   .row
     .large-12.columns
-      = link_to "New Product", new_admin_product_path(@store), action: :new, class: "button right"
+      = link_to "New Product", new_admin_product_path(current_store), action: :new, class: "button right"
       %h1.admin-heading Products
 .row
   .large-12.columns

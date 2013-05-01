@@ -6,7 +6,7 @@
 .row
   .large-12.columns
     .admin-panel
-      = form_for [ :store_admin, @product ], method: 'PUT', url: admin_product_path(current_store,@product) do |f|
+      = form_for [ :store_admin, @product ], method: 'PUT', url: admin_product_path(current_store, @product) do |f|
         %ul
           - @product.errors.full_messages.each do |error|
             %li= error

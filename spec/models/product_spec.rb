@@ -13,6 +13,16 @@ describe Product do
       product = Product.create(name: name, description: description, store_id: store_id, price: price, quantity: quantity, active: active)
       expect(product).to be_valid
     end
+
+    it "should categories that match" do 
+      product = Product.create(name: name, description: description, store_id: store_id, price: price, quantity: quantity, active: active)
+      product.categories_list= "valid, products"
+      expect(product).to be_valid
+      expect(Category.count).to eq 2
+      Category.all.each do |cat|
+        expect(cat.store_id).to eq store_id
+      end
+    end
   end
 
   describe "with invalid inputs" do 

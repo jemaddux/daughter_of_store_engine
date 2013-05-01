@@ -4,11 +4,11 @@
 
   .large-10.columns
     .left
-      %h2= link_to product.name, admin_product_path(@store.path, product.id)
+      %h2= link_to product.name, admin_product_path(current_store, product.id)
       %p= product.description
     .right
-      =link_to 'Edit', edit_admin_product_path(@store.path, product.id), class: "button right"
+      =link_to 'Edit', edit_admin_product_path(current_store, product.id), class: "button right"
       %br
       
       %br
-      =link_to 'Delete', admin_product_path(@store.path, product.id), method: :delete, class: "button right", :data => { :confirm => 'Sure you want to delete product?' }
+      =link_to 'Delete', admin_product_path(current_store, product.id), method: :delete, class: "button right", :data => { :confirm => 'Sure you want to delete product?' }

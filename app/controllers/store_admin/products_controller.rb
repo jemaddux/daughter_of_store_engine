@@ -3,24 +3,23 @@ class StoreAdmin::ProductsController < ApplicationController
   before_filter :require_store_admin_or_admin
 
   def index
-    @store = current_store
-    @products = current_store.products.page params[:page]
+    @products = current_store.products.page(params[:page])
   end
 
   def show
-    @store = current_store
     @product = current_store.products.find(params[:id])
   end
 
   def new
-    @store = current_store
-    @product = Product.new
+    @product = current_store.products.build
   end
 
   def create
-    store = current_store
+    categories = params[:product].delete(:categories_list)
     product = current_store.products.create(params[:product])
-    product.categories.each{|c|c.store_id = current_store.id; c.save}
+
+    product.categories_list = categories
+
     if product.save
       store.touch
       redirect_to admin_products_path(store),
@@ -31,17 +30,17 @@ class StoreAdmin::ProductsController < ApplicationController
   end
 
   def edit
-    @store = current_store
     @product = current_store.products.find(params[:id])
   end
 
   def update
-    @store = current_store
-    @product = current_store.products.find(params[:id])
-    if @product.update_attributes(params[:product])
-      @store.touch
-      redirect_to admin_products_path,
-                notice: 'Product was successfully updated.'
+    categories = params[:product].delete(:categories_list)
+    product = current_store.products.find(params[:id])
+    
+    if product.update_attributes(params[:product])
+      product.categories_list = categories
+      current_store.touch
+      redirect_to admin_products_path, notice: 'Product Updated.'
     else
       render :edit
     end
