@@ -21,9 +21,8 @@ class StoreAdmin::ProductsController < ApplicationController
     product.categories_list = categories
 
     if product.save
-      store.touch
-      redirect_to admin_products_path(current_store),
-                notice: "Product was successfully created."
+      current_store.touch
+      redirect_to admin_product_path(current_store, product), notice: "Product created."
     else
       render action: "new"
     end
