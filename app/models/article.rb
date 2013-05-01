@@ -10,6 +10,8 @@ class Article < ActiveRecord::Base
   belongs_to :customer
 
   def increase_view_count
-    self.increment(:view_count,1)
+    page_views = self.view_count
+    self.view_count = page_views+1
+    self.save
   end
 end

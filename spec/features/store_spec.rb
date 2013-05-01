@@ -2,32 +2,37 @@ require 'spec_helper'
 
 describe Store do
   let!(:user) {Customer.create!(email: 'test@test.com', password: 'password', first_name: 'test', last_name: 'user', admin: false)}
-
-  context 'when a store is created' do
-    it 'is successfully created' do
-      visit stores_path
-      click_link 'New Store'
+  name = "Carrot Sticks"
+  path = "carrot-sticks"
+  description = "We sell carrots and sticks"
+  context 'when valid inputs are given' do
+    it 'should be successfully created' do
+      visit account_path
       fill_in 'email', with: 'test@test.com'
       fill_in 'password', with: 'password'
       click_button 'Login'
-      fill_in 'store_name', with: 'carrot sticks'
-      fill_in 'store_path', with: 'carrot-sticks'
-      fill_in 'store_description', with: 'we sell carrots and sticks'
-      click_button 'Save'
-      page.should have_content('Store Name: carrot sticks')
+      expect(current_path).to eq account_path
+      click_on 'Create a Store'
+      fill_in 'store_name', with: name
+      fill_in 'store_path', with: path
+      fill_in 'store_description', with: description
+      click_on 'Save'
+      page.should have_content name
+      page.should have_content description
     end
 
     it 'has the status: pending' do
-      visit stores_path
-      click_link 'New Store'
+      visit account_path
       fill_in 'email', with: 'test@test.com'
       fill_in 'password', with: 'password'
       click_button 'Login'
-      fill_in 'store_name', with: 'carrot sticks'
-      fill_in 'store_path', with: 'carrot-sticks'
-      fill_in 'store_description', with: 'we sell carrots and sticks'
-      click_button 'Save'
-      visit '/carrot-sticks'
+      click_on 'Create a Store'
+      fill_in 'store_name', with: name
+      fill_in 'store_path', with: path
+      fill_in 'store_description', with: description
+      click_on 'Save'
+      expect(current_path).to have_content path
+      visit home_path(path)
       page.should have_content('Store is Pending Approval by Site Admin')
     end
   end

@@ -18,11 +18,12 @@ class StoreAdmin::ProductsController < ApplicationController
   end
 
   def create
-    @store = current_store
-    @product = Product.new(params[:product])
-    if @product.save
-      @store.touch
-      redirect_to store_admin_products_path(@store),
+    store = current_store
+    product = current_store.products.create(params[:product])
+    product.categories.each{|c|c.store_id = current_store.id; c.save}
+    if product.save
+      store.touch
+      redirect_to store_admin_products_path(store),
                 notice: "Product was successfully created."
     else
       render action: "new"
