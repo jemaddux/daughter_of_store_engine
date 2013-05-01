@@ -26,13 +26,13 @@ Rails.application.config.sorcery.configure do |config|
   #
   # config.cookie_domain =
 
-  
+
   # -- remember_me --
   # allow the remember_me cookie to settable through AJAX
   # Default: `true`
   #
   # user.remember_me_httponly =
-  
+
   # How long in seconds the session length will be
   # Default: `604800`
   #
@@ -100,7 +100,7 @@ Rails.application.config.sorcery.configure do |config|
   # config.linkedin.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=linkedin"
   # config.linkedin.user_info_fields = ['first-name', 'last-name']
   # config.linkedin.user_info_mapping = {first_name: "firstName", last_name: "lastName"}
-  # config.linkedin.access_permissions = ['r_basicprofile'] 
+  # config.linkedin.access_permissions = ['r_basicprofile']
   #
   # Twitter wil not accept any requests nor redirect uri containing localhost,
   # make sure you use 0.0.0.0:3000 to access your app in development
@@ -159,7 +159,7 @@ Rails.application.config.sorcery.configure do |config|
     # downcase the username before trying to authenticate, default is false
     # Default: `false`
     #
-    # user.downcase_username_before_authenticating =
+    user.downcase_username_before_authenticating = true
 
 
     # change default email attribute.
