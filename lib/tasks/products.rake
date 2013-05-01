@@ -9,16 +9,16 @@ namespace :build do
     end
   end
 
-  desc "1000 background task products per store" 
+  desc "10 demo stores with 10000 products per store" 
   task :products_task => :environment do
-    a = Time.now
-    Store.all[0..10].each do |store|
-      10.times do |i|
+    store_names = %w(b-demostore c-demostore d-demostore e-demostore f-demostore g-demostore h-demostore i-demostore j-demostore k-demostore)
+    store_names.each do |path|
+      store = Store.create!(name: path.titleize, path: path, status:"active")
+      10.times do
         Resque.enqueue(BuildSeedProducts,store.id)
         print "."
       end
     end
-    print "#{Time.now - a}"
   end
 
   desc "honeycantoo products" 
