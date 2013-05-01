@@ -46,19 +46,11 @@ StoreEngine::Application.routes.draw do
     get '/admin' => 'store_admin/stores#show', as: 'store_admin'
     get '/admin/store/edit' => 'store_admin/stores#edit', as: 'store_admin_edit_store'
     put '/admin/store/edit' => 'store_admin/stores#update', as: 'store_admin_edit_store'
-
-    get '/admin/products' => 'store_admin/products#index', as: 'store_admin_products'
-    get '/admin/products/new' => 'store_admin/products#new', as: 'store_admin_new_product'
-    post '/admin/products/new' => 'store_admin/products#create', as: 'store_admin_new_product'
-    get '/admin/products/:id' => 'store_admin/products#show', as: 'store_admin_product'
-    get '/admin/products/:id/edit' => 'store_admin/products#edit', as: 'store_admin_edit_product'
-    put '/admin/products/:id/edit' => 'store_admin/products#update', as: 'store_admin_edit_product'
-    delete '/admin/products/:id' => 'store_admin/products#destroy', as: 'store_admin_delete_product'
-
     get '/admin/orders' => 'store_admin/stores#orders', as: "admin_orders"
 
     scope "/admin" do
       scope :module => "store_admin" do
+        resources :products, as: "admin_products"
         resources :categories, as: "admin_categories"
       end
     end

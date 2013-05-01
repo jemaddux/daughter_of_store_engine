@@ -15,17 +15,17 @@
     .section-container.accordion{"data-section" => "accordion"}
       %section
         %p.title.button{"data-section-title" => ""}
-          = link_to 'Edit Store Details', store_admin_edit_store_path(@store.path)
+          = link_to 'Edit Store Details', store_admin_edit_store_path(current_store)
         .content{"data-section-content" => ""}
           %p Content of section 1.
       %section
         %p.title.button{"data-section-title" => ""}
-          = link_to 'Products', store_admin_products_path(@store.path)
+          = link_to 'Products', admin_products_path(current_store)
         .content{"data-section-content" => ""}
           %p Content of section 2.
       %section
         %p.title.button{"data-section-title" => ""}
-          = link_to 'Back to Store', home_path(@store.path)
+          = link_to 'Back to Store', home_path(current_store)
         .content{"data-section-content" => ""}
           %p Content of section 2.
       %section

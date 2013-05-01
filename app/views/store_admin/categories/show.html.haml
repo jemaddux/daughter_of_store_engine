@@ -2,7 +2,7 @@
   = "'"+@category.name.titleize+"'"
   product list:
   - @category.products.each do |product|
-    %h4=link_to product.name, store_admin_product_path(current_store, product)
+    %h4=link_to product.name, admin_product_path(current_store, product)
 
 = link_to 'Edit', edit_admin_category_path(@category)
 \|

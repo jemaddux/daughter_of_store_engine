@@ -1,12 +1,12 @@
 .large-12.columns
   .row
     .large-12.columns
-      = link_to 'Back', store_admin_products_path(@store.path), class: "button right"
+      = link_to 'Back', admin_products_path(current_store), class: "button right"
       %h1.admin-heading Edit product
 .row
   .large-12.columns
     .admin-panel
-      = form_for [ :store_admin, @product ], method: 'PUT', url: store_admin_edit_product_path(@store,@product) do |f|
+      = form_for [ :store_admin, @product ], method: 'PUT', url: admin_product_path(current_store,@product) do |f|
         %ul
           - @product.errors.full_messages.each do |error|
             %li= error
@@ -41,4 +41,4 @@
           = f.label :active, "Retired"
           = f.radio_button :active, false
         %p
-          = f.submit
+          = f.submit "Update Product", class: "button"

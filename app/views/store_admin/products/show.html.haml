@@ -6,7 +6,7 @@
       .large-12.columns
         %ul.breadcrumbs
           %li
-            = link_to "Products", store_admin_products_path
+            = link_to "Products", admin_products_path(current_store)
           - @product.categories.each do |category|
             %li
               = link_to category.name, admin_category_path(current_store,category)
@@ -24,7 +24,7 @@
         %h4 Description
         %p= @product.description
         %hr/
-        = link_to 'Edit', store_admin_edit_product_path(@store.path, @product.id), class: "button large large-3 small-2 columns"
+        = link_to 'Edit', edit_admin_product_path(current_store, @product), class: "button large large-3 small-2 columns"
         .row
 
 

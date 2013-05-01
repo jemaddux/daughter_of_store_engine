@@ -23,7 +23,7 @@ class StoreAdmin::ProductsController < ApplicationController
     product.categories.each{|c|c.store_id = current_store.id; c.save}
     if product.save
       store.touch
-      redirect_to store_admin_products_path(store),
+      redirect_to admin_products_path(store),
                 notice: "Product was successfully created."
     else
       render action: "new"
@@ -40,7 +40,7 @@ class StoreAdmin::ProductsController < ApplicationController
     @product = current_store.products.find(params[:id])
     if @product.update_attributes(params[:product])
       @store.touch
-      redirect_to store_admin_products_path,
+      redirect_to admin_products_path,
                 notice: 'Product was successfully updated.'
     else
       render :edit
@@ -48,13 +48,9 @@ class StoreAdmin::ProductsController < ApplicationController
   end
 
   def destroy
-    @store = current_store
-    @product = current_store.products.find(params[:id])
-    if @product.destroy
-      @store.touch
-    end
-
-    redirect_to store_admin_products_path,
-            notice: 'Product was successfully removed.'
+    product = current_store.products.find(params[:id])
+    product.destroy
+    current_store.touch
+    redirect_to admin_products_path, notice: 'Product Removed.'
   end
 end
