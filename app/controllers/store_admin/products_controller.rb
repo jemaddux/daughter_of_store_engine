@@ -3,22 +3,22 @@ class StoreAdmin::ProductsController < ApplicationController
   before_filter :require_store_admin_or_admin
 
   def index
-    @store = Store.find(current_store.id)
-    @products = current_store.products.all
+    @store = current_store
+    @products = current_store.products.page params[:page]
   end
 
   def show
-    @store = Store.find(current_store.id)
+    @store = current_store
     @product = current_store.products.find(params[:id])
   end
 
   def new
-    @store = Store.find(current_store.id)
+    @store = current_store
     @product = Product.new
   end
 
   def create
-    @store = Store.find(current_store.id)
+    @store = current_store
     @product = Product.new(params[:product])
     if @product.save
       @store.touch
@@ -30,12 +30,12 @@ class StoreAdmin::ProductsController < ApplicationController
   end
 
   def edit
-    @store = Store.find(current_store.id)
+    @store = current_store
     @product = current_store.products.find(params[:id])
   end
 
   def update
-    @store = Store.find(current_store.id)
+    @store = current_store
     @product = current_store.products.find(params[:id])
     if @product.update_attributes(params[:product])
       @store.touch
@@ -47,7 +47,7 @@ class StoreAdmin::ProductsController < ApplicationController
   end
 
   def destroy
-    @store = Store.find(current_store.id)
+    @store = current_store
     @product = current_store.products.find(params[:id])
     if @product.destroy
       @store.touch
